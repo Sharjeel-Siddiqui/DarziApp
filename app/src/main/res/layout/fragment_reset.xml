@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.7"
+        android:background="@drawable/login_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset Password Token"
+            android:textColor="@android:color/primary_text_dark"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_resetpassword_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_corner_edit_text"
+            android:hint="enter your token"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="@android:color/primary_text_dark"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_corner_edit_text"
+            android:hint="enter your email"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Password"
+            android:textColor="@android:color/primary_text_dark"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_corner_edit_text"
+            android:hint="enter your new password"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/resetbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="150dp"
+        android:text="Reset Password" />
+
+
+</RelativeLayout>

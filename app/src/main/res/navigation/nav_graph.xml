@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+
+
+    <fragment
+        android:id="@+id/userList"
+        android:name="com.example.dulha_jee.userlist.UserListFragnment"
+        android:label="UserList"
+        tools:layout="@layout/fragment_userlist">
+        <action
+            android:id="@+id/action_userList_to_userCreation"
+            app:destination="@id/userCreation" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.dulha_jee.authenthication.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_userList"
+            app:destination="@id/userList" />
+        <action
+            android:id="@+id/action_loginFragment_to_resetFragment"
+            app:destination="@id/resetFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.dulha_jee.authenthication.SignupFragment"
+        android:label="SignupFragment"
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_userList"
+            app:destination="@id/userList" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/datePickerFragment"
+        android:name="com.example.dulha_jee.userlist.DatePickerFragment"
+        android:label="DatePickerFragment"
+        >
+        <action
+            android:id="@+id/action_datePickerFragment_to_userList"
+            app:destination="@id/userList" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/userCreation"
+        android:name="com.example.dulha_jee.usercreation.UserCreation"
+        android:label="UserCreation"
+        tools:layout="@layout/fragment_usercreation"/>
+    <fragment
+        android:id="@+id/resetFragment"
+        android:name="com.example.dulha_jee.authenthication.ResetFragment"
+        android:label="ResetFragment" />
+
+</navigation>
