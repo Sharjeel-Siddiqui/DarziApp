@@ -66,5 +66,19 @@
         android:id="@+id/resetFragment"
         android:name="com.example.dulha_jee.authenthication.ResetFragment"
         android:label="ResetFragment" />
+    <fragment
+        android:id="@+id/kurtaFragment"
+        android:name="com.example.dulha_jee.dashboard.KurtaFragment"
+        android:label="KurtaFragment"
+        tools:layout="@layout/fragment_kurta"/>
+    <fragment
+        android:id="@+id/dashBoard"
+        android:name="com.example.dulha_jee.dashboard.DashBoard"
+        android:label="DashBoard"
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashBoard_to_kurtaFragment"
+            app:destination="@id/kurtaFragment" />
+    </fragment>
 
 </navigation>

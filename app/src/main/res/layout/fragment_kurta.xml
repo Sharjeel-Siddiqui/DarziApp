@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/dropdown_kurta_varieties"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:prompt="@string/app_name" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="شروانی کالر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر کی چوڑائ ــــ انچ رکھنی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر آگے سے گول ہونا چاہہئے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="  کالر نوک والا چاہہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کٹ  کالر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر پر کالر چڑھا ہوا چاہہے ، کاج بٹن کے ساتھ۔۔۔"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="  کالر V وی کٹ اسٹا ؑل کا ہونا چاھئے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="شرٹ  کالر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر کے پر کئ نوک ــــ انچ رکھنی ھے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="رےورس اسٹا ؑل فرنچ کالر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="ٹکسیڈو اسٹا ؑل  کالر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر کا اسٹا ؑل تھوڑا چھوٹا والا رکھنا ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر کی نوک پر کاج بٹن ہونگے۔"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر کے کاج میں چھوٹے سا ؑز کے بٹن لگنا ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر میں بلکل نرم لگانی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کسٹمر کو کالر بلکل نرم چاہیے "
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر میں ہارڈ لگانی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر میں کے پتے زیادہ  لگانے ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر میں گم سلای ہوگی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کالر کی ڈیزاؑننگ سیم تصویر جیسی ھوگی"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" مگزی گول گلۃ"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="مگزی گول گلے کی سلائ بلکل صاف کرنی ہے ، فنشنگ سے ، بغیر جھول کے۔"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="سامنے کی ریگولر پٹی کی لمبائ ــــ انچ رکھنی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="نارمل ریگولر پٹی"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" سامنے کے ریگولر پٹی کے چوڑائ  ــــ انچ رکھنی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" نوک والی پٹی"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="  اسٹریٹ پٹی - گول پٹی"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="سامنے کے پٹی میں ــــ عدد کاج ہونگے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" بوٹ سلای ھوگی پٹی میں"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کور پٹی بنانی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="سامنے کی پٹی کا اسٹاعل سیم تصویر جیسا رکھنا ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="  کور پٹی کی لمبائ ــــ انچ رکھنی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف آستین"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کٹ کف"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="گول کف"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="اسٹر یٹ کف نوک والے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف لنک اسٹاعل کف"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="ڈبل کف بنیں گے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" نرم لگانی ہے کف میں"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="نرم لگانی ہے کف میں"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کف میں ہارڈ لگانی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف کی چوڑائ ـــ انچ رکھنی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" کف کی چاک پٹی پہ بھی کاج بٹن ہونگے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف کی چاک پٹی کی بون والے ساییڈ میں بھی بون میں بکرم لگانی ہے لازمی"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف کی چاک پٹی  نوک والی رکھنی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف کی چاک پٹی اسٹریٹ رکھنی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف کی چاک پٹی گول رکھنی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف کی چاک پٹی کی چوڑائ ـــ انچ رکھنی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" نوک کا اسٹاعل سیم تصویر والا رکھنا ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف میں مشین کی کڑھائ ہوگی"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف میں ہاتھ کا کام ہوگا"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کف کی لمبائ ـــ انچ تیار رکھنی ہے3"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="اسٹریٹ کرتا گول"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text=" گول دامن"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="قمیص اسٹائل گول دامن"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="پیالۃ اسٹائل دامن"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="اسٹریٹ سیدھا دامن بنے گام،لیکن دامن کے صرف کنارے گول بنانے ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="دامن میں ڈبل سلائ ہوگی"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="دامن کی سلائ بلکل صاف چاہہے فنشنگ سے بغیر جھول کے "
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="دامن بلکل سیم تصویر کی طرح چاہہے کسٹمر کو"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="چکوٹی امریکن بنانی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="چکوٹی"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="چکوٹی کنٹراس  کلر کی بنانی ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="تیرے والا پیس بنانا ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="بغیر تیرے والا پیس بنانا ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="ڈبل سلائ ہوگی پورے پیس میں"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="لب سلائ ہوگی"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="پکی لپ میں بنانا ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="چاک ــــ انچ کے رکھنے ہیں"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="چانپا کروانا ہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="سامنے پہ مشین کی کڑھائ کی بیل بنانی ہے ــــ انچ چوڑی"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="سامنے پہ بنچ بنے گا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کالر پہ مشین کی کڑھائ ہوگی"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="آستین میں مشین کی کڑھائ ہوگی"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="بازو میں مشین کی کڑھائ ہوگی"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کالر اور پٹی پہ ہاتھ کا کام ہوگا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="کالر پہ ہاتھ کا کام ہوگا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="پٹی پہ ہاتھ کا کام ہوگا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="سامنے پہ ہاتھ کا کام  ہوگا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="آستین مین ہاتھ کا کام  ہوگا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="بازو میں کام ہوگ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="1 SAMNEY JAIB STYLE YAHA LAGANEY HONGY"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="سامنے پہ 2 جیب بنے گا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="جیب کی چوڑائ ـــ انچ اور لمبائ ــــ انچ رکھنی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="2 سایڈ پوکٹ رکھنی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text= "1 سایڈ پوکٹ رکھنی ہے سیدھے ہاتھ کی طرف"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text= "1 سایڈ پوکٹ رکھنی ہے الٹے ہاتھ کی طرف"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text= "سایڈ پوکٹ کی تھیلی کی گہرائ تھوڑی زیادہ چاہہے"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="true"
+            android:padding="10dp"
+            android:text= "SIDE POCKET KI SLIYE KA STYLE YAHA AYE GA WITH IMAGE"
+            android:textSize="22sp" />
+
+
+    </LinearLayout>
+</ScrollView>
