@@ -79,6 +79,13 @@
         <action
             android:id="@+id/action_dashBoard_to_kurtaFragment"
             app:destination="@id/kurtaFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_waistCoatFragment"
+            app:destination="@id/waistCoatFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/waistCoatFragment"
+        android:name="com.example.dulha_jee.dashboard.WaistCoatFragment"
+        android:label="WaistCoatFragment" />
 
 </navigation>
