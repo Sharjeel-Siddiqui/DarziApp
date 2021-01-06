@@ -75,7 +75,7 @@ public class LoginFragment extends Fragment {
                 dialogSubmitbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        EmailBody emailBody = new EmailBody(emailSubmit.getText().toString());
+             /*           EmailBody emailBody = new EmailBody(emailSubmit.getText().toString());
                         iapi.forgotPassword(emailBody).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -91,7 +91,8 @@ public class LoginFragment extends Fragment {
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
                                 Toast.makeText(getActivity(), "Failed..", Toast.LENGTH_SHORT).show();
                             }
-                        });
+                        });*/
+                        navController.navigate(R.id.action_loginFragment_to_resetFragment);
                     }
                 });
             }
@@ -107,7 +108,7 @@ public class LoginFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginBody loginBody = new LoginBody(et_email.getText().toString(), et_password.getText().toString());
+               /* LoginBody loginBody = new LoginBody(et_email.getText().toString(), et_password.getText().toString());
                 iapi.loginUser(loginBody).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -122,7 +123,8 @@ public class LoginFragment extends Fragment {
                         Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
                         Log.i("TAG", "onFailure: " + t.getMessage());
                     }
-                });
+                });*/
+                navController.navigate(R.id.action_loginFragment_to_userList);
             }
         });
 

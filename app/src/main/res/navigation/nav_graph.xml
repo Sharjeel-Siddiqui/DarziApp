@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_userList_to_userCreation"
             app:destination="@id/userCreation" />
+        <action
+            android:id="@+id/action_userList_to_dashBoard"
+            app:destination="@id/dashBoard" />
     </fragment>
 
     <fragment
@@ -82,10 +85,19 @@
         <action
             android:id="@+id/action_dashBoard_to_waistCoatFragment"
             app:destination="@id/waistCoatFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_sherwaniFragment"
+            app:destination="@id/sherwaniFragment" />
     </fragment>
     <fragment
         android:id="@+id/waistCoatFragment"
         android:name="com.example.dulha_jee.dashboard.WaistCoatFragment"
-        android:label="WaistCoatFragment" />
+        android:label="WaistCoatFragment"
+        tools:layout="@layout/fragment_waistcoat"/>
+    <fragment
+        android:id="@+id/sherwaniFragment"
+        android:name="com.example.dulha_jee.dashboard.SherwaniFragment"
+        android:label="SherwaniFragment"
+        tools:layout="@layout/fragment_sherwani"/>
 
 </navigation>

@@ -51,7 +51,7 @@ public class UserListFragnment extends Fragment {
             @Override
             public void onClick(View view) {
                 navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_userList_to_userCreation);
+                navController.navigate(R.id.action_userList_to_dashBoard);
             }
         });
 
