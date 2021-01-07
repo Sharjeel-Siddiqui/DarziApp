@@ -12,11 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
 
 public class DashBoard extends Fragment implements View.OnClickListener {
 
-    CardView card_kurta, card_shirwani, card_coat, card_waistCoat, card_pant, card_shirt;
+    CardView card_kurta, card_shirwani, card_coat, card_waistCoat, card_pant, card_shirt, card_innersuit;
     NavController navController;
 
     @Nullable
@@ -28,6 +29,8 @@ public class DashBoard extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ((MainActivity) getActivity()).setToolbar("DashBoard");
         initViews(view);
     }
 
@@ -39,6 +42,7 @@ public class DashBoard extends Fragment implements View.OnClickListener {
         card_coat = view.findViewById(R.id.card_coat);
         card_pant = view.findViewById(R.id.card_pant);
         card_shirt = view.findViewById(R.id.card_shirt);
+        card_innersuit = view.findViewById(R.id.card_innersuit);
 
         card_kurta.setOnClickListener(this);
         card_shirwani.setOnClickListener(this);
@@ -46,6 +50,7 @@ public class DashBoard extends Fragment implements View.OnClickListener {
         card_coat.setOnClickListener(this);
         card_pant.setOnClickListener(this);
         card_shirt.setOnClickListener(this);
+        card_innersuit.setOnClickListener(this);
     }
 
     @Override
@@ -67,6 +72,8 @@ public class DashBoard extends Fragment implements View.OnClickListener {
                 break;
             case R.id.card_shirt:
                 navController.navigate(R.id.action_dashBoard_to_fragmentShirt);
+                break;
+            case R.id.card_innersuit:
                 break;
             default:
                 //do nothing

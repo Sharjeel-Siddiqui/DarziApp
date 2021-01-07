@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
 
 public class FragmentPants extends Fragment {
@@ -23,5 +24,6 @@ public class FragmentPants extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ((MainActivity) getActivity()).setToolbar("Pants");
     }
 }

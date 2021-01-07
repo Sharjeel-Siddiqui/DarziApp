@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.dulha_jee.userlist.DatePickerFragment;
 
@@ -33,13 +35,18 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private static final String TAG = "TailorApp";
     EditText editText;
     NavController navigation;
+    androidx.appcompat.widget.Toolbar toolbar;
+    ImageView filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.filter).setOnClickListener(new View.OnClickListener() {
+        toolbar = findViewById(R.id.toolbar);
+        filter = findViewById(R.id.filter);
+
+        filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 builder = new AlertDialog.Builder(MainActivity.this);
@@ -82,4 +89,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
         editText.setText(currentDateString);
     }
+
+    public void setToolbar(String title){
+        toolbar.setTitle(title);
+        filter.setVisibility(View.GONE);
+    }
+
 }
