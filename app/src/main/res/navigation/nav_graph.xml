@@ -88,6 +88,9 @@
         <action
             android:id="@+id/action_dashBoard_to_sherwaniFragment"
             app:destination="@id/sherwaniFragment" />
+        <action
+            android:id="@+id/action_dashBoard_to_fragmentPants"
+            app:destination="@id/fragmentPants" />
     </fragment>
     <fragment
         android:id="@+id/waistCoatFragment"
@@ -99,5 +102,9 @@
         android:name="com.example.dulha_jee.dashboard.SherwaniFragment"
         android:label="SherwaniFragment"
         tools:layout="@layout/fragment_sherwani"/>
+    <fragment
+        android:id="@+id/fragmentPants"
+        android:name="com.example.dulha_jee.dashboard.FragmentPants"
+        android:label="FragmentPants" />
 
 </navigation>

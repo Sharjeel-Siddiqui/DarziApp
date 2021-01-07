@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="بغیر پلیٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="سامنے ایک پلیٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="سامنے دو پلیٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="اسٹریٹ پاکٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="کراس پاکٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="جینس اسٹائل پاکٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ایک بیک پاکیٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="دو بیک پاکیٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="فلیپ والی بیک پوکٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="فلیپ پہ کاج بٹن"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="کوٹن کی کپڑے کی تھیلی بنانی ہے پاکٹ کی"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="واچ پاکٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="بیک پوکٹ پہ کاج بٹن"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="آٹھ عدد لوپز"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="لوپز ڈیڑھ انچ کے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="   لوپز 1.75 انچ کے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="بیک پوکٹ پہ لوپی بٹن چاہیے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ڈیڑھ انچ بیلٹ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="بیلٹ میں اندر ربڑ والی گرپ لگانی ہے لازمی"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="پاکٹ کی تھیلی سے فلائی تک بڑا کپڑا ظرور لگانا ہے تاکہ پاکٹ کا منہ نہیں کھلے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="زپ ایک نمبر اچھی بہترین کوالٹی کی لگانی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="پاکٹ کی تھیلی گہری چاہیے کسٹمر کو"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="فولڈنگ موری"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="پائنچوں کی ترپائ ہاتھ سے کرنی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="لونگ لوپ"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="لوپ نوک والا بنانا ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="پینٹ میں ہر جگہ گنجائش رکھنی ہے لوزنگ کی آئندہ کے لیے لازمی"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="اسپیشل بنانی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="اسٹائل بالکل سیم تصویر جیسا رکھنا ہے"
+            android:textSize="22sp" />
+
+
+        // here we will write general requirements
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="کپڑا کسٹمر کا ہے اپنا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="صرف سلائی آرڈر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="بچگانہ سائز"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="یہ تیار ناپ ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="خاص کسٹمر کا آرڈر ہے یہ انتہائ فنیشنگ اور صفائی کے ساتھ بنانا ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ریگولر کسٹمر ہیں سائز کااور فنیشنگ کا خاص خیال رکھنا ہوگا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ارجنٹ آرڈر"
+            android:textSize="22sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="بجے تک لازمی"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کو چاہیے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ارجنٹ بروز"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="گھنٹے میں چاہیے آرڈر"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="،"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انتہائ ارجنٹ بروز"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="دلہاجی کا لیبل نہیں لگانا ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="اسپیشل آرڈر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="بٹن بہت مضبوط کر کے لگانے ہیں"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="شولڈر ڈاؤن"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="شولڈر ڈاؤن"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ہلکا کم شولڈر ڈاون"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="فل شولڈر ڈاون شولڈر ڈاون"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="اسٹریٹ سیدھے شولڈر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="سیدھے ہاتھ کا شولڈر ڈاؤن"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="الٹے بائیں ہاتھ کا شولڈر ڈاؤن"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="الٹر باڈی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="سینے کے اوپر گوشت نہیں ہے باڈی میں گہڑہ ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="دلھاجی کا لیبل نہیں لگانا ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="پارٹی کا اپنا لیبل لگے گا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="لیبل کپڑے کی چیز کے اوپر لگے گا فینسی اسٹائل کی طرح"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ریگولر کسٹمر کا آرڈر ہے فینیشنگ کا خاص خیال رکھنا ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text=" خاص کسٹمر کا آرڈر ہے یہ بہت بہترین فینیشنگ اور صفائی کے ساتھ بنانا ہے"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+</ScrollView>
