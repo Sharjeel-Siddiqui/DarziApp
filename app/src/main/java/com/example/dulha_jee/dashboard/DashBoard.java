@@ -66,6 +66,7 @@ public class DashBoard extends Fragment implements View.OnClickListener {
                 navController.navigate(R.id.action_dashBoard_to_fragmentPants);
                 break;
             case R.id.card_shirt:
+                navController.navigate(R.id.action_dashBoard_to_fragmentShirt);
                 break;
             default:
                 //do nothing

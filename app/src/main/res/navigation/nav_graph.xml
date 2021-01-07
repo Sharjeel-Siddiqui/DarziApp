@@ -91,6 +91,9 @@
         <action
             android:id="@+id/action_dashBoard_to_fragmentPants"
             app:destination="@id/fragmentPants" />
+        <action
+            android:id="@+id/action_dashBoard_to_fragmentShirt"
+            app:destination="@id/fragmentShirt" />
     </fragment>
     <fragment
         android:id="@+id/waistCoatFragment"
@@ -106,5 +109,9 @@
         android:id="@+id/fragmentPants"
         android:name="com.example.dulha_jee.dashboard.FragmentPants"
         android:label="FragmentPants" />
+    <fragment
+        android:id="@+id/fragmentShirt"
+        android:name="com.example.dulha_jee.dashboard.FragmentShirt"
+        android:label="FragmentShirt" />
 
 </navigation>
