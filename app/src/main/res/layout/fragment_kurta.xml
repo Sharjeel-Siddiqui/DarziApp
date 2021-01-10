@@ -75,7 +75,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="  کالر V وی کٹ اسٹا ؑل کا ہونا چاھئے"
+            android:text="  کالر V وی کٹ اسٹائؑل کا ہونا چاھئے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -102,7 +102,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="رےورس اسٹا ؑل فرنچ کالر"
+            android:text="رےورس اسٹا ئل فرنچ کالر"
             android:textSize="22sp" />
 
         <CheckBox
@@ -111,7 +111,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="ٹکسیڈو اسٹا ؑل  کالر"
+            android:text="ٹکسیڈو اسٹائؑل  کالر"
             android:textSize="22sp" />
 
         <CheckBox
@@ -120,7 +120,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کالر کا اسٹا ؑل تھوڑا چھوٹا والا رکھنا ہے"
+            android:text=" کالر کا اسٹائؑل تھوڑا چھوٹا والا رکھنا ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -138,7 +138,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کالر کے کاج میں چھوٹے سا ؑز کے بٹن لگنا ہے"
+            android:text=" کالر کے کاج میں چھوٹے سائؑز کے بٹن لگنا ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -147,7 +147,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کالر میں بلکل نرم لگانی ہے"
+            android:text=" کالر میں بلکل نرم بکرم لگانی ہے"
             android:textSize="22sp"/>
 
         <CheckBox
@@ -165,7 +165,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کالر میں ہارڈ لگانی ہے"
+            android:text=" کالر میں ہارڈ بکرم لگانی ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -174,7 +174,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کالر میں کے پتے زیادہ  لگانے ہے"
+            android:text=" کالر میں بکرم کے پتے زیادہ  لگانے ہے"
             android:textSize="22sp" />
 
 
@@ -352,7 +352,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="اسٹر یٹ کف نوک والے"
+            android:text="اسٹریٹ کف نوک والے"
             android:textSize="22sp" />
 
 
@@ -362,7 +362,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="کف لنک اسٹاعل کف"
+            android:text="کف لنک اسٹائل کف"
             android:textSize="22sp" />
 
 
@@ -382,7 +382,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" نرم لگانی ہے کف میں"
+            android:text=" نرم بکرم لگانی ہے کف میں"
             android:textSize="22sp" />
 
 
@@ -392,7 +392,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="نرم لگانی ہے کف میں"
+            android:text="ہارڈ بکرم لگانی ہے کف میں"
             android:textSize="22sp" />
 
 
@@ -402,7 +402,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کف میں ہارڈ لگانی ہے"
+            android:text=" کف میں ہارڈ بکرم لگانی ہے"
             android:textSize="22sp" />
 
 
@@ -482,7 +482,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" نوک کا اسٹاعل سیم تصویر والا رکھنا ہے"
+            android:text=" نوک کا اسٹائل سیم تصویر والا رکھنا ہے"
             android:textSize="22sp" />
 
 
@@ -522,7 +522,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="اسٹریٹ کرتا گول"
+            android:text="اسٹریٹ کرتا دامن"
             android:textSize="22sp" />
 
 
@@ -838,7 +838,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="1 سایڈ پوکٹ رکھنی ہے سیدھے ہاتھ کی طرف"
+            android:text="1 سائیڈ پوکٹ رکھنی ہے سیدھے ہاتھ کی طرف"
             android:textSize="22sp" />
 
         <CheckBox
@@ -847,7 +847,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="1 سایڈ پوکٹ رکھنی ہے الٹے ہاتھ کی طرف"
+            android:text="1 سائیڈ پوکٹ رکھنی ہے الٹے ہاتھ کی طرف"
             android:textSize="22sp" />
 
         <CheckBox
@@ -856,7 +856,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سایڈ پوکٹ کی تھیلی کی گہرائ تھوڑی زیادہ چاہہے"
+            android:text="سائیڈ پوکٹ کی تھیلی کی گہرائ تھوڑی زیادہ چاہہے"
             android:textSize="22sp" />
 
 
