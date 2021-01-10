@@ -478,7 +478,6 @@
             android:textSize="22sp" />
 
 
-
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -621,6 +620,18 @@
             android:text=" خاص کسٹمر کا آرڈر ہے یہ بہت بہترین فینیشنگ اور صفائی کے ساتھ بنانا ہے"
             android:textSize="22sp" />
 
+        <Button
+            android:id="@+id/submit_waistcoat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/blue_bg_rounded"
+            android:text="Submit" />
 
     </LinearLayout>
 
