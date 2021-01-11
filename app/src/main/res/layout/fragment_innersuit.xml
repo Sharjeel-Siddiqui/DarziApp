@@ -33,7 +33,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="مرون کلر"
+            android:text="مہرون کلر"
             android:textSize="22sp" />
 
         <CheckBox
@@ -42,7 +42,16 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="ریڈش مرون کلر"
+            android:text="ریڈش مہرون کلر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="گولڈن کلر"
             android:textSize="22sp" />
 
         <CheckBox
@@ -150,7 +159,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="فینسی پر لگانے ہیں"
+            android:text="فینسی بٹن لگانے ہیں"
             android:textSize="22sp" />
 
         <CheckBox
@@ -198,7 +207,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="اینچ کا چاہیے تیار"
+                android:text="انچ کا چاہیے تیار"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -225,7 +234,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="اینچ کا چاہیے تیار"
+                android:text="انچ کا چاہیے تیار"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -276,6 +285,15 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
+            android:text="شلوار میں رومالی بنانی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
             android:text="پائنچہ اسٹائل"
             android:textSize="22sp" />
 
@@ -285,7 +303,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="پینٹ اسٹائل پجامہ بنے گا"
+            android:text="پینٹ اسٹائل پاجامہ بنے گا"
             android:textSize="22sp" />
 
         <CheckBox
@@ -321,7 +339,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="ہاف لاسٹک کے ساتھ نیفے بیلٹ میں میچنگ کپڑے کا کمربند ڈالنا ہے"
+            android:text="ہالف لاسٹک کے ساتھ نیفے بیلٹ میں میچنگ کپڑے کا کمربند ڈالنا ہے"
             android:textSize="22sp" />
 
         <LinearLayout
@@ -403,7 +421,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="چوڑی دار پاجامہ"
+            android:text="چوڑی دار پاجاما"
             android:textSize="22sp" />
 
         <CheckBox

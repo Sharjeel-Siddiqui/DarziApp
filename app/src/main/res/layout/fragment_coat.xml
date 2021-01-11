@@ -176,7 +176,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="ٹکسڈو اسٹائل"
+            android:text="ٹکسیڈو اسٹائل"
             android:textSize="22sp" />
 
         <CheckBox
@@ -469,7 +469,7 @@
             android:padding="10dp"
             android:text="صرف سلائی آرڈر"
             android:textSize="22sp" />
-
+//general fields
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
