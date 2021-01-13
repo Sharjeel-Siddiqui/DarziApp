@@ -9,11 +9,24 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
+
+        <Spinner
+            android:id="@+id/dropdown_karegar_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:prompt="@string/app_name"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+
         <Spinner
             android:id="@+id/dropdown_kurta_varieties"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:prompt="@string/app_name" />
+            android:padding="10dp"
+            android:prompt="@string/app_name"
+            android:textAlignment="center"
+            android:textSize="22sp" />
 
         <CheckBox
             android:layout_width="match_parent"
@@ -24,14 +37,32 @@
             android:text="شروانی کالر"
             android:textSize="22sp" />
 
-        <CheckBox
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text=" کالر کی چوڑائ ــــ انچ رکھنی ہے"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کالر کی چوڑائ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
 
         <CheckBox
             android:layout_width="match_parent"
@@ -87,14 +118,31 @@
             android:text="شرٹ  کالر"
             android:textSize="22sp" />
 
-        <CheckBox
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text=" کالر کے پر کئ نوک ــــ انچ رکھنی ھے"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کالر کے پر کئ نوک"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+        </LinearLayout>
+
 
         <CheckBox
             android:layout_width="match_parent"
@@ -102,7 +150,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="رےورس اسٹا ئل فرنچ کالر"
+            android:text="ریورس اسٹائل فرنچ کالر"
             android:textSize="22sp" />
 
         <CheckBox
@@ -148,7 +196,7 @@
             android:checked="false"
             android:padding="10dp"
             android:text=" کالر میں بلکل نرم بکرم لگانی ہے"
-            android:textSize="22sp"/>
+            android:textSize="22sp" />
 
         <CheckBox
             android:layout_width="match_parent"
@@ -184,7 +232,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کالر میں گم سلای ہوگی ہے"
+            android:text=" کالر میں گم سلای ہوگی"
             android:textSize="22sp" />
 
 
@@ -216,15 +264,30 @@
             android:text="مگزی گول گلے کی سلائ بلکل صاف کرنی ہے ، فنشنگ سے ، بغیر جھول کے۔"
             android:textSize="22sp" />
 
-
-        <CheckBox
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text="سامنے کی ریگولر پٹی کی لمبائ ــــ انچ رکھنی ہے"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="سامنے کی ریگولر پٹی کی لمبائ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+        </LinearLayout>
 
 
         <CheckBox
@@ -266,14 +329,31 @@
             android:textSize="22sp" />
 
 
-        <CheckBox
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text="سامنے کے پٹی میں ــــ عدد کاج ہونگے"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="عدد کاج ہونگے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="سامنے کے پٹی میں"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
 
         <CheckBox
@@ -306,14 +386,31 @@
             android:textSize="22sp" />
 
 
-        <CheckBox
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text="  کور پٹی کی لمبائ ــــ انچ رکھنی ہے"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کور پٹی کی لمبائ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
 
         <CheckBox
@@ -405,15 +502,31 @@
             android:text=" کف میں ہارڈ بکرم لگانی ہے"
             android:textSize="22sp" />
 
-
-        <CheckBox
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text="کف کی چوڑائ ـــ انچ رکھنی ہے"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کف کی چوڑائ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
 
         <CheckBox
@@ -465,15 +578,31 @@
             android:text="کف کی چاک پٹی گول رکھنی ہے"
             android:textSize="22sp" />
 
-
-        <CheckBox
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text="کف کی چاک پٹی کی چوڑائ ـــ انچ رکھنی ہے"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کف کی چاک پٹی کی چوڑائ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
 
         <CheckBox
@@ -505,15 +634,31 @@
             android:text="کف میں ہاتھ کا کام ہوگا"
             android:textSize="22sp" />
 
-
-        <CheckBox
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text="کف کی لمبائ ـــ انچ تیار رکھنی ہے3"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ تیار رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کف کی لمبائ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
 
         <CheckBox
@@ -675,15 +820,31 @@
             android:text="پکی لپ میں بنانا ہے"
             android:textSize="22sp" />
 
-
-        <CheckBox
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text="چاک ــــ انچ کے رکھنے ہیں"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ کے رکھنے ہیں"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="چاک"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
 
         <CheckBox
@@ -695,15 +856,31 @@
             android:text="چانپا کروانا ہے"
             android:textSize="22sp" />
 
-
-        <CheckBox
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text="سامنے پہ مشین کی کڑھائ کی بیل بنانی ہے ــــ انچ چوڑی"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ چوڑی"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="سامنے پہ مشین کی کڑھائ کی بیل بنانی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
 
         <CheckBox
@@ -775,7 +952,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سامنے پہ ہاتھ کا کام  ہوگا"
+            android:text="سامنے پہ ہاتھ کا کام ہوگا"
             android:textSize="22sp" />
 
         <CheckBox
@@ -784,7 +961,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="آستین مین ہاتھ کا کام  ہوگا"
+            android:text="آستین مین ہاتھ کا کام ہوگا"
             android:textSize="22sp" />
 
         <CheckBox
@@ -793,7 +970,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="بازو میں کام ہوگ"
+            android:text="بازو میں کام ہوگا"
             android:textSize="22sp" />
 
         <CheckBox
@@ -802,8 +979,57 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="1 SAMNEY JAIB STYLE YAHA LAGANEY HONGY"
+            android:text="سامنے 1 جیب"
             android:textSize="22sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableTop="@drawable/ic_radio"
+                    android:text="اسٹائل 1" />
+
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableTop="@drawable/ic_radio"
+                    android:text="اسٹائل 2" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableTop="@drawable/ic_radio"
+                    android:text="اسٹائل 3" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableTop="@drawable/ic_radio"
+                    android:text="اسٹائل 4" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableTop="@drawable/ic_radio"
+                    android:text="اسٹائل 5" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableTop="@drawable/ic_radio"
+                    android:text="اسٹائل 1" />
+
+            </RadioGroup>
+        </HorizontalScrollView>
 
         <CheckBox
             android:layout_width="match_parent"
@@ -814,14 +1040,49 @@
             android:text="سامنے پہ 2 جیب بنے گا"
             android:textSize="22sp" />
 
-        <CheckBox
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text="جیب کی چوڑائ ـــ انچ اور لمبائ ــــ انچ رکھنی ہے"
-            android:textSize="22sp" />
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="انچ رکھنی ہے"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
+
+
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="انچ اور لمبائ"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="جیب کی چوڑائ"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
 
         <CheckBox
             android:layout_width="match_parent"
@@ -829,7 +1090,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="2 سایڈ پوکٹ رکھنی ہے"
+            android:text="2 سائیڈ پوکٹ رکھنی ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -860,13 +1121,213 @@
             android:textSize="22sp" />
 
 
-        <CheckBox
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="SIDE POCKET KI SLIYE KA STYLE YAHA AYE GA WITH IMAGE"
+            android:text="سائیڈ پوکٹ کی سلائ کا اسٹا ئل"
+            android:textSize="22sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableTop="@drawable/ic_radio"
+                android:text="اسٹائل 1" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableTop="@drawable/ic_radio"
+                android:text="اسٹائل 2" />
+
+
+        </RadioGroup>
+
+
+
+        //these are the fields from whatsapp update client may be its a size chart
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:singleLine="true"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کالر "
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:singleLine="true"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="آستین "
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:singleLine="true"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="شولڈر "
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:singleLine="true"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ہپ تیار "
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:singleLine="true"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="پیٹ تیار "
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:singleLine="true"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="گڈہ تیار "
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:singleLine="true"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="سامنا تیار "
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:singleLine="true"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="لمبائ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+
+        <Spinner
+            android:id="@+id/dropdown_shalwar_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:prompt="@string/app_name"
+            android:textDirection="rtl"
+            android:textAlignment="center"
             android:textSize="22sp" />
 
         <Button
@@ -876,11 +1337,10 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/blue_bg_rounded"
             android:text="Submit" />
-
     </LinearLayout>
 </ScrollView>

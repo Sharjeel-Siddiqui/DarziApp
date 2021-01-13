@@ -21,7 +21,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:src="@drawable/man" />
+        android:src="@drawable/dulha_jee_logo" />
 
 
     <TextView
@@ -53,13 +53,13 @@
         <EditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/rounded_corner_edit_text"
             android:hint="enter your email"
             android:padding="10dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColorHint="@android:color/darker_gray"
             android:textSize="12sp" />
 
 
@@ -74,13 +74,13 @@
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/rounded_corner_edit_text"
             android:hint="enter your password"
             android:padding="10dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColorHint="@android:color/darker_gray"
             android:textSize="12sp" />
 
         <TextView

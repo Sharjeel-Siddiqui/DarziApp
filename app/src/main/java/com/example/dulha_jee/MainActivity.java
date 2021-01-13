@@ -90,9 +90,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         editText.setText(currentDateString);
     }
 
-    public void setToolbar(String title){
+    public void setToolbar(String title) {
         toolbar.setTitle(title);
         filter.setVisibility(View.GONE);
+    }
+
+    public void setToolbarVisibility(boolean isVisible) {
+        if (isVisible) {
+            toolbar.setVisibility(View.VISIBLE);
+        } else {
+            toolbar.setVisibility(View.GONE);
+        }
     }
 
 }

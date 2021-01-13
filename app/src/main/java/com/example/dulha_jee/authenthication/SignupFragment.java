@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
@@ -46,6 +47,8 @@ public class SignupFragment extends Fragment {
         et_userEmail = view.findViewById(R.id.et_userEmail);
         et_userPassword = view.findViewById(R.id.et_userPassword);
         apiClient = ApiClient.getClient().create(Iapi.class);
+
+        ((MainActivity)getActivity()).setToolbarVisibility(false);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

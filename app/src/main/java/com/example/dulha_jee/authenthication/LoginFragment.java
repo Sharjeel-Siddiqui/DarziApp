@@ -60,6 +60,8 @@ public class LoginFragment extends Fragment {
         forgetPassword = view.findViewById(R.id.forgetPassword);
         builder = new AlertDialog.Builder(getActivity());
 
+        ((MainActivity)getActivity()).setToolbarVisibility(false);
+
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

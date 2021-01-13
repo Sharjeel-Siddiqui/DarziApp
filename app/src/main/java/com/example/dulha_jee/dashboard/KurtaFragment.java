@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -15,8 +16,9 @@ import com.example.dulha_jee.R;
 
 public class KurtaFragment extends Fragment {
 
-    Spinner dropdown_kurta_varieties;
-
+    Spinner dropdown_kurta_varieties , dropdown_karegar_name,dropdown_shalwar_name;
+    String[] users = { "Suresh Dasari", "Trishika Dasari", "Rohini Alavala", "Praveen Kumar", "Madhav Sai" };
+    String[] shalwar = { "شلوار","اسٹریٹ پاجامہ","چوڑی ڈار پاجامہ","پینٹ اسٹائل پاجامہ","دھوتی شلوار","بڑے گھیر والی شلوار"};
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,6 +30,15 @@ public class KurtaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("Kurta...");
         dropdown_kurta_varieties = view.findViewById(R.id.dropdown_kurta_varieties);
+        dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
+        dropdown_shalwar_name = view.findViewById(R.id.dropdown_shalwar_name);
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, users);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_kurta_varieties.setAdapter(adapter);
+        dropdown_karegar_name.setAdapter(adapter);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, shalwar);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_shalwar_name.setAdapter(adapter1);
     }
 }
