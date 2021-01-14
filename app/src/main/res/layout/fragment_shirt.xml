@@ -439,7 +439,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="کالر "
+                android:text="کالر/Collar"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -460,7 +460,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="آستین "
+                android:text="آستین/Sleeves"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -481,7 +481,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="شولڈر "
+                android:text="شولڈر/ Shoulder"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -501,7 +501,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ہپ تیار "
+                android:text="ہپ تیار /Hip Ready"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -521,7 +521,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="پیٹ تیار "
+                android:text="پیٹ تیار /Waist Ready"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -561,7 +561,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="سامنا تیار "
+                android:text="سامنا تیار /Front Ready"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -581,7 +581,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="لمبائ"
+                android:text="لمبائ/Length"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 

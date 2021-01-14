@@ -64,7 +64,11 @@
         android:id="@+id/userCreation"
         android:name="com.example.dulha_jee.usercreation.UserCreation"
         android:label="UserCreation"
-        tools:layout="@layout/fragment_usercreation"/>
+        tools:layout="@layout/fragment_usercreation">
+        <action
+            android:id="@+id/action_userCreation_to_dashBoard"
+            app:destination="@id/dashBoard" />
+    </fragment>
     <fragment
         android:id="@+id/resetFragment"
         android:name="com.example.dulha_jee.authenthication.ResetFragment"
@@ -73,7 +77,14 @@
         android:id="@+id/kurtaFragment"
         android:name="com.example.dulha_jee.dashboard.KurtaFragment"
         android:label="KurtaFragment"
-        tools:layout="@layout/fragment_kurta"/>
+        tools:layout="@layout/fragment_kurta">
+        <action
+            android:id="@+id/action_kurtaFragment_to_fragmentCollarSelection"
+            app:destination="@id/fragmentCollarSelection" />
+        <action
+            android:id="@+id/action_kurtaFragment_to_fragmentCuffSelection"
+            app:destination="@id/fragmentCuffSelection" />
+    </fragment>
     <fragment
         android:id="@+id/dashBoard"
         android:name="com.example.dulha_jee.dashboard.DashBoard"
@@ -127,5 +138,23 @@
         android:id="@+id/fragmentInnerSuit"
         android:name="com.example.dulha_jee.dashboard.FragmentInnerSuit"
         android:label="FragmentInnerSuit" />
+    <fragment
+        android:id="@+id/fragmentCollarSelection"
+        android:name="com.example.dulha_jee.dashboard.FragmentCollarSelection"
+        android:label="FragmentCollarSelection"
+        tools:layout="@layout/fragment_collar_selection">
+        <action
+            android:id="@+id/action_fragmentCollarSelection_to_kurtaFragment"
+            app:destination="@id/kurtaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCuffSelection"
+        android:name="com.example.dulha_jee.dashboard.FragmentCuffSelection"
+        android:label="FragmentCuffSelection"
+        tools:layout="@layout/fragment_cuff_selection">
+        <action
+            android:id="@+id/action_fragmentCuffSelection_to_kurtaFragment"
+            app:destination="@id/kurtaFragment" />
+    </fragment>
 
 </navigation>

@@ -28,6 +28,25 @@
             android:textAlignment="center"
             android:textSize="22sp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text=" کالر کا اسٹائل :"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:id="@+id/chooseCollarImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            />
+
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1153,7 +1172,6 @@
         </RadioGroup>
 
 
-
         //these are the fields from whatsapp update client may be its a size chart
 
         <LinearLayout
@@ -1164,9 +1182,9 @@
 
 
             <EditText
-                android:singleLine="true"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1185,9 +1203,9 @@
 
 
             <EditText
-                android:singleLine="true"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1206,9 +1224,9 @@
 
 
             <EditText
-                android:singleLine="true"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1218,6 +1236,7 @@
                 android:textSize="22sp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1226,9 +1245,9 @@
 
 
             <EditText
-                android:singleLine="true"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1238,6 +1257,7 @@
                 android:textSize="22sp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1246,9 +1266,9 @@
 
 
             <EditText
-                android:singleLine="true"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1258,6 +1278,7 @@
                 android:textSize="22sp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1266,9 +1287,9 @@
 
 
             <EditText
-                android:singleLine="true"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1278,6 +1299,7 @@
                 android:textSize="22sp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1286,9 +1308,9 @@
 
 
             <EditText
-                android:singleLine="true"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1298,6 +1320,7 @@
                 android:textSize="22sp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1306,9 +1329,9 @@
 
 
             <EditText
-                android:singleLine="true"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1319,15 +1342,14 @@
 
         </LinearLayout>
 
-
         <Spinner
             android:id="@+id/dropdown_shalwar_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:padding="10dp"
             android:prompt="@string/app_name"
-            android:textDirection="rtl"
             android:textAlignment="center"
+            android:textDirection="rtl"
             android:textSize="22sp" />
 
         <Button

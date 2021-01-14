@@ -594,7 +594,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ویسٹ "
+                android:text="ویسٹ/Waist "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -615,7 +615,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ہپ "
+                android:text="ہپ/Hip "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -636,7 +636,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="لمبائ "
+                android:text="لمبائ/Length "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -657,7 +657,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="فلائ "
+                android:text="فلائ/Fly "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -678,7 +678,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ران "
+                android:text="ران/Thigh "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -700,7 +700,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="گھٹنہ "
+                android:text="گھٹنہ/Knee "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -721,7 +721,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="بوٹم "
+                android:text="بوٹم/Bottom "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 

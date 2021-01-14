@@ -765,7 +765,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="کالر "
+                android:text="کالر/Collar "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -786,7 +786,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="آستین "
+                android:text="آستین/Sleeves "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -807,7 +807,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="شولڈر "
+                android:text="شولڈر/Shoulder "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -828,7 +828,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ہپ "
+                android:text="ہپ/Hip "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -849,7 +849,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="پیٹ "
+                android:text="پیٹ/Waist "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -892,7 +892,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="سینہ "
+                android:text="سینہ/Cheest "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -913,7 +913,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="لمبائ "
+                android:text="لمبائ/Length "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -934,29 +934,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="فل بیک "
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
-
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:singleLine="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ہالف بیک "
+                android:text="فل بیک/Full Back "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -978,7 +956,29 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="کراس فرنٹ "
+                android:text="ہالف بیک/Half Back "
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کراس فرنٹ/Cross Front "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
