@@ -84,6 +84,9 @@
         <action
             android:id="@+id/action_kurtaFragment_to_fragmentCuffSelection"
             app:destination="@id/fragmentCuffSelection" />
+        <action
+            android:id="@+id/action_kurtaFragment_to_fragmentSidePocketSelection"
+            app:destination="@id/fragmentSidePocketSelection" />
     </fragment>
     <fragment
         android:id="@+id/dashBoard"
@@ -154,6 +157,14 @@
         tools:layout="@layout/fragment_cuff_selection">
         <action
             android:id="@+id/action_fragmentCuffSelection_to_kurtaFragment"
+            app:destination="@id/kurtaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSidePocketSelection"
+        android:name="com.example.dulha_jee.dashboard.FragmentSidePocketSelection"
+        android:label="FragmentSidePocketSelection" >
+        <action
+            android:id="@+id/action_fragmentSidePocketSelection_to_kurtaFragment"
             app:destination="@id/kurtaFragment" />
     </fragment>
 

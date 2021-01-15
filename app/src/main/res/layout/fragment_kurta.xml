@@ -13,19 +13,21 @@
         <Spinner
             android:id="@+id/dropdown_karegar_name"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:padding="10dp"
             android:prompt="@string/app_name"
             android:textAlignment="center"
+            android:textDirection="rtl"
             android:textSize="22sp" />
 
         <Spinner
             android:id="@+id/dropdown_kurta_varieties"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:padding="10dp"
             android:prompt="@string/app_name"
             android:textAlignment="center"
+            android:textDirection="rtl"
             android:textSize="22sp" />
 
         <TextView
@@ -34,18 +36,19 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
             android:text=" کالر کا اسٹائل :"
-            android:textSize="22sp" />
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <ImageView
-            android:layout_margin="10dp"
             android:id="@+id/chooseCollarImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            />
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_choose"
+            android:scaleType="fitXY" />
 
         <CheckBox
             android:layout_width="match_parent"
@@ -1001,7 +1004,7 @@
             android:text="سامنے 1 جیب"
             android:textSize="22sp" />
 
-        <HorizontalScrollView
+        <!--<HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -1048,7 +1051,7 @@
                     android:text="اسٹائل 1" />
 
             </RadioGroup>
-        </HorizontalScrollView>
+        </HorizontalScrollView>-->
 
         <CheckBox
             android:layout_width="match_parent"
@@ -1149,27 +1152,15 @@
             android:text="سائیڈ پوکٹ کی سلائ کا اسٹا ئل"
             android:textSize="22sp" />
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:orientation="horizontal">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:drawableTop="@drawable/ic_radio"
-                android:text="اسٹائل 1" />
-
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:drawableTop="@drawable/ic_radio"
-                android:text="اسٹائل 2" />
-
-
-        </RadioGroup>
+        <ImageView
+            android:id="@+id/chooseSidePocket"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_choose"
+            android:scaleType="fitXY" />
 
 
         //these are the fields from whatsapp update client may be its a size chart

@@ -1,7 +1,6 @@
 package com.example.dulha_jee.dashboard;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,25 +14,25 @@ import androidx.navigation.Navigation;
 
 import com.example.dulha_jee.R;
 
-public class FragmentCollarSelection extends Fragment implements View.OnClickListener {
-    com.wang.avi.AVLoadingIndicatorView avLoadingIndicatorView;
+public class FragmentSidePocketSelection extends Fragment implements View.OnClickListener {
+    CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
     NavController navController;
-    CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10;
     Bundle bundle;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_collar_selection, container, false);
+        return inflater.inflate(R.layout.fragment_sidepocket, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         bundle = new Bundle();
-        avLoadingIndicatorView = view.findViewById(R.id.avi);
         initViews(view);
     }
+
 
     public void initViews(View view) {
         navController = Navigation.findNavController(view);
@@ -61,50 +60,58 @@ public class FragmentCollarSelection extends Fragment implements View.OnClickLis
 
     }
 
+
     @Override
     public void onClick(View view) {
-        KurtaFragment.isComingbackfromCollar = true;
+        KurtaFragment.isComingbackfromSidePocket = true;
         switch (view.getId()) {
             case R.id.LL1:
                 bundle.putString("imageID", "1");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
                 break;
             case R.id.LL2:
                 bundle.putString("imageID", "2");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
                 break;
             case R.id.LL3:
                 bundle.putString("imageID", "3");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
                 break;
             case R.id.LL4:
                 bundle.putString("imageID", "4");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
                 break;
             case R.id.LL5:
                 bundle.putString("imageID", "5");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
                 break;
             case R.id.LL6:
                 bundle.putString("imageID", "6");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
                 break;
             case R.id.LL7:
-
                 bundle.putString("imageID", "7");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
                 break;
             case R.id.LL8:
                 bundle.putString("imageID", "8");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
                 break;
             case R.id.LL9:
                 bundle.putString("imageID", "9");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
                 break;
             case R.id.LL10:
                 bundle.putString("imageID", "10");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
+                break;
+            case R.id.LL11:
+                bundle.putString("imageID", "11");
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
+                break;
+            case R.id.LL12:
+                bundle.putString("imageID", "12");
+                navController.navigate(R.id.action_fragmentSidePocketSelection_to_kurtaFragment, bundle);
                 break;
         }
     }

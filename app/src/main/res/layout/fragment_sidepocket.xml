@@ -18,7 +18,7 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
-        android:text="کالر کا انتخاب کیجیئے"
+        android:text="سائیڈ پوکٹ کا انتخاب کیجیئے"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -63,7 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:padding="5dp"
-                        android:src="@drawable/collar_buttondown" />
+                        android:src="@drawable/side_pocket_01" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:padding="5dp"
-                        android:src="@drawable/collar_classic" />
+                        android:src="@drawable/side_pocket_02" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -132,7 +132,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:src="@drawable/collar_club" />
+                        android:src="@drawable/side_pocket_03" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -167,7 +167,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="15dp"
-                        android:src="@drawable/collar_cutaway" />
+                        android:src="@drawable/side_pocket_04" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -202,7 +202,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="15dp"
-                        android:src="@drawable/collar_mandarin" />
+                        android:src="@drawable/side_pocket_05" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -237,7 +237,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="10dp"
-                        android:src="@drawable/collar_medium" />
+                        android:src="@drawable/side_pocket_06" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -272,7 +272,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="15dp"
-                        android:src="@drawable/collar_pinned" />
+                        android:src="@drawable/side_pocket_07" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -307,7 +307,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="10dp"
-                        android:src="@drawable/collar_spread" />
+                        android:src="@drawable/side_pocket_08" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -342,7 +342,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="15dp"
-                        android:src="@drawable/collar_tab" />
+                        android:src="@drawable/side_pocket_09" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -377,7 +377,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="10dp"
-                        android:src="@drawable/collar_tuxedo" />
+                        android:src="@drawable/side_pocket_10" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -392,16 +392,84 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LL11"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:padding="10dp"
+                        android:src="@drawable/side_pocket_11" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/holo_blue_bright"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LL12"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:padding="10dp"
+                        android:src="@drawable/side_pocket_12" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/holo_blue_bright"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </GridLayout>
     </ScrollView>
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/avi"
-        android:layout_centerInParent="true"
         style="@style/AVLoadingIndicatorView.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:visibility="gone"
         app:indicatorColor="@android:color/holo_blue_bright"
         app:indicatorName="BallPulseIndicator" />
