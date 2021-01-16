@@ -727,7 +727,17 @@
                 android:textSize="22sp" />
 
         </LinearLayout>
-
+        <EditText
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/edit_text_border"
+            android:gravity="top|right"
+            android:textDirection="rtl"
+            android:textColor="@color/black"
+            android:hint="ریمارکس"
+            />
         <Button
             android:id="@+id/submit_pants"
             android:layout_width="match_parent"
