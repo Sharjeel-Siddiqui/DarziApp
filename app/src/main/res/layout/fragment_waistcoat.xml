@@ -16,6 +16,7 @@
             android:layout_height="40dp"
             android:textSize="22sp"
             android:padding="10dp"
+            android:textDirection="rtl"
             android:prompt="@string/app_name"
             android:textAlignment="center" />
 
@@ -629,7 +630,17 @@
             android:padding="10dp"
             android:text=" خاص کسٹمر کا آرڈر ہے یہ بہت بہترین فینیشنگ اور صفائی کے ساتھ بنانا ہے"
             android:textSize="22sp" />
-
+        <EditText
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/edit_text_border"
+            android:gravity="top|right"
+            android:textDirection="rtl"
+            android:textColor="@color/black"
+            android:hint="ریمارکس"
+            />
         <Button
             android:id="@+id/submit_waistcoat"
             android:layout_width="match_parent"

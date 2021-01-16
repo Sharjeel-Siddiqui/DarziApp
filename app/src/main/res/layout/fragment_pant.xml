@@ -17,6 +17,7 @@
             android:padding="10dp"
             android:prompt="@string/app_name"
             android:textAlignment="center"
+            android:textDirection="rtl"
             android:textSize="22sp" />
 
         <CheckBox
@@ -728,7 +729,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/submit_sherwani"
+            android:id="@+id/submit_pants"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

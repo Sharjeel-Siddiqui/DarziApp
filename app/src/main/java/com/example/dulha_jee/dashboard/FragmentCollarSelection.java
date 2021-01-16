@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.example.dulha_jee.R;
@@ -63,48 +64,168 @@ public class FragmentCollarSelection extends Fragment implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        KurtaFragment.isComingbackfromCollar = true;
+
         switch (view.getId()) {
             case R.id.LL1:
-                bundle.putString("imageID", "1");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                if (FragmentShirt.isComingFromShirt) {
+                    bundle.putString("imageID", "1");
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_fragmentShirt, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                    FragmentShirt.isComingFromShirt = false;
+                    FragmentShirt.isComingFromShirtBack = true;
+                } else {
+                    bundle.putString("imageID", "1");
+                    KurtaFragment.isComingbackfromCollar_Kurta = true;
+                    // navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                }
                 break;
             case R.id.LL2:
-                bundle.putString("imageID", "2");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                if (FragmentShirt.isComingFromShirt) {
+                    bundle.putString("imageID", "2");
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_fragmentShirt, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                    FragmentShirt.isComingFromShirt = false;
+                    FragmentShirt.isComingFromShirtBack = true;
+                } else {
+                    bundle.putString("imageID", "2");
+                    KurtaFragment.isComingbackfromCollar_Kurta = true;
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                }
                 break;
             case R.id.LL3:
-                bundle.putString("imageID", "3");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                if (FragmentShirt.isComingFromShirt) {
+                    bundle.putString("imageID", "3");
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_fragmentShirt, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                    FragmentShirt.isComingFromShirt = false;
+                    FragmentShirt.isComingFromShirtBack = true;
+                } else {
+                    bundle.putString("imageID", "3");
+                    KurtaFragment.isComingbackfromCollar_Kurta = true;
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                }
                 break;
             case R.id.LL4:
-                bundle.putString("imageID", "4");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                if (FragmentShirt.isComingFromShirt) {
+                    bundle.putString("imageID", "4");
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_fragmentShirt, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                    FragmentShirt.isComingFromShirt = false;
+                    FragmentShirt.isComingFromShirtBack = true;
+                } else {
+                    bundle.putString("imageID", "4");
+                    KurtaFragment.isComingbackfromCollar_Kurta = true;
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                }
                 break;
             case R.id.LL5:
-                bundle.putString("imageID", "5");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                if (FragmentShirt.isComingFromShirt) {
+                    bundle.putString("imageID", "5");
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_fragmentShirt, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                    FragmentShirt.isComingFromShirt = false;
+                    FragmentShirt.isComingFromShirtBack = true;
+                } else {
+                    bundle.putString("imageID", "5");
+                    KurtaFragment.isComingbackfromCollar_Kurta = true;
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                }
                 break;
             case R.id.LL6:
-                bundle.putString("imageID", "6");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                if (FragmentShirt.isComingFromShirt) {
+                    bundle.putString("imageID", "6");
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_fragmentShirt, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                    FragmentShirt.isComingFromShirt = false;
+                    FragmentShirt.isComingFromShirtBack = true;
+                } else {
+                    bundle.putString("imageID", "6");
+                    KurtaFragment.isComingbackfromCollar_Kurta = true;
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                }
                 break;
             case R.id.LL7:
-
-                bundle.putString("imageID", "7");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                if (FragmentShirt.isComingFromShirt) {
+                    bundle.putString("imageID", "7");
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_fragmentShirt, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                    FragmentShirt.isComingFromShirt = false;
+                    FragmentShirt.isComingFromShirtBack = true;
+                } else {
+                    bundle.putString("imageID", "7");
+                    KurtaFragment.isComingbackfromCollar_Kurta = true;
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                }
                 break;
             case R.id.LL8:
-                bundle.putString("imageID", "8");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                if (FragmentShirt.isComingFromShirt) {
+                    bundle.putString("imageID", "8");
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_fragmentShirt, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                    FragmentShirt.isComingFromShirt = false;
+                    FragmentShirt.isComingFromShirtBack = true;
+                } else {
+                    bundle.putString("imageID", "8");
+                    KurtaFragment.isComingbackfromCollar_Kurta = true;
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                }
                 break;
             case R.id.LL9:
-                bundle.putString("imageID", "9");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                if (FragmentShirt.isComingFromShirt) {
+                    bundle.putString("imageID", "9");
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_fragmentShirt, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                    FragmentShirt.isComingFromShirt = false;
+                    FragmentShirt.isComingFromShirtBack = true;
+                } else {
+                    bundle.putString("imageID", "9");
+                    KurtaFragment.isComingbackfromCollar_Kurta = true;
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                }
                 break;
             case R.id.LL10:
-                bundle.putString("imageID", "10");
-                navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle);
+                if (FragmentShirt.isComingFromShirt) {
+                    bundle.putString("imageID", "10");
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_fragmentShirt, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                    FragmentShirt.isComingFromShirt = false;
+                    FragmentShirt.isComingFromShirtBack = true;
+                } else {
+                    bundle.putString("imageID", "10");
+                    KurtaFragment.isComingbackfromCollar_Kurta = true;
+                    navController.navigate(R.id.action_fragmentCollarSelection_to_kurtaFragment, bundle, new NavOptions.Builder()
+                            .setPopUpTo(R.id.fragmentCollarSelection,
+                                    true).build());
+                }
                 break;
         }
     }

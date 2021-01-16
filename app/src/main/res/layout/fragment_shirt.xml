@@ -17,6 +17,7 @@
             android:textSize="22sp"
             android:padding="10dp"
             android:prompt="@string/app_name"
+            android:textDirection="rtl"
             android:textAlignment="center" />
 
         <CheckBox
@@ -27,6 +28,46 @@
             android:padding="10dp"
             android:text="شرٹ بنانی ہے"
             android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text=" کالر کا اسٹائل :"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/chooseCollarImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_choose"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text=" کف کا اسٹائل :"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/chooseCuffImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_choose"
+            android:scaleType="fitXY" />
 
         <CheckBox
             android:layout_width="match_parent"
@@ -588,7 +629,7 @@
         </LinearLayout>
 
 
-        <Spinner
+<!--        <Spinner
             android:id="@+id/dropdown_shalwar_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -596,10 +637,22 @@
             android:prompt="@string/app_name"
             android:textDirection="rtl"
             android:textAlignment="center"
-            android:textSize="22sp" />
+            android:textSize="22sp" />-->
+
+        <EditText
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/edit_text_border"
+            android:gravity="top|right"
+            android:textDirection="rtl"
+            android:textColor="@color/black"
+            android:hint="ریمارکس"
+            />
 
         <Button
-            android:id="@+id/submit_kurta"
+            android:id="@+id/submit_shirt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

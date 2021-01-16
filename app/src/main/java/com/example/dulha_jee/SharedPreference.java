@@ -33,4 +33,21 @@ public class SharedPreference {
         return sharedPref.getInt("ImageNumberSidePocket", 0);
     }
 
+    public void setCuffImageNumber(int numberImage) {
+        editor.putInt("ImageNumberCuff", numberImage);
+        editor.apply();
+    }
+
+    public int getCuffImageNumber() {
+        return sharedPref.getInt("ImageNumberCuff", 0);
+    }
+
+    public void remove() {
+        editor.remove("ImageNumber");
+        editor.remove("ImageNumberSidePocket");
+        editor.remove("ImageNumberCuff");
+        editor.apply();
+        editor.commit();
+    }
+
 }

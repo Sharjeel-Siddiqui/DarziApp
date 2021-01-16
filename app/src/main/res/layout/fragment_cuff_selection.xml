@@ -43,7 +43,7 @@
             tools:context=".GridXMLActivity">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_kurta"
+                android:id="@+id/LL1"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -78,7 +78,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_sherwani"
+                android:id="@+id/LL2"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -112,7 +112,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_coat"
+                android:id="@+id/LL3"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -147,7 +147,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_waistcoat"
+                android:id="@+id/LL4"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -182,7 +182,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_shirt"
+                android:id="@+id/LL5"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -217,7 +217,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_pant"
+                android:id="@+id/LL6"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -252,6 +252,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/LL7"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -286,7 +287,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/LL8"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -321,7 +322,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/LL9"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -356,7 +357,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/LL10"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -391,7 +392,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/LL11"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -425,7 +426,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/LL12"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"

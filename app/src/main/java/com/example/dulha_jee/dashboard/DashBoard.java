@@ -19,6 +19,7 @@ public class DashBoard extends Fragment implements View.OnClickListener {
 
     CardView card_kurta, card_shirwani, card_coat, card_waistCoat, card_pant, card_shirt, card_innersuit;
     NavController navController;
+    Bundle bundle;
 
     @Nullable
     @Override
@@ -31,6 +32,7 @@ public class DashBoard extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         ((MainActivity) getActivity()).setToolbar("DashBoard");
+        bundle = new Bundle();
         initViews(view);
     }
 
@@ -57,25 +59,32 @@ public class DashBoard extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.card_kurta:
-                navController.navigate(R.id.action_dashBoard_to_kurtaFragment);
+                bundle.putString("new", "N");
+                navController.navigate(R.id.action_dashBoard_to_kurtaFragment,bundle);
                 break;
             case R.id.card_sherwani:
-                navController.navigate(R.id.action_dashBoard_to_sherwaniFragment);
+                bundle.putString("new", "N");
+                navController.navigate(R.id.action_dashBoard_to_sherwaniFragment,bundle);
                 break;
             case R.id.card_waistcoat:
-                navController.navigate(R.id.action_dashBoard_to_waistCoatFragment);
+                bundle.putString("new", "N");
+                navController.navigate(R.id.action_dashBoard_to_waistCoatFragment,bundle);
                 break;
             case R.id.card_coat:
-                navController.navigate(R.id.action_dashBoard_to_fragmentCoat);
+                bundle.putString("new", "N");
+                navController.navigate(R.id.action_dashBoard_to_fragmentCoat,bundle);
                 break;
             case R.id.card_pant:
-                navController.navigate(R.id.action_dashBoard_to_fragmentPants);
+                bundle.putString("new", "N");
+                navController.navigate(R.id.action_dashBoard_to_fragmentPants,bundle);
                 break;
             case R.id.card_shirt:
-                navController.navigate(R.id.action_dashBoard_to_fragmentShirt);
+                bundle.putString("new", "N");
+                navController.navigate(R.id.action_dashBoard_to_fragmentShirt,bundle);
                 break;
             case R.id.card_innersuit:
-                navController.navigate(R.id.action_dashBoard_to_fragmentInnerSuit);
+                bundle.putString("new", "N");
+                navController.navigate(R.id.action_dashBoard_to_fragmentInnerSuit,bundle);
                 break;
             default:
                 //do nothing

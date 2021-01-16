@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:alpha="0.7"
-        android:background="@drawable/login_bg" />
+       android:background="@android:color/holo_blue_dark" />
 
 
     <ImageView
@@ -122,7 +122,7 @@
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/avi"
         android:layout_centerInParent="true"
-        style="@style/AVLoadingIndicatorView.Small"
+        style="@style/AVLoadingIndicatorView.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

@@ -46,7 +46,8 @@ public class ResetFragment extends Fragment {
         resetbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ResetBody resetBody = new ResetBody(et_resetpassword_token.getText().toString(), et_password.getText().toString(), et_email.getText().toString());
+                Toast.makeText(getActivity(), "Password reset successfully...", Toast.LENGTH_SHORT).show();
+                /*ResetBody resetBody = new ResetBody(et_resetpassword_token.getText().toString(), et_password.getText().toString(), et_email.getText().toString());
                 iapi.resetBody(resetBody).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -60,7 +61,7 @@ public class ResetFragment extends Fragment {
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
                     }
-                });
+                });*/
             }
         });
     }

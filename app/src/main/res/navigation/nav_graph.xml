@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
-
 
 
     <fragment
@@ -53,8 +51,7 @@
     <dialog
         android:id="@+id/datePickerFragment"
         android:name="com.example.dulha_jee.userlist.DatePickerFragment"
-        android:label="DatePickerFragment"
-        >
+        android:label="DatePickerFragment">
         <action
             android:id="@+id/action_datePickerFragment_to_userList"
             app:destination="@id/userList" />
@@ -69,10 +66,12 @@
             android:id="@+id/action_userCreation_to_dashBoard"
             app:destination="@id/dashBoard" />
     </fragment>
+
     <fragment
         android:id="@+id/resetFragment"
         android:name="com.example.dulha_jee.authenthication.ResetFragment"
         android:label="ResetFragment" />
+
     <fragment
         android:id="@+id/kurtaFragment"
         android:name="com.example.dulha_jee.dashboard.KurtaFragment"
@@ -87,7 +86,11 @@
         <action
             android:id="@+id/action_kurtaFragment_to_fragmentSidePocketSelection"
             app:destination="@id/fragmentSidePocketSelection" />
+        <action
+            android:id="@+id/action_kurtaFragment_to_dashBoard"
+            app:destination="@id/dashBoard" />
     </fragment>
+
     <fragment
         android:id="@+id/dashBoard"
         android:name="com.example.dulha_jee.dashboard.DashBoard"
@@ -115,32 +118,72 @@
             android:id="@+id/action_dashBoard_to_fragmentInnerSuit"
             app:destination="@id/fragmentInnerSuit" />
     </fragment>
+
     <fragment
         android:id="@+id/waistCoatFragment"
         android:name="com.example.dulha_jee.dashboard.WaistCoatFragment"
         android:label="WaistCoatFragment"
-        tools:layout="@layout/fragment_waistcoat"/>
+        tools:layout="@layout/fragment_waistcoat" >
+        <action
+            android:id="@+id/action_waistCoatFragment_to_dashBoard"
+            app:destination="@id/dashBoard" />
+    </fragment>
+
     <fragment
         android:id="@+id/sherwaniFragment"
         android:name="com.example.dulha_jee.dashboard.SherwaniFragment"
         android:label="SherwaniFragment"
-        tools:layout="@layout/fragment_sherwani"/>
+        tools:layout="@layout/fragment_sherwani">
+        <action
+            android:id="@+id/action_sherwaniFragment_to_fragmentSidePocketSelection"
+            app:destination="@id/fragmentSidePocketSelection" />
+        <action
+            android:id="@+id/action_sherwaniFragment_to_dashBoard"
+            app:destination="@id/dashBoard" />
+    </fragment>
+
     <fragment
         android:id="@+id/fragmentPants"
         android:name="com.example.dulha_jee.dashboard.FragmentPants"
-        android:label="FragmentPants" />
+        android:label="FragmentPants" >
+        <action
+            android:id="@+id/action_fragmentPants_to_dashBoard"
+            app:destination="@id/dashBoard" />
+    </fragment>
+
     <fragment
         android:id="@+id/fragmentShirt"
         android:name="com.example.dulha_jee.dashboard.FragmentShirt"
-        android:label="FragmentShirt" />
+        android:label="FragmentShirt">
+        <action
+            android:id="@+id/action_fragmentShirt_to_fragmentCuffSelection"
+            app:destination="@id/fragmentCuffSelection" />
+        <action
+            android:id="@+id/action_fragmentShirt_to_fragmentCollarSelection"
+            app:destination="@id/fragmentCollarSelection" />
+        <action
+            android:id="@+id/action_fragmentShirt_to_dashBoard"
+            app:destination="@id/dashBoard" />
+    </fragment>
+
     <fragment
         android:id="@+id/fragmentCoat"
         android:name="com.example.dulha_jee.dashboard.FragmentCoat"
-        android:label="FragmentCoat" />
+        android:label="FragmentCoat" >
+        <action
+            android:id="@+id/action_fragmentCoat_to_dashBoard"
+            app:destination="@id/dashBoard" />
+    </fragment>
+
     <fragment
         android:id="@+id/fragmentInnerSuit"
         android:name="com.example.dulha_jee.dashboard.FragmentInnerSuit"
-        android:label="FragmentInnerSuit" />
+        android:label="FragmentInnerSuit" >
+        <action
+            android:id="@+id/action_fragmentInnerSuit_to_dashBoard"
+            app:destination="@id/dashBoard" />
+    </fragment>
+
     <fragment
         android:id="@+id/fragmentCollarSelection"
         android:name="com.example.dulha_jee.dashboard.FragmentCollarSelection"
@@ -148,8 +191,14 @@
         tools:layout="@layout/fragment_collar_selection">
         <action
             android:id="@+id/action_fragmentCollarSelection_to_kurtaFragment"
-            app:destination="@id/kurtaFragment" />
+            app:destination="@id/kurtaFragment"
+             />
+        <action
+            android:id="@+id/action_fragmentCollarSelection_to_fragmentShirt"
+            app:destination="@id/fragmentShirt"
+            />
     </fragment>
+
     <fragment
         android:id="@+id/fragmentCuffSelection"
         android:name="com.example.dulha_jee.dashboard.FragmentCuffSelection"
@@ -158,14 +207,21 @@
         <action
             android:id="@+id/action_fragmentCuffSelection_to_kurtaFragment"
             app:destination="@id/kurtaFragment" />
+        <action
+            android:id="@+id/action_fragmentCuffSelection_to_fragmentShirt"
+            app:destination="@id/fragmentShirt" />
     </fragment>
+
     <fragment
         android:id="@+id/fragmentSidePocketSelection"
         android:name="com.example.dulha_jee.dashboard.FragmentSidePocketSelection"
-        android:label="FragmentSidePocketSelection" >
+        android:label="FragmentSidePocketSelection">
         <action
             android:id="@+id/action_fragmentSidePocketSelection_to_kurtaFragment"
             app:destination="@id/kurtaFragment" />
+        <action
+            android:id="@+id/action_fragmentSidePocketSelection_to_sherwaniFragment"
+            app:destination="@id/sherwaniFragment" />
     </fragment>
 
 </navigation>

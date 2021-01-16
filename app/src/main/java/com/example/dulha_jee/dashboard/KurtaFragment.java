@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -12,20 +13,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
+import com.tapadoo.alerter.Alerter;
+import com.tapadoo.alerter.OnHideAlertListener;
+import com.tapadoo.alerter.OnShowAlertListener;
 
 public class KurtaFragment extends Fragment {
-    static boolean isComingbackfromCollar, isComingbackfromSidePocket;
+    static boolean isComingbackfromCollar_Kurta, isComingbackfromSidePocket;
     Spinner dropdown_kurta_varieties, dropdown_karegar_name, dropdown_shalwar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {"اندراج کرنے والے کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] shalwar = {"شلوار کی اقسا م", "شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
     NavController navController;
     ImageView chooseCollarImage, chooseSidePocket;
+    Button submit_kurta;
+
 
     SharedPreference sharedPreference;
 
@@ -41,12 +48,36 @@ public class KurtaFragment extends Fragment {
         navController = Navigation.findNavController(view);
         ((MainActivity) getActivity()).setToolbar("Kurta...");
         sharedPreference = new SharedPreference(getActivity());
-
+        submit_kurta = view.findViewById(R.id.submit_kurta);
         dropdown_kurta_varieties = view.findViewById(R.id.dropdown_kurta_varieties);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         dropdown_shalwar_name = view.findViewById(R.id.dropdown_shalwar_name);
         chooseCollarImage = view.findViewById(R.id.chooseCollarImage);
         chooseSidePocket = view.findViewById(R.id.chooseSidePocket);
+
+        submit_kurta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Alerter.create(getActivity())
+                        .setTitle("انتطار فرمائیے۔۔۔")
+                        .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
+                        .setIcon(
+                                R.drawable.dulha_jee_logo)
+                        .setBackgroundColorRes(
+                                R.color.black)
+                        .setDuration(3000)
+                        .setOnHideListener(new OnHideAlertListener() {
+                            @Override
+                            public void onHide() {
+                                navController.navigate(R.id.action_kurtaFragment_to_dashBoard,null, new NavOptions.Builder()
+                                        .setPopUpTo(R.id.kurtaFragment,
+                                                true).build());
+                            }
+                        })
+                        .show();
+            }
+        });
+
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, users);
@@ -76,7 +107,7 @@ public class KurtaFragment extends Fragment {
         });
 
 
-        if (isComingbackfromCollar) {
+        if (isComingbackfromCollar_Kurta) {
             if (getArguments().getString("imageID").equals("1")) {
                 chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_buttondown));
                 sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
@@ -118,9 +149,8 @@ public class KurtaFragment extends Fragment {
                 sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
             }
 
-            isComingbackfromCollar = false;
+            isComingbackfromCollar_Kurta = false;
         }
-
 
         if (isComingbackfromSidePocket) {
             if (getArguments().getString("imageID").equals("1")) {
@@ -178,10 +208,13 @@ public class KurtaFragment extends Fragment {
 
 
         setCollarImagefromCache();
-
         setSidePocketImagefromCache();
 
-
+        if(getArguments().getString("new") != null && getArguments().getString("new").equals("N")){
+            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_choose));
+            chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.ic_choose));
+            sharedPreference.remove();
+        }
     }
 
     private void setCollarImagefromCache() {

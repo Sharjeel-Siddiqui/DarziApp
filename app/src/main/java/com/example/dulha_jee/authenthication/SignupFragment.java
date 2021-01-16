@@ -48,12 +48,12 @@ public class SignupFragment extends Fragment {
         et_userPassword = view.findViewById(R.id.et_userPassword);
         apiClient = ApiClient.getClient().create(Iapi.class);
 
-        ((MainActivity)getActivity()).setToolbarVisibility(false);
+        ((MainActivity) getActivity()).setToolbarVisibility(false);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegisterBody registerBody = new RegisterBody(et_userName.getText().toString(), et_userEmail.getText().toString(), et_userPassword.getText().toString());
+               /* RegisterBody registerBody = new RegisterBody(et_userName.getText().toString(), et_userEmail.getText().toString(), et_userPassword.getText().toString());
                 apiClient.registerUser(registerBody).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -67,9 +67,9 @@ public class SignupFragment extends Fragment {
                         Log.i("TAG", "onFailure: " + t.getMessage());
                         Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
                     }
-                });
-
-                //  navController.navigate(R.id.action_signupFragment_to_userList);
+                });*/
+                Toast.makeText(getActivity(), "User Registered...", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.action_signupFragment_to_userList);
             }
         });
     }

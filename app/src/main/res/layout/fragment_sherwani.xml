@@ -4,9 +4,9 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
 
@@ -14,10 +14,11 @@
             android:id="@+id/dropdown_karegar_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textSize="22sp"
             android:padding="10dp"
             android:prompt="@string/app_name"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textDirection="rtl"
+            android:textSize="22sp" />
 
 
         <CheckBox
@@ -37,6 +38,26 @@
             android:padding="10dp"
             android:text="سامنے پہ ہائ لیٹ کاج ہو گے میچنگ کلر سے"
             android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="سائیڈ پوکٹ  کا اسٹائل :"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/chooseSidePocketImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_choose" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,7 +127,8 @@
 
             <EditText
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
 
         </LinearLayout>
@@ -183,7 +205,8 @@
 
             <EditText
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -222,7 +245,8 @@
 
             <EditText
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -368,32 +392,37 @@
             android:text="میچنگ کلر کا استر لگانا ہے (ایک نمبر) چیری"
             android:textSize="22sp" />
 
-        <LinearLayout
-            android:layout_marginLeft="5dp"
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="کلر کا استر لگانا ہے (ایک نمبر) چیری"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                android:layout_marginLeft="5dp"
+                android:gravity="right"
+                android:orientation="horizontal">
 
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="کلر کا استر لگانا ہے (ایک نمبر) چیری"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="کنٹراس "
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="کنٹراس "
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
+            </LinearLayout>
+        </HorizontalScrollView>
 
         //these are the fields from whatsapp update client may be its a size chart
 
@@ -630,7 +659,17 @@
                 android:textSize="22sp" />
 
         </LinearLayout>
-
+        <EditText
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/edit_text_border"
+            android:gravity="top|right"
+            android:textDirection="rtl"
+            android:textColor="@color/black"
+            android:hint="ریمارکس"
+            />
 
         <Button
             android:id="@+id/submit_sherwani"
@@ -639,8 +678,8 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/blue_bg_rounded"
             android:text="Submit" />

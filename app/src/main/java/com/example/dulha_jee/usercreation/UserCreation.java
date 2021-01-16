@@ -18,10 +18,11 @@ import com.example.dulha_jee.R;
 public class UserCreation extends Fragment {
     NavController navController;
     com.wang.avi.AVLoadingIndicatorView loader;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_usercreation,container,false);
+        return inflater.inflate(R.layout.fragment_usercreation, container, false);
     }
 
     @Override
@@ -32,8 +33,19 @@ public class UserCreation extends Fragment {
         view.findViewById(R.id.btn_registerCustomer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loader.setVisibility(View.VISIBLE);
-                navController.navigate(R.id.action_userCreation_to_dashBoard);
+
+                new CountDownTimer(3000, 1000) {
+
+                    public void onTick(long millisUntilFinished) {
+                        loader.setVisibility(View.VISIBLE);
+                    }
+
+                    public void onFinish() {
+                        loader.setVisibility(View.GONE);
+                        navController.navigate(R.id.action_userCreation_to_dashBoard);
+                    }
+
+                }.start();
             }
         });
     }
