@@ -23,7 +23,7 @@ import com.tapadoo.alerter.OnHideAlertListener;
 public class WaistCoatFragment extends Fragment {
     Spinner dropdown_karegar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
-    String[] karegarName = {"اندراج کرنے والے کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     Button submit_waistcoat;
     NavController navController;
     @Nullable
@@ -36,6 +36,7 @@ public class WaistCoatFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("WaistCoat");
+        ((MainActivity)getActivity()).setToolbarVisibility(true);
         navController = Navigation.findNavController(view);
         submit_waistcoat = view.findViewById(R.id.submit_waistcoat);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);

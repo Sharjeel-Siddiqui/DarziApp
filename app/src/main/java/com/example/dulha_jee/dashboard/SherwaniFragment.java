@@ -26,6 +26,7 @@ public class SherwaniFragment extends Fragment {
     Spinner dropdown_karegar_name, dropdown_shalwar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
+    String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     ImageView chooseSidePocketImage;
     NavController navController;
     SharedPreference sharedPreference;
@@ -41,6 +42,7 @@ public class SherwaniFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("Sherwani");
+        ((MainActivity)getActivity()).setToolbarVisibility(true);
         sharedPreference = new SharedPreference(getActivity());
 
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
@@ -142,7 +144,7 @@ public class SherwaniFragment extends Fragment {
             sharedPreference.remove();
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, users);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_karegar_name.setAdapter(adapter);
     }

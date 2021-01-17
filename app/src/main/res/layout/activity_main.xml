@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@android:color/holo_blue_bright"
+            android:background="#E0D9C6"
             app:title="Dulha Jee"
             app:titleTextColor="@color/black">
 
@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:backgroundTint="#552E33"
                 android:layout_marginRight="10dp"
                 android:src="@drawable/ic_filter" />
 

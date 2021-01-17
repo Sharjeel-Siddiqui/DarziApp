@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:alpha="0.7"
-       android:background="@android:color/holo_blue_dark" />
+       android:background="#AE9B91" />
 
 
     <ImageView
@@ -117,6 +117,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="100dp"
         android:background="@drawable/blue_bg_rounded"
+        android:textColor="#552E33"
         android:text="Register Customer" />
 
     <com.wang.avi.AVLoadingIndicatorView
@@ -126,7 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:indicatorColor="@android:color/holo_blue_bright"
+        app:indicatorColor="#552E33"
         app:indicatorName="BallPulseIndicator" />
 
 

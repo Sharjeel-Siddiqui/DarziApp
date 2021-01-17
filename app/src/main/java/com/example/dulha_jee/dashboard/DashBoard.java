@@ -32,6 +32,7 @@ public class DashBoard extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         ((MainActivity) getActivity()).setToolbar("DashBoard");
+        ((MainActivity)getActivity()).setToolbarVisibility(true);
         bundle = new Bundle();
         initViews(view);
     }

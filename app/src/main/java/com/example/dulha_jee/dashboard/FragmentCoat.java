@@ -22,7 +22,7 @@ import com.tapadoo.alerter.OnHideAlertListener;
 
 public class FragmentCoat extends Fragment {
     Spinner dropdown_karegar_name, dropdown_coat_varieties;
-    String[] karegarName = {"اندراج کرنے والے کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] coatVarieties = { "گون اسٹائل فرنٹ اوپن کوٹ ", "پرنس کوٹ ", "کوٹ "};
     Button submit_coat;
     NavController navController;

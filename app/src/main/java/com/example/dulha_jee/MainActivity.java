@@ -70,13 +70,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     @Override
                     public void onClick(View view) {
                         alertDialog.dismiss();
-                        navigation = Navigation.findNavController(view);
-                        navigation.navigate(R.id.action_datePickerFragment_to_userList);
+                       /* navigation = Navigation.findNavController(view);
+                        navigation.navigate(R.id.action_datePickerFragment_to_userList);*/
                     }
                 });
             }
         });
 
+        setToolbarhere("Dulha Jee");
     }
 
 
@@ -93,6 +94,11 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public void setToolbar(String title) {
         toolbar.setTitle(title);
         filter.setVisibility(View.GONE);
+    }
+
+    public void setToolbarhere(String title) {
+        toolbar.setTitle(title);
+        filter.setVisibility(View.VISIBLE);
     }
 
     public void setToolbarVisibility(boolean isVisible) {

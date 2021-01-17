@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
 
 public class UserCreation extends Fragment {
@@ -28,6 +29,10 @@ public class UserCreation extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ((MainActivity)getActivity()).setToolbarVisibility(false);
+
+
         navController = Navigation.findNavController(view);
         loader = view.findViewById(R.id.avi);
         view.findViewById(R.id.btn_registerCustomer).setOnClickListener(new View.OnClickListener() {

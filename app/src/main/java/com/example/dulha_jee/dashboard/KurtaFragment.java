@@ -27,7 +27,7 @@ public class KurtaFragment extends Fragment {
     static boolean isComingbackfromCollar_Kurta, isComingbackfromSidePocket;
     Spinner dropdown_kurta_varieties, dropdown_karegar_name, dropdown_shalwar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
-    String[] karegarName = {"اندراج کرنے والے کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] shalwar = {"شلوار کی اقسا م", "شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
     NavController navController;
     ImageView chooseCollarImage, chooseSidePocket;
@@ -47,6 +47,7 @@ public class KurtaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
         ((MainActivity) getActivity()).setToolbar("Kurta...");
+        ((MainActivity)getActivity()).setToolbarVisibility(true);
         sharedPreference = new SharedPreference(getActivity());
         submit_kurta = view.findViewById(R.id.submit_kurta);
         dropdown_kurta_varieties = view.findViewById(R.id.dropdown_kurta_varieties);

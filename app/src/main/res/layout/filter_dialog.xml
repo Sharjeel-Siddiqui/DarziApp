@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_margin="10dp"
-    android:paddingBottom="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
 
 
     <EditText
@@ -52,8 +51,6 @@
             android:inputType="text"
             android:padding="10dp"
             android:textSize="16sp">
-
-
         </EditText>
 
 
@@ -63,8 +60,8 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
             android:src="@drawable/ic_calender" />
 
     </RelativeLayout>
@@ -77,11 +74,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/edit_text_border"
-        android:hint="Order Number # 901847"
+        android:hint="Karegar Name"
         android:inputType="text"
         android:padding="10dp"
         android:textSize="16sp" />
-
 
     <Button
         android:id="@+id/Search"

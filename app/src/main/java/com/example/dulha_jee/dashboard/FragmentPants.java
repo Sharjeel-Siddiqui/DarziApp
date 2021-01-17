@@ -23,7 +23,7 @@ import com.tapadoo.alerter.OnHideAlertListener;
 public class FragmentPants extends Fragment {
     Spinner dropdown_karegar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
-    String[] karegarName = {"اندراج کرنے والے کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     Button submit_pants;
     NavController navController;
 

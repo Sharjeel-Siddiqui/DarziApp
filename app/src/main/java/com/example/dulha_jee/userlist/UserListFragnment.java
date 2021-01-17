@@ -12,6 +12,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -36,6 +37,10 @@ public class UserListFragnment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.rv_customerList);
+
+        ((MainActivity)getActivity()).setToolbarVisibility(true);
+        ((MainActivity)getActivity()).setToolbarhere("Dulha Jee");
+
         userPojos = new ArrayList<>();
         userPojos.add(new UserPojo(R.drawable.ic_user, "Sharjeel", "123456789"));
         userPojos.add(new UserPojo(R.drawable.ic_user, "Sharjeel", "123456789"));

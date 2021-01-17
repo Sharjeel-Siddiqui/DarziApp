@@ -25,7 +25,7 @@ public class FragmentInnerSuit extends Fragment {
     Spinner  dropdown_karegar_name , dropdown_shalwar_name;
     NavController navController;
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
-    String[] karegarName = {"اندراج کرنے والے کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     Button submit_innersuit;
     @Nullable
     @Override
