@@ -62,7 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:padding="5dp"
-                        android:src="@drawable/ic_kurta" />
+                        android:src="@drawable/kurta" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:padding="5dp"
-                        android:src="@drawable/ic_sherwani" />
+                        android:src="@drawable/sherwani" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="5dp"
-                        android:src="@drawable/ic_coat" />
+                        android:src="@drawable/coat" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -169,7 +169,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="15dp"
-                        android:src="@drawable/ic_waistcoat" />
+                        android:src="@drawable/waistcoat" />
 
                     <HorizontalScrollView
                         android:layout_width="wrap_content"
@@ -211,7 +211,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="15dp"
-                        android:src="@drawable/ic_shirt" />
+                        android:src="@drawable/shirts" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -247,7 +247,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="10dp"
-                        android:src="@drawable/ic_pant" />
+                        android:src="@drawable/pants" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -286,7 +286,7 @@
                         android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:padding="10dp"
-                        android:src="@drawable/ic_innersuit" />
+                        android:src="@drawable/inner_suit" />
 
                     <TextView
                         android:layout_width="match_parent"

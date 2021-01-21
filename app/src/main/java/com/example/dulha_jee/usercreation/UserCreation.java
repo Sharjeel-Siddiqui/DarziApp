@@ -49,7 +49,6 @@ public class UserCreation extends Fragment {
                         loader.setVisibility(View.GONE);
                         navController.navigate(R.id.action_userCreation_to_dashBoard);
                     }
-
                 }.start();
             }
         });
