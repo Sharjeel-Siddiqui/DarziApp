@@ -24,14 +24,15 @@
         //these are the fields from whatsapp update client may be its a size chart
 
         <LinearLayout
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:gravity="right"
             android:orientation="horizontal">
 
 
             <EditText
+                android:id="@+id/quantity"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -53,6 +54,7 @@
 
 
             <EditText
+                android:id="@+id/collar"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -74,6 +76,7 @@
 
 
             <EditText
+                android:id="@+id/sleeves"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -95,6 +98,7 @@
 
 
             <EditText
+                android:id="@+id/shoulder"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -116,6 +120,7 @@
 
 
             <EditText
+                android:id="@+id/hip"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -137,6 +142,7 @@
 
 
             <EditText
+                android:id="@+id/abdomen"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -159,6 +165,7 @@
 
 
             <EditText
+                android:id="@+id/gudda"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -180,6 +187,7 @@
 
 
             <EditText
+                android:id="@+id/chest"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -201,6 +209,7 @@
 
 
             <EditText
+                android:id="@+id/lengthMade"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -222,6 +231,7 @@
 
 
             <EditText
+                android:id="@+id/fullback"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -244,6 +254,7 @@
 
 
             <EditText
+                android:id="@+id/halfback"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -266,6 +277,7 @@
 
 
             <EditText
+                android:id="@+id/crossfront"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -280,16 +292,18 @@
         </LinearLayout>
 
         <CheckBox
-            android:layout_marginTop="20dp"
+            android:id="@+id/jinnah_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:layout_marginTop="20dp"
             android:checked="false"
             android:padding="10dp"
             android:text="جناح اسٹائل شیروانی"
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/highlight_cadge_matching"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -332,6 +346,7 @@
                 android:textSize="22sp" />
 
             <EditText
+                android:id="@+id/highlight_cadge_color"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content" />
 
@@ -345,6 +360,7 @@
         </LinearLayout>
 
         <CheckBox
+            android:id="@+id/fancy_metal_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -354,6 +370,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/show_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -363,6 +380,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/show_cadge_matching"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -385,6 +403,7 @@
                 android:textSize="22sp" />
 
             <EditText
+                android:id="@+id/show_cadge_color"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -394,6 +413,7 @@
 
 
         <CheckBox
+            android:id="@+id/side_pocket_both_sides"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -403,6 +423,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/two_pockets"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -412,6 +433,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/no_tal_pat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -421,6 +443,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/both_front_equal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -430,6 +453,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/back_center_sew"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -439,6 +463,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/front_walnut_pocket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -463,8 +488,10 @@
 
 
             <EditText
+                android:id="@+id/front_cadge_numbers"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -479,6 +506,7 @@
 
 
         <CheckBox
+            android:id="@+id/open_front_open_gown_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -503,8 +531,10 @@
 
 
             <EditText
+                android:id="@+id/front_show_cadge_number"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -517,6 +547,7 @@
         </LinearLayout>
 
         <CheckBox
+            android:id="@+id/collar_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -526,6 +557,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/sleeves_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -535,6 +567,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/button_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -544,6 +577,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/one_front_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -553,6 +587,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/both_front_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -562,6 +597,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/back_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -571,6 +607,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/collar_sleeves_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -580,6 +617,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/violet_pocket_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -589,6 +627,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/collar_sleeves_one_front_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -598,6 +637,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/front_pocket_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -607,6 +647,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/collar_sleeves_two_front_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -616,6 +657,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/front_pocket_on_karhayi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -625,6 +667,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/anger_khakhat_style_sherwani"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -634,6 +677,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/cross_style_sherwani"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -643,6 +687,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:id="@+id/matching_color_astar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -670,8 +715,10 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/contrast_color_astar"
                     android:layout_width="60dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
 
 
                 <TextView
@@ -683,8 +730,306 @@
             </LinearLayout>
         </HorizontalScrollView>
 
+        //shalwar mei number bhejey gey
+
+        <Spinner
+            android:id="@+id/dropdown_shalwar_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:prompt="@string/app_name"
+            android:textAlignment="center"
+            android:textDirection="rtl"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/customer_cloth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="کپڑا کسٹمر کا ہے اپنا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/only_sewing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="صرف سلائی آرڈر"
+            android:textSize="22sp" />
+        //general fields
+
+        <CheckBox
+            android:id="@+id/child_shewrwani_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="بچگانہ سائز"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/finished_adjust"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="یہ تیار ناپ ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/special_customer_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="خاص کسٹمر کا آرڈر ہے یہ انتہائ فنیشنگ اور صفائی کے ساتھ بنانا ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/regular_customer_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ریگولر کسٹمر ہیں سائز کااور فنیشنگ کا خاص خیال رکھنا ہوگا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/urgent_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ارجنٹ آرڈر"
+            android:textSize="22sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="بجے تک لازمی"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/is_urgent"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کو چاہیے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/order_date"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ارجنٹ بروز"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="گھنٹے میں چاہیے آرڈر"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/is_most_urgent"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="،"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/order_date_most_urgent"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انتہائ ارجنٹ بروز"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+
+        <CheckBox
+            android:id="@+id/no_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="دلہاجی کا لیبل نہیں لگانا ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/special_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="اسپیشل آرڈر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/button_should_be_strong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="بٹن بہت مضبوط کر کے لگانے ہیں"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/shoulder_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="شولڈر ڈاؤن"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:id="@+id/light_work_shoulder_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ہلکا کم شولڈر ڈاون"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/full_shoulder_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="فل شولڈر ڈاون شولڈر ڈاون"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/straight_shoulder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="اسٹریٹ سیدھے شولڈر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/right_shoulder_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="سیدھے ہاتھ کا شولڈر ڈاؤن"
+            android:textSize="22sp" />
+
+
+        <CheckBox
+            android:id="@+id/left_shoulder_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="الٹے بائیں ہاتھ کا شولڈر ڈاؤن"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/altered_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="الٹر باڈی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/deep_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="سینے کے اوپر گوشت نہیں ہے باڈی میں گہڑہ ہے"
+            android:textSize="22sp" />
+
+
+
+        <CheckBox
+            android:id="@+id/party_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="پارٹی کا اپنا لیبل لگے گا"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/fancy_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="لیبل کپڑے کی چیز کے اوپر لگے گا فینسی اسٹائل کی طرح"
+            android:textSize="22sp" />
+
 
         <EditText
+            android:id="@+id/remarks"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_margin="10dp"
