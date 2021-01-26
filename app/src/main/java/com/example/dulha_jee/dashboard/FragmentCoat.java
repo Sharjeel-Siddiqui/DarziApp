@@ -23,6 +23,7 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class FragmentCoat extends Fragment {
     Spinner dropdown_karegar_name, dropdown_coat_varieties;
@@ -190,7 +191,7 @@ public class FragmentCoat extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("Coat...");
         navController = Navigation.findNavController(view);
-
+        ButterKnife.bind(this,view);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         dropdown_coat_varieties = view.findViewById(R.id.dropdown_coat_varieties);
         submit_coat = view.findViewById(R.id.submit_coat);
