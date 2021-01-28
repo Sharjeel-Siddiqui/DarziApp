@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -22,6 +24,8 @@ import com.example.dulha_jee.SharedPreference;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
+import butterknife.BindView;
+
 public class FragmentShirt extends Fragment {
     Spinner dropdown_karegar_name;
     Button submit_shirt;
@@ -32,6 +36,94 @@ public class FragmentShirt extends Fragment {
 
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+
+    //fields to bind view
+    @BindView(R.id.quantity)
+    EditText quantity;
+    @BindView(R.id.collar)
+    EditText collar;
+    @BindView(R.id.sleeves)
+    EditText sleeves;
+    @BindView(R.id.shoulder)
+    EditText shoulder;
+    @BindView(R.id.hip)
+    EditText hip;
+    @BindView(R.id.abdomen)
+    EditText abdomen;
+    @BindView(R.id.gudda)
+    EditText gudda;
+    @BindView(R.id.front)
+    EditText front;
+    @BindView(R.id.lengthMade)
+    EditText lengthMade;
+    @BindView(R.id.patti_ki_chorayi)
+    EditText patti_ki_chorayi;
+    @BindView(R.id.order_date)
+    EditText order_date;
+    @BindView(R.id.order_date_most_urgent)
+    EditText order_date_most_urgent;
+    @BindView(R.id.remarks)
+    EditText remarks;
+
+    //CheckBoxes
+    @BindView(R.id.is_shirt)
+    CheckBox is_shirt;
+    @BindView(R.id.make_coverpati_style)
+    CheckBox make_coverpati_style;
+    @BindView(R.id.regular_polo_pati)
+    CheckBox regular_polo_pati;
+    @BindView(R.id.simple_pati_style)
+    CheckBox simple_pati_style;
+    @BindView(R.id.not_regular_polo_pat)
+    CheckBox not_regular_polo_pat;
+    @BindView(R.id.back_dart)
+    CheckBox back_dart;
+    @BindView(R.id.american_style_round_deep)
+    CheckBox american_style_round_deep;
+    @BindView(R.id.readymade_shirt_style_chakooti)
+    CheckBox readymade_shirt_style_chakooti;
+    @BindView(R.id.customer_cloth)
+    CheckBox customer_cloth;
+    @BindView(R.id.only_sewing)
+    CheckBox only_sewing;
+    @BindView(R.id.child_kurta_size)
+    CheckBox child_kurta_size;
+    @BindView(R.id.finished_adjust)
+    CheckBox finished_adjust;
+    @BindView(R.id.special_customer_order)
+    CheckBox special_customer_order;
+    @BindView(R.id.regular_customer_order)
+    CheckBox regular_customer_order;
+    @BindView(R.id.urgent_order)
+    CheckBox urgent_order;
+    @BindView(R.id.no_label)
+    CheckBox no_label;
+    @BindView(R.id.special_order)
+    CheckBox special_order;
+    @BindView(R.id.button_should_be_strong)
+    CheckBox button_should_be_strong;
+    @BindView(R.id.shoulder_down)
+    CheckBox shoulder_down;
+    @BindView(R.id.light_work_shoulder_down)
+    CheckBox light_work_shoulder_down;
+    @BindView(R.id.full_shoulder_down)
+    CheckBox full_shoulder_down;
+    @BindView(R.id.straight_shoulder)
+    CheckBox straight_shoulder;
+    @BindView(R.id.right_shoulder_down)
+    CheckBox right_shoulder_down;
+    @BindView(R.id.left_shoulder_down)
+    CheckBox left_shoulder_down;
+    @BindView(R.id.deep_body)
+    CheckBox deep_body;
+    @BindView(R.id.altered_body)
+    CheckBox altered_body;
+    @BindView(R.id.party_label)
+    CheckBox party_label;
+    @BindView(R.id.fancy_label)
+    CheckBox fancy_label;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,7 +156,7 @@ public class FragmentShirt extends Fragment {
                         .setOnHideListener(new OnHideAlertListener() {
                             @Override
                             public void onHide() {
-                                navController.navigate(R.id.action_fragmentShirt_to_dashBoard,null, new NavOptions.Builder()
+                                navController.navigate(R.id.action_fragmentShirt_to_dashBoard, null, new NavOptions.Builder()
                                         .setPopUpTo(R.id.fragmentShirt,
                                                 true).build());
                             }
@@ -196,7 +288,7 @@ public class FragmentShirt extends Fragment {
             isComingFromShirtBack2 = false;
         }
 
-        if(getArguments().getString("new") != null && getArguments().getString("new").equals("N")){
+        if (getArguments().getString("new") != null && getArguments().getString("new").equals("N")) {
             chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_choose));
             chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_choose));
             sharedPreference.remove();
@@ -204,7 +296,6 @@ public class FragmentShirt extends Fragment {
 
         setCollarImagefromCache();
         setCuffImagefromCache();
-
 
 
     }

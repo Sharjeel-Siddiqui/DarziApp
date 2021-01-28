@@ -31,6 +31,7 @@
 
 
             <EditText
+                android:id="@+id/quantity"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -52,6 +53,7 @@
 
 
             <EditText
+                android:id="@+id/abdomen"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -73,6 +75,7 @@
 
 
             <EditText
+                android:id="@+id/hip"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -94,6 +97,7 @@
 
 
             <EditText
+                android:id="@+id/lengthMade"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -115,6 +119,7 @@
 
 
             <EditText
+                android:id="@+id/fly"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -136,6 +141,7 @@
 
 
             <EditText
+                android:id="@+id/thigh"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -158,6 +164,7 @@
 
 
             <EditText
+                android:id="@+id/knee"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -179,6 +186,7 @@
 
 
             <EditText
+                android:id="@+id/bottom"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
