@@ -197,7 +197,7 @@ public class SherwaniFragment extends Fragment {
         ((MainActivity) getActivity()).setToolbar("Sherwani");
         ((MainActivity) getActivity()).setToolbarVisibility(true);
         sharedPreference = new SharedPreference(getActivity());
-
+        ButterKnife.bind(this,view);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         navController = Navigation.findNavController(view);
         chooseSidePocketImage = view.findViewById(R.id.chooseSidePocketImage);

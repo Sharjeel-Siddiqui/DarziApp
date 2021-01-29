@@ -20,6 +20,16 @@
             android:textDirection="rtl"
             android:textSize="22sp" />
 
+        <Spinner
+            android:id="@+id/dropdown_shalwar_name"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:prompt="@string/app_name"
+            android:textAlignment="center"
+            android:textDirection="rtl"
+            android:textSize="22sp" />
+
 
         //these are the fields from whatsapp update client may be its a size chart
 
@@ -164,7 +174,7 @@
 
 
             <EditText
-                android:id="@+id/Gudda"
+                android:id="@+id/gudda"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -433,34 +443,39 @@
             android:text="نیفے میں چڑیا بنانی ہے باہر کی طرف"
             android:textSize="22sp" />
 
-        <LinearLayout
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="انچ کا چاہیے تیار"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                android:gravity="right"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/shalwar_gher"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="انچ کا چاہیے تیار"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="شلوار کا گھیر ایک سائیڈ کا"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                <EditText
+                    android:id="@+id/shalwar_gher"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="شلوار کا گھیر ایک سائیڈ کا"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
 
 
-        </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -591,63 +606,74 @@
             android:text="ہالف لاسٹک کے ساتھ نیفے بیلٹ میں میچنگ کپڑے کا کمربند ڈالنا ہے"
             android:textSize="22sp" />
 
-        <LinearLayout
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="انچ چوڑی فولڈ کرنی ہے باہر کی طرف "
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                android:gravity="right"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/pajama_inner_fold"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="انچ چوڑی فولڈ کرنی ہے باہر کی طرف "
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
 
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="پاجامے کی سوری"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                <EditText
+                    android:id="@+id/pajama_inner_fold"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="پاجامے کی سوری"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
 
 
-        </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
 
-        <LinearLayout
+
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="انچ چوڑی فولڈ کرنی ہے اندر کی طرف "
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                android:gravity="right"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/pajama_outer_fold"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="انچ چوڑی فولڈ کرنی ہے اندر کی طرف "
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
 
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="پاجامے کی سوری"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                <EditText
+                    android:id="@+id/pajama_outer_fold"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="پاجامے کی سوری"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
 
 
-        </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <CheckBox
             android:id="@+id/pajama_as_pic"
@@ -840,44 +866,49 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="گھنٹے میں چاہیے آرڈر"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                android:gravity="right"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/is_most_urgent"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="گھنٹے میں چاہیے آرڈر"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="،"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                <EditText
+                    android:id="@+id/is_most_urgent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/order_date_most_urgent"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="،"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="انتہائ ارجنٹ بروز"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                <EditText
+                    android:id="@+id/order_date_most_urgent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="انتہائ ارجنٹ بروز"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
 
 
         <CheckBox

@@ -57,6 +57,18 @@ public class WaistCoatFragment extends Fragment {
     EditText order_date_most_urgent;
     @BindView(R.id.remarks)
     EditText remarks;
+    @BindView(R.id.three_piece_style_cadge)
+    EditText three_piece_style_cadge;
+    @BindView(R.id.collar_width)
+    EditText collar_width;
+    @BindView(R.id.violet_pocket_width)
+    EditText violet_pocket_width;
+    @BindView(R.id.extra_buttons)
+    EditText extra_buttons;
+    @BindView(R.id.lozing)
+    EditText lozing;
+    @BindView(R.id.waistcoat_chowk_length)
+    EditText waistcoat_chowk_length;
 
     //checkBoxes
 
@@ -66,8 +78,6 @@ public class WaistCoatFragment extends Fragment {
     CheckBox v_neck_style;
     @BindView(R.id.u_neck_style)
     CheckBox u_neck_style;
-    @BindView(R.id.three_piece_style_cadge)
-    CheckBox three_piece_style_cadge;
     @BindView(R.id.waistcoat_back_backet)
     CheckBox waistcoat_back_backet;
     @BindView(R.id.metal_fancy_buttons)
@@ -80,8 +90,6 @@ public class WaistCoatFragment extends Fragment {
     CheckBox round_daman;
     @BindView(R.id.coat_style_round_daman)
     CheckBox coat_style_round_daman;
-    @BindView(R.id.collar_width)
-    CheckBox collar_width;
     @BindView(R.id.collar_hala)
     CheckBox collar_hala;
     @BindView(R.id.collar_pointed)
@@ -94,8 +102,6 @@ public class WaistCoatFragment extends Fragment {
     CheckBox violet_pocket;
     @BindView(R.id.patch_pocket)
     CheckBox patch_pocket;
-    @BindView(R.id.violet_pocket_width)
-    CheckBox violet_pocket_width;
     @BindView(R.id.cadge_button_pati)
     CheckBox cadge_button_pati;
     @BindView(R.id.no_upper_pocket)
@@ -106,8 +112,6 @@ public class WaistCoatFragment extends Fragment {
     CheckBox waistcoat_style_like_image;
     @BindView(R.id.two_pockets_inside)
     CheckBox two_pockets_inside;
-    @BindView(R.id.extra_buttons)
-    CheckBox extra_buttons;
     @BindView(R.id.pocket_like_fabric)
     CheckBox pocket_like_fabric;
     @BindView(R.id.full_fewsing)
@@ -138,10 +142,6 @@ public class WaistCoatFragment extends Fragment {
     CheckBox pocket_pipine;
     @BindView(R.id.cadge_contrast)
     CheckBox cadge_contrast;
-    @BindView(R.id.lozing)
-    CheckBox lozing;
-    @BindView(R.id.waistcoat_chowk_length)
-    CheckBox waistcoat_chowk_length;
     @BindView(R.id.excersize_body)
     CheckBox excersize_body;
     @BindView(R.id.child_size_waistcoat)
@@ -211,7 +211,7 @@ public class WaistCoatFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("WaistCoat");
         ((MainActivity) getActivity()).setToolbarVisibility(true);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         navController = Navigation.findNavController(view);
         submit_waistcoat = view.findViewById(R.id.submit_waistcoat);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);

@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -20,12 +22,140 @@ import com.example.dulha_jee.R;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class FragmentPants extends Fragment {
     Spinner dropdown_karegar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     Button submit_pants;
     NavController navController;
+
+    @BindView(R.id.quantity)
+    EditText quantity;
+    @BindView(R.id.abdomen)
+    EditText abdomen;
+    @BindView(R.id.hip)
+    EditText hip;
+    @BindView(R.id.lengthMade)
+    EditText lengthMade;
+    @BindView(R.id.fly)
+    EditText fly;
+    @BindView(R.id.thigh)
+    EditText thigh;
+    @BindView(R.id.knee)
+    EditText knee;
+    @BindView(R.id.bottom)
+    EditText bottom;
+    @BindView(R.id.order_date)
+    EditText order_date;
+    @BindView(R.id.order_date_most_urgent)
+    EditText order_date_most_urgent;
+    @BindView(R.id.remarks)
+    EditText remarks;
+
+    //CheckBoxes come here
+
+    @BindView(R.id.without_plate)
+    CheckBox without_plate;
+    @BindView(R.id.one_plate_front)
+    CheckBox one_plate_front;
+    @BindView(R.id.two_plate_front)
+    CheckBox two_plate_front;
+    @BindView(R.id.straight_pocket)
+    CheckBox straight_pocket;
+    @BindView(R.id.cross_pocket)
+    CheckBox cross_pocket;
+    @BindView(R.id.jeans_style_pocket)
+    CheckBox jeans_style_pocket;
+    @BindView(R.id.one_back_pocket)
+    CheckBox one_back_pocket;
+    @BindView(R.id.two_back_pocket)
+    CheckBox two_back_pocket;
+    @BindView(R.id.flap_pocket)
+    CheckBox flap_pocket;
+    @BindView(R.id.flap_cadge)
+    CheckBox flap_cadge;
+    @BindView(R.id.cotton)
+    CheckBox cotton;
+    @BindView(R.id.watch_pocket)
+    CheckBox watch_pocket;
+    @BindView(R.id.back_pocket_cadge_button)
+    CheckBox back_pocket_cadge_button;
+    @BindView(R.id.eight_loobs)
+    CheckBox eight_loobs;
+    @BindView(R.id.loobs_inch)
+    CheckBox loobs_inch;
+    @BindView(R.id.loobs_inch_two)
+    CheckBox loobs_inch_two;
+    @BindView(R.id.back_pocket_loobs)
+    CheckBox back_pocket_loobs;
+    @BindView(R.id.inch_belt)
+    CheckBox inch_belt;
+    @BindView(R.id.belt_grip)
+    CheckBox belt_grip;
+    @BindView(R.id.pocket_thely)
+    CheckBox pocket_thely;
+    @BindView(R.id.zip_quality)
+    CheckBox zip_quality;
+    @BindView(R.id.pocket_dip)
+    CheckBox pocket_dip;
+    @BindView(R.id.folding_mori)
+    CheckBox folding_mori;
+    @BindView(R.id.turpayi_hand)
+    CheckBox turpayi_hand;
+    @BindView(R.id.long_loop)
+    CheckBox long_loop;
+    @BindView(R.id.long_nib)
+    CheckBox long_nib;
+    @BindView(R.id.paint_loozing)
+    CheckBox paint_loozing;
+    @BindView(R.id.special)
+    CheckBox special;
+    @BindView(R.id.same_as_image)
+    CheckBox same_as_image;
+    @BindView(R.id.customer_cloth)
+    CheckBox customer_cloth;
+    @BindView(R.id.only_sewing)
+    CheckBox only_sewing;
+    @BindView(R.id.child_kurta_size)
+    CheckBox child_kurta_size;
+    @BindView(R.id.finished_adjust)
+    CheckBox finished_adjust;
+    @BindView(R.id.special_customer_order)
+    CheckBox special_customer_order;
+    @BindView(R.id.regular_customer_order)
+    CheckBox regular_customer_order;
+    @BindView(R.id.urgent_order)
+    CheckBox urgent_order;
+    @BindView(R.id.no_label)
+    CheckBox no_label;
+    @BindView(R.id.special_order)
+    CheckBox special_order;
+    @BindView(R.id.button_should_be_strong)
+    CheckBox button_should_be_strong;
+    @BindView(R.id.shoulder_down)
+    CheckBox shoulder_down;
+    @BindView(R.id.light_work_shoulder_down)
+    CheckBox light_work_shoulder_down;
+    @BindView(R.id.full_shoulder_down)
+    CheckBox full_shoulder_down;
+    @BindView(R.id.straight_shoulder)
+    CheckBox straight_shoulder;
+    @BindView(R.id.right_shoulder_down)
+    CheckBox right_shoulder_down;
+    @BindView(R.id.left_shoulder_down)
+    CheckBox left_shoulder_down;
+    @BindView(R.id.deep_body)
+    CheckBox deep_body;
+    @BindView(R.id.altered_body)
+    CheckBox altered_body;
+    @BindView(R.id.party_label)
+    CheckBox party_label;
+    @BindView(R.id.fancy_label)
+    CheckBox fancy_label;
+
 
     @Nullable
     @Override
@@ -37,6 +167,7 @@ public class FragmentPants extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("Pants");
+        ButterKnife.bind(this,view);
         navController = Navigation.findNavController(view);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         submit_pants = view.findViewById(R.id.submit_pants);

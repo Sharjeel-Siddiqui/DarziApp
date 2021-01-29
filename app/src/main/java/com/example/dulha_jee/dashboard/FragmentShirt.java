@@ -25,6 +25,7 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class FragmentShirt extends Fragment {
     Spinner dropdown_karegar_name;
@@ -135,6 +136,7 @@ public class FragmentShirt extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("Shirt");
 
+        ButterKnife.bind(this,view);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         chooseCollarImage = view.findViewById(R.id.chooseCollarImage);
         chooseCuffImage = view.findViewById(R.id.chooseCuffImage);

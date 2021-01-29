@@ -198,8 +198,10 @@ public class FragmentInnerSuit extends Fragment {
         ButterKnife.bind(this, view);
         ((MainActivity) getActivity()).setToolbar("InnerSuit...");
         navController = Navigation.findNavController(view);
+
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         dropdown_shalwar_name = view.findViewById(R.id.dropdown_shalwar_name);
+
         submit_innersuit = view.findViewById(R.id.submit_innersuit);
         submit_innersuit.setOnClickListener(new View.OnClickListener() {
             @Override
