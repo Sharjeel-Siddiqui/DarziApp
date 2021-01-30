@@ -1,7 +1,42 @@
 package com.example.dulha_jee.pojo;
 
 public class InnerSuitRequestBody {
-    private String quantity, collar ,sleeves ,shoulder ,hip ,abdomen, gudda, front, lengthMade ,shalwar_gher, shalwar_asan, pajama_inner_fold, pajama_outer_fold ,order_date, order_date_most_urgent, off_white_color, black_color, mehroon_color ,redish_maroon, golden_color ,cream_color, copper_color, dark_brown_color ,gray_color ,matching_button, brass_button ,copper_color_button, silver_color_button, gold_color_button, purple_color_button, round_button ,fancy_button ,strong_button, contrass_button, contrass_cadge, naifa_chirya, matching_zip, quality_zip, qameez_zip, shalwar_romali, paincha_style ,paint_style ,side_pocket, half_lastic ,full_lastic ,half_lastic_with_kamarband ,pajama_as_pic, pajama_roomali, chooridar_pajama ,arha_pajama ,straight_pajama ,customer_fat, pajama_fit, customer_slim ,customer_cloth, only_sewing ,child_kurta_size ,finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label ,special_order ,button_should_be_strong, shoulder_down ,light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down ,left_shoulder_down ,deep_body ,altered_body, party_label, fancy_label;
+    private String remarks,customer_name, order_number, mobile_number, quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, shalwar_gher, shalwar_asan, pajama_inner_fold, pajama_outer_fold, order_date, order_date_most_urgent, off_white_color, black_color, mehroon_color, redish_maroon, golden_color, cream_color, copper_color, dark_brown_color, gray_color, matching_button, brass_button, copper_color_button, silver_color_button, gold_color_button, purple_color_button, round_button, fancy_button, strong_button, contrass_button, contrass_cadge, naifa_chirya, matching_zip, quality_zip, qameez_zip, shalwar_romali, paincha_style, paint_style, side_pocket, half_lastic, full_lastic, half_lastic_with_kamarband, pajama_as_pic, pajama_roomali, chooridar_pajama, arha_pajama, straight_pajama, customer_fat, pajama_fit, customer_slim, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(String order_number) {
+        this.order_number = order_number;
+    }
+
+    public String getMobile_number() {
+        return mobile_number;
+    }
+
+    public void setMobile_number(String mobile_number) {
+        this.mobile_number = mobile_number;
+    }
+
+    public InnerSuitRequestBody() {
+    }
 
     public InnerSuitRequestBody(String quantity, String collar, String sleeves, String shoulder, String hip, String abdomen, String gudda, String front, String lengthMade, String shalwar_gher, String shalwar_asan, String pajama_inner_fold, String pajama_outer_fold, String order_date, String order_date_most_urgent, String off_white_color, String black_color, String mehroon_color, String redish_maroon, String golden_color, String cream_color, String copper_color, String dark_brown_color, String gray_color, String matching_button, String brass_button, String copper_color_button, String silver_color_button, String gold_color_button, String purple_color_button, String round_button, String fancy_button, String strong_button, String contrass_button, String contrass_cadge, String naifa_chirya, String matching_zip, String quality_zip, String qameez_zip, String shalwar_romali, String paincha_style, String paint_style, String side_pocket, String half_lastic, String full_lastic, String half_lastic_with_kamarband, String pajama_as_pic, String pajama_roomali, String chooridar_pajama, String arha_pajama, String straight_pajama, String customer_fat, String pajama_fit, String customer_slim, String customer_cloth, String only_sewing, String child_kurta_size, String finished_adjust, String special_customer_order, String regular_customer_order, String urgent_order, String no_label, String special_order, String button_should_be_strong, String shoulder_down, String light_work_shoulder_down, String full_shoulder_down, String straight_shoulder, String right_shoulder_down, String left_shoulder_down, String deep_body, String altered_body, String party_label, String fancy_label) {
         this.quantity = quantity;

@@ -2,7 +2,38 @@ package com.example.dulha_jee.pojo;
 
 public class SherwaniRequestBody {
 
-    private String quantity, collar, sleeves, shoulder, hip, abdomen, gudda, chest, lengthMade, fullback, halfback, crossfront, highlight_cadge_color, show_cadge_color, front_cadge_numbers, front_show_cadge_number, contrast_color_astar, is_urgent, order_date, is_most_urgent, order_date_most_urgent, remarks, jinnah_style, highlight_cadge_matching, fancy_metal_button, show_button, show_cadge_matching, side_pocket_both_sides, two_pockets, no_tal_pat, both_front_equal, back_center_sew, front_walnut_pocket, open_front_open_gown_style, collar_karhayi, sleeves_karhayi, button_karhayi, one_front_karhayi, both_front_karhayi, back_karhayi, collar_sleeves_karhayi, violet_pocket_karhayi, collar_sleeves_one_front_karhayi, front_pocket_karhayi, collar_sleeves_two_front_karhayi, front_pocket_on_karhayi, anger_khakhat_style_sherwani, cross_style_sherwani, matching_color_astar, customer_cloth, only_sewing, child_shewrwani_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, altered_body, deep_body, party_label, fancy_label;
+    private String customer_name,order_number ,mobile_number, order_date, quantity, collar, sleeves, shoulder, hip, abdomen, gudda, chest, lengthMade, fullback, halfback, crossfront, highlight_cadge_color, show_cadge_color, front_cadge_numbers, front_show_cadge_number, contrast_color_astar, is_urgent, is_most_urgent, order_date_most_urgent, remarks, jinnah_style, highlight_cadge_matching, fancy_metal_button, show_button, show_cadge_matching, side_pocket_both_sides, two_pockets, no_tal_pat, both_front_equal, back_center_sew, front_walnut_pocket, open_front_open_gown_style, collar_karhayi, sleeves_karhayi, button_karhayi, one_front_karhayi, both_front_karhayi, back_karhayi, collar_sleeves_karhayi, violet_pocket_karhayi, collar_sleeves_one_front_karhayi, front_pocket_karhayi, collar_sleeves_two_front_karhayi, front_pocket_on_karhayi, anger_khakhat_style_sherwani, cross_style_sherwani, matching_color_astar, customer_cloth, only_sewing, child_shewrwani_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, altered_body, deep_body, party_label, fancy_label;
+
+
+    public String getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(String order_number) {
+        this.order_number = order_number;
+    }
+
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+
+    public String getMobile_number() {
+        return mobile_number;
+    }
+
+    public void setMobile_number(String mobile_number) {
+        this.mobile_number = mobile_number;
+    }
+
+
+    public SherwaniRequestBody() {
+
+    }
 
     public SherwaniRequestBody(String quantity, String collar, String sleeves, String shoulder, String hip, String abdomen, String gudda, String chest, String lengthMade, String fullback, String halfback, String crossfront, String highlight_cadge_color, String show_cadge_color, String front_cadge_numbers, String front_show_cadge_number, String contrast_color_astar, String is_urgent, String order_date, String is_most_urgent, String order_date_most_urgent, String remarks, String jinnah_style, String highlight_cadge_matching, String fancy_metal_button, String show_button, String show_cadge_matching, String side_pocket_both_sides, String two_pockets, String no_tal_pat, String both_front_equal, String back_center_sew, String front_walnut_pocket, String open_front_open_gown_style, String collar_karhayi, String sleeves_karhayi, String button_karhayi, String one_front_karhayi, String both_front_karhayi, String back_karhayi, String collar_sleeves_karhayi, String violet_pocket_karhayi, String collar_sleeves_one_front_karhayi, String front_pocket_karhayi, String collar_sleeves_two_front_karhayi, String front_pocket_on_karhayi, String anger_khakhat_style_sherwani, String cross_style_sherwani, String matching_color_astar, String customer_cloth, String only_sewing, String child_shewrwani_size, String finished_adjust, String special_customer_order, String regular_customer_order, String urgent_order, String no_label, String special_order, String button_should_be_strong, String shoulder_down, String light_work_shoulder_down, String full_shoulder_down, String straight_shoulder, String right_shoulder_down, String left_shoulder_down, String altered_body, String deep_body, String party_label, String fancy_label) {
         this.quantity = quantity;

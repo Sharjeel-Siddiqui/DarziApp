@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,12 @@ import androidx.navigation.Navigation;
 
 import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
+import com.example.dulha_jee.SharedPreference;
+import com.example.dulha_jee.api.ApiClient;
+import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.CoatRequestBody;
+import com.example.dulha_jee.pojo.KurtaRequestBody;
+import com.example.dulha_jee.pojo.SherwaniRequestBody;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -35,6 +42,10 @@ import com.tapadoo.alerter.OnHideAlertListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -42,11 +53,13 @@ public class FragmentCoat extends Fragment {
     Spinner dropdown_karegar_name, dropdown_coat_varieties;
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] coatVarieties = {"گون اسٹائل فرنٹ اوپن کوٹ ", "پرنس کوٹ ", "کوٹ "};
-    Button submit_coat  , chooseImage;
+    Button submit_coat, chooseImage;
     NavController navController;
     ImageView iv_01;
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
+    Iapi iapi;
+    SharedPreference sharedPreference;
 
     //fields to bind view
     @BindView(R.id.quantity)
@@ -217,6 +230,8 @@ public class FragmentCoat extends Fragment {
         navController = Navigation.findNavController(view);
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
+        iapi = ApiClient.getClient().create(Iapi.class);
+        sharedPreference = new SharedPreference(getActivity());
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,7 +261,7 @@ public class FragmentCoat extends Fragment {
             }
         });
 
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         dropdown_coat_varieties = view.findViewById(R.id.dropdown_coat_varieties);
         submit_coat = view.findViewById(R.id.submit_coat);
@@ -262,7 +277,9 @@ public class FragmentCoat extends Fragment {
         submit_coat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Alerter.create(getActivity())
+
+                createCoatRequest();
+           /*     Alerter.create(getActivity())
                         .setTitle("انتطار فرمائیے۔۔۔")
                         .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
                         .setIcon(
@@ -278,9 +295,112 @@ public class FragmentCoat extends Fragment {
                                                 true).build());
                             }
                         })
-                        .show();
+                        .show();*/
             }
         });
+    }
+
+    private void createCoatRequest() {
+        CoatRequestBody coatRequestBody = new CoatRequestBody();
+
+        //et_fields....
+        coatRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
+        coatRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
+        coatRequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString());
+        coatRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
+        coatRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+
+        coatRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
+        coatRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
+        coatRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
+        coatRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
+        coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString());
+        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : chest.getText().toString());
+        coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
+        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" : full_back.getText().toString());
+        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString());
+        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString());
+        coatRequestBody.setPencil_length(TextUtils.isEmpty(pencil_length.getText().toString()) ? "" : pencil_length.getText().toString());
+        coatRequestBody.setCollar_thing(TextUtils.isEmpty(collar_thing.getText().toString()) ? "" : collar_thing.getText().toString());
+        coatRequestBody.setPencil_thing(TextUtils.isEmpty(pencil_thing.getText().toString()) ? "" : pencil_thing.getText().toString());
+        coatRequestBody.setShoulder_depth(TextUtils.isEmpty(shoulder_depth.getText().toString()) ? "" : shoulder_depth.getText().toString());
+        coatRequestBody.setFront_cadge(TextUtils.isEmpty(front_cadge.getText().toString()) ? "" : front_cadge.getText().toString());
+        coatRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
+
+
+        //Check boxes field goes here ....
+        coatRequestBody.setButton_style2(button_style2.isChecked() ? button_style2.getText().toString() : "");
+        coatRequestBody.setSingle_button(single_button.isChecked() ? single_button.getText().toString() : "");
+        coatRequestBody.setThree_button(three_button.isChecked() ? three_button.getText().toString() : "");
+        coatRequestBody.setFour_button(four_button.isChecked() ? four_button.getText().toString() : "");
+        coatRequestBody.setFive_button(five_button.isChecked() ? five_button.getText().toString() : "");
+        coatRequestBody.setNo_button(no_button.isChecked() ? no_button.getText().toString() : "");
+        coatRequestBody.setSide_chowk(side_chowk.isChecked() ? side_chowk.getText().toString() : "");
+        coatRequestBody.setBack_chowk(back_chowk.isChecked() ? back_chowk.getText().toString() : "");
+        coatRequestBody.setAmerican_pencil(american_pencil.isChecked() ? american_pencil.getText().toString() : "");
+        coatRequestBody.setDinner_pencil(dinner_pencil.isChecked() ? dinner_pencil.getText().toString() : "");
+        coatRequestBody.setPencil_long(pencil_long.isChecked() ? pencil_long.getText().toString() : "");
+        coatRequestBody.setTaxido_style(taxido_style.isChecked() ? taxido_style.getText().toString() : "");
+        coatRequestBody.setQub(qub.isChecked() ? qub.getText().toString() : "");
+        coatRequestBody.setNo_meat(no_meat.isChecked() ? no_meat.getText().toString() : "");
+        coatRequestBody.setWaist_coat_double(waist_coat_double.isChecked() ? waist_coat_double.getText().toString() : "");
+        coatRequestBody.setPencil_waist_coat(pencil_waist_coat.isChecked() ? pencil_waist_coat.getText().toString() : "");
+        coatRequestBody.setV_neck_waist_coat(v_neck_waist_coat.isChecked() ? v_neck_waist_coat.getText().toString() : "");
+        coatRequestBody.setU_neck_waist_coat(u_neck_waist_coat.isChecked() ? u_neck_waist_coat.getText().toString() : "");
+        coatRequestBody.setSame_as_image(same_as_image.isChecked() ? same_as_image.getText().toString() : "");
+        coatRequestBody.setCoat_same_as_image(coat_same_as_image.isChecked() ? coat_same_as_image.getText().toString() : "");
+        coatRequestBody.setWaist_coat_same_as_image(waist_coat_same_as_image.isChecked() ? waist_coat_same_as_image.getText().toString() : "");
+        coatRequestBody.setInner_loozing(inner_loozing.isChecked() ? inner_loozing.getText().toString() : "");
+        coatRequestBody.setSpecial_vip(special_vip.isChecked() ? special_vip.getText().toString() : "");
+
+      //  coatRequestBody.setsleeveloozing(sleeves_loozing.isChecked() ? sleeves_loozing.getText().toString() : "");
+        coatRequestBody.setDouble_bukram(double_bukram.isChecked() ? double_bukram.getText().toString() : "");
+        coatRequestBody.setFull_bukram(full_bukram.isChecked() ? full_bukram.getText().toString() : "");
+        coatRequestBody.setAstar_printed(astar_printed.isChecked() ? astar_printed.getText().toString() : "");
+        coatRequestBody.setPrince_coat(prince_coat.isChecked() ? prince_coat.getText().toString() : "");
+        coatRequestBody.setFancy_buttons(fancy_buttons.isChecked() ? fancy_buttons.getText().toString() : "");
+
+        //checkboxes for general fields
+
+        coatRequestBody.setCustomer_cloth(customer_cloth.isChecked() ? customer_cloth.getText().toString() : "");
+        coatRequestBody.setChild_kurta_size(child_kurta_size.isChecked() ? child_kurta_size.getText().toString() : "");
+        coatRequestBody.setOnly_sewing(only_sewing.isChecked() ? only_sewing.getText().toString() : "");
+        coatRequestBody.setFinished_adjust(finished_adjust.isChecked() ? finished_adjust.getText().toString() : "");
+        coatRequestBody.setSpecial_customer_order(special_customer_order.isChecked() ? special_customer_order.getText().toString() : "");
+        coatRequestBody.setRegular_customer_order(regular_customer_order.isChecked() ? regular_customer_order.getText().toString() : "");
+        coatRequestBody.setUrgent_order(urgent_order.isChecked() ? urgent_order.getText().toString() : "");
+        coatRequestBody.setNo_label(no_label.isChecked() ? no_label.getText().toString() : "");
+        coatRequestBody.setSpecial_order(special_order.isChecked() ? special_order.getText().toString() : "");
+        coatRequestBody.setButton_should_be_strong(button_should_be_strong.isChecked() ? button_should_be_strong.getText().toString() : "");
+        coatRequestBody.setLight_work_shoulder_down(light_work_shoulder_down.isChecked() ? light_work_shoulder_down.getText().toString() : "");
+        coatRequestBody.setFull_shoulder_down(full_shoulder_down.isChecked() ? full_shoulder_down.getText().toString() : "");
+        coatRequestBody.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
+        coatRequestBody.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
+        coatRequestBody.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");
+        coatRequestBody.setAltered_body(altered_body.isChecked() ? altered_body.getText().toString() : "");
+        coatRequestBody.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
+        coatRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
+        coatRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
+
+
+        iapi.createCoat("Bearer "+ sharedPreference.getToken(),coatRequestBody).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
     }
 
     private void openGallery() {

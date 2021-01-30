@@ -1,8 +1,36 @@
 package com.example.dulha_jee.pojo;
 
 public class CoatRequestBody {
-    private String quantity , collar,  sleeves, shoulder ,hip ,abdomen, gudda, chest, lengthMade, full_back, halfback, crossfront ,chowk_length, pencil_length, collar_thing ,pencil_thing ,shoulder_depth ,front_cadge ,order_date, order_date_most_urgent, remarks , button_style2 , single_button, three_button ,four_button, five_button, no_button ,side_chowk, back_chowk ,american_pencil, dinner_pencil, pencil_long ,taxido_style, double_style_collar, qub ,no_meat, waist_coat_double, pencil_waist_coat ,v_neck_waist_coat, u_neck_waist_coat ,same_as_image, coat_same_as_image, waist_coat_same_as_image ,inner_loozing ,special_vip, sleeves_,loozing, double_bukram, full_bukram, astar_printed, prince_coat ,fancy_buttons ,customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order ,urgent_order, no_label ,special_order ,button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down ,left_shoulder_down ,altered_body ,deep_body, party_label, fancy_label;
+    private String  customer_name, order_number, mobile_number,quantity , collar,  sleeves, shoulder ,hip ,abdomen, gudda, chest, lengthMade, full_back, halfback, crossfront ,chowk_length, pencil_length, collar_thing ,pencil_thing ,shoulder_depth ,front_cadge ,order_date, order_date_most_urgent, remarks , button_style2 , single_button, three_button ,four_button, five_button, no_button ,side_chowk, back_chowk ,american_pencil, dinner_pencil, pencil_long ,taxido_style, double_style_collar, qub ,no_meat, waist_coat_double, pencil_waist_coat ,v_neck_waist_coat, u_neck_waist_coat ,same_as_image, coat_same_as_image, waist_coat_same_as_image ,inner_loozing ,special_vip, sleeves_,loozing, double_bukram, full_bukram, astar_printed, prince_coat ,fancy_buttons ,customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order ,urgent_order, no_label ,special_order ,button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down ,left_shoulder_down ,altered_body ,deep_body, party_label, fancy_label;
 
+
+    public CoatRequestBody() {
+
+    }
+
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(String order_number) {
+        this.order_number = order_number;
+    }
+
+    public String getMobile_number() {
+        return mobile_number;
+    }
+
+    public void setMobile_number(String mobile_number) {
+        this.mobile_number = mobile_number;
+    }
 
     public CoatRequestBody(String quantity, String collar, String sleeves, String shoulder, String hip, String abdomen, String gudda, String chest, String lengthMade, String full_back, String halfback, String crossfront, String chowk_length, String pencil_length, String collar_thing, String pencil_thing, String shoulder_depth, String front_cadge, String order_date, String order_date_most_urgent, String remarks, String button_style2, String single_button, String three_button, String four_button, String five_button, String no_button, String side_chowk, String back_chowk, String american_pencil, String dinner_pencil, String pencil_long, String taxido_style, String double_style_collar, String qub, String no_meat, String waist_coat_double, String pencil_waist_coat, String v_neck_waist_coat, String u_neck_waist_coat, String same_as_image, String coat_same_as_image, String waist_coat_same_as_image, String inner_loozing, String special_vip, String sleeves_, String loozing, String double_bukram, String full_bukram, String astar_printed, String prince_coat, String fancy_buttons, String customer_cloth, String only_sewing, String child_kurta_size, String finished_adjust, String special_customer_order, String regular_customer_order, String urgent_order, String no_label, String special_order, String button_should_be_strong, String shoulder_down, String light_work_shoulder_down, String full_shoulder_down, String straight_shoulder, String right_shoulder_down, String left_shoulder_down, String altered_body, String deep_body, String party_label, String fancy_label) {
         this.quantity = quantity;

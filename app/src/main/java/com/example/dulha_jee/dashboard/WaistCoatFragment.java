@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,10 @@ import androidx.navigation.Navigation;
 
 import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
+import com.example.dulha_jee.SharedPreference;
+import com.example.dulha_jee.api.ApiClient;
+import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.WaistCoatFragmentrequestBody;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -35,6 +40,10 @@ import com.tapadoo.alerter.OnHideAlertListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -42,11 +51,14 @@ public class WaistCoatFragment extends Fragment {
     Spinner dropdown_karegar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
-    Button submit_waistcoat , chooseImage;
+    Button submit_waistcoat, chooseImage;
     NavController navController;
     ImageView iv_01;
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
+    SharedPreference sharedPreference;
+
+    Iapi iapi;
 
     //fields to bind view
     @BindView(R.id.quantity)
@@ -236,9 +248,11 @@ public class WaistCoatFragment extends Fragment {
         ((MainActivity) getActivity()).setToolbar("WaistCoat");
         ((MainActivity) getActivity()).setToolbarVisibility(true);
         ButterKnife.bind(this, view);
+        iapi = ApiClient.getClient().create(Iapi.class);
         navController = Navigation.findNavController(view);
         submit_waistcoat = view.findViewById(R.id.submit_waistcoat);
         iv_01 = view.findViewById(R.id.iv_01);
+        sharedPreference = new SharedPreference(getActivity());
 
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         chooseImage = view.findViewById(R.id.chooseImage);
@@ -246,7 +260,8 @@ public class WaistCoatFragment extends Fragment {
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dexter.withContext(getActivity())
+                createWaistCoat();
+      /*          Dexter.withContext(getActivity())
                         .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         .withListener(new PermissionListener() {
                             @Override
@@ -267,7 +282,7 @@ public class WaistCoatFragment extends Fragment {
                             public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
 
                             }
-                        }).check();
+                        }).check();*/
             }
         });
 
@@ -299,6 +314,117 @@ public class WaistCoatFragment extends Fragment {
             }
         });
     }
+
+    private void createWaistCoat() {
+        WaistCoatFragmentrequestBody waistCoatFragmentrequestBody = new WaistCoatFragmentrequestBody();
+
+        //et fields
+        waistCoatFragmentrequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
+        waistCoatFragmentrequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString());
+        waistCoatFragmentrequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
+        waistCoatFragmentrequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+
+        waistCoatFragmentrequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
+        waistCoatFragmentrequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
+        waistCoatFragmentrequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
+        waistCoatFragmentrequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
+        waistCoatFragmentrequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
+        waistCoatFragmentrequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString());
+        waistCoatFragmentrequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
+        waistCoatFragmentrequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString());
+        waistCoatFragmentrequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString());
+
+        waistCoatFragmentrequestBody.setThree_piece_style_cadge(TextUtils.isEmpty(three_piece_style_cadge.getText().toString()) ? "" : three_piece_style_cadge.getText().toString());
+        waistCoatFragmentrequestBody.setCollar_width(TextUtils.isEmpty(collar_width.getText().toString()) ? "" : collar_width.getText().toString());
+        waistCoatFragmentrequestBody.setViolet_pocket_width(TextUtils.isEmpty(violet_pocket_width.getText().toString()) ? "" : violet_pocket_width.getText().toString());
+        waistCoatFragmentrequestBody.setExtra_buttons(TextUtils.isEmpty(extra_buttons.getText().toString()) ? "" : extra_buttons.getText().toString());
+        waistCoatFragmentrequestBody.setLozing(TextUtils.isEmpty(lozing.getText().toString()) ? "" : lozing.getText().toString());
+        // waistCoatFragmentrequestBody.setwaos(TextUtils.isEmpty(lozing.getText().toString()) ? "" : lozing.getText().toString()); //waist coat chawk length
+
+        //Check boxes come here
+        waistCoatFragmentrequestBody.setJawahir_cut_style(jawahir_cut_style.isChecked() ? jawahir_cut_style.getText().toString() : "");
+        waistCoatFragmentrequestBody.setV_neck_style(v_neck_style.isChecked() ? v_neck_style.getText().toString() : "");
+        waistCoatFragmentrequestBody.setU_neck_style(u_neck_style.isChecked() ? u_neck_style.getText().toString() : "");
+        waistCoatFragmentrequestBody.setWaistcoat_back_backet(waistcoat_back_backet.isChecked() ? waistcoat_back_backet.getText().toString() : "");
+        waistCoatFragmentrequestBody.setMetal_fancy_buttons(metal_fancy_buttons.isChecked() ? metal_fancy_buttons.getText().toString() : "");
+        waistCoatFragmentrequestBody.setMatching_plastic_buttons(matching_plastic_buttons.isChecked() ? matching_plastic_buttons.getText().toString() : "");
+        waistCoatFragmentrequestBody.setStraight_daman(straight_daman.isChecked() ? straight_daman.getText().toString() : "");
+        waistCoatFragmentrequestBody.setRound_daman(round_daman.isChecked() ? round_daman.getText().toString() : "");
+        waistCoatFragmentrequestBody.setCoat_style_round_daman(coat_style_round_daman.isChecked() ? coat_style_round_daman.getText().toString() : "");
+        waistCoatFragmentrequestBody.setCollar_hala(collar_hala.isChecked() ? collar_hala.getText().toString() : "");
+        waistCoatFragmentrequestBody.setCollar_pointed(collar_pointed.isChecked() ? collar_pointed.getText().toString() : "");
+        waistCoatFragmentrequestBody.setDouble_bon_pocket(double_bon_pocket.isChecked() ? double_bon_pocket.getText().toString() : "");
+        waistCoatFragmentrequestBody.setSingle_bon_pocket(single_bon_pocket.isChecked() ? single_bon_pocket.getText().toString() : "");
+        waistCoatFragmentrequestBody.setViolet_pocket(violet_pocket.isChecked() ? violet_pocket.getText().toString() : "");
+        waistCoatFragmentrequestBody.setPatch_pocket(patch_pocket.isChecked() ? patch_pocket.getText().toString() : "");
+        waistCoatFragmentrequestBody.setCadge_button_pati(cadge_button_pati.isChecked() ? cadge_button_pati.getText().toString() : "");
+        waistCoatFragmentrequestBody.setNo_lower_pocket(no_upper_pocket.isChecked() ? no_upper_pocket.getText().toString() : "");
+        waistCoatFragmentrequestBody.setNo_lower_pocket(no_lower_pocket.isChecked() ? no_lower_pocket.getText().toString() : "");
+        waistCoatFragmentrequestBody.setWaistcoat_style_like_image(waistcoat_style_like_image.isChecked() ? waistcoat_style_like_image.getText().toString() : "");
+        waistCoatFragmentrequestBody.setTwo_pockets_inside(two_pockets_inside.isChecked() ? two_pockets_inside.getText().toString() : "");
+        waistCoatFragmentrequestBody.setPocket_like_fabric(pocket_like_fabric.isChecked() ? pocket_like_fabric.getText().toString() : "");
+        waistCoatFragmentrequestBody.setFull_fewsing(full_fewsing.isChecked() ? full_fewsing.getText().toString() : "");
+        waistCoatFragmentrequestBody.setFront_fewsing(front_fewsing.isChecked() ? front_fewsing.getText().toString() : "");
+        waistCoatFragmentrequestBody.setAstar_cherry(astar_cherry.isChecked() ? astar_cherry.getText().toString() : "");
+        waistCoatFragmentrequestBody.setCustomer_stiff_waistcoat(customer_stiff_waistcoat.isChecked() ? customer_stiff_waistcoat.getText().toString() : "");
+        waistCoatFragmentrequestBody.setCollar_karhayi(collar_karhayi.isChecked() ? collar_karhayi.getText().toString() : "");
+        waistCoatFragmentrequestBody.setFront_pocket_karhayi(front_pocket_karhayi.isChecked() ? front_pocket_karhayi.getText().toString() : "");
+        waistCoatFragmentrequestBody.setBoth_front_karhayi(both_front_karhayi.isChecked() ? both_front_karhayi.getText().toString() : "");
+        waistCoatFragmentrequestBody.setOne_front_karhayi(one_front_karhayi.isChecked() ? one_front_karhayi.getText().toString() : "");
+        waistCoatFragmentrequestBody.setBack_karhayi(back_karhayi.isChecked() ? back_karhayi.getText().toString() : "");
+        waistCoatFragmentrequestBody.setCollar_buttons(collar_buttons.isChecked() ? collar_buttons.getText().toString() : "");
+        waistCoatFragmentrequestBody.setCollar_lower_buttons(collar_lower_buttons.isChecked() ? collar_lower_buttons.getText().toString() : "");
+        waistCoatFragmentrequestBody.setFront_pipine(front_pipine.isChecked() ? front_pipine.getText().toString() : "");
+        waistCoatFragmentrequestBody.setPocket_pipine(pocket_pipine.isChecked() ? pocket_pipine.getText().toString() : "");
+        waistCoatFragmentrequestBody.setCadge_contrast(cadge_contrast.isChecked() ? cadge_contrast.getText().toString() : "");
+        waistCoatFragmentrequestBody.setExcersize_body(excersize_body.isChecked() ? excersize_body.getText().toString() : "");
+        waistCoatFragmentrequestBody.setChild_size_waistcoat(child_size_waistcoat.isChecked() ? child_size_waistcoat.getText().toString() : "");
+        waistCoatFragmentrequestBody.setMagzi_round_neck_waistcoat(magzi_round_neck_waistcoat.isChecked() ? magzi_round_neck_waistcoat.getText().toString() : "");
+        waistCoatFragmentrequestBody.setBody_builder(body_builder.isChecked() ? body_builder.getText().toString() : "");
+        waistCoatFragmentrequestBody.setCollar_soft_bukram(collar_soft_bukram.isChecked() ? collar_soft_bukram.getText().toString() : "");
+        waistCoatFragmentrequestBody.setShape_body(shape_body.isChecked() ? shape_body.getText().toString() : "");
+
+        //checkboxes for general fields
+
+        waistCoatFragmentrequestBody.setCustomer_cloth(customer_cloth.isChecked() ? customer_cloth.getText().toString() : "");
+        waistCoatFragmentrequestBody.setChild_kurta_size(child_kurta_size.isChecked() ? child_kurta_size.getText().toString() : "");
+        waistCoatFragmentrequestBody.setOnly_sewing(only_sewing.isChecked() ? only_sewing.getText().toString() : "");
+        waistCoatFragmentrequestBody.setFinished_adjust(finished_adjust.isChecked() ? finished_adjust.getText().toString() : "");
+        waistCoatFragmentrequestBody.setSpecial_customer_order(special_customer_order.isChecked() ? special_customer_order.getText().toString() : "");
+        waistCoatFragmentrequestBody.setRegular_customer_order(regular_customer_order.isChecked() ? regular_customer_order.getText().toString() : "");
+        waistCoatFragmentrequestBody.setUrgent_order(urgent_order.isChecked() ? urgent_order.getText().toString() : "");
+        waistCoatFragmentrequestBody.setNo_label(no_label.isChecked() ? no_label.getText().toString() : "");
+        waistCoatFragmentrequestBody.setSpecial_order(special_order.isChecked() ? special_order.getText().toString() : "");
+        waistCoatFragmentrequestBody.setButton_should_be_strong(button_should_be_strong.isChecked() ? button_should_be_strong.getText().toString() : "");
+        waistCoatFragmentrequestBody.setLight_work_shoulder_down(light_work_shoulder_down.isChecked() ? light_work_shoulder_down.getText().toString() : "");
+        waistCoatFragmentrequestBody.setFull_shoulder_down(full_shoulder_down.isChecked() ? full_shoulder_down.getText().toString() : "");
+        waistCoatFragmentrequestBody.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
+        waistCoatFragmentrequestBody.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
+        waistCoatFragmentrequestBody.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");
+        waistCoatFragmentrequestBody.setAltered_body(altered_body.isChecked() ? altered_body.getText().toString() : "");
+        waistCoatFragmentrequestBody.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
+        waistCoatFragmentrequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
+        waistCoatFragmentrequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
+
+
+        //api calling come here...
+
+        iapi.createWaistCoat("Bearer " + sharedPreference.getToken(), waistCoatFragmentrequestBody).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
     private void openGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");

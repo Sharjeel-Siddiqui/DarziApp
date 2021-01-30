@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,9 @@ import androidx.navigation.Navigation;
 import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
+import com.example.dulha_jee.api.ApiClient;
+import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.SherwaniRequestBody;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -38,6 +42,10 @@ import com.tapadoo.alerter.OnHideAlertListener;
 
 import butterknife.*;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -47,13 +55,14 @@ public class SherwaniFragment extends Fragment {
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
-    ImageView chooseSidePocketImage , iv_01;
+    ImageView chooseSidePocketImage, iv_01;
     NavController navController;
     SharedPreference sharedPreference;
     public static boolean isComingFromSherwani, isComingFromShewaniBack;
-    Button submit_sherwani , chooseImage;
+    Button submit_sherwani, chooseImage;
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
+    Iapi iapi;
 
     @BindView(R.id.quantity)
     EditText quantity;
@@ -91,8 +100,6 @@ public class SherwaniFragment extends Fragment {
     EditText contrast_color_astar;
     @BindView(R.id.is_urgent)
     EditText is_urgent;
-    @BindView(R.id.order_date)
-    EditText order_date;
     @BindView(R.id.is_most_urgent)
     EditText is_most_urgent;
     @BindView(R.id.order_date_most_urgent)
@@ -100,6 +107,14 @@ public class SherwaniFragment extends Fragment {
     @BindView(R.id.remarks)
     EditText remarks;
 
+    @BindView(R.id.customer_name)
+    EditText customer_name;
+    @BindView(R.id.order_number)
+    EditText order_number;
+    @BindView(R.id.mobile_number)
+    EditText mobile_number;
+    @BindView(R.id.order_date)
+    EditText order_date;
 
     //Checkboxes....
 
@@ -197,14 +212,6 @@ public class SherwaniFragment extends Fragment {
     CheckBox party_label;
     @BindView(R.id.fancy_label)
     CheckBox fancy_label;
-    @BindView(R.id.customer_name)
-    EditText customer_name;
-    @BindView(R.id.customer_number)
-    EditText customer_number;
-    @BindView(R.id.order_number)
-    EditText order_number;
-    @BindView(R.id.order_date_date)
-    EditText order_date_date;
 
 
     @Nullable
@@ -223,7 +230,7 @@ public class SherwaniFragment extends Fragment {
         sharedPreference = new SharedPreference(getActivity());
         ButterKnife.bind(this, view);
         iv_01 = view.findViewById(R.id.iv_01);
-
+        iapi = ApiClient.getClient().create(Iapi.class);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         navController = Navigation.findNavController(view);
         chooseSidePocketImage = view.findViewById(R.id.chooseSidePocketImage);
@@ -258,10 +265,12 @@ public class SherwaniFragment extends Fragment {
             }
         });
 
+
         submit_sherwani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Alerter.create(getActivity())
+                createSherwaniRequest();
+                /* Alerter.create(getActivity())
                         .setTitle("انتطار فرمائیے۔۔۔")
                         .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
                         .setIcon(R.drawable.dulha_jee_logo)
@@ -278,7 +287,7 @@ public class SherwaniFragment extends Fragment {
                         })
                         .show();
                 String text = jinnah_style.isChecked() ? jinnah_style.getText().toString() : "no checked";
-                Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -382,6 +391,104 @@ public class SherwaniFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_karegar_name.setAdapter(adapter);
+
+    }
+
+    private void createSherwaniRequest() {
+
+        SherwaniRequestBody sherwaniRequestBody = new SherwaniRequestBody();
+
+        //et fields
+        //et fields
+        sherwaniRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
+        sherwaniRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
+        // customer number field required
+        sherwaniRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
+        sherwaniRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+
+        sherwaniRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
+        sherwaniRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
+        sherwaniRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
+        sherwaniRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
+        sherwaniRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString());
+        sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : chest.getText().toString());
+        sherwaniRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
+        sherwaniRequestBody.setFullback(TextUtils.isEmpty(fullback.getText().toString()) ? "" : fullback.getText().toString());
+        sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString());
+        sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString());
+        sherwaniRequestBody.setHighlight_cadge_color(TextUtils.isEmpty(highlight_cadge_color.getText().toString()) ? "" : highlight_cadge_color.getText().toString());
+        sherwaniRequestBody.setShow_cadge_color(TextUtils.isEmpty(show_cadge_color.getText().toString()) ? "" : show_cadge_color.getText().toString());
+        sherwaniRequestBody.setFront_cadge_numbers(TextUtils.isEmpty(front_cadge_numbers.getText().toString()) ? "" : front_cadge_numbers.getText().toString());
+        sherwaniRequestBody.setContrast_color_astar(TextUtils.isEmpty(contrast_color_astar.getText().toString()) ? "" : contrast_color_astar.getText().toString());
+
+
+        //check boxes field
+        sherwaniRequestBody.setJinnah_style(jinnah_style.isChecked() ? jinnah_style.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(highlight_cadge_matching.isChecked() ? highlight_cadge_matching.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(fancy_metal_button.isChecked() ? fancy_metal_button.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(show_button.isChecked() ? show_button.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(show_cadge_matching.isChecked() ? show_cadge_matching.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(side_pocket_both_sides.isChecked() ? side_pocket_both_sides.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(two_pockets.isChecked() ? two_pockets.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(no_tal_pat.isChecked() ? no_tal_pat.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(both_front_equal.isChecked() ? both_front_equal.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(back_center_sew.isChecked() ? back_center_sew.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(front_walnut_pocket.isChecked() ? front_walnut_pocket.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(open_front_open_gown_style.isChecked() ? open_front_open_gown_style.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(collar_karhayi.isChecked() ? collar_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(sleeves_karhayi.isChecked() ? sleeves_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(button_karhayi.isChecked() ? button_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(one_front_karhayi.isChecked() ? one_front_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(both_front_karhayi.isChecked() ? both_front_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(back_karhayi.isChecked() ? back_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(collar_sleeves_karhayi.isChecked() ? collar_sleeves_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(violet_pocket_karhayi.isChecked() ? violet_pocket_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(collar_sleeves_one_front_karhayi.isChecked() ? collar_sleeves_one_front_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(front_pocket_karhayi.isChecked() ? front_pocket_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(collar_sleeves_two_front_karhayi.isChecked() ? collar_sleeves_two_front_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(front_pocket_on_karhayi.isChecked() ? front_pocket_on_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(anger_khakhat_style_sherwani.isChecked() ? anger_khakhat_style_sherwani.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(cross_style_sherwani.isChecked() ? cross_style_sherwani.getText().toString() : "");
+        sherwaniRequestBody.setJinnah_style(matching_color_astar.isChecked() ? matching_color_astar.getText().toString() : "");
+
+        //checkboxes for general fields
+
+        sherwaniRequestBody.setCustomer_cloth(customer_cloth.isChecked() ? customer_cloth.getText().toString() : "");
+        sherwaniRequestBody.setChild_shewrwani_size(child_shewrwani_size.isChecked() ? child_shewrwani_size.getText().toString() : "");
+        sherwaniRequestBody.setOnly_sewing(only_sewing.isChecked() ? only_sewing.getText().toString() : "");
+        sherwaniRequestBody.setFinished_adjust(finished_adjust.isChecked() ? finished_adjust.getText().toString() : "");
+        sherwaniRequestBody.setSpecial_customer_order(special_customer_order.isChecked() ? special_customer_order.getText().toString() : "");
+        sherwaniRequestBody.setRegular_customer_order(regular_customer_order.isChecked() ? regular_customer_order.getText().toString() : "");
+        sherwaniRequestBody.setUrgent_order(urgent_order.isChecked() ? urgent_order.getText().toString() : "");
+        sherwaniRequestBody.setNo_label(no_label.isChecked() ? no_label.getText().toString() : "");
+        sherwaniRequestBody.setSpecial_order(special_order.isChecked() ? special_order.getText().toString() : "");
+        sherwaniRequestBody.setButton_should_be_strong(button_should_be_strong.isChecked() ? button_should_be_strong.getText().toString() : "");
+        sherwaniRequestBody.setLight_work_shoulder_down(light_work_shoulder_down.isChecked() ? light_work_shoulder_down.getText().toString() : "");
+        sherwaniRequestBody.setFull_shoulder_down(full_shoulder_down.isChecked() ? full_shoulder_down.getText().toString() : "");
+        sherwaniRequestBody.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
+        sherwaniRequestBody.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
+        sherwaniRequestBody.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");
+        sherwaniRequestBody.setAltered_body(altered_body.isChecked() ? altered_body.getText().toString() : "");
+        sherwaniRequestBody.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
+        sherwaniRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
+        sherwaniRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
+
+        //retrofit call comes here ....
+
+        iapi.createSherwani("Bearer "+ sharedPreference.getToken(),sherwaniRequestBody).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 

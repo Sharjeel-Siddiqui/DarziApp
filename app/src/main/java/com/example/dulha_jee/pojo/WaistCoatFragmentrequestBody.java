@@ -1,11 +1,38 @@
 package com.example.dulha_jee.pojo;
 
-public class WaistCoatFragment {
+public class WaistCoatFragmentrequestBody {
 
-    private String quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, order_date, order_date_most_urgent, remarks, jawahir_cut_style, v_neck_style, u_neck_style, three_piece_style_cadge, waistcoat_back_backet, metal_fancy_buttons, matching_plastic_buttons, straight_daman, round_daman, coat_style_round_daman, collar_width, collar_hala, collar_pointed, double_bon_pocket, single_bon_pocket, violet_pocket, patch_pocket, violet_pocket_width, cadge_button_pati, no_upper_pocket, no_lower_pocket, waistcoat_style_like_image, two_pockets_inside, extra_buttons, pocket_like_fabric, full_fewsing, front_fewsing, astar_cherry, customer_stiff_waistcoat, collar_karhayi, front_pocket_karhayi, both_front_karhayi, one_front_karhayi, back_karhayi, collar_buttons, collar_lower_buttons, front_pipine, pocket_pipine, cadge_contrast, lozing, waistcoat, _chowk_length, excersize_body, child_size_waistcoat, magzi_round_neck_waistcoat, body_builder, collar_soft_bukram, shape_body, fabric_customer, finishing, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, altered_body, deep_body, party_label, fancy_label;
+    private String customer_name, order_number, mobile_number, quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, order_date, order_date_most_urgent, remarks, jawahir_cut_style, v_neck_style, u_neck_style, three_piece_style_cadge, waistcoat_back_backet, metal_fancy_buttons, matching_plastic_buttons, straight_daman, round_daman, coat_style_round_daman, collar_width, collar_hala, collar_pointed, double_bon_pocket, single_bon_pocket, violet_pocket, patch_pocket, violet_pocket_width, cadge_button_pati, no_upper_pocket, no_lower_pocket, waistcoat_style_like_image, two_pockets_inside, extra_buttons, pocket_like_fabric, full_fewsing, front_fewsing, astar_cherry, customer_stiff_waistcoat, collar_karhayi, front_pocket_karhayi, both_front_karhayi, one_front_karhayi, back_karhayi, collar_buttons, collar_lower_buttons, front_pipine, pocket_pipine, cadge_contrast, lozing, waistcoat, _chowk_length, excersize_body, child_size_waistcoat, magzi_round_neck_waistcoat, body_builder, collar_soft_bukram, shape_body, fabric_customer, finishing, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, altered_body, deep_body, party_label, fancy_label;
 
+    public String getCustomer_name() {
+        return customer_name;
+    }
 
-    public WaistCoatFragment(String quantity, String collar, String sleeves, String shoulder, String hip, String abdomen, String gudda, String front, String lengthMade, String order_date, String order_date_most_urgent, String remarks, String jawahir_cut_style, String v_neck_style, String u_neck_style, String three_piece_style_cadge, String waistcoat_back_backet, String metal_fancy_buttons, String matching_plastic_buttons, String straight_daman, String round_daman, String coat_style_round_daman, String collar_width, String collar_hala, String collar_pointed, String double_bon_pocket, String single_bon_pocket, String violet_pocket, String patch_pocket, String violet_pocket_width, String cadge_button_pati, String no_upper_pocket, String no_lower_pocket, String waistcoat_style_like_image, String two_pockets_inside, String extra_buttons, String pocket_like_fabric, String full_fewsing, String front_fewsing, String astar_cherry, String customer_stiff_waistcoat, String collar_karhayi, String front_pocket_karhayi, String both_front_karhayi, String one_front_karhayi, String back_karhayi, String collar_buttons, String collar_lower_buttons, String front_pipine, String pocket_pipine, String cadge_contrast, String lozing, String waistcoat, String _chowk_length, String excersize_body, String child_size_waistcoat, String magzi_round_neck_waistcoat, String body_builder, String collar_soft_bukram, String shape_body, String fabric_customer, String finishing, String customer_cloth, String only_sewing, String child_kurta_size, String finished_adjust, String special_customer_order, String regular_customer_order, String urgent_order, String no_label, String special_order, String button_should_be_strong, String shoulder_down, String light_work_shoulder_down, String full_shoulder_down, String straight_shoulder, String right_shoulder_down, String left_shoulder_down, String altered_body, String deep_body, String party_label, String fancy_label) {
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(String order_number) {
+        this.order_number = order_number;
+    }
+
+    public String getMobile_number() {
+        return mobile_number;
+    }
+
+    public void setMobile_number(String mobile_number) {
+        this.mobile_number = mobile_number;
+    }
+
+    public WaistCoatFragmentrequestBody(){
+
+    }
+
+    public WaistCoatFragmentrequestBody(String quantity, String collar, String sleeves, String shoulder, String hip, String abdomen, String gudda, String front, String lengthMade, String order_date, String order_date_most_urgent, String remarks, String jawahir_cut_style, String v_neck_style, String u_neck_style, String three_piece_style_cadge, String waistcoat_back_backet, String metal_fancy_buttons, String matching_plastic_buttons, String straight_daman, String round_daman, String coat_style_round_daman, String collar_width, String collar_hala, String collar_pointed, String double_bon_pocket, String single_bon_pocket, String violet_pocket, String patch_pocket, String violet_pocket_width, String cadge_button_pati, String no_upper_pocket, String no_lower_pocket, String waistcoat_style_like_image, String two_pockets_inside, String extra_buttons, String pocket_like_fabric, String full_fewsing, String front_fewsing, String astar_cherry, String customer_stiff_waistcoat, String collar_karhayi, String front_pocket_karhayi, String both_front_karhayi, String one_front_karhayi, String back_karhayi, String collar_buttons, String collar_lower_buttons, String front_pipine, String pocket_pipine, String cadge_contrast, String lozing, String waistcoat, String _chowk_length, String excersize_body, String child_size_waistcoat, String magzi_round_neck_waistcoat, String body_builder, String collar_soft_bukram, String shape_body, String fabric_customer, String finishing, String customer_cloth, String only_sewing, String child_kurta_size, String finished_adjust, String special_customer_order, String regular_customer_order, String urgent_order, String no_label, String special_order, String button_should_be_strong, String shoulder_down, String light_work_shoulder_down, String full_shoulder_down, String straight_shoulder, String right_shoulder_down, String left_shoulder_down, String altered_body, String deep_body, String party_label, String fancy_label) {
         this.quantity = quantity;
         this.collar = collar;
         this.sleeves = sleeves;

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,10 @@ import androidx.navigation.Navigation;
 
 import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
+import com.example.dulha_jee.SharedPreference;
+import com.example.dulha_jee.api.ApiClient;
+import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.PantPojo;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -35,6 +40,10 @@ import com.tapadoo.alerter.OnHideAlertListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -42,11 +51,13 @@ public class FragmentPants extends Fragment {
     Spinner dropdown_karegar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
-    Button submit_pants , chooseImage;
+    Button submit_pants, chooseImage;
     NavController navController;
     ImageView iv_01;
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
+    Iapi iapi;
+    SharedPreference sharedPreference;
 
     @BindView(R.id.quantity)
     EditText quantity;
@@ -191,13 +202,15 @@ public class FragmentPants extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("Pants");
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         navController = Navigation.findNavController(view);
         chooseImage = view.findViewById(R.id.chooseImage);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         submit_pants = view.findViewById(R.id.submit_pants);
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
+        iapi = ApiClient.getClient().create(Iapi.class);
+        sharedPreference = new SharedPreference(getActivity());
 
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
@@ -231,7 +244,8 @@ public class FragmentPants extends Fragment {
         submit_pants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Alerter.create(getActivity())
+                createPantRequest();
+             /*   Alerter.create(getActivity())
                         .setTitle("انتطار فرمائیے۔۔۔")
                         .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
                         .setIcon(
@@ -247,13 +261,103 @@ public class FragmentPants extends Fragment {
                                                 true).build());
                             }
                         })
-                        .show();
+                        .show();*/
             }
         });
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_karegar_name.setAdapter(adapter);
+    }
+
+    private void createPantRequest() {
+
+        PantPojo pantPojo = new PantPojo();
+
+        //et fields
+        pantPojo.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
+        pantPojo.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString());
+        pantPojo.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
+        pantPojo.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+
+        pantPojo.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
+        pantPojo.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString());
+        pantPojo.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
+        pantPojo.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
+        pantPojo.setFly(TextUtils.isEmpty(fly.getText().toString()) ? "" : fly.getText().toString());
+        pantPojo.setThigh(TextUtils.isEmpty(thigh.getText().toString()) ? "" : thigh.getText().toString());
+        pantPojo.setKnee(TextUtils.isEmpty(knee.getText().toString()) ? "" : knee.getText().toString());
+        pantPojo.setBottom(TextUtils.isEmpty(bottom.getText().toString()) ? "" : bottom.getText().toString());
+
+
+        pantPojo.setWithout_plate(without_plate.isChecked() ? without_plate.getText().toString() : "");
+        pantPojo.setOne_plate_front(one_plate_front.isChecked() ? one_plate_front.getText().toString() : "");
+        pantPojo.setTwo_plate_front(two_plate_front.isChecked() ? two_plate_front.getText().toString() : "");
+        pantPojo.setStraight_pocket(straight_pocket.isChecked() ? straight_pocket.getText().toString() : "");
+        pantPojo.setCross_pocket(cross_pocket.isChecked() ? cross_pocket.getText().toString() : "");
+        pantPojo.setJeans_style_pocket(jeans_style_pocket.isChecked() ? jeans_style_pocket.getText().toString() : "");
+        pantPojo.setOne_back_pocket(one_back_pocket.isChecked() ? one_back_pocket.getText().toString() : "");
+        pantPojo.setTwo_back_pocket(two_back_pocket.isChecked() ? two_back_pocket.getText().toString() : "");
+        pantPojo.setFlap_pocket(flap_pocket.isChecked() ? flap_pocket.getText().toString() : "");
+        pantPojo.setFlap_cadge(flap_cadge.isChecked() ? flap_cadge.getText().toString() : "");
+        pantPojo.setCotton(cotton.isChecked() ? cotton.getText().toString() : "");
+        pantPojo.setWatch_pocket(watch_pocket.isChecked() ? watch_pocket.getText().toString() : "");
+        pantPojo.setBack_pocket_cadge_button(back_pocket_cadge_button.isChecked() ? back_pocket_cadge_button.getText().toString() : "");
+        pantPojo.setEight_loobs(eight_loobs.isChecked() ? eight_loobs.getText().toString() : "");
+        pantPojo.setLoobs_inch(loobs_inch.isChecked() ? loobs_inch.getText().toString() : "");
+        pantPojo.setLoobs_inch_two(loobs_inch_two.isChecked() ? loobs_inch_two.getText().toString() : "");
+        pantPojo.setBack_pocket_loobs(back_pocket_loobs.isChecked() ? back_pocket_loobs.getText().toString() : "");
+        pantPojo.setInch_belt(inch_belt.isChecked() ? inch_belt.getText().toString() : "");
+        pantPojo.setBelt_grip(belt_grip.isChecked() ? belt_grip.getText().toString() : "");
+        pantPojo.setPocket_thely(pocket_thely.isChecked() ? pocket_thely.getText().toString() : "");
+        pantPojo.setZip_quality(zip_quality.isChecked() ? zip_quality.getText().toString() : "");
+        pantPojo.setPocket_dip(pocket_dip.isChecked() ? pocket_dip.getText().toString() : "");
+        pantPojo.setFolding_mori(folding_mori.isChecked() ? folding_mori.getText().toString() : "");
+        pantPojo.setTurpayi_hand(turpayi_hand.isChecked() ? turpayi_hand.getText().toString() : "");
+        pantPojo.setLong_loop(long_loop.isChecked() ? long_loop.getText().toString() : "");
+        pantPojo.setLong_nib(long_nib.isChecked() ? long_nib.getText().toString() : "");
+        pantPojo.setSpecial(special.isChecked() ? special.getText().toString() : "");
+        pantPojo.setSame_as_image(same_as_image.isChecked() ? same_as_image.getText().toString() : "");
+
+
+        //checkboxes for general fields
+
+        pantPojo.setCustomer_cloth(customer_cloth.isChecked() ? customer_cloth.getText().toString() : "");
+        pantPojo.setChild_kurta_size(child_kurta_size.isChecked() ? child_kurta_size.getText().toString() : "");
+        pantPojo.setOnly_sewing(only_sewing.isChecked() ? only_sewing.getText().toString() : "");
+        pantPojo.setFinished_adjust(finished_adjust.isChecked() ? finished_adjust.getText().toString() : "");
+        pantPojo.setSpecial_customer_order(special_customer_order.isChecked() ? special_customer_order.getText().toString() : "");
+        pantPojo.setRegular_customer_order(regular_customer_order.isChecked() ? regular_customer_order.getText().toString() : "");
+        pantPojo.setUrgent_order(urgent_order.isChecked() ? urgent_order.getText().toString() : "");
+        pantPojo.setNo_label(no_label.isChecked() ? no_label.getText().toString() : "");
+        pantPojo.setSpecial_order(special_order.isChecked() ? special_order.getText().toString() : "");
+        pantPojo.setButton_should_be_strong(button_should_be_strong.isChecked() ? button_should_be_strong.getText().toString() : "");
+        pantPojo.setLight_work_shoulder_down(light_work_shoulder_down.isChecked() ? light_work_shoulder_down.getText().toString() : "");
+        pantPojo.setFull_shoulder_down(full_shoulder_down.isChecked() ? full_shoulder_down.getText().toString() : "");
+        pantPojo.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
+        pantPojo.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
+        pantPojo.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");
+        pantPojo.setAltered_body(altered_body.isChecked() ? altered_body.getText().toString() : "");
+        pantPojo.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
+        pantPojo.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
+        pantPojo.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
+
+        //api call here
+
+        iapi.createPant("Bearer "+ sharedPreference.getToken(),pantPojo).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void openGallery() {

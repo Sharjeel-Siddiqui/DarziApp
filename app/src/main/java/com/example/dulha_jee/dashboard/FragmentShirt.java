@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,9 @@ import androidx.navigation.Navigation;
 import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
+import com.example.dulha_jee.api.ApiClient;
+import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.ShirtRequestBody;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -38,13 +42,17 @@ import com.tapadoo.alerter.OnHideAlertListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
 public class FragmentShirt extends Fragment {
     Spinner dropdown_karegar_name;
-    Button submit_shirt , chooseImage;
-    ImageView chooseCollarImage, chooseCuffImage , iv_01;
+    Button submit_shirt, chooseImage;
+    ImageView chooseCollarImage, chooseCuffImage, iv_01;
     NavController navController;
     SharedPreference sharedPreference;
     CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
@@ -54,6 +62,7 @@ public class FragmentShirt extends Fragment {
 
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    Iapi iapi;
 
     //fields to bind view
     @BindView(R.id.quantity)
@@ -162,7 +171,7 @@ public class FragmentShirt extends Fragment {
         ((MainActivity) getActivity()).setToolbar("Shirt");
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
-
+        iapi = ApiClient.getClient().create(Iapi.class);
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,7 +212,9 @@ public class FragmentShirt extends Fragment {
         submit_shirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Alerter.create(getActivity())
+
+                createShirtRequest();
+        /*        Alerter.create(getActivity())
                         .setTitle("انتطار فرمائیے۔۔۔")
                         .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
                         .setIcon(
@@ -219,7 +230,7 @@ public class FragmentShirt extends Fragment {
                                                 true).build());
                             }
                         })
-                        .show();
+                        .show();*/
             }
         });
 
@@ -391,6 +402,83 @@ public class FragmentShirt extends Fragment {
                 dialog.show();
             }
         });
+
+    }
+
+    private void createShirtRequest() {
+        ShirtRequestBody shirtRequestBody = new ShirtRequestBody();
+
+        //et fields...
+
+        shirtRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
+        shirtRequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString());
+        shirtRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
+        shirtRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+
+        shirtRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
+        shirtRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
+        shirtRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
+        shirtRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
+        shirtRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
+        shirtRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString());
+        shirtRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString());
+        shirtRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString());
+        shirtRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
+        shirtRequestBody.setPatti_ki_chorayi(TextUtils.isEmpty(patti_ki_chorayi.getText().toString()) ? "" : patti_ki_chorayi.getText().toString());
+        shirtRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
+
+
+        //Check BOXES COME HERE....
+        shirtRequestBody.setIs_shirt(is_shirt.isChecked() ? is_shirt.getText().toString() : "");
+        shirtRequestBody.setMake_coverpati_style(make_coverpati_style.isChecked() ? make_coverpati_style.getText().toString() : "");
+        shirtRequestBody.setRegular_polo_pati(regular_polo_pati.isChecked() ? regular_polo_pati.getText().toString() : "");
+        shirtRequestBody.setSimple_pati_style(simple_pati_style.isChecked() ? simple_pati_style.getText().toString() : "");
+        shirtRequestBody.setNot_regular_polo_pat(not_regular_polo_pat.isChecked() ? not_regular_polo_pat.getText().toString() : "");
+        shirtRequestBody.setBack_dart(back_dart.isChecked() ? back_dart.getText().toString() : "");
+        shirtRequestBody.setAmerican_style_round_deep(american_style_round_deep.isChecked() ? american_style_round_deep.getText().toString() : "");
+        shirtRequestBody.setReadymade_shirt_style_chakooti(readymade_shirt_style_chakooti.isChecked() ? readymade_shirt_style_chakooti.getText().toString() : "");
+
+
+        //checkboxes for general fields
+
+        shirtRequestBody.setCustomer_cloth(customer_cloth.isChecked() ? customer_cloth.getText().toString() : "");
+        shirtRequestBody.setChild_kurta_size(child_kurta_size.isChecked() ? child_kurta_size.getText().toString() : "");
+        shirtRequestBody.setOnly_sewing(only_sewing.isChecked() ? only_sewing.getText().toString() : "");
+        shirtRequestBody.setFinished_adjust(finished_adjust.isChecked() ? finished_adjust.getText().toString() : "");
+        shirtRequestBody.setSpecial_customer_order(special_customer_order.isChecked() ? special_customer_order.getText().toString() : "");
+        shirtRequestBody.setRegular_customer_order(regular_customer_order.isChecked() ? regular_customer_order.getText().toString() : "");
+        shirtRequestBody.setUrgent_order(urgent_order.isChecked() ? urgent_order.getText().toString() : "");
+        shirtRequestBody.setNo_label(no_label.isChecked() ? no_label.getText().toString() : "");
+        shirtRequestBody.setSpecial_order(special_order.isChecked() ? special_order.getText().toString() : "");
+        shirtRequestBody.setButton_should_be_strong(button_should_be_strong.isChecked() ? button_should_be_strong.getText().toString() : "");
+        shirtRequestBody.setLight_work_shoulder_down(light_work_shoulder_down.isChecked() ? light_work_shoulder_down.getText().toString() : "");
+        shirtRequestBody.setFull_shoulder_down(full_shoulder_down.isChecked() ? full_shoulder_down.getText().toString() : "");
+        shirtRequestBody.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
+        shirtRequestBody.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
+        shirtRequestBody.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");
+        shirtRequestBody.setAltered_body(altered_body.isChecked() ? altered_body.getText().toString() : "");
+        shirtRequestBody.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
+        shirtRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
+        shirtRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
+
+
+        //Api call here
+
+        iapi.createShirt("Bearer "+ sharedPreference.getToken(),shirtRequestBody).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
     }
 

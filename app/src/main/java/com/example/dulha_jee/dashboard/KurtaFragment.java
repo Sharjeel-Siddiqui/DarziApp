@@ -3,9 +3,12 @@ package com.example.dulha_jee.dashboard;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +47,11 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 import com.tapadoo.alerter.OnShowAlertListener;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.ResponseBody;
@@ -66,6 +74,7 @@ public class KurtaFragment extends Fragment {
     SharedPreference sharedPreference;
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
+    String image_4_db;
 
 
     Iapi iapi;
@@ -322,6 +331,7 @@ public class KurtaFragment extends Fragment {
     @BindView(R.id.fancy_label)
     CheckBox fancy_label;
 
+    Alerter alerter;
 
     @Nullable
     @Override
@@ -347,6 +357,7 @@ public class KurtaFragment extends Fragment {
         chooseSidePocket = view.findViewById(R.id.chooseSidePocket);
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
+        alerter = Alerter.create(getActivity());
 
         //  Toast.makeText(getActivity(), "vfouqsdvfioda", Toast.LENGTH_SHORT).show();
         iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
@@ -498,7 +509,6 @@ public class KurtaFragment extends Fragment {
                 // navController.navigate(R.id.action_kurtaFragment_to_fragmentCollarSelection);
             }
         });
-
         chooseSidePocket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -600,14 +610,154 @@ public class KurtaFragment extends Fragment {
     }
 
     private void createKurtaRequest() {
+
+        alerter.setTitle("انتطار فرمائیے۔۔۔")
+                .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
+                .setIcon(R.drawable.dulha_jee_logo)
+                .setBackgroundColorRes(R.color.black).show();
+
         //all checked field goes here
         KurtaRequestBody kurtaRequestBody = new KurtaRequestBody();
+        //et fields
         kurtaRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
+        kurtaRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
+        kurtaRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString());
+        kurtaRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
+        kurtaRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+
+        kurtaRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
+        kurtaRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
+        kurtaRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
+        kurtaRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
+        kurtaRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString());
+        kurtaRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString());
+
+        //collar style image field
+
+        kurtaRequestBody.setCollar_width(TextUtils.isEmpty(collar_width.getText().toString()) ? "" : collar_width.getText().toString());
+        kurtaRequestBody.setCollar_point_length(TextUtils.isEmpty(collar_point_length.getText().toString()) ? "" : collar_point_length.getText().toString());
+        kurtaRequestBody.setFront_pati_length(TextUtils.isEmpty(front_pati_length.getText().toString()) ? "" : front_pati_length.getText().toString());
+        kurtaRequestBody.setFront_pati_length(TextUtils.isEmpty(front_pati_length.getText().toString()) ? "" : front_pati_length.getText().toString());
+        kurtaRequestBody.setFront_pati_width(TextUtils.isEmpty(front_pati_width.getText().toString()) ? "" : front_pati_width.getText().toString());
+        kurtaRequestBody.setFront_pati_cadge(TextUtils.isEmpty(front_pati_cadge.getText().toString()) ? "" : front_pati_cadge.getText().toString());
+        kurtaRequestBody.setFront_pati_length(TextUtils.isEmpty(front_pati_length.getText().toString()) ? "" : front_pati_length.getText().toString());
+        kurtaRequestBody.setCuff_width(TextUtils.isEmpty(cuff_width.getText().toString()) ? "" : cuff_width.getText().toString());
+        kurtaRequestBody.setCuff_chowk_width(TextUtils.isEmpty(cuff_chowk_width.getText().toString()) ? "" : cuff_chowk_width.getText().toString());
+        kurtaRequestBody.setCuff_length(TextUtils.isEmpty(cuff_length.getText().toString()) ? "" : cuff_length.getText().toString());
+        kurtaRequestBody.setCuff_length(TextUtils.isEmpty(cuff_length.getText().toString()) ? "" : cuff_length.getText().toString());
+        kurtaRequestBody.setChowk_length(TextUtils.isEmpty(chowk_length.getText().toString()) ? "" : chowk_length.getText().toString());
+        kurtaRequestBody.setMachine_sew_bail(TextUtils.isEmpty(machine_sew_bail.getText().toString()) ? "" : machine_sew_bail.getText().toString());
+        kurtaRequestBody.setPocket_length(TextUtils.isEmpty(pocket_length.getText().toString()) ? "" : pocket_length.getText().toString());
+        kurtaRequestBody.setPocket_width(TextUtils.isEmpty(pocket_width.getText().toString()) ? "" : pocket_width.getText().toString());
+        kurtaRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
+
+        //check boxes field
+        kurtaRequestBody.setSherwani_collar(sherwani_collar.isChecked() ? sherwani_collar.getText().toString() : "");
+        kurtaRequestBody.setCollar_front_round(collar_front_round.isChecked() ? collar_front_round.getText().toString() : "");
+        kurtaRequestBody.setCollar_pointed(collar_pointed.isChecked() ? collar_pointed.getText().toString() : "");
+        kurtaRequestBody.setCut_collar(cut_collar.isChecked() ? cut_collar.getText().toString() : "");
+        kurtaRequestBody.setCollar_on_collar(collar_on_collar.isChecked() ? collar_on_collar.getText().toString() : "");
+        kurtaRequestBody.setV_collar(v_collar.isChecked() ? v_collar.getText().toString() : "");
+        kurtaRequestBody.setShirt_collar(shirt_collar.isChecked() ? shirt_collar.getText().toString() : "");
+        kurtaRequestBody.setReverse_style_french_collar(reverse_style_french_collar.isChecked() ? reverse_style_french_collar.getText().toString() : "");
+        kurtaRequestBody.setTaxido_style_collar(taxido_style_collar.isChecked() ? taxido_style_collar.getText().toString() : "");
+        kurtaRequestBody.setCollar_style_small(collar_style_small.isChecked() ? collar_style_small.getText().toString() : "");
+        kurtaRequestBody.setButton_on_point(button_on_point.isChecked() ? button_on_point.getText().toString() : "");
+        kurtaRequestBody.setButton_on_cadge_small(button_on_cadge_small.isChecked() ? button_on_cadge_small.getText().toString() : "");
+        kurtaRequestBody.setSoft_bukram_on_collar(soft_bukram_on_collar.isChecked() ? soft_bukram_on_collar.getText().toString() : "");
+        kurtaRequestBody.setCustomer_collar_soft(customer_collar_soft.isChecked() ? customer_collar_soft.getText().toString() : "");
+        kurtaRequestBody.setHard_bukram_on_collar(hard_bukram_on_collar.isChecked() ? hard_bukram_on_collar.getText().toString() : "");
+        kurtaRequestBody.setMore_bukram_on_collar(more_bukram_on_collar.isChecked() ? more_bukram_on_collar.getText().toString() : "");
+        kurtaRequestBody.setMore_bukram_on_collar(more_bukram_on_collar.isChecked() ? more_bukram_on_collar.getText().toString() : "");
+        kurtaRequestBody.setHidden_on_collar(hidden_on_collar.isChecked() ? hidden_on_collar.getText().toString() : "");
+        kurtaRequestBody.setDesign_as_on_picture_collar(design_as_on_picture_collar.isChecked() ? design_as_on_picture_collar.getText().toString() : "");
+        kurtaRequestBody.setRound_neck_magzi(round_neck_magzi.isChecked() ? round_neck_magzi.getText().toString() : "");
+        kurtaRequestBody.setRound_neck_magzi_with_finishing(round_neck_magzi_with_finishing.isChecked() ? round_neck_magzi_with_finishing.getText().toString() : "");
+        kurtaRequestBody.setRegular_pati(regular_pati.isChecked() ? regular_pati.getText().toString() : "");
+        kurtaRequestBody.setPointed_pati(pointed_pati.isChecked() ? pointed_pati.getText().toString() : "");
+        kurtaRequestBody.setStraight_pati(straight_pati.isChecked() ? straight_pati.getText().toString() : "");
+        kurtaRequestBody.setBoat_sew_on_pati(boat_sew_on_pati.isChecked() ? boat_sew_on_pati.getText().toString() : "");
+        kurtaRequestBody.setCover_pati(cover_pati.isChecked() ? cover_pati.getText().toString() : "");
+        kurtaRequestBody.setFront_pati_style_as_image(front_pati_style_as_image.isChecked() ? front_pati_style_as_image.getText().toString() : "");
+        kurtaRequestBody.setCut_sleeves(cut_sleeves.isChecked() ? cut_sleeves.getText().toString() : "");
+        kurtaRequestBody.setCut_cuff(cut_cuff.isChecked() ? cut_cuff.getText().toString() : "");
+        kurtaRequestBody.setRound_cuff(round_cuff.isChecked() ? round_cuff.getText().toString() : "");
+        kurtaRequestBody.setStraight_cuff_pointed(straight_cuff_pointed.isChecked() ? straight_cuff_pointed.getText().toString() : "");
+        kurtaRequestBody.setCuff_link_style_cuff(cuff_link_style_cuff.isChecked() ? cuff_link_style_cuff.getText().toString() : "");
+        kurtaRequestBody.setDouble_cuff(double_cuff.isChecked() ? double_cuff.getText().toString() : "");
+        kurtaRequestBody.setHard_bukram_in_cuff(hard_bukram_in_cuff.isChecked() ? hard_bukram_in_cuff.getText().toString() : "");
+        kurtaRequestBody.setHard_bukram_in_cuff(hard_bukram_in_cuff.isChecked() ? hard_bukram_in_cuff.getText().toString() : "");
+        kurtaRequestBody.setSoft_bukram_in_cuff(soft_bukram_in_cuff.isChecked() ? soft_bukram_in_cuff.getText().toString() : "");
+        kurtaRequestBody.setCuff_chowk_cadge(cuff_chowk_cadge.isChecked() ? cuff_chowk_cadge.getText().toString() : "");
+        kurtaRequestBody.setCuff_chowk_bukram(cuff_chowk_bukram.isChecked() ? cuff_chowk_bukram.getText().toString() : "");
+        kurtaRequestBody.setCuff_chowk_pointed(cuff_chowk_pointed.isChecked() ? cuff_chowk_pointed.getText().toString() : "");
+        kurtaRequestBody.setCuff_chowk_straight(cuff_chowk_straight.isChecked() ? cuff_chowk_straight.getText().toString() : "");
+        kurtaRequestBody.setCuff_chowk_round(cuff_chowk_round.isChecked() ? cuff_chowk_round.getText().toString() : "");
+        kurtaRequestBody.setPointer_style_picture(pointer_style_picture.isChecked() ? pointer_style_picture.getText().toString() : "");
+        kurtaRequestBody.setCuff_machine_karhayi(cuff_machine_karhayi.isChecked() ? cuff_machine_karhayi.getText().toString() : "");
+        kurtaRequestBody.setCuff_hand_karhayi(cuff_hand_karhayi.isChecked() ? cuff_hand_karhayi.getText().toString() : "");
+        kurtaRequestBody.setStraight_kurta_daman(straight_kurta_daman.isChecked() ? straight_kurta_daman.getText().toString() : "");
+        kurtaRequestBody.setRound_daman(round_daman.isChecked() ? round_daman.getText().toString() : "");
+        kurtaRequestBody.setKamiz_style_daman(kamiz_style_daman.isChecked() ? kamiz_style_daman.getText().toString() : "");
+        kurtaRequestBody.setPiyala_style_daman(piyala_style_daman.isChecked() ? piyala_style_daman.getText().toString() : "");
+        kurtaRequestBody.setStraight_daman_pointed_corner(straight_daman_pointed_corner.isChecked() ? straight_daman_pointed_corner.getText().toString() : "");
+        kurtaRequestBody.setDaman_double_sew(daman_double_sew.isChecked() ? daman_double_sew.getText().toString() : "");
+        kurtaRequestBody.setDaman_finishing(daman_finishing.isChecked() ? daman_finishing.getText().toString() : "");
+        kurtaRequestBody.setDaman_as_image(daman_as_image.isChecked() ? daman_as_image.getText().toString() : "");
+        kurtaRequestBody.setChakoti_american(chakoti_american.isChecked() ? chakoti_american.getText().toString() : "");
+        kurtaRequestBody.setChakoti(chakoti.isChecked() ? chakoti.getText().toString() : "");
+        kurtaRequestBody.setChakoti_contrast(chakoti_contrast.isChecked() ? chakoti_contrast.getText().toString() : "");
+        kurtaRequestBody.setTeere_piece(teere_piece.isChecked() ? teere_piece.getText().toString() : "");
+        kurtaRequestBody.setNot_teere_piece(not_teere_piece.isChecked() ? not_teere_piece.getText().toString() : "");
+        kurtaRequestBody.setDouble_sew_full(double_sew_full.isChecked() ? double_sew_full.getText().toString() : "");
+        kurtaRequestBody.setLab_sew(lab_sew.isChecked() ? lab_sew.getText().toString() : "");
+        kurtaRequestBody.setPaki_lab_sew(paki_lab_sew.isChecked() ? paki_lab_sew.getText().toString() : "");
+        kurtaRequestBody.setChanpa(chanpa.isChecked() ? chanpa.getText().toString() : "");
+        kurtaRequestBody.setFront_bunch(front_bunch.isChecked() ? front_bunch.getText().toString() : "");
+        kurtaRequestBody.setCollar_machine_sew(collar_machine_sew.isChecked() ? collar_machine_sew.getText().toString() : "");
+        kurtaRequestBody.setSleeves_machine_sew(sleeves_machine_sew.isChecked() ? sleeves_machine_sew.getText().toString() : "");
+        kurtaRequestBody.setShoulder_machine_sew(shoulder_machine_sew.isChecked() ? shoulder_machine_sew.getText().toString() : "");
+        kurtaRequestBody.setCollar_pati_hand_sew(collar_pati_hand_sew.isChecked() ? collar_pati_hand_sew.getText().toString() : "");
+        kurtaRequestBody.setCollar_hand_sew(collar_hand_sew.isChecked() ? collar_hand_sew.getText().toString() : "");
+        kurtaRequestBody.setPati_hand_sew(pati_hand_sew.isChecked() ? pati_hand_sew.getText().toString() : "");
+        kurtaRequestBody.setFront_hand_sew(front_hand_sew.isChecked() ? front_hand_sew.getText().toString() : "");
+        kurtaRequestBody.setSleeve_hand_sew(sleeve_hand_sew.isChecked() ? sleeve_hand_sew.getText().toString() : "");
+        kurtaRequestBody.setShoulder_hand_sew(shoulder_hand_sew.isChecked() ? shoulder_hand_sew.getText().toString() : "");
+        kurtaRequestBody.setOne_front_pocket_style(one_front_pocket_style.isChecked() ? one_front_pocket_style.getText().toString() : "");
+        kurtaRequestBody.setTwo_front_pocket(two_front_pocket.isChecked() ? two_front_pocket.getText().toString() : "");
+        kurtaRequestBody.setTwo_side_pocket(two_side_pocket.isChecked() ? two_side_pocket.getText().toString() : "");
+        kurtaRequestBody.setRight_side_pocket(right_side_pocket.isChecked() ? right_side_pocket.getText().toString() : "");
+        kurtaRequestBody.setLeft_side_pocket(left_side_pocket.isChecked() ? left_side_pocket.getText().toString() : "");
+        kurtaRequestBody.setSide_pocket_deep(side_pocket_deep.isChecked() ? side_pocket_deep.getText().toString() : "");
+
+        //checkboxes for general fields
+
+        kurtaRequestBody.setCustomer_cloth(customer_cloth.isChecked() ? customer_cloth.getText().toString() : "");
+        kurtaRequestBody.setChild_kurta_size(child_kurta_size.isChecked() ? child_kurta_size.getText().toString() : "");
+        kurtaRequestBody.setOnly_sewing(only_sewing.isChecked() ? only_sewing.getText().toString() : "");
+        kurtaRequestBody.setFinished_adjust(finished_adjust.isChecked() ? finished_adjust.getText().toString() : "");
+        kurtaRequestBody.setSpecial_customer_order(special_customer_order.isChecked() ? special_customer_order.getText().toString() : "");
+        kurtaRequestBody.setRegular_customer_order(regular_customer_order.isChecked() ? regular_customer_order.getText().toString() : "");
+        kurtaRequestBody.setUrgent_order(urgent_order.isChecked() ? urgent_order.getText().toString() : "");
+        kurtaRequestBody.setNo_label(no_label.isChecked() ? no_label.getText().toString() : "");
+        kurtaRequestBody.setSpecial_order(special_order.isChecked() ? special_order.getText().toString() : "");
+        kurtaRequestBody.setButton_should_be_strong(button_should_be_strong.isChecked() ? button_should_be_strong.getText().toString() : "");
+        kurtaRequestBody.setLight_work_shoulder_down(light_work_shoulder_down.isChecked() ? light_work_shoulder_down.getText().toString() : "");
+        kurtaRequestBody.setFull_shoulder_down(full_shoulder_down.isChecked() ? full_shoulder_down.getText().toString() : "");
+        kurtaRequestBody.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
+        kurtaRequestBody.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
+        kurtaRequestBody.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");
+        kurtaRequestBody.setAltered_body(altered_body.isChecked() ? altered_body.getText().toString() : "");
+        kurtaRequestBody.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
+        kurtaRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
+        kurtaRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
+
 
         iapi.createKurta("Bearer " + sharedPreference.getToken(), kurtaRequestBody).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                alerter.setDuration(500);
             }
 
             @Override
@@ -642,9 +792,35 @@ public class KurtaFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-            imageUri = data.getData();
-            iv_01.setImageURI(imageUri);
+            // imageUri = data.getData();
+            // iv_01.setImageURI(imageUri);
+
+            //for bitmap
+
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            iv_01.setImageBitmap(bitmap);
+
+            image_4_db = ConvertBitmapToString(bitmap);
         }
+    }
+
+    public static String ConvertBitmapToString(Bitmap bitmap) {
+        String encodedImage = "";
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        try {
+            encodedImage = URLEncoder.encode(Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return encodedImage;
     }
 
 

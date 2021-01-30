@@ -74,8 +74,8 @@
             <EditText
                 android:id="@+id/order_number"
                 android:layout_width="60dp"
-                android:inputType="number"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -97,8 +97,8 @@
             <EditText
                 android:id="@+id/order_date_date"
                 android:layout_width="60dp"
-                android:inputType="number"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView

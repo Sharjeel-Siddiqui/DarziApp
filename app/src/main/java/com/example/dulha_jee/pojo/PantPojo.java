@@ -1,8 +1,35 @@
 package com.example.dulha_jee.pojo;
 
 public class PantPojo {
-    private String quantity, abdomen, hip, lengthMade, fly ,thigh, knee, bottom, order_date ,order_date_most_urgent, remarks , without_plate, one_plate_front, two_plate_front, straight_pocket, cross_pocket, jeans_style_pocket ,one_back_pocket, two_back_pocket, flap_pocket, flap_cadge ,cotton, watch_pocket, back_pocket_cadge_button, eight_loobs ,loobs_inch ,loobs_inch_two, back_pocket_loobs, inch_belt ,belt_grip, pocket_thely, zip_quality ,pocket_dip ,folding_mori ,turpayi_hand ,long_loop ,long_nib ,paint_loozing ,special ,same_as_image, customer_cloth, only_sewing, child_kurta_size ,finished_adjust ,special_customer_order ,regular_customer_order, urgent_order ,no_label, special_order, button_should_be_strong ,shoulder_down ,light_work_shoulder_down ,full_shoulder_down ,straight_shoulder, right_shoulder_down ,left_shoulder_down, deep_body, altered_body, party_label ,fancy_label;
+    private String customer_name, order_number, mobile_number, quantity, abdomen, hip, lengthMade, fly, thigh, knee, bottom, order_date, order_date_most_urgent, remarks, without_plate, one_plate_front, two_plate_front, straight_pocket, cross_pocket, jeans_style_pocket, one_back_pocket, two_back_pocket, flap_pocket, flap_cadge, cotton, watch_pocket, back_pocket_cadge_button, eight_loobs, loobs_inch, loobs_inch_two, back_pocket_loobs, inch_belt, belt_grip, pocket_thely, zip_quality, pocket_dip, folding_mori, turpayi_hand, long_loop, long_nib, paint_loozing, special, same_as_image, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
 
+    public PantPojo(){
+
+    }
+
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(String order_number) {
+        this.order_number = order_number;
+    }
+
+    public String getMobile_number() {
+        return mobile_number;
+    }
+
+    public void setMobile_number(String mobile_number) {
+        this.mobile_number = mobile_number;
+    }
 
     public PantPojo(String quantity, String abdomen, String hip, String lengthMade, String fly, String thigh, String knee, String bottom, String order_date, String order_date_most_urgent, String remarks, String without_plate, String one_plate_front, String two_plate_front, String straight_pocket, String cross_pocket, String jeans_style_pocket, String one_back_pocket, String two_back_pocket, String flap_pocket, String flap_cadge, String cotton, String watch_pocket, String back_pocket_cadge_button, String eight_loobs, String loobs_inch, String loobs_inch_two, String back_pocket_loobs, String inch_belt, String belt_grip, String pocket_thely, String zip_quality, String pocket_dip, String folding_mori, String turpayi_hand, String long_loop, String long_nib, String paint_loozing, String special, String same_as_image, String customer_cloth, String only_sewing, String child_kurta_size, String finished_adjust, String special_customer_order, String regular_customer_order, String urgent_order, String no_label, String special_order, String button_should_be_strong, String shoulder_down, String light_work_shoulder_down, String full_shoulder_down, String straight_shoulder, String right_shoulder_down, String left_shoulder_down, String deep_body, String altered_body, String party_label, String fancy_label) {
         this.quantity = quantity;

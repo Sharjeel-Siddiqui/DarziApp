@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,10 @@ import androidx.navigation.Navigation;
 
 import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
+import com.example.dulha_jee.SharedPreference;
+import com.example.dulha_jee.api.ApiClient;
+import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.InnerSuitRequestBody;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -35,6 +40,10 @@ import com.tapadoo.alerter.OnHideAlertListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -48,7 +57,8 @@ public class FragmentInnerSuit extends Fragment {
     ImageView iv_01, chooseImage;
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
-
+    Iapi iapi;
+    SharedPreference sharedPreference;
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
@@ -80,6 +90,8 @@ public class FragmentInnerSuit extends Fragment {
     EditText order_date;
     @BindView(R.id.order_date_most_urgent)
     EditText order_date_most_urgent;
+    @BindView(R.id.remarks)
+    EditText reamrks;
 
     //CheckBoxes come here
     @BindView(R.id.off_white_color)
@@ -224,6 +236,8 @@ public class FragmentInnerSuit extends Fragment {
         navController = Navigation.findNavController(view);
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
+        iapi = ApiClient.getClient().create(Iapi.class);
+        sharedPreference = new SharedPreference(getActivity());
 
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         dropdown_shalwar_name = view.findViewById(R.id.dropdown_shalwar_name);
@@ -260,7 +274,8 @@ public class FragmentInnerSuit extends Fragment {
         submit_innersuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Alerter.create(getActivity())
+                createInnerSuitRequest();
+       /*         Alerter.create(getActivity())
                         .setTitle("انتطار فرمائیے۔۔۔")
                         .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
                         .setIcon(
@@ -276,7 +291,7 @@ public class FragmentInnerSuit extends Fragment {
                                                 true).build());
                             }
                         })
-                        .show();
+                        .show();*/
             }
         });
 
@@ -289,6 +304,113 @@ public class FragmentInnerSuit extends Fragment {
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, shalwar);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_shalwar_name.setAdapter(adapter1);
+    }
+
+    private void createInnerSuitRequest() {
+        InnerSuitRequestBody innerSuitRequestBody = new InnerSuitRequestBody();
+
+        //et fields
+        innerSuitRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
+        innerSuitRequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString());
+        innerSuitRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
+        innerSuitRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+
+        innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
+        innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
+        innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
+        innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
+        innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
+        innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString());
+        innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString());
+        innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
+        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString());
+        innerSuitRequestBody.setShalwar_gher(TextUtils.isEmpty(shalwar_gher.getText().toString()) ? "" : shalwar_gher.getText().toString());
+        innerSuitRequestBody.setShalwar_asan(TextUtils.isEmpty(shalwar_asan.getText().toString()) ? "" : shalwar_asan.getText().toString());
+        innerSuitRequestBody.setPajama_inner_fold(TextUtils.isEmpty(pajama_inner_fold.getText().toString()) ? "" : pajama_inner_fold.getText().toString());
+        innerSuitRequestBody.setPajama_outer_fold(TextUtils.isEmpty(pajama_outer_fold.getText().toString()) ? "" : pajama_outer_fold.getText().toString());
+        innerSuitRequestBody.setRemarks(TextUtils.isEmpty(reamrks.getText().toString()) ? "" : reamrks.getText().toString());
+
+        //CheckBOxes Come here
+
+        innerSuitRequestBody.setOff_white_color(off_white_colorl.isChecked() ? off_white_colorl.getText().toString() : "");
+        innerSuitRequestBody.setBlack_color(black_color.isChecked() ? black_color.getText().toString() : "");
+        innerSuitRequestBody.setMehroon_color(mehroon_color.isChecked() ? mehroon_color.getText().toString() : "");
+        innerSuitRequestBody.setRedish_maroon(redish_maroon.isChecked() ? redish_maroon.getText().toString() : "");
+        innerSuitRequestBody.setGolden_color(golden_color.isChecked() ? golden_color.getText().toString() : "");
+        innerSuitRequestBody.setCream_color(cream_color.isChecked() ? cream_color.getText().toString() : "");
+        innerSuitRequestBody.setCopper_color(copper_color.isChecked() ? copper_color.getText().toString() : "");
+        innerSuitRequestBody.setDark_brown_color(dark_brown_color.isChecked() ? dark_brown_color.getText().toString() : "");
+        innerSuitRequestBody.setGray_color(gray_color.isChecked() ? gray_color.getText().toString() : "");
+        innerSuitRequestBody.setMatching_button(matching_button.isChecked() ? matching_button.getText().toString() : "");
+        innerSuitRequestBody.setBrass_button(brass_button.isChecked() ? brass_button.getText().toString() : "");
+        innerSuitRequestBody.setCopper_color_button(copper_color_button.isChecked() ? copper_color_button.getText().toString() : "");
+        innerSuitRequestBody.setSilver_color_button(silver_color_button.isChecked() ? silver_color_button.getText().toString() : "");
+        innerSuitRequestBody.setGold_color_button(gold_color_button.isChecked() ? gold_color_button.getText().toString() : "");
+        innerSuitRequestBody.setPurple_color_button(purple_color_button.isChecked() ? purple_color_button.getText().toString() : "");
+        innerSuitRequestBody.setRound_button(round_button.isChecked() ? round_button.getText().toString() : "");
+        innerSuitRequestBody.setFancy_button(fancy_button.isChecked() ? fancy_button.getText().toString() : "");
+        innerSuitRequestBody.setStrong_button(strong_button.isChecked() ? strong_button.getText().toString() : "");
+        innerSuitRequestBody.setContrass_button(contrass_button.isChecked() ? contrass_button.getText().toString() : "");
+        innerSuitRequestBody.setContrass_cadge(contrass_cadge.isChecked() ? contrass_cadge.getText().toString() : "");
+        innerSuitRequestBody.setNaifa_chirya(naifa_chirya.isChecked() ? naifa_chirya.getText().toString() : "");
+        innerSuitRequestBody.setMatching_zip(matching_zip.isChecked() ? matching_zip.getText().toString() : "");
+        innerSuitRequestBody.setQuality_zip(quality_zip.isChecked() ? quality_zip.getText().toString() : "");
+        innerSuitRequestBody.setQameez_zip(qameez_zip.isChecked() ? qameez_zip.getText().toString() : "");
+        innerSuitRequestBody.setShalwar_romali(shalwar_romali.isChecked() ? shalwar_romali.getText().toString() : "");
+        innerSuitRequestBody.setPaincha_style(paincha_style.isChecked() ? paincha_style.getText().toString() : "");
+        innerSuitRequestBody.setPaint_style(paint_style.isChecked() ? paint_style.getText().toString() : "");
+        innerSuitRequestBody.setSide_pocket(side_pocket.isChecked() ? side_pocket.getText().toString() : "");
+        innerSuitRequestBody.setHalf_lastic(half_lastic.isChecked() ? half_lastic.getText().toString() : "");
+        innerSuitRequestBody.setFull_lastic(full_lastic.isChecked() ? full_lastic.getText().toString() : "");
+        innerSuitRequestBody.setHalf_lastic_with_kamarband(half_lastic_with_kamarband.isChecked() ? half_lastic_with_kamarband.getText().toString() : "");
+        innerSuitRequestBody.setPajama_as_pic(pajama_as_pic.isChecked() ? pajama_as_pic.getText().toString() : "");
+        innerSuitRequestBody.setPajama_roomali(pajama_roomali.isChecked() ? pajama_roomali.getText().toString() : "");
+        innerSuitRequestBody.setChooridar_pajama(chooridar_pajama.isChecked() ? chooridar_pajama.getText().toString() : "");
+        innerSuitRequestBody.setArha_pajama(arha_pajama.isChecked() ? arha_pajama.getText().toString() : "");
+        innerSuitRequestBody.setStraight_pajama(straight_pajama.isChecked() ? straight_pajama.getText().toString() : "");
+        innerSuitRequestBody.setCustomer_fat(customer_fat.isChecked() ? customer_fat.getText().toString() : "");
+        innerSuitRequestBody.setPajama_fit(pajama_fit.isChecked() ? pajama_fit.getText().toString() : "");
+        innerSuitRequestBody.setCustomer_slim(customer_slim.isChecked() ? customer_slim.getText().toString() : "");
+
+
+        //checkboxes for general fields
+
+        innerSuitRequestBody.setCustomer_cloth(customer_cloth.isChecked() ? customer_cloth.getText().toString() : "");
+        innerSuitRequestBody.setChild_kurta_size(child_kurta_size.isChecked() ? child_kurta_size.getText().toString() : "");
+        innerSuitRequestBody.setOnly_sewing(only_sewing.isChecked() ? only_sewing.getText().toString() : "");
+        innerSuitRequestBody.setFinished_adjust(finished_adjust.isChecked() ? finished_adjust.getText().toString() : "");
+        innerSuitRequestBody.setSpecial_customer_order(special_customer_order.isChecked() ? special_customer_order.getText().toString() : "");
+        innerSuitRequestBody.setRegular_customer_order(regular_customer_order.isChecked() ? regular_customer_order.getText().toString() : "");
+        innerSuitRequestBody.setUrgent_order(urgent_order.isChecked() ? urgent_order.getText().toString() : "");
+        innerSuitRequestBody.setNo_label(no_label.isChecked() ? no_label.getText().toString() : "");
+        innerSuitRequestBody.setSpecial_order(special_order.isChecked() ? special_order.getText().toString() : "");
+        innerSuitRequestBody.setButton_should_be_strong(button_should_be_strong.isChecked() ? button_should_be_strong.getText().toString() : "");
+        innerSuitRequestBody.setLight_work_shoulder_down(light_work_shoulder_down.isChecked() ? light_work_shoulder_down.getText().toString() : "");
+        innerSuitRequestBody.setFull_shoulder_down(full_shoulder_down.isChecked() ? full_shoulder_down.getText().toString() : "");
+        innerSuitRequestBody.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
+        innerSuitRequestBody.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
+        innerSuitRequestBody.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");
+        innerSuitRequestBody.setAltered_body(altered_body.isChecked() ? altered_body.getText().toString() : "");
+        innerSuitRequestBody.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
+        innerSuitRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
+        innerSuitRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
+
+        //api call here
+
+        iapi.createInnerSuit("Bearer "+ sharedPreference.getToken(),innerSuitRequestBody).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void openGallery() {

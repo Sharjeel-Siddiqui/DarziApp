@@ -1,8 +1,36 @@
 package com.example.dulha_jee.pojo;
 
 public class ShirtRequestBody {
-    private String quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade ,patti_ki_chorayi, order_date, order_date_most_urgent, remarks , is_shirt, make_coverpati_style, regular_polo_pati, simple_pati_style ,not_regular_polo_pat, back_dart, american_style_round_deep, readymade_shirt_style_chakooti, customer_cloth ,only_sewing, child_kurta_size ,finished_adjust ,special_customer_order, regular_customer_order, urgent_order, no_label ,special_order, button_should_be_strong ,shoulder_down ,light_work_shoulder_down ,full_shoulder_down, straight_shoulder ,right_shoulder_down, left_shoulder_down ,deep_body ,altered_body, party_label, fancy_label;
+    private String quantity, customer_name, order_number, mobile_number, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, patti_ki_chorayi, order_date, order_date_most_urgent, remarks, is_shirt, make_coverpati_style, regular_polo_pati, simple_pati_style, not_regular_polo_pat, back_dart, american_style_round_deep, readymade_shirt_style_chakooti, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
 
+
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(String order_number) {
+        this.order_number = order_number;
+    }
+
+    public String getMobile_number() {
+        return mobile_number;
+    }
+
+    public void setMobile_number(String mobile_number) {
+        this.mobile_number = mobile_number;
+    }
+
+    public ShirtRequestBody(){
+
+    }
 
     public ShirtRequestBody(String quantity, String collar, String sleeves, String shoulder, String hip, String abdomen, String gudda, String front, String lengthMade, String patti_ki_chorayi, String order_date, String order_date_most_urgent, String remarks, String is_shirt, String make_coverpati_style, String regular_polo_pati, String simple_pati_style, String not_regular_polo_pat, String back_dart, String american_style_round_deep, String readymade_shirt_style_chakooti, String customer_cloth, String only_sewing, String child_kurta_size, String finished_adjust, String special_customer_order, String regular_customer_order, String urgent_order, String no_label, String special_order, String button_should_be_strong, String shoulder_down, String light_work_shoulder_down, String full_shoulder_down, String straight_shoulder, String right_shoulder_down, String left_shoulder_down, String deep_body, String altered_body, String party_label, String fancy_label) {
         this.quantity = quantity;
