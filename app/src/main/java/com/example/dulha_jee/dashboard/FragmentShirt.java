@@ -1,5 +1,9 @@
 package com.example.dulha_jee.dashboard;
 
+import android.Manifest;
+import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +14,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -21,19 +27,30 @@ import androidx.navigation.Navigation;
 import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.app.Activity.RESULT_OK;
+
 public class FragmentShirt extends Fragment {
     Spinner dropdown_karegar_name;
-    Button submit_shirt;
-    ImageView chooseCollarImage, chooseCuffImage;
+    Button submit_shirt , chooseImage;
+    ImageView chooseCollarImage, chooseCuffImage , iv_01;
     NavController navController;
     SharedPreference sharedPreference;
+    CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
     public static boolean isComingFromShirt, isComingFromShirtBack, isComingFromShirtBack2;
+    Uri imageUri;
+    public static final int PICK_IMAGE = 1;
 
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
@@ -135,8 +152,39 @@ public class FragmentShirt extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("Shirt");
+        chooseImage = view.findViewById(R.id.chooseImage);
+        iv_01 = view.findViewById(R.id.iv_01);
 
-        ButterKnife.bind(this,view);
+
+        chooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dexter.withContext(getActivity())
+                        .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .withListener(new PermissionListener() {
+                            @Override
+                            public void onPermissionGranted(PermissionGrantedResponse response) {
+                                openGallery();
+                            }
+
+                            @Override
+                            public void onPermissionDenied(PermissionDeniedResponse response) {
+                                if (response.isPermanentlyDenied()) {
+                                    Toast.makeText(getActivity(), "Permission required to take picture from gallery...", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getActivity(), "Permission Denied", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+
+                            }
+                        }).check();
+            }
+        });
+
+        ButterKnife.bind(this, view);
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         chooseCollarImage = view.findViewById(R.id.chooseCollarImage);
         chooseCuffImage = view.findViewById(R.id.chooseCuffImage);
@@ -174,205 +222,199 @@ public class FragmentShirt extends Fragment {
         chooseCollarImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_fragmentShirt_to_fragmentCollarSelection, null, new NavOptions.Builder()
-                        .setPopUpTo(R.id.fragmentShirt,
-                                true).build());
-                isComingFromShirt = true;
+                Dialog dialog = new Dialog(getActivity(), android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
+                dialog.setContentView(R.layout.dialog_collar_style);
+                initViews(view, dialog);
+
+                LL1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_buttondown));
+                    }
+                });
+                LL2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_classic));
+                    }
+                });
+                LL3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_club));
+                    }
+                });
+                LL4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_cutaway));
+                    }
+                });
+                LL5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_mandarin));
+                    }
+                });
+                LL6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_medium));
+                    }
+                });
+                LL7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_tab));
+                    }
+                });
+                LL7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_tuxedo));
+                    }
+                });
+
+                dialog.show();
+                // navController.navigate(R.id.action_kurtaFragment_to_fragmentCollarSelection);
             }
         });
 
         chooseCuffImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_fragmentShirt_to_fragmentCuffSelection, null, new NavOptions.Builder()
-                        .setPopUpTo(R.id.fragmentShirt,
-                                true).build());
-                isComingFromShirt = true;
+                Dialog dialog = new Dialog(getActivity(), android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
+                dialog.setContentView(R.layout.dialog_cuff);
+                initViews(view, dialog);
+
+                LL1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_1_button_angle));
+                    }
+                });
+                LL2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_1_button_rounded));
+                    }
+                });
+                LL3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_square));
+                    }
+                });
+                LL4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_angle));
+                    }
+                });
+                LL5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_square));
+                    }
+                });
+                LL6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_round));
+                    }
+                });
+                LL7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_angle));
+                    }
+                });
+                LL8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_square));
+                    }
+                });
+                LL9.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_rounded));
+                    }
+                });
+                LL10.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_angle));
+                    }
+                });
+                LL11.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_square));
+                    }
+                });
+                LL12.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_round));
+                    }
+                });
+
+                dialog.show();
             }
         });
 
-        //this is set image for collar shirt
-        if (isComingFromShirtBack) {
-            if (getArguments().getString("imageID").equals("1")) {
-                chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_buttondown));
-                sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("2")) {
-                chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_classic));
-                sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("3")) {
-                chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_club));
-                sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("4")) {
-                chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_cutaway));
-                sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("5")) {
-                chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_mandarin));
-                sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("6")) {
-                chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_medium));
-                sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("7")) {
-                chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_pinned));
-                sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("8")) {
-                chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_spread));
-                sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("9")) {
-                chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_tab));
-                sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("10")) {
-                chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_tuxedo));
-                sharedPreference.setCollarImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-
-            isComingFromShirtBack = false;
-        }
-
-        //this will set image for shirt cuff
-        if (isComingFromShirtBack2) {
-            if (getArguments().getString("imageID").equals("1")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_1_button_angle));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("2")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_1_button_rounded));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("3")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_1_button_square));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("4")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_angle));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("5")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_round));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("6")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_square));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("7")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_angle));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("8")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_rounded));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("9")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_square));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("10")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_angle));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("10")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_round));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            if (getArguments().getString("imageID").equals("10")) {
-                chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_square));
-                sharedPreference.setCuffImageNumber(Integer.parseInt(getArguments().getString("imageID")));
-            }
-            isComingFromShirtBack2 = false;
-        }
-
-        if (getArguments().getString("new") != null && getArguments().getString("new").equals("N")) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_choose));
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_choose));
-            sharedPreference.remove();
-        }
-
-        setCollarImagefromCache();
-        setCuffImagefromCache();
-
-
     }
 
-    private void setCollarImagefromCache() {
-        if (sharedPreference.getCollarImageNumber() == 1) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_buttondown));
-        }
+    public void initViews(View view, Dialog dialog) {
+        LL1 = dialog.findViewById(R.id.LL1);
+        LL2 = dialog.findViewById(R.id.LL2);
+        LL3 = dialog.findViewById(R.id.LL3);
+        LL4 = dialog.findViewById(R.id.LL4);
+        LL5 = dialog.findViewById(R.id.LL5);
+        LL6 = dialog.findViewById(R.id.LL6);
+        LL7 = dialog.findViewById(R.id.LL7);
+        LL8 = dialog.findViewById(R.id.LL8);
+        LL9 = dialog.findViewById(R.id.LL9);
+        LL10 = dialog.findViewById(R.id.LL10);
+        LL11 = dialog.findViewById(R.id.LL11);
+        LL12 = dialog.findViewById(R.id.LL12);
+    }
 
-        if (sharedPreference.getCollarImageNumber() == 2) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_classic));
-        }
-        if (sharedPreference.getCollarImageNumber() == 3) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_club));
-        }
-        if (sharedPreference.getCollarImageNumber() == 4) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_cutaway));
-        }
-        if (sharedPreference.getCollarImageNumber() == 5) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_mandarin));
-        }
-        if (sharedPreference.getCollarImageNumber() == 6) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_medium));
-        }
-        if (sharedPreference.getCollarImageNumber() == 7) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_pinned));
-        }
-        if (sharedPreference.getCollarImageNumber() == 8) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_spread));
-        }
-        if (sharedPreference.getCollarImageNumber() == 9) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_tab));
-        }
-        if (sharedPreference.getCollarImageNumber() == 10) {
-            chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_tuxedo));
+    private void openGallery() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+            imageUri = data.getData();
+            iv_01.setImageURI(imageUri);
         }
     }
 
-    private void setCuffImagefromCache() {
-        if (sharedPreference.getCuffImageNumber() == 1) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_1_button_angle));
-        }
-        if (sharedPreference.getCuffImageNumber() == 2) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_1_button_rounded));
-        }
-        if (sharedPreference.getCuffImageNumber() == 3) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_1_button_square));
-        }
-        if (sharedPreference.getCuffImageNumber() == 4) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_angle));
-        }
-        if (sharedPreference.getCuffImageNumber() == 5) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_round));
-        }
-        if (sharedPreference.getCuffImageNumber() == 6) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_square));
-        }
-        if (sharedPreference.getCuffImageNumber() == 7) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_angle));
-        }
-        if (sharedPreference.getCuffImageNumber() == 8) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_rounded));
-        }
-        if (sharedPreference.getCuffImageNumber() == 9) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_square));
-        }
-        if (sharedPreference.getCuffImageNumber() == 10) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_angle));
-        }
-        if (sharedPreference.getCuffImageNumber() == 11) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_round));
-        }
-        if (sharedPreference.getCuffImageNumber() == 12) {
-            chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_square));
-        }
-    }
 
 }

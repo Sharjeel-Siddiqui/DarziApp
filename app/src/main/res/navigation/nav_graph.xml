@@ -12,9 +12,6 @@
         android:label="UserList"
         tools:layout="@layout/fragment_userlist">
         <action
-            android:id="@+id/action_userList_to_userCreation"
-            app:destination="@id/userCreation" />
-        <action
             android:id="@+id/action_userList_to_dashBoard"
             app:destination="@id/dashBoard" />
     </fragment>
