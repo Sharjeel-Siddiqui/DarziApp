@@ -2,11 +2,39 @@ package com.example.dulha_jee.pojo;
 
 public class KurtaRequestBody {
 
-    private String quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, collar_width, collar_point_length, front_pati_length, front_pati_cadge, cover_pati_length, cuff_width, cuff_chowk_width, cuff_length, chowk_length, machine_sew_bail, pocket_width, pocket_length, order_date, order_date_most_urgent, remarks;
+    private String customer_name, order_number, mobile_number, order_date, quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, collar_width, collar_point_length, front_pati_length, front_pati_cadge, cover_pati_length, cuff_width, cuff_chowk_width, cuff_length, chowk_length, machine_sew_bail, pocket_width, pocket_length, order_date_most_urgent, remarks;
 
     private String sherwani_collar, collar_front_round, collar_pointed, cut_collar, collar_on_collar, v_collar, shirt_collar, reverse_style_french_collar, taxido_style_collar, collar_style_small, button_on_point, button_on_cadge_small, soft_bukram_on_collar, customer_collar_soft, hard_bukram_on_collar, more_bukram_on_collar, hidden_on_collar, design_as_on_picture_collar, round_neck_magzi, round_neck_magzi_with_finishing, regular_pati, front_pati_width, pointed_pati, straight_pati, boat_sew_on_pati, cover_pati, front_pati_, style_as_image, cut_sleeves, cut_cuff, round_cuff, straight_cuff_pointed, cuff_link_style_cuff, double_cuff, hard_bukram_in_cuff, soft_bukram_in_cuff, cuff_chowk_cadge, cuff_chowk_bukram, cuff_chowk_pointed, cuff_chowk_straight, cuff_chowk_round, pointer_style_picture, cuff_machine_karhayi, cuff_hand_karhayi, straight_kurta_daman, round_daman, kamiz_style_daman, piyala_style_daman, straight_daman_pointed_corner, daman_double_sew, daman_finishing, daman_as_image, chakoti_american, chakoti, chakoti_contrast, teere_piece, not_teere_piece, double_sew_full, lab_sew, paki_lab_sew, chanpa, front_bunch, collar_machine_sew, sleeves_machine_sew, shoulder_machine_sew, collar_pati_hand_sew, collar_hand_sew, pati_hand_sew, front_hand_sew, sleeve_hand_sew, shoulder_hand_sew, one_front_pocket_style, two_front_pocket, two_side_pocket, right_side_pocket, left_side_pocket, side_pocket_deep, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
 
-    public KurtaRequestBody(String quantity, String collar, String sleeves, String shoulder, String hip, String abdomen, String gudda, String front, String lengthMade, String collar_width, String collar_point_length, String front_pati_length, String front_pati_cadge, String cover_pati_length, String cuff_width, String cuff_chowk_width, String cuff_length, String chowk_length, String machine_sew_bail, String pocket_width, String pocket_length, String order_date, String order_date_most_urgent, String remarks, String sherwani_collar, String collar_front_round, String collar_pointed, String cut_collar, String collar_on_collar, String v_collar, String shirt_collar, String reverse_style_french_collar, String taxido_style_collar, String collar_style_small, String button_on_point, String button_on_cadge_small, String soft_bukram_on_collar, String customer_collar_soft, String hard_bukram_on_collar, String more_bukram_on_collar, String hidden_on_collar, String design_as_on_picture_collar, String round_neck_magzi, String round_neck_magzi_with_finishing, String regular_pati, String front_pati_width, String pointed_pati, String straight_pati, String boat_sew_on_pati, String cover_pati, String front_pati_, String style_as_image, String cut_sleeves, String cut_cuff, String round_cuff, String straight_cuff_pointed, String cuff_link_style_cuff, String double_cuff, String hard_bukram_in_cuff, String soft_bukram_in_cuff, String cuff_chowk_cadge, String cuff_chowk_bukram, String cuff_chowk_pointed, String cuff_chowk_straight, String cuff_chowk_round, String pointer_style_picture, String cuff_machine_karhayi, String cuff_hand_karhayi, String straight_kurta_daman, String round_daman, String kamiz_style_daman, String piyala_style_daman, String straight_daman_pointed_corner, String daman_double_sew, String daman_finishing, String daman_as_image, String chakoti_american, String chakoti, String chakoti_contrast, String teere_piece, String not_teere_piece, String double_sew_full, String lab_sew, String paki_lab_sew, String chanpa, String front_bunch, String collar_machine_sew, String sleeves_machine_sew, String shoulder_machine_sew, String collar_pati_hand_sew, String collar_hand_sew, String pati_hand_sew, String front_hand_sew, String sleeve_hand_sew, String shoulder_hand_sew, String one_front_pocket_style, String two_front_pocket, String two_side_pocket, String right_side_pocket, String left_side_pocket, String side_pocket_deep, String customer_cloth, String only_sewing, String child_kurta_size, String finished_adjust, String special_customer_order, String regular_customer_order, String urgent_order, String no_label, String special_order, String button_should_be_strong, String shoulder_down, String light_work_shoulder_down, String full_shoulder_down, String straight_shoulder, String right_shoulder_down, String left_shoulder_down, String deep_body, String altered_body, String party_label, String fancy_label) {
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(String order_number) {
+        this.order_number = order_number;
+    }
+
+    public String getMobile_number() {
+        return mobile_number;
+    }
+
+    public void setMobile_number(String mobile_number) {
+        this.mobile_number = mobile_number;
+    }
+
+    public KurtaRequestBody(String customer_name, String order_number, String mobile_number, String order_date, String quantity, String collar, String sleeves, String shoulder, String hip, String abdomen, String gudda, String front, String lengthMade, String collar_width, String collar_point_length, String front_pati_length, String front_pati_cadge, String cover_pati_length, String cuff_width, String cuff_chowk_width, String cuff_length, String chowk_length, String machine_sew_bail, String pocket_width, String pocket_length, String order_date1, String order_date_most_urgent, String remarks, String sherwani_collar, String collar_front_round, String collar_pointed, String cut_collar, String collar_on_collar, String v_collar, String shirt_collar, String reverse_style_french_collar, String taxido_style_collar, String collar_style_small, String button_on_point, String button_on_cadge_small, String soft_bukram_on_collar, String customer_collar_soft, String hard_bukram_on_collar, String more_bukram_on_collar, String hidden_on_collar, String design_as_on_picture_collar, String round_neck_magzi, String round_neck_magzi_with_finishing, String regular_pati, String front_pati_width, String pointed_pati, String straight_pati, String boat_sew_on_pati, String cover_pati, String front_pati_, String style_as_image, String cut_sleeves, String cut_cuff, String round_cuff, String straight_cuff_pointed, String cuff_link_style_cuff, String double_cuff, String hard_bukram_in_cuff, String soft_bukram_in_cuff, String cuff_chowk_cadge, String cuff_chowk_bukram, String cuff_chowk_pointed, String cuff_chowk_straight, String cuff_chowk_round, String pointer_style_picture, String cuff_machine_karhayi, String cuff_hand_karhayi, String straight_kurta_daman, String round_daman, String kamiz_style_daman, String piyala_style_daman, String straight_daman_pointed_corner, String daman_double_sew, String daman_finishing, String daman_as_image, String chakoti_american, String chakoti, String chakoti_contrast, String teere_piece, String not_teere_piece, String double_sew_full, String lab_sew, String paki_lab_sew, String chanpa, String front_bunch, String collar_machine_sew, String sleeves_machine_sew, String shoulder_machine_sew, String collar_pati_hand_sew, String collar_hand_sew, String pati_hand_sew, String front_hand_sew, String sleeve_hand_sew, String shoulder_hand_sew, String one_front_pocket_style, String two_front_pocket, String two_side_pocket, String right_side_pocket, String left_side_pocket, String side_pocket_deep, String customer_cloth, String only_sewing, String child_kurta_size, String finished_adjust, String special_customer_order, String regular_customer_order, String urgent_order, String no_label, String special_order, String button_should_be_strong, String shoulder_down, String light_work_shoulder_down, String full_shoulder_down, String straight_shoulder, String right_shoulder_down, String left_shoulder_down, String deep_body, String altered_body, String party_label, String fancy_label) {
+        this.customer_name = customer_name;
+        this.order_number = order_number;
+        this.mobile_number = mobile_number;
+        this.order_date = order_date;
         this.quantity = quantity;
         this.collar = collar;
         this.sleeves = sleeves;
@@ -28,7 +56,7 @@ public class KurtaRequestBody {
         this.machine_sew_bail = machine_sew_bail;
         this.pocket_width = pocket_width;
         this.pocket_length = pocket_length;
-        this.order_date = order_date;
+        this.order_date = order_date1;
         this.order_date_most_urgent = order_date_most_urgent;
         this.remarks = remarks;
         this.sherwani_collar = sherwani_collar;
@@ -128,6 +156,10 @@ public class KurtaRequestBody {
         this.altered_body = altered_body;
         this.party_label = party_label;
         this.fancy_label = fancy_label;
+    }
+
+    public KurtaRequestBody() {
+
     }
 
     public String getQuantity() {

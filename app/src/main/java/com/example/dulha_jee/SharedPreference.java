@@ -14,6 +14,8 @@ public class SharedPreference {
         this.editor = sharedPref.edit();
     }
 
+
+
     public void setCollarImageNumber(int numberImage) {
         editor.putInt("ImageNumber", numberImage);
         editor.apply();
@@ -40,6 +42,17 @@ public class SharedPreference {
 
     public int getCuffImageNumber() {
         return sharedPref.getInt("ImageNumberCuff", 0);
+    }
+
+
+    public void saveToken(String str) {
+        editor.putString("S", str);
+        editor.apply();
+        editor.commit();
+    }
+
+    public String getToken() {
+        return sharedPref.getString("S", "0");
     }
 
     public void remove() {

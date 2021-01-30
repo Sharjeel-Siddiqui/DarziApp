@@ -51,6 +51,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:text="david@gmail.com"
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -72,6 +73,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:text="david"
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"

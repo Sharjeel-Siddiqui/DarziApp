@@ -10,7 +10,6 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-
         <Spinner
             android:id="@+id/dropdown_karegar_name"
             android:layout_width="match_parent"
@@ -40,7 +39,7 @@
 
             <EditText
                 android:id="@+id/customer_name"
-                android:layout_width="60dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -61,8 +60,8 @@
 
 
             <EditText
-                android:id="@+id/customer_number"
-                android:layout_width="60dp"
+                android:id="@+id/mobile_number"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -84,7 +83,7 @@
 
             <EditText
                 android:id="@+id/order_number"
-                android:layout_width="60dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -106,8 +105,8 @@
 
 
             <EditText
-                android:id="@+id/order_date_date"
-                android:layout_width="60dp"
+                android:id="@+id/order_date"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -121,6 +120,28 @@
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/quantity"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="عدد/Quantity"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1624,7 +1645,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/order_date"
+
                 android:layout_width="40dp"
                 android:layout_height="wrap_content" />
 

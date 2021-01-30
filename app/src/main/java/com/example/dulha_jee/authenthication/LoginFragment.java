@@ -1,5 +1,6 @@
 package com.example.dulha_jee.authenthication;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,10 +21,12 @@ import androidx.navigation.Navigation;
 
 import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
+import com.example.dulha_jee.SharedPreference;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
 import com.example.dulha_jee.pojo.EmailBody;
 import com.example.dulha_jee.pojo.LoginBody;
+import com.example.dulha_jee.pojo.LoginResponseBody;
 import com.example.dulha_jee.userlist.DatePickerFragment;
 
 import okhttp3.ResponseBody;
@@ -40,6 +43,8 @@ public class LoginFragment extends Fragment {
     EditText et_email, et_password;
     AlertDialog.Builder builder;
     EditText emailSubmit;
+    ProgressDialog pd;
+    SharedPreference sharedPreference;
 
     @Nullable
     @Override
@@ -59,8 +64,14 @@ public class LoginFragment extends Fragment {
         et_password = view.findViewById(R.id.et_password);
         forgetPassword = view.findViewById(R.id.forgetPassword);
         builder = new AlertDialog.Builder(getActivity());
+        pd = new ProgressDialog(getActivity());
+        pd.setMessage("Please wait...");
+        pd.setTitle("Signing...");
+        sharedPreference = new SharedPreference(getActivity());
 
-        ((MainActivity)getActivity()).setToolbarVisibility(false);
+
+
+        ((MainActivity) getActivity()).setToolbarVisibility(false);
 
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +80,6 @@ public class LoginFragment extends Fragment {
                 View dialogView = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_reset_password, viewGroup, false);
                 dialogSubmitbtn = dialogView.findViewById(R.id.Submit);
                 emailSubmit = dialogView.findViewById(R.id.email);
-                ;
                 builder.setView(dialogView);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
@@ -77,7 +87,7 @@ public class LoginFragment extends Fragment {
                 dialogSubmitbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-             /*           EmailBody emailBody = new EmailBody(emailSubmit.getText().toString());
+                        EmailBody emailBody = new EmailBody(emailSubmit.getText().toString());
                         iapi.forgotPassword(emailBody).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -93,8 +103,8 @@ public class LoginFragment extends Fragment {
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
                                 Toast.makeText(getActivity(), "Failed..", Toast.LENGTH_SHORT).show();
                             }
-                        });*/
-                        navController.navigate(R.id.action_loginFragment_to_resetFragment);
+                        });
+                        //  navController.navigate(R.id.action_loginFragment_to_resetFragment);
                     }
                 });
             }
@@ -110,23 +120,28 @@ public class LoginFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* LoginBody loginBody = new LoginBody(et_email.getText().toString(), et_password.getText().toString());
-                iapi.loginUser(loginBody).enqueue(new Callback<ResponseBody>() {
+                pd.show();
+                LoginBody loginBody = new LoginBody(et_email.getText().toString(), et_password.getText().toString());
+                iapi.loginUser(loginBody).enqueue(new Callback<LoginResponseBody>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    public void onResponse(Call<LoginResponseBody> call, Response<LoginResponseBody> response) {
                         if (response.isSuccessful()) {
+                            sharedPreference.saveToken(response.body().getApi_token());
+                            String value = sharedPreference.getToken();
                             navController.navigate(R.id.action_loginFragment_to_userList);
-                            Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                            pd.dismiss();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    public void onFailure(Call<LoginResponseBody> call, Throwable t) {
                         Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
                         Log.i("TAG", "onFailure: " + t.getMessage());
+                        pd.dismiss();
                     }
-                });*/
-                navController.navigate(R.id.action_loginFragment_to_userList);
+                });
+                //navController.navigate(R.id.action_loginFragment_to_userList);
             }
         });
 

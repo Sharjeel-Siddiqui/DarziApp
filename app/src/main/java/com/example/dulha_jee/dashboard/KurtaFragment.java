@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,11 @@ import androidx.navigation.Navigation;
 import com.example.dulha_jee.MainActivity;
 import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
+import com.example.dulha_jee.api.ApiClient;
+import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.GetUserResponseBody;
+import com.example.dulha_jee.pojo.KurtaRequestBody;
+import com.google.gson.Gson;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -40,6 +46,10 @@ import com.tapadoo.alerter.OnShowAlertListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -56,6 +66,9 @@ public class KurtaFragment extends Fragment {
     SharedPreference sharedPreference;
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
+
+
+    Iapi iapi;
 
     //fields to bind view
     @BindView(R.id.quantity)
@@ -100,12 +113,20 @@ public class KurtaFragment extends Fragment {
     EditText pocket_width;
     @BindView(R.id.pocket_length)
     EditText pocket_length;
-    @BindView(R.id.order_date)
-    EditText order_date;
     @BindView(R.id.order_date_most_urgent)
     EditText order_date_most_urgent;
     @BindView(R.id.remarks)
     EditText remarks;
+
+    @BindView(R.id.customer_name)
+    EditText customer_name;
+    @BindView(R.id.order_number)
+    EditText order_number;
+    @BindView(R.id.mobile_number)
+    EditText mobile_number;
+    @BindView(R.id.order_date)
+    EditText order_date;
+
 
     //checkboxes
     @BindView(R.id.sherwani_collar)
@@ -151,7 +172,7 @@ public class KurtaFragment extends Fragment {
     @BindView(R.id.regular_pati)
     CheckBox regular_pati;
     @BindView(R.id.front_pati_width)
-    CheckBox front_pati_width;
+    EditText front_pati_width;
     @BindView(R.id.pointed_pati)
     CheckBox pointed_pati;
     @BindView(R.id.straight_pati)
@@ -305,6 +326,7 @@ public class KurtaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_kurta, container, false);
     }
 
@@ -314,7 +336,8 @@ public class KurtaFragment extends Fragment {
         navController = Navigation.findNavController(view);
         ((MainActivity) getActivity()).setToolbar("Kurta...");
         ((MainActivity) getActivity()).setToolbarVisibility(true);
-        ButterKnife.bind(view);
+        ButterKnife.bind(this, view);
+        iapi = ApiClient.getClient().create(Iapi.class);
         sharedPreference = new SharedPreference(getActivity());
         submit_kurta = view.findViewById(R.id.submit_kurta);
         dropdown_kurta_varieties = view.findViewById(R.id.dropdown_kurta_varieties);
@@ -324,6 +347,22 @@ public class KurtaFragment extends Fragment {
         chooseSidePocket = view.findViewById(R.id.chooseSidePocket);
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
+
+        //  Toast.makeText(getActivity(), "vfouqsdvfioda", Toast.LENGTH_SHORT).show();
+        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+            @Override
+            public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
+                GetUserResponseBody getUserResponseBody = response.body();
+                getUserResponseBody.getData();
+
+                Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -356,7 +395,9 @@ public class KurtaFragment extends Fragment {
         submit_kurta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Alerter.create(getActivity())
+
+                createKurtaRequest();
+            /*    Alerter.create(getActivity())
                         .setTitle("انتطار فرمائیے۔۔۔")
                         .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
                         .setIcon(
@@ -372,9 +413,10 @@ public class KurtaFragment extends Fragment {
                                                 true).build());
                             }
                         })
-                        .show();
+                        .show();*/
             }
         });
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, users);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -555,6 +597,24 @@ public class KurtaFragment extends Fragment {
         });
 
 
+    }
+
+    private void createKurtaRequest() {
+        //all checked field goes here
+        KurtaRequestBody kurtaRequestBody = new KurtaRequestBody();
+        kurtaRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
+
+        iapi.createKurta("Bearer " + sharedPreference.getToken(), kurtaRequestBody).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void initViews(View view, Dialog dialog) {

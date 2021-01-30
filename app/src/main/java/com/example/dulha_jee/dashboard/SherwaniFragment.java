@@ -197,6 +197,14 @@ public class SherwaniFragment extends Fragment {
     CheckBox party_label;
     @BindView(R.id.fancy_label)
     CheckBox fancy_label;
+    @BindView(R.id.customer_name)
+    EditText customer_name;
+    @BindView(R.id.customer_number)
+    EditText customer_number;
+    @BindView(R.id.order_number)
+    EditText order_number;
+    @BindView(R.id.order_date_date)
+    EditText order_date_date;
 
 
     @Nullable
