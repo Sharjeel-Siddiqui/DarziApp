@@ -146,6 +146,7 @@ public class LoginFragment extends Fragment {
                             navController.navigate(R.id.action_loginFragment_to_userList);
                             pd.dismiss();
                         }
+                        pd.dismiss();
                     }
 
                     @Override

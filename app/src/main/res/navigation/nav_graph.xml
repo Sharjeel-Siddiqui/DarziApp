@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_userList_to_dashBoard"
             app:destination="@id/dashBoard" />
+        <action
+            android:id="@+id/action_userList_to_customer_View_Fragment"
+            app:destination="@id/customer_View_Fragment" />
     </fragment>
 
     <fragment
@@ -220,5 +223,9 @@
             android:id="@+id/action_fragmentSidePocketSelection_to_sherwaniFragment"
             app:destination="@id/sherwaniFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/customer_View_Fragment"
+        android:name="com.example.dulha_jee.dashboard.Customer_View_Fragment"
+        android:label="Customer_View_Fragment" />
 
 </navigation>

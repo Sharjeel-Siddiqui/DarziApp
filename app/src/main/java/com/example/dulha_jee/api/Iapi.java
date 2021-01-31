@@ -12,6 +12,7 @@ import com.example.dulha_jee.pojo.LoginBody;
 import com.example.dulha_jee.pojo.LoginResponseBody;
 import com.example.dulha_jee.pojo.PantPojo;
 import com.example.dulha_jee.pojo.RegisterBody;
+import com.example.dulha_jee.pojo.SearchResponseBody;
 import com.example.dulha_jee.pojo.SherwaniRequestBody;
 import com.example.dulha_jee.pojo.ShirtRequestBody;
 import com.example.dulha_jee.pojo.WaistCoatFragmentrequestBody;
@@ -39,7 +40,6 @@ public interface Iapi {
     @POST("api/auth/resetPassword")
     Call<ResponseBody> resetBody(@Body ResetBody body);
 
-
     @GET("api/users/getAll")
     Call<GetUserResponseBody> getUsers(@Header("Authorization") String token);
 
@@ -66,11 +66,11 @@ public interface Iapi {
 
 
     @GET("api/search")
-    Call<ResponseBody> search(@Header("Authorization") String token,
-                              @Query("date") String date,
-                              @Query("customer_name") String customer_name,
-                              @Query("order_number") String order_number,
-                              @Query("karigar") String karigar,
-                              @Query("mobile_number") String mobile_number);
+    Call<SearchResponseBody> search(@Header("Authorization") String token,
+                                    @Query("date") String date,
+                                    @Query("customer_name") String customer_name,
+                                    @Query("order_number") String order_number,
+                                    @Query("karigar") String karigar,
+                                    @Query("mobile_number") String mobile_number);
 
 }

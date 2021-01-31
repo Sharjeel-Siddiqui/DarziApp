@@ -8,6 +8,7 @@ import androidx.navigation.Navigation;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +21,14 @@ import android.widget.Toolbar;
 
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.SearchResponseBody;
 import com.example.dulha_jee.userlist.DatePickerFragment;
+import com.example.dulha_jee.userlist.UserListFragnment;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     ImageView filter;
     Iapi iapi;
     SharedPreference sharedPreference;
+    ArrayList<SearchResponseBody.user> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +58,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         iapi = ApiClient.getClient().create(Iapi.class);
         toolbar = findViewById(R.id.toolbar);
         filter = findViewById(R.id.filter);
+        navigation = Navigation.findNavController(this, R.id.fragment);
         sharedPreference = new SharedPreference(MainActivity.this);
+
 
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,22 +92,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 dialogView.findViewById(R.id.Search).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("order_date", TextUtils.isEmpty(Customer_OrderDate.getText().toString()) ? "" : Customer_OrderDate.getText().toString());
+                        bundle.putString("customer_name", TextUtils.isEmpty(C_Name.getText().toString()) ? "" : C_Name.getText().toString());
+                        bundle.putString("customer_ordernumber", TextUtils.isEmpty(C_OrderNumber.getText().toString()) ? "" : C_OrderNumber.getText().toString());
+                        bundle.putString("karegar_name", TextUtils.isEmpty(C_KaregarName.getText().toString()) ? "" : C_KaregarName.getText().toString()) ;
+                        bundle.putString("customer_number", TextUtils.isEmpty(C_Number.getText().toString()) ? "" : C_Number.getText().toString() );
+                        navigation.navigate(R.id.userList, bundle);
                         alertDialog.dismiss();
-
-                        iapi.search("Bearer " + sharedPreference.getToken(), Customer_OrderDate.getText().toString(), C_Name.getText().toString(),
-                                C_OrderNumber.getText().toString(),
-                                C_KaregarName.getText().toString(), C_Number.getText().toString()).enqueue(new Callback<ResponseBody>() {
-                            @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                Toast.makeText(MainActivity.this, "Success" + response.code(), Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
                     }
                 });
             }

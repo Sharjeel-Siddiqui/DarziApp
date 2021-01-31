@@ -805,7 +805,7 @@ public class KurtaFragment extends Fragment {
                 Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
                 Log.i("TAG", "onResponse: " + response.message());
                 Log.i("TAG", "onResponse: " + response.raw());
-                response.body().getUrl();
+                //response.body().getUrl();
                 html_url = response.body().getUrl();
 
                 doWebViewPrint();

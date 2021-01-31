@@ -1,6 +1,7 @@
 package com.example.dulha_jee.userlist;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,20 +10,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dulha_jee.R;
+import com.example.dulha_jee.pojo.SearchResponseBody;
 
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
 
     Context myCtx;
-    List<UserPojo> userPojos;
+    List<SearchResponseBody.user> users;
+    NavController navController;
 
-    public UserAdapter(Context myCtx, List<UserPojo> userPojos) {
+    public UserAdapter(Context myCtx, List<SearchResponseBody.user> userPojos, NavController navController) {
         this.myCtx = myCtx;
-        this.userPojos = userPojos;
+        this.users = userPojos;
+        this.navController = navController;
     }
 
     @NonNull
@@ -36,26 +41,25 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
 
     @Override
     public void onBindViewHolder(@NonNull UserVH holder, int position) {
-        holder.userName.setText(userPojos.get(position).getUserName());
-        holder.orderNumber.setText(userPojos.get(position).getUserOrderNumber());
-        holder.edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(myCtx, "Edit", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+
+        holder.userName.setText(users.get(position).getCustomer_name());
+        holder.orderNumber.setText(users.get(position).getOrder_number());
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(myCtx, "View", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("url", users.get(position).getHtml());
+                navController.navigate(R.id.action_userList_to_customer_View_Fragment,bundle);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return userPojos.size();
+        return users.size();
     }
 
     public class UserVH extends RecyclerView.ViewHolder {
