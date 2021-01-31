@@ -2,17 +2,26 @@ package com.example.dulha_jee.dashboard;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintJob;
+import android.print.PrintManager;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -75,9 +84,9 @@ public class KurtaFragment extends Fragment {
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
     String image_4_db;
-
-
+    private WebView mWebView;
     Iapi iapi;
+    public static String collar_image, sidepocket_image;
 
     //fields to bind view
     @BindView(R.id.quantity)
@@ -453,6 +462,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_buttondown));
+                        drawable_to_base64(R.drawable.collar_buttondown);
                     }
                 });
                 LL2.setOnClickListener(new View.OnClickListener() {
@@ -460,6 +470,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_classic));
+                        drawable_to_base64(R.drawable.collar_classic);
                     }
                 });
                 LL3.setOnClickListener(new View.OnClickListener() {
@@ -467,6 +478,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_club));
+                        drawable_to_base64(R.drawable.collar_club);
                     }
                 });
                 LL4.setOnClickListener(new View.OnClickListener() {
@@ -474,6 +486,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_cutaway));
+                        drawable_to_base64(R.drawable.collar_cutaway);
                     }
                 });
                 LL5.setOnClickListener(new View.OnClickListener() {
@@ -481,6 +494,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_mandarin));
+                        drawable_to_base64(R.drawable.collar_mandarin);
                     }
                 });
                 LL6.setOnClickListener(new View.OnClickListener() {
@@ -488,6 +502,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_medium));
+                        drawable_to_base64(R.drawable.collar_medium);
                     }
                 });
                 LL7.setOnClickListener(new View.OnClickListener() {
@@ -495,6 +510,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_tab));
+                        drawable_to_base64(R.drawable.collar_tab);
                     }
                 });
                 LL7.setOnClickListener(new View.OnClickListener() {
@@ -502,6 +518,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCollarImage.setImageDrawable(getResources().getDrawable(R.drawable.collar_tuxedo));
+                        drawable_to_base64(R.drawable.collar_tuxedo);
                     }
                 });
 
@@ -522,6 +539,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_01));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_01);
                     }
                 });
                 LL2.setOnClickListener(new View.OnClickListener() {
@@ -529,6 +547,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_02));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_02);
                     }
                 });
                 LL3.setOnClickListener(new View.OnClickListener() {
@@ -536,6 +555,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_03));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_03);
                     }
                 });
                 LL4.setOnClickListener(new View.OnClickListener() {
@@ -543,6 +563,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_04));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_04);
                     }
                 });
                 LL5.setOnClickListener(new View.OnClickListener() {
@@ -550,6 +571,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_05));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_05);
                     }
                 });
                 LL6.setOnClickListener(new View.OnClickListener() {
@@ -557,6 +579,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_06));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_06);
                     }
                 });
                 LL7.setOnClickListener(new View.OnClickListener() {
@@ -564,6 +587,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_07));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_07);
                     }
                 });
                 LL8.setOnClickListener(new View.OnClickListener() {
@@ -571,6 +595,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_08));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_08);
                     }
                 });
                 LL9.setOnClickListener(new View.OnClickListener() {
@@ -578,6 +603,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_09));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_09);
                     }
                 });
                 LL10.setOnClickListener(new View.OnClickListener() {
@@ -585,6 +611,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_10));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_10);
                     }
                 });
                 LL11.setOnClickListener(new View.OnClickListener() {
@@ -592,6 +619,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_11));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_11);
                     }
                 });
                 LL12.setOnClickListener(new View.OnClickListener() {
@@ -599,6 +627,7 @@ public class KurtaFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocket.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_12));
+                        drawable_to_base64_side_pocket(R.drawable.side_pocket_12);
                     }
                 });
 
@@ -752,6 +781,11 @@ public class KurtaFragment extends Fragment {
         kurtaRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
         kurtaRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
 
+        //send Images...
+
+       //  image_4_db;collar_image;sidepocket_image;
+
+        //Api call here...
 
         iapi.createKurta("Bearer " + sharedPreference.getToken(), kurtaRequestBody).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -796,7 +830,6 @@ public class KurtaFragment extends Fragment {
             // iv_01.setImageURI(imageUri);
 
             //for bitmap
-
             Bitmap bitmap = null;
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
@@ -804,7 +837,6 @@ public class KurtaFragment extends Fragment {
                 e.printStackTrace();
             }
             iv_01.setImageBitmap(bitmap);
-
             image_4_db = ConvertBitmapToString(bitmap);
         }
     }
@@ -823,5 +855,63 @@ public class KurtaFragment extends Fragment {
         return encodedImage;
     }
 
+    private void doWebViewPrint() {
+
+        WebView webView = new WebView(getActivity());
+        webView.setWebViewClient(new WebViewClient() {
+
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                Log.i("TAG", "page finished loading " + url);
+                createWebPrintJob(view);
+                mWebView = null;
+            }
+        });
+
+        webView.loadUrl("https://css4.pub/2017/newsletter/drylab.html");
+
+        mWebView = webView;
+    }
+
+    private void createWebPrintJob(WebView webView) {
+
+        // Get a PrintManager instance
+        PrintManager printManager = (PrintManager) getActivity().getSystemService(Context.PRINT_SERVICE);
+
+        String jobName = getString(R.string.app_name) + " Document";
+
+        // Get a print adapter instance
+        PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter(jobName);
+
+        // Create a print job with name and adapter instance
+        PrintJob printJob = printManager.print(jobName, printAdapter,
+                new PrintAttributes.Builder().build());
+
+        // Save the job object for later status checking
+    }
+
+    public void drawable_to_base64(int drawable) {
+        //encode image to base64 string
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        collar_image = "data:image/jpeg;base64," + Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + collar_image);
+    }
+
+    public void drawable_to_base64_side_pocket(int drawable) {
+        //encode image to base64 string
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        sidepocket_image = "data:image/jpeg;base64," + Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + sidepocket_image);
+    }
 
 }

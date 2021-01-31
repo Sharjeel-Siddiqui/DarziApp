@@ -1,13 +1,25 @@
 package com.example.dulha_jee.dashboard;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintJob;
+import android.print.PrintManager;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -38,6 +50,11 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.ResponseBody;
@@ -59,6 +76,10 @@ public class FragmentInnerSuit extends Fragment {
     public static final int PICK_IMAGE = 1;
     Iapi iapi;
     SharedPreference sharedPreference;
+    private WebView mWebView;
+    String image_4_db;
+
+
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
@@ -395,12 +416,14 @@ public class FragmentInnerSuit extends Fragment {
         innerSuitRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
         innerSuitRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
 
-        //api call here
+        //send images here
+        // image_4_db
 
-        iapi.createInnerSuit("Bearer "+ sharedPreference.getToken(),innerSuitRequestBody).enqueue(new Callback<ResponseBody>() {
+        //Api call here...
+        iapi.createInnerSuit("Bearer " + sharedPreference.getToken(), innerSuitRequestBody).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -423,9 +446,83 @@ public class FragmentInnerSuit extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-            imageUri = data.getData();
-            iv_01.setImageURI(imageUri);
+            //imageUri = data.getData();
+            //iv_01.setImageURI(imageUri);
+
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            iv_01.setImageBitmap(bitmap);
+
+            image_4_db = ConvertBitmapToString(bitmap);
         }
+    }
+
+    public static String ConvertBitmapToString(Bitmap bitmap) {
+        String encodedImage = "";
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        try {
+            encodedImage = URLEncoder.encode(Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return encodedImage;
+    }
+
+    private void doWebViewPrint() {
+
+        WebView webView = new WebView(getActivity());
+        webView.setWebViewClient(new WebViewClient() {
+
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                Log.i("TAG", "page finished loading " + url);
+                createWebPrintJob(view);
+                mWebView = null;
+            }
+        });
+
+        webView.loadUrl("https://css4.pub/2017/newsletter/drylab.html");
+
+        mWebView = webView;
+    }
+
+
+    private void createWebPrintJob(WebView webView) {
+
+        // Get a PrintManager instance
+        PrintManager printManager = (PrintManager) getActivity().getSystemService(Context.PRINT_SERVICE);
+
+        String jobName = getString(R.string.app_name) + " Document";
+
+        // Get a print adapter instance
+        PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter(jobName);
+
+        // Create a print job with name and adapter instance
+        PrintJob printJob = printManager.print(jobName, printAdapter,
+                new PrintAttributes.Builder().build());
+
+        // Save the job object for later status checking
+    }
+
+    public void drawable_to_base64(int drawable) {
+        //encode image to base64 string
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String imageString = "data:image/jpeg;base64," + Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + imageString);
     }
 
 }

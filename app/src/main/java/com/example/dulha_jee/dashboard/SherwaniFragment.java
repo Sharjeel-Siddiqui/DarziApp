@@ -2,13 +2,25 @@ package com.example.dulha_jee.dashboard;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintJob;
+import android.print.PrintManager;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -40,6 +52,11 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import butterknife.*;
 import butterknife.ButterKnife;
 import okhttp3.ResponseBody;
@@ -63,6 +80,9 @@ public class SherwaniFragment extends Fragment {
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
     Iapi iapi;
+    private WebView mWebView;
+    String image_4_db;
+    public static String pocket_string;
 
     @BindView(R.id.quantity)
     EditText quantity;
@@ -304,6 +324,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_01));
+                        drawable_to_base64(R.drawable.side_pocket_01);
                     }
                 });
                 LL2.setOnClickListener(new View.OnClickListener() {
@@ -311,6 +332,8 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_02));
+                        drawable_to_base64(R.drawable.side_pocket_02);
+
                     }
                 });
                 LL3.setOnClickListener(new View.OnClickListener() {
@@ -318,6 +341,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_03));
+                        drawable_to_base64(R.drawable.side_pocket_03);
                     }
                 });
                 LL4.setOnClickListener(new View.OnClickListener() {
@@ -325,6 +349,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_04));
+                        drawable_to_base64(R.drawable.side_pocket_04);
                     }
                 });
                 LL5.setOnClickListener(new View.OnClickListener() {
@@ -332,6 +357,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_05));
+                        drawable_to_base64(R.drawable.side_pocket_05);
                     }
                 });
                 LL6.setOnClickListener(new View.OnClickListener() {
@@ -339,6 +365,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_06));
+                        drawable_to_base64(R.drawable.side_pocket_06);
                     }
                 });
                 LL7.setOnClickListener(new View.OnClickListener() {
@@ -346,6 +373,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_07));
+                        drawable_to_base64(R.drawable.side_pocket_07);
                     }
                 });
                 LL8.setOnClickListener(new View.OnClickListener() {
@@ -353,6 +381,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_08));
+                        drawable_to_base64(R.drawable.side_pocket_08);
                     }
                 });
                 LL9.setOnClickListener(new View.OnClickListener() {
@@ -360,6 +389,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_09));
+                        drawable_to_base64(R.drawable.side_pocket_09);
                     }
                 });
                 LL10.setOnClickListener(new View.OnClickListener() {
@@ -367,6 +397,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_10));
+                        drawable_to_base64(R.drawable.side_pocket_10);
                     }
                 });
                 LL11.setOnClickListener(new View.OnClickListener() {
@@ -374,6 +405,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_11));
+                        drawable_to_base64(R.drawable.side_pocket_11);
                     }
                 });
                 LL12.setOnClickListener(new View.OnClickListener() {
@@ -381,6 +413,7 @@ public class SherwaniFragment extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseSidePocketImage.setImageDrawable(getResources().getDrawable(R.drawable.side_pocket_12));
+                        drawable_to_base64(R.drawable.side_pocket_12);
                     }
                 });
 
@@ -473,12 +506,15 @@ public class SherwaniFragment extends Fragment {
         sherwaniRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
         sherwaniRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
 
-        //retrofit call comes here ....
+        //sendimages
+        //chooseSidePocketImage ; image_4_db;
 
-        iapi.createSherwani("Bearer "+ sharedPreference.getToken(),sherwaniRequestBody).enqueue(new Callback<ResponseBody>() {
+        //Api call here...
+
+        iapi.createSherwani("Bearer " + sharedPreference.getToken(), sherwaniRequestBody).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -518,9 +554,84 @@ public class SherwaniFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-            imageUri = data.getData();
-            iv_01.setImageURI(imageUri);
+            //  imageUri = data.getData();
+            //  iv_01.setImageURI(imageUri);
+
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            iv_01.setImageBitmap(bitmap);
+
+            image_4_db = ConvertBitmapToString(bitmap);
         }
+    }
+
+    public static String ConvertBitmapToString(Bitmap bitmap) {
+        String encodedImage = "";
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        try {
+            encodedImage = URLEncoder.encode(Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return encodedImage;
+    }
+
+    private void doWebViewPrint() {
+
+        WebView webView = new WebView(getActivity());
+        webView.setWebViewClient(new WebViewClient() {
+
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                Log.i("TAG", "page finished loading " + url);
+                createWebPrintJob(view);
+                mWebView = null;
+            }
+        });
+
+        webView.loadUrl("https://css4.pub/2017/newsletter/drylab.html");
+
+        mWebView = webView;
+    }
+
+
+    private void createWebPrintJob(WebView webView) {
+
+        // Get a PrintManager instance
+        PrintManager printManager = (PrintManager) getActivity().getSystemService(Context.PRINT_SERVICE);
+
+        String jobName = getString(R.string.app_name) + " Document";
+
+        // Get a print adapter instance
+        PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter(jobName);
+
+        // Create a print job with name and adapter instance
+        PrintJob printJob = printManager.print(jobName, printAdapter,
+                new PrintAttributes.Builder().build());
+
+        // Save the job object for later status checking
+    }
+
+
+    public void drawable_to_base64(int drawable) {
+        //encode image to base64 string
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        pocket_string = "data:image/jpeg;base64," + Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + pocket_string);
     }
 
 }

@@ -97,6 +97,18 @@
             android:textColor="#E0D9C6"
             android:textSize="15sp" />
 
+        <CheckBox
+            android:visibility="gone"
+            android:id="@+id/customer_cloth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="کپڑا کسٹمر کا ہے اپنا"
+            android:textSize="22sp" />
+
+
 
     </LinearLayout>
 

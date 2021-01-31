@@ -1,12 +1,16 @@
 package com.example.dulha_jee.authenthication;
 
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +33,12 @@ import com.example.dulha_jee.pojo.LoginBody;
 import com.example.dulha_jee.pojo.LoginResponseBody;
 import com.example.dulha_jee.userlist.DatePickerFragment;
 
+import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +55,9 @@ public class LoginFragment extends Fragment {
     EditText emailSubmit;
     ProgressDialog pd;
     SharedPreference sharedPreference;
+
+    @BindView(R.id.customer_cloth)
+    CheckBox customer_cloth;
 
     @Nullable
     @Override
@@ -64,11 +77,11 @@ public class LoginFragment extends Fragment {
         et_password = view.findViewById(R.id.et_password);
         forgetPassword = view.findViewById(R.id.forgetPassword);
         builder = new AlertDialog.Builder(getActivity());
+        ButterKnife.bind(this, view);
         pd = new ProgressDialog(getActivity());
         pd.setMessage("Please wait...");
         pd.setTitle("Signing...");
         sharedPreference = new SharedPreference(getActivity());
-
 
 
         ((MainActivity) getActivity()).setToolbarVisibility(false);
@@ -120,6 +133,8 @@ public class LoginFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Toast.makeText(getActivity(), customer_cloth.isChecked() ? customer_cloth.getText().toString() : "nothing selected...", Toast.LENGTH_SHORT).show();
+
                 pd.show();
                 LoginBody loginBody = new LoginBody(et_email.getText().toString(), et_password.getText().toString());
                 iapi.loginUser(loginBody).enqueue(new Callback<LoginResponseBody>() {
@@ -129,7 +144,6 @@ public class LoginFragment extends Fragment {
                             sharedPreference.saveToken(response.body().getApi_token());
                             String value = sharedPreference.getToken();
                             navController.navigate(R.id.action_loginFragment_to_userList);
-                            //Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                             pd.dismiss();
                         }
                     }
@@ -141,9 +155,14 @@ public class LoginFragment extends Fragment {
                         pd.dismiss();
                     }
                 });
-                //navController.navigate(R.id.action_loginFragment_to_userList);
+
             }
         });
 
     }
+
+
 }
+
+
+
