@@ -401,6 +401,11 @@ public class FragmentCoat extends Fragment {
         coatRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
         coatRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
 
+        //image come here
+        coatRequestBody.setCuff_image("");
+        coatRequestBody.setCollar_image("");
+        coatRequestBody.setCustomer_image(image_4_db);
+        coatRequestBody.setSide_pocket_image("");
 
         //Api call here...
 
@@ -507,7 +512,7 @@ public class FragmentCoat extends Fragment {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        String imageString = "data:image/jpeg;base64," +  Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        String imageString =   Base64.encodeToString(imageBytes, Base64.DEFAULT);
         Log.i("TAG", "drawable_to_base64: " + imageString);
     }
 

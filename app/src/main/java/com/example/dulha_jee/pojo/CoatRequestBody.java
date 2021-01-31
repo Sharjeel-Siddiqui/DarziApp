@@ -1,11 +1,43 @@
 package com.example.dulha_jee.pojo;
 
 public class CoatRequestBody {
-    private String  customer_name, order_number, mobile_number,quantity , collar,  sleeves, shoulder ,hip ,abdomen, gudda, chest, lengthMade, full_back, halfback, crossfront ,chowk_length, pencil_length, collar_thing ,pencil_thing ,shoulder_depth ,front_cadge ,order_date, order_date_most_urgent, remarks , button_style2 , single_button, three_button ,four_button, five_button, no_button ,side_chowk, back_chowk ,american_pencil, dinner_pencil, pencil_long ,taxido_style, double_style_collar, qub ,no_meat, waist_coat_double, pencil_waist_coat ,v_neck_waist_coat, u_neck_waist_coat ,same_as_image, coat_same_as_image, waist_coat_same_as_image ,inner_loozing ,special_vip, sleeves_,loozing, double_bukram, full_bukram, astar_printed, prince_coat ,fancy_buttons ,customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order ,urgent_order, no_label ,special_order ,button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down ,left_shoulder_down ,altered_body ,deep_body, party_label, fancy_label;
+    private String  side_pocket_image,cuff_image,collar_image,customer_image,customer_name, order_number, mobile_number,quantity , collar,  sleeves, shoulder ,hip ,abdomen, gudda, chest, lengthMade, full_back, halfback, crossfront ,chowk_length, pencil_length, collar_thing ,pencil_thing ,shoulder_depth ,front_cadge ,order_date, order_date_most_urgent, remarks , button_style2 , single_button, three_button ,four_button, five_button, no_button ,side_chowk, back_chowk ,american_pencil, dinner_pencil, pencil_long ,taxido_style, double_style_collar, qub ,no_meat, waist_coat_double, pencil_waist_coat ,v_neck_waist_coat, u_neck_waist_coat ,same_as_image, coat_same_as_image, waist_coat_same_as_image ,inner_loozing ,special_vip, sleeves_,loozing, double_bukram, full_bukram, astar_printed, prince_coat ,fancy_buttons ,customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order ,urgent_order, no_label ,special_order ,button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down ,left_shoulder_down ,altered_body ,deep_body, party_label, fancy_label;
 
 
     public CoatRequestBody() {
 
+    }
+
+    public String getSide_pocket_image() {
+        return side_pocket_image;
+    }
+
+    public void setSide_pocket_image(String side_pocket_image) {
+        this.side_pocket_image = side_pocket_image;
+    }
+
+    public String getCuff_image() {
+        return cuff_image;
+    }
+
+    public void setCuff_image(String cuff_image) {
+        this.cuff_image = cuff_image;
+    }
+
+    public String getCollar_image() {
+        return collar_image;
+    }
+
+    public void setCollar_image(String collar_image) {
+        this.collar_image = collar_image;
+    }
+
+    public String getCustomer_image() {
+        return customer_image;
+    }
+
+    public void setCustomer_image(String customer_image) {
+        this.customer_image = customer_image;
     }
 
     public String getCustomer_name() {

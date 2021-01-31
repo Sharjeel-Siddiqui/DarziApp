@@ -5,6 +5,7 @@ import com.example.dulha_jee.dashboard.WaistCoatFragment;
 import com.example.dulha_jee.pojo.CoatRequestBody;
 import com.example.dulha_jee.pojo.EmailBody;
 import com.example.dulha_jee.pojo.GetUserResponseBody;
+import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.InnerSuitRequestBody;
 import com.example.dulha_jee.pojo.KurtaRequestBody;
 import com.example.dulha_jee.pojo.LoginBody;
@@ -43,7 +44,7 @@ public interface Iapi {
     Call<GetUserResponseBody> getUsers(@Header("Authorization") String token);
 
     @POST("api/kurta/create")
-    Call<ResponseBody> createKurta(@Header("Authorization") String token, @Body KurtaRequestBody kurtaRequestBody);
+    Call<HtmlResponseBody> createKurta(@Header("Authorization") String token, @Body KurtaRequestBody kurtaRequestBody);
 
     @POST("api/sherwani/create")
     Call<ResponseBody> createSherwani(@Header("Authorization") String token, @Body SherwaniRequestBody kurtaRequestBody);
@@ -51,7 +52,7 @@ public interface Iapi {
     @POST("api/coat/create")
     Call<ResponseBody> createCoat(@Header("Authorization") String token, @Body CoatRequestBody kurtaRequestBody);
 
-    @POST("api/waistcoat/create")
+    @POST("api/waist-coat/create")
     Call<ResponseBody> createWaistCoat(@Header("Authorization") String token, @Body WaistCoatFragmentrequestBody kurtaRequestBody);
 
     @POST("api/shirt/create")
@@ -60,7 +61,7 @@ public interface Iapi {
     @POST("api/pant/create")
     Call<ResponseBody> createPant(@Header("Authorization") String token, @Body PantPojo kurtaRequestBody);
 
-    @POST("api/innersuit/create")
+    @POST("api/inner-suit/create")
     Call<ResponseBody> createInnerSuit(@Header("Authorization") String token, @Body InnerSuitRequestBody kurtaRequestBody);
 
 

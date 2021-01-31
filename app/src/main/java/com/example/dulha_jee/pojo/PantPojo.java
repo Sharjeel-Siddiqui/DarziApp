@@ -1,10 +1,42 @@
 package com.example.dulha_jee.pojo;
 
 public class PantPojo {
-    private String customer_name, order_number, mobile_number, quantity, abdomen, hip, lengthMade, fly, thigh, knee, bottom, order_date, order_date_most_urgent, remarks, without_plate, one_plate_front, two_plate_front, straight_pocket, cross_pocket, jeans_style_pocket, one_back_pocket, two_back_pocket, flap_pocket, flap_cadge, cotton, watch_pocket, back_pocket_cadge_button, eight_loobs, loobs_inch, loobs_inch_two, back_pocket_loobs, inch_belt, belt_grip, pocket_thely, zip_quality, pocket_dip, folding_mori, turpayi_hand, long_loop, long_nib, paint_loozing, special, same_as_image, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
+    private String side_pocket_image,cuff_image,collar_image,customer_image,customer_name, order_number, mobile_number, quantity, abdomen, hip, lengthMade, fly, thigh, knee, bottom, order_date, order_date_most_urgent, remarks, without_plate, one_plate_front, two_plate_front, straight_pocket, cross_pocket, jeans_style_pocket, one_back_pocket, two_back_pocket, flap_pocket, flap_cadge, cotton, watch_pocket, back_pocket_cadge_button, eight_loobs, loobs_inch, loobs_inch_two, back_pocket_loobs, inch_belt, belt_grip, pocket_thely, zip_quality, pocket_dip, folding_mori, turpayi_hand, long_loop, long_nib, paint_loozing, special, same_as_image, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
 
     public PantPojo(){
 
+    }
+
+    public String getSide_pocket_image() {
+        return side_pocket_image;
+    }
+
+    public void setSide_pocket_image(String side_pocket_image) {
+        this.side_pocket_image = side_pocket_image;
+    }
+
+    public String getCuff_image() {
+        return cuff_image;
+    }
+
+    public void setCuff_image(String cuff_image) {
+        this.cuff_image = cuff_image;
+    }
+
+    public String getCollar_image() {
+        return collar_image;
+    }
+
+    public void setCollar_image(String collar_image) {
+        this.collar_image = collar_image;
+    }
+
+    public String getCustomer_image() {
+        return customer_image;
+    }
+
+    public void setCustomer_image(String customer_image) {
+        this.customer_image = customer_image;
     }
 
     public String getCustomer_name() {

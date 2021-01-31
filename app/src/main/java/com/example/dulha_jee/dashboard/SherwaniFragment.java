@@ -630,7 +630,7 @@ public class SherwaniFragment extends Fragment {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        pocket_string = "data:image/jpeg;base64," + Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        pocket_string =  Base64.encodeToString(imageBytes, Base64.DEFAULT);
         Log.i("TAG", "drawable_to_base64: " + pocket_string);
     }
 

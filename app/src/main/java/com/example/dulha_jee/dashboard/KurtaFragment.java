@@ -44,6 +44,7 @@ import com.example.dulha_jee.SharedPreference;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
 import com.example.dulha_jee.pojo.GetUserResponseBody;
+import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.KurtaRequestBody;
 import com.google.gson.Gson;
 import com.karumi.dexter.Dexter;
@@ -57,7 +58,10 @@ import com.tapadoo.alerter.OnHideAlertListener;
 import com.tapadoo.alerter.OnShowAlertListener;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -86,7 +90,8 @@ public class KurtaFragment extends Fragment {
     String image_4_db;
     private WebView mWebView;
     Iapi iapi;
-    public static String collar_image, sidepocket_image;
+    public String collar_image, sidepocket_image;
+    public String html_url;
 
     //fields to bind view
     @BindView(R.id.quantity)
@@ -648,7 +653,7 @@ public class KurtaFragment extends Fragment {
         //all checked field goes here
         KurtaRequestBody kurtaRequestBody = new KurtaRequestBody();
         //et fields
-        kurtaRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
+        kurtaRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد /Quantity ");
         kurtaRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
         kurtaRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString());
         kurtaRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
@@ -783,20 +788,34 @@ public class KurtaFragment extends Fragment {
 
         //send Images...
 
-       //  image_4_db;collar_image;sidepocket_image;
+        kurtaRequestBody.setCuff_image("");
+        kurtaRequestBody.setCollar_image(TextUtils.isEmpty(collar_image) ? "" : collar_image.toString());
+        kurtaRequestBody.setCustomer_image(TextUtils.isEmpty(image_4_db) ? "" : image_4_db);
+        kurtaRequestBody.setSide_pocket_image(TextUtils.isEmpty(sidepocket_image) ? "" : sidepocket_image);
 
+        //  image_4_db;collar_image;sidepocket_image;
+
+
+        String value = kurtaRequestBody.getCollar_image();
         //Api call here...
 
-        iapi.createKurta("Bearer " + sharedPreference.getToken(), kurtaRequestBody).enqueue(new Callback<ResponseBody>() {
+        iapi.createKurta("Bearer " + sharedPreference.getToken(), kurtaRequestBody).enqueue(new Callback<HtmlResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
-                alerter.setDuration(500);
+                Log.i("TAG", "onResponse: " + response.message());
+                Log.i("TAG", "onResponse: " + response.raw());
+                response.body().getUrl();
+                html_url = response.body().getUrl();
+
+                doWebViewPrint();
+             //       alerter.setDuration(500);
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+                alerter.setDuration(500);
             }
         });
     }
@@ -826,18 +845,20 @@ public class KurtaFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-            // imageUri = data.getData();
+            imageUri = data.getData();
             // iv_01.setImageURI(imageUri);
 
-            //for bitmap
-            Bitmap bitmap = null;
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-            } catch (IOException e) {
+                InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                iv_01.setImageBitmap(bitmap);
+                image_4_db = ConvertBitmapToString(bitmap);
+                Log.i("TAG", "base 64 image" + image_4_db);
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            iv_01.setImageBitmap(bitmap);
-            image_4_db = ConvertBitmapToString(bitmap);
+
+
         }
     }
 
@@ -872,7 +893,7 @@ public class KurtaFragment extends Fragment {
             }
         });
 
-        webView.loadUrl("https://css4.pub/2017/newsletter/drylab.html");
+        webView.loadUrl(html_url);
 
         mWebView = webView;
     }
@@ -900,7 +921,7 @@ public class KurtaFragment extends Fragment {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        collar_image = "data:image/jpeg;base64," + Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        collar_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         Log.i("TAG", "drawable_to_base64: " + collar_image);
     }
 
@@ -910,7 +931,7 @@ public class KurtaFragment extends Fragment {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        sidepocket_image = "data:image/jpeg;base64," + Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        sidepocket_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         Log.i("TAG", "drawable_to_base64: " + sidepocket_image);
     }
 

@@ -1,8 +1,40 @@
 package com.example.dulha_jee.pojo;
 
 public class ShirtRequestBody {
-    private String quantity, customer_name, order_number, mobile_number, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, patti_ki_chorayi, order_date, order_date_most_urgent, remarks, is_shirt, make_coverpati_style, regular_polo_pati, simple_pati_style, not_regular_polo_pat, back_dart, american_style_round_deep, readymade_shirt_style_chakooti, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
+    private String side_pocket_image,cuff_image,collar_image,customer_image,quantity, customer_name, order_number, mobile_number, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, patti_ki_chorayi, order_date, order_date_most_urgent, remarks, is_shirt, make_coverpati_style, regular_polo_pati, simple_pati_style, not_regular_polo_pat, back_dart, american_style_round_deep, readymade_shirt_style_chakooti, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
 
+
+    public String getSide_pocket_image() {
+        return side_pocket_image;
+    }
+
+    public void setSide_pocket_image(String side_pocket_image) {
+        this.side_pocket_image = side_pocket_image;
+    }
+
+    public String getCuff_image() {
+        return cuff_image;
+    }
+
+    public void setCuff_image(String cuff_image) {
+        this.cuff_image = cuff_image;
+    }
+
+    public String getCollar_image() {
+        return collar_image;
+    }
+
+    public void setCollar_image(String collar_image) {
+        this.collar_image = collar_image;
+    }
+
+    public String getCustomer_image() {
+        return customer_image;
+    }
+
+    public void setCustomer_image(String customer_image) {
+        this.customer_image = customer_image;
+    }
 
     public String getCustomer_name() {
         return customer_name;
