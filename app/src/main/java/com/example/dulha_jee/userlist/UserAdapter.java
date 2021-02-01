@@ -45,6 +45,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
 
         holder.userName.setText(users.get(position).getCustomer_name());
         holder.orderNumber.setText(users.get(position).getOrder_number());
+       // holder.orderStatus.setText(users.get(position).getorderStatus());
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,11 +64,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
     }
 
     public class UserVH extends RecyclerView.ViewHolder {
-        TextView userName, orderNumber;
+        TextView userName, orderNumber , orderStatus;
         ImageView edit, view;
 
         public UserVH(@NonNull View itemView) {
             super(itemView);
+            orderStatus = itemView.findViewById(R.id.orderStatus);
             userName = itemView.findViewById(R.id.userName);
             orderNumber = itemView.findViewById(R.id.orderNumber);
             edit = itemView.findViewById(R.id.editCustomer);
