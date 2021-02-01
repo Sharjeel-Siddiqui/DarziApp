@@ -42,6 +42,8 @@ import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.GetUserResponseBody;
+import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.SherwaniRequestBody;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -53,7 +55,9 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -83,6 +87,8 @@ public class SherwaniFragment extends Fragment {
     private WebView mWebView;
     String image_4_db;
     public static String pocket_string;
+    public String html_url;
+    public String collar_image, sidepocket_image;
 
     @BindView(R.id.quantity)
     EditText quantity;
@@ -135,6 +141,11 @@ public class SherwaniFragment extends Fragment {
     EditText mobile_number;
     @BindView(R.id.order_date)
     EditText order_date;
+
+    @BindView(R.id.urgent_order_date)
+    EditText urgent_order_date;
+    @BindView(R.id.urgent_order_time)
+    EditText urgent_order_time;
 
     //Checkboxes....
 
@@ -256,6 +267,26 @@ public class SherwaniFragment extends Fragment {
         chooseSidePocketImage = view.findViewById(R.id.chooseSidePocketImage);
         submit_sherwani = view.findViewById(R.id.submit_sherwani);
         chooseImage = view.findViewById(R.id.chooseImage);
+
+        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+            @Override
+            public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
+                GetUserResponseBody getUserResponseBody = response.body();
+                getUserResponseBody.getData();
+
+                String[] arr = getUserResponseBody.getData().toArray(new String[getUserResponseBody.getData().size()]);
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
+                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                dropdown_karegar_name.setAdapter(adapter3);
+
+                //Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -421,9 +452,9 @@ public class SherwaniFragment extends Fragment {
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
+       /* ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown_karegar_name.setAdapter(adapter);
+        dropdown_karegar_name.setAdapter(adapter);*/
 
     }
 
@@ -431,28 +462,32 @@ public class SherwaniFragment extends Fragment {
 
         SherwaniRequestBody sherwaniRequestBody = new SherwaniRequestBody();
 
-        //et fields
-        //et fields
-        sherwaniRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
-        sherwaniRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
-        // customer number field required
-        sherwaniRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
-        sherwaniRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
 
-        sherwaniRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
-        sherwaniRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
-        sherwaniRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
-        sherwaniRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
-        sherwaniRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString());
-        sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : chest.getText().toString());
-        sherwaniRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
-        sherwaniRequestBody.setFullback(TextUtils.isEmpty(fullback.getText().toString()) ? "" : fullback.getText().toString());
-        sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString());
-        sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString());
-        sherwaniRequestBody.setHighlight_cadge_color(TextUtils.isEmpty(highlight_cadge_color.getText().toString()) ? "" : highlight_cadge_color.getText().toString());
-        sherwaniRequestBody.setShow_cadge_color(TextUtils.isEmpty(show_cadge_color.getText().toString()) ? "" : show_cadge_color.getText().toString());
-        sherwaniRequestBody.setFront_cadge_numbers(TextUtils.isEmpty(front_cadge_numbers.getText().toString()) ? "" : front_cadge_numbers.getText().toString());
-        sherwaniRequestBody.setContrast_color_astar(TextUtils.isEmpty(contrast_color_astar.getText().toString()) ? "" : contrast_color_astar.getText().toString());
+        // customer fields..
+        sherwaniRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام ");
+        sherwaniRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + "کسٹمر کا نمبر ");
+        sherwaniRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر ");
+        sherwaniRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ ");
+
+        //et fields
+        sherwaniRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity");
+        sherwaniRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar");
+        sherwaniRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves");
+        sherwaniRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder");
+        sherwaniRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ/hip");
+        sherwaniRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ");
+        sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : chest.getText().toString() + "سینہ/Chest");
+        sherwaniRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
+        sherwaniRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ/waist ");
+        sherwaniRequestBody.setFullback(TextUtils.isEmpty(fullback.getText().toString()) ? "" : fullback.getText().toString() + "فل بیک/Full back ");
+        sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString() + "ہالف بیک/Half Back");
+        sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString() + "کراس فرنٹ/Cross Front");
+        sherwaniRequestBody.setHighlight_cadge_color(TextUtils.isEmpty(highlight_cadge_color.getText().toString()) ? "" : "کلر سے" + highlight_cadge_color.getText().toString() + "سامنے پہ ہائ لیٹ کاج ہوگے");
+        sherwaniRequestBody.setShow_cadge_color(TextUtils.isEmpty(show_cadge_color.getText().toString()) ? "" :  "کلر کے شو کاج ہوں گے" + show_cadge_color.getText().toString());
+        sherwaniRequestBody.setFront_cadge_numbers(TextUtils.isEmpty(front_cadge_numbers.getText().toString()) ? "" : "عدد کاج ہونگے" + front_cadge_numbers.getText().toString()  + "سامنے پہ");
+        sherwaniRequestBody.setContrast_color_astar(TextUtils.isEmpty(contrast_color_astar.getText().toString()) ? "" : "کلر کا استر لگانا ہے (ایک نمبر) چیری" + contrast_color_astar.getText().toString() + "کنٹراس");
+        sherwaniRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" :  "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
+        sherwaniRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
 
 
         //check boxes field
@@ -507,20 +542,36 @@ public class SherwaniFragment extends Fragment {
         sherwaniRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
 
         //sendimages
+
+        //send Images...
+
+        sherwaniRequestBody.setCuff_image("");
+        sherwaniRequestBody.setCollar_image(TextUtils.isEmpty(collar_image) ? "" : collar_image.toString());
+        sherwaniRequestBody.setCustomer_image(TextUtils.isEmpty(image_4_db) ? "" : image_4_db);
+        sherwaniRequestBody.setSide_pocket_image(TextUtils.isEmpty(sidepocket_image) ? "" : sidepocket_image);
+
+
+        sherwaniRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
+        sherwaniRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+    //    sherwaniRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
         //chooseSidePocketImage ; image_4_db;
 
         //Api call here...
 
-        iapi.createSherwani("Bearer " + sharedPreference.getToken(), sherwaniRequestBody).enqueue(new Callback<ResponseBody>() {
+        iapi.createSherwani("Bearer " + sharedPreference.getToken(), sherwaniRequestBody).enqueue(new Callback<HtmlResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                    html_url = response.body().getUrl();
+                    doWebViewPrint();
+                }else{
+                    Toast.makeText(getActivity(), response.message().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
         });
@@ -554,18 +605,20 @@ public class SherwaniFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-            //  imageUri = data.getData();
-            //  iv_01.setImageURI(imageUri);
+            imageUri = data.getData();
+            // iv_01.setImageURI(imageUri);
 
-            Bitmap bitmap = null;
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-            } catch (IOException e) {
+                InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                iv_01.setImageBitmap(bitmap);
+                image_4_db = ConvertBitmapToString(bitmap);
+                Log.i("TAG", "base 64 image" + image_4_db);
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            iv_01.setImageBitmap(bitmap);
 
-            image_4_db = ConvertBitmapToString(bitmap);
+
         }
     }
 
@@ -600,11 +653,10 @@ public class SherwaniFragment extends Fragment {
             }
         });
 
-        webView.loadUrl("https://css4.pub/2017/newsletter/drylab.html");
+        webView.loadUrl(html_url);
 
         mWebView = webView;
     }
-
 
     private void createWebPrintJob(WebView webView) {
 
@@ -623,15 +675,24 @@ public class SherwaniFragment extends Fragment {
         // Save the job object for later status checking
     }
 
-
     public void drawable_to_base64(int drawable) {
         //encode image to base64 string
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        pocket_string =  Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        Log.i("TAG", "drawable_to_base64: " + pocket_string);
+        collar_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + collar_image);
+    }
+
+    public void drawable_to_base64_side_pocket(int drawable) {
+        //encode image to base64 string
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        sidepocket_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + sidepocket_image);
     }
 
 }

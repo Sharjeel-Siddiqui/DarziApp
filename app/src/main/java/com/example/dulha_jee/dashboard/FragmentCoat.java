@@ -41,6 +41,8 @@ import com.example.dulha_jee.SharedPreference;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
 import com.example.dulha_jee.pojo.CoatRequestBody;
+import com.example.dulha_jee.pojo.GetUserResponseBody;
+import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.KurtaRequestBody;
 import com.example.dulha_jee.pojo.SherwaniRequestBody;
 import com.karumi.dexter.Dexter;
@@ -53,7 +55,9 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -79,6 +83,8 @@ public class FragmentCoat extends Fragment {
     SharedPreference sharedPreference;
     private WebView mWebView;
     String image_4_db;
+    public String collar_image, sidepocket_image;
+    public String html_url;
 
     //fields to bind view
     @BindView(R.id.quantity)
@@ -123,6 +129,11 @@ public class FragmentCoat extends Fragment {
     EditText order_date_most_urgent;
     @BindView(R.id.remarks)
     EditText remarks;
+
+    @BindView(R.id.urgent_order_date)
+    EditText urgent_order_date;
+    @BindView(R.id.urgent_order_time)
+    EditText urgent_order_time;
 
 
     //checkboxes
@@ -285,9 +296,29 @@ public class FragmentCoat extends Fragment {
         dropdown_coat_varieties = view.findViewById(R.id.dropdown_coat_varieties);
         submit_coat = view.findViewById(R.id.submit_coat);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown_karegar_name.setAdapter(adapter);
+        dropdown_karegar_name.setAdapter(adapter);*/
+
+        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+            @Override
+            public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
+                GetUserResponseBody getUserResponseBody = response.body();
+                getUserResponseBody.getData();
+
+                String[] arr = getUserResponseBody.getData().toArray(new String[getUserResponseBody.getData().size()]);
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
+                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                dropdown_karegar_name.setAdapter(adapter3);
+
+                //Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, coatVarieties);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -323,28 +354,34 @@ public class FragmentCoat extends Fragment {
         CoatRequestBody coatRequestBody = new CoatRequestBody();
 
         //et_fields....
-        coatRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
-        coatRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
-        coatRequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString());
-        coatRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
-        coatRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+        coatRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام");
+        coatRequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString() + "کسٹمر کا نمبر");
+        coatRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر");
+        coatRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ");
 
-        coatRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
-        coatRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
-        coatRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
-        coatRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
-        coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString());
-        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : chest.getText().toString());
-        coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
-        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" : full_back.getText().toString());
-        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString());
-        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString());
-        coatRequestBody.setPencil_length(TextUtils.isEmpty(pencil_length.getText().toString()) ? "" : pencil_length.getText().toString());
-        coatRequestBody.setCollar_thing(TextUtils.isEmpty(collar_thing.getText().toString()) ? "" : collar_thing.getText().toString());
-        coatRequestBody.setPencil_thing(TextUtils.isEmpty(pencil_thing.getText().toString()) ? "" : pencil_thing.getText().toString());
-        coatRequestBody.setShoulder_depth(TextUtils.isEmpty(shoulder_depth.getText().toString()) ? "" : shoulder_depth.getText().toString());
-        coatRequestBody.setFront_cadge(TextUtils.isEmpty(front_cadge.getText().toString()) ? "" : front_cadge.getText().toString());
+        coatRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity  ");
+        coatRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar ");
+        coatRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves");
+        coatRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder ");
+        coatRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ/Hip");
+        coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ/Waist ");
+        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : chest.getText().toString() + "سینہ/Cheest ");
+        coatRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ");
+        coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
+        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" : full_back.getText().toString() + "فل بیک/Full Back ");
+        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString() + "ہالف بیک/Half Back ");
+        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString() + "کراس فرنٹ/Cross Front");
+        coatRequestBody.setPencil_length(TextUtils.isEmpty(pencil_length.getText().toString()) ? "" : "انچ کی رکھنی ہے" + pencil_length.getText().toString() + "پینسل کی چوڑائی");
+        coatRequestBody.setChowk_length(TextUtils.isEmpty(chowk_length.getText().toString()) ? "" : "انچ کی رکھنی ہے" + chowk_length.getText().toString() + "چاک کی لمبائی");
+        coatRequestBody.setCollar_thing(TextUtils.isEmpty(collar_thing.getText().toString()) ? "" : "لگانی ہے" + collar_thing.getText().toString() + "کالر میں");
+        coatRequestBody.setPencil_thing(TextUtils.isEmpty(pencil_thing.getText().toString()) ? "" : " لگانی ہے" + pencil_thing.getText().toString() + "پینسل میں");
+        coatRequestBody.setShoulder_depth(TextUtils.isEmpty(shoulder_depth.getText().toString()) ? "" : "انچ کی رکھنی ہے" + shoulder_depth.getText().toString() + " کوٹ کی گلے کی گہرائی شولڈر کی سلائ سے");
+        coatRequestBody.setFront_cadge(TextUtils.isEmpty(front_cadge.getText().toString()) ? "" : "عدد کاج ہونگے" + front_cadge.getText().toString() + "سامنے پہ");
         coatRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
+
+        //urgent time and date...
+        coatRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
+        coatRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
 
 
         //Check boxes field goes here ....
@@ -403,22 +440,33 @@ public class FragmentCoat extends Fragment {
 
         //image come here
         coatRequestBody.setCuff_image("");
-        coatRequestBody.setCollar_image("");
-        coatRequestBody.setCustomer_image(image_4_db);
-        coatRequestBody.setSide_pocket_image("");
+        coatRequestBody.setCollar_image(TextUtils.isEmpty(collar_image) ? "" : collar_image.toString());
+        coatRequestBody.setCustomer_image(TextUtils.isEmpty(image_4_db) ? "" : image_4_db);
+        coatRequestBody.setSide_pocket_image(TextUtils.isEmpty(sidepocket_image) ? "" : sidepocket_image);
+
+
+       // coatRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
+        coatRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+       // coatRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
         //Api call here...
 
-        iapi.createCoat("Bearer " + sharedPreference.getToken(), coatRequestBody).enqueue(new Callback<ResponseBody>() {
+        iapi.createCoat("Bearer " + sharedPreference.getToken(), coatRequestBody).enqueue(new Callback<HtmlResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                    Log.i("TAG", "onResponse: " + response.message());
+                    Log.i("TAG", "onResponse: " + response.raw());
+                    html_url = response.body().getUrl();
+                    doWebViewPrint();
+                }else{
+                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
         });
@@ -436,21 +484,22 @@ public class FragmentCoat extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-            //   imageUri = data.getData();
-            //   iv_01.setImageURI(imageUri);
+            imageUri = data.getData();
+            // iv_01.setImageURI(imageUri);
 
-            Bitmap bitmap = null;
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-            } catch (IOException e) {
+                InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                iv_01.setImageBitmap(bitmap);
+                image_4_db = ConvertBitmapToString(bitmap);
+                Log.i("TAG", "base 64 image" + image_4_db);
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            iv_01.setImageBitmap(bitmap);
 
-            image_4_db = ConvertBitmapToString(bitmap);
+
         }
     }
-
 
     public static String ConvertBitmapToString(Bitmap bitmap) {
         String encodedImage = "";
@@ -483,11 +532,10 @@ public class FragmentCoat extends Fragment {
             }
         });
 
-        webView.loadUrl("https://css4.pub/2017/newsletter/drylab.html");
+        webView.loadUrl(html_url);
 
         mWebView = webView;
     }
-
 
     private void createWebPrintJob(WebView webView) {
 
@@ -506,14 +554,25 @@ public class FragmentCoat extends Fragment {
         // Save the job object for later status checking
     }
 
-    public void drawable_to_base64(int drawable){
+    public void drawable_to_base64(int drawable) {
         //encode image to base64 string
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),drawable);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        String imageString =   Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        Log.i("TAG", "drawable_to_base64: " + imageString);
+        collar_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + collar_image);
     }
+
+    public void drawable_to_base64_side_pocket(int drawable) {
+        //encode image to base64 string
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        sidepocket_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + sidepocket_image);
+    }
+
 
 }

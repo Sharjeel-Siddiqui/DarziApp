@@ -40,6 +40,8 @@ import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.GetUserResponseBody;
+import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.WaistCoatFragmentrequestBody;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -51,7 +53,9 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -76,6 +80,8 @@ public class WaistCoatFragment extends Fragment {
     SharedPreference sharedPreference;
     private WebView mWebView;
     String image_4_db;
+    public String collar_image, sidepocket_image;
+    public String html_url;
 
     Iapi iapi;
 
@@ -98,10 +104,6 @@ public class WaistCoatFragment extends Fragment {
     EditText front;
     @BindView(R.id.lengthMade)
     EditText lengthMade;
-    @BindView(R.id.order_date)
-    EditText order_date;
-    @BindView(R.id.order_date_most_urgent)
-    EditText order_date_most_urgent;
     @BindView(R.id.remarks)
     EditText remarks;
     @BindView(R.id.three_piece_style_cadge)
@@ -116,6 +118,22 @@ public class WaistCoatFragment extends Fragment {
     EditText lozing;
     @BindView(R.id.waistcoat_chowk_length)
     EditText waistcoat_chowk_length;
+
+
+    @BindView(R.id.customer_name)
+    EditText customer_name;
+    @BindView(R.id.order_number)
+    EditText order_number;
+    @BindView(R.id.mobile_number)
+    EditText mobile_number;
+    @BindView(R.id.order_date)
+    EditText order_date;
+
+    @BindView(R.id.urgent_order_date)
+    EditText urgent_order_date;
+    @BindView(R.id.urgent_order_time)
+    EditText urgent_order_time;
+
 
     //checkBoxes
 
@@ -245,14 +263,6 @@ public class WaistCoatFragment extends Fragment {
     CheckBox party_label;
     @BindView(R.id.fancy_label)
     CheckBox fancy_label;
-    @BindView(R.id.customer_name)
-    EditText customer_name;
-    @BindView(R.id.customer_number)
-    EditText customer_number;
-    @BindView(R.id.order_number)
-    EditText order_number;
-    @BindView(R.id.order_date_date)
-    EditText order_date_date;
 
 
     @Nullable
@@ -275,6 +285,26 @@ public class WaistCoatFragment extends Fragment {
 
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         chooseImage = view.findViewById(R.id.chooseImage);
+
+        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+            @Override
+            public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
+                GetUserResponseBody getUserResponseBody = response.body();
+                getUserResponseBody.getData();
+
+                String[] arr = getUserResponseBody.getData().toArray(new String[getUserResponseBody.getData().size()]);
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
+                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                dropdown_karegar_name.setAdapter(adapter3);
+
+                //Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -305,9 +335,9 @@ public class WaistCoatFragment extends Fragment {
         });
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown_karegar_name.setAdapter(adapter);
+        dropdown_karegar_name.setAdapter(adapter);*/
 
         submit_waistcoat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -338,27 +368,32 @@ public class WaistCoatFragment extends Fragment {
         WaistCoatFragmentrequestBody waistCoatFragmentrequestBody = new WaistCoatFragmentrequestBody();
 
         //et fields
-        waistCoatFragmentrequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
-        waistCoatFragmentrequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString());
-        waistCoatFragmentrequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
-        waistCoatFragmentrequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+        waistCoatFragmentrequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام");
+        waistCoatFragmentrequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + "کسٹمر کا نمبر");
+        waistCoatFragmentrequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر");
+        waistCoatFragmentrequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ");
 
-        waistCoatFragmentrequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
-        waistCoatFragmentrequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
-        waistCoatFragmentrequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
-        waistCoatFragmentrequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
-        waistCoatFragmentrequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
-        waistCoatFragmentrequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString());
-        waistCoatFragmentrequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
-        waistCoatFragmentrequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString());
-        waistCoatFragmentrequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString());
+        waistCoatFragmentrequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity");
+        waistCoatFragmentrequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar");
+        waistCoatFragmentrequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves ");
+        waistCoatFragmentrequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder");
+        waistCoatFragmentrequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ تیار/Hip Ready ");
+        waistCoatFragmentrequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ");
+        waistCoatFragmentrequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
+        waistCoatFragmentrequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + "سامنا تیار/Front Ready");
+        waistCoatFragmentrequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ تیار/Waist Ready ");
 
-        waistCoatFragmentrequestBody.setThree_piece_style_cadge(TextUtils.isEmpty(three_piece_style_cadge.getText().toString()) ? "" : three_piece_style_cadge.getText().toString());
-        waistCoatFragmentrequestBody.setCollar_width(TextUtils.isEmpty(collar_width.getText().toString()) ? "" : collar_width.getText().toString());
+        //urgent time and date...
+        waistCoatFragmentrequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
+        waistCoatFragmentrequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
+
+
+        waistCoatFragmentrequestBody.setThree_piece_style_cadge(TextUtils.isEmpty(three_piece_style_cadge.getText().toString()) ? "" : "عدد ہائ لیٹ کاج ہونگے" + three_piece_style_cadge.getText().toString() + "تھری پیس اسٹائل ونٹکوٹ سامنے پہ");
+        waistCoatFragmentrequestBody.setCollar_width(TextUtils.isEmpty(collar_width.getText().toString()) ? "" : "انچ رکھنی ہے" + collar_width.getText().toString() + "کالر کی چوڑائ");
         waistCoatFragmentrequestBody.setViolet_pocket_width(TextUtils.isEmpty(violet_pocket_width.getText().toString()) ? "" : violet_pocket_width.getText().toString());
-        waistCoatFragmentrequestBody.setExtra_buttons(TextUtils.isEmpty(extra_buttons.getText().toString()) ? "" : extra_buttons.getText().toString());
-        waistCoatFragmentrequestBody.setLozing(TextUtils.isEmpty(lozing.getText().toString()) ? "" : lozing.getText().toString());
-        // waistCoatFragmentrequestBody.setwaos(TextUtils.isEmpty(lozing.getText().toString()) ? "" : lozing.getText().toString()); //waist coat chawk length
+        waistCoatFragmentrequestBody.setExtra_buttons(TextUtils.isEmpty(extra_buttons.getText().toString()) ? "" : "انچ رکھنی ہے" + extra_buttons.getText().toString() + "وائلٹ پوکٹ کی چوڑائ");
+        waistCoatFragmentrequestBody.setLozing(TextUtils.isEmpty(lozing.getText().toString()) ? "" : "انچ کی لوزنگ میں بنانی ہے" + lozing.getText().toString());
+        waistCoatFragmentrequestBody.set_chowk_length(TextUtils.isEmpty(waistcoat_chowk_length.getText().toString()) ? "" : " انچ کے رکھنے ہیں" + waistcoat_chowk_length.getText().toString() + "ویسٹ کوٹ کے چاک"); //waist coat chawk length
 
         //Check boxes come here
         waistCoatFragmentrequestBody.setJawahir_cut_style(jawahir_cut_style.isChecked() ? jawahir_cut_style.getText().toString() : "");
@@ -425,27 +460,42 @@ public class WaistCoatFragment extends Fragment {
         waistCoatFragmentrequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
         waistCoatFragmentrequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
 
-        //sendimages here
-        //image_4_db;
+        //send Images...
+
+        waistCoatFragmentrequestBody.setCuff_image("");
+        waistCoatFragmentrequestBody.setCollar_image(TextUtils.isEmpty(collar_image) ? "" : collar_image.toString());
+        waistCoatFragmentrequestBody.setCustomer_image(TextUtils.isEmpty(image_4_db) ? "" : image_4_db);
+        waistCoatFragmentrequestBody.setSide_pocket_image(TextUtils.isEmpty(sidepocket_image) ? "" : sidepocket_image);
+
+
+        waistCoatFragmentrequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+
 
         //Api call here...
 
-
-        iapi.createWaistCoat("Bearer " + sharedPreference.getToken(), waistCoatFragmentrequestBody).enqueue(new Callback<ResponseBody>() {
+        iapi.createWaistCoat("Bearer " + sharedPreference.getToken(), waistCoatFragmentrequestBody).enqueue(new Callback<HtmlResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                    Log.i("TAG", "onResponse: " + response.message());
+                    Log.i("TAG", "onResponse: " + response.raw());
+                    //response.body().getUrl();
+                    html_url = response.body().getUrl();
+                    doWebViewPrint();
+                } else {
+                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+
 
     private void openGallery() {
         Intent intent = new Intent();
@@ -457,18 +507,20 @@ public class WaistCoatFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-            //imageUri = data.getData();
-            //iv_01.setImageURI(imageUri);
+            imageUri = data.getData();
+            // iv_01.setImageURI(imageUri);
 
-            Bitmap bitmap = null;
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-            } catch (IOException e) {
+                InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                iv_01.setImageBitmap(bitmap);
+                image_4_db = ConvertBitmapToString(bitmap);
+                Log.i("TAG", "base 64 image" + image_4_db);
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            iv_01.setImageBitmap(bitmap);
 
-            image_4_db = ConvertBitmapToString(bitmap);
+
         }
     }
 
@@ -485,7 +537,6 @@ public class WaistCoatFragment extends Fragment {
 
         return encodedImage;
     }
-
 
     private void doWebViewPrint() {
 
@@ -504,11 +555,10 @@ public class WaistCoatFragment extends Fragment {
             }
         });
 
-        webView.loadUrl("https://css4.pub/2017/newsletter/drylab.html");
+        webView.loadUrl(html_url);
 
         mWebView = webView;
     }
-
 
     private void createWebPrintJob(WebView webView) {
 
@@ -527,13 +577,24 @@ public class WaistCoatFragment extends Fragment {
         // Save the job object for later status checking
     }
 
-    public void drawable_to_base64(int drawable){
+    public void drawable_to_base64(int drawable) {
         //encode image to base64 string
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),drawable);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        String imageString =    Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        Log.i("TAG", "drawable_to_base64: " + imageString);
+        collar_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + collar_image);
     }
+
+    public void drawable_to_base64_side_pocket(int drawable) {
+        //encode image to base64 string
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        sidepocket_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + sidepocket_image);
+    }
+
 }

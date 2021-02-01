@@ -286,7 +286,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="سینہ/Cheest "
+                android:text="سینہ/Chest "
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -922,7 +922,7 @@
                     android:textSize="22sp" />
 
                 <EditText
-                    android:id="@+id/is_urgent"
+                    android:id="@+id/urgent_order_time"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content" />
 
@@ -934,6 +934,7 @@
                     android:textSize="22sp" />
 
                 <EditText
+                    android:id="@+id/urgent_order_date"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content" />
 
@@ -1136,6 +1137,7 @@
             android:id="@+id/iv_01"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_margin="10dp"
             android:background="@drawable/edit_text_border"
             android:scaleType="fitXY" />
 

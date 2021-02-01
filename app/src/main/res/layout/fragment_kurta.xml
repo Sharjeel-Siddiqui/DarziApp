@@ -30,6 +30,16 @@
             android:textDirection="rtl"
             android:textSize="22sp" />
 
+        <Spinner
+            android:id="@+id/dropdown_shalwar_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:prompt="@string/app_name"
+            android:textAlignment="center"
+            android:textDirection="rtl"
+            android:textSize="22sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1538,15 +1548,7 @@
 
         //shalwar mei number bhejey gey
 
-        <Spinner
-            android:id="@+id/dropdown_shalwar_name"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:padding="10dp"
-            android:prompt="@string/app_name"
-            android:textAlignment="center"
-            android:textDirection="rtl"
-            android:textSize="22sp" />
+
 
         <CheckBox
             android:id="@+id/customer_cloth"
@@ -1633,7 +1635,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/is_urgent"
+                android:id="@+id/urgent_order_time"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content" />
 
@@ -1645,7 +1647,7 @@
                 android:textSize="22sp" />
 
             <EditText
-
+                android:id="@+id/urgent_order_date"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content" />
 
@@ -1851,6 +1853,7 @@
 
         <ImageView
             android:id="@+id/iv_01"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/edit_text_border"

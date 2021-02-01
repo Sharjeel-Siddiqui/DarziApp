@@ -47,22 +47,22 @@ public interface Iapi {
     Call<HtmlResponseBody> createKurta(@Header("Authorization") String token, @Body KurtaRequestBody kurtaRequestBody);
 
     @POST("api/sherwani/create")
-    Call<ResponseBody> createSherwani(@Header("Authorization") String token, @Body SherwaniRequestBody kurtaRequestBody);
+    Call<HtmlResponseBody> createSherwani(@Header("Authorization") String token, @Body SherwaniRequestBody kurtaRequestBody);
 
     @POST("api/coat/create")
-    Call<ResponseBody> createCoat(@Header("Authorization") String token, @Body CoatRequestBody kurtaRequestBody);
+    Call<HtmlResponseBody> createCoat(@Header("Authorization") String token, @Body CoatRequestBody kurtaRequestBody);
 
     @POST("api/waist-coat/create")
-    Call<ResponseBody> createWaistCoat(@Header("Authorization") String token, @Body WaistCoatFragmentrequestBody kurtaRequestBody);
+    Call<HtmlResponseBody> createWaistCoat(@Header("Authorization") String token, @Body WaistCoatFragmentrequestBody kurtaRequestBody);
 
     @POST("api/shirt/create")
-    Call<ResponseBody> createShirt(@Header("Authorization") String token, @Body ShirtRequestBody kurtaRequestBody);
+    Call<HtmlResponseBody> createShirt(@Header("Authorization") String token, @Body ShirtRequestBody kurtaRequestBody);
 
     @POST("api/pant/create")
-    Call<ResponseBody> createPant(@Header("Authorization") String token, @Body PantPojo kurtaRequestBody);
+    Call<HtmlResponseBody> createPant(@Header("Authorization") String token, @Body PantPojo kurtaRequestBody);
 
     @POST("api/inner-suit/create")
-    Call<ResponseBody> createInnerSuit(@Header("Authorization") String token, @Body InnerSuitRequestBody kurtaRequestBody);
+    Call<HtmlResponseBody> createInnerSuit(@Header("Authorization") String token, @Body InnerSuitRequestBody kurtaRequestBody);
 
 
     @GET("api/search")

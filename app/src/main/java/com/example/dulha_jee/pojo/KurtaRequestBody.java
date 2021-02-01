@@ -2,9 +2,49 @@ package com.example.dulha_jee.pojo;
 
 public class KurtaRequestBody {
 
-    private String side_pocket_image,cuff_image,collar_image,customer_image,front_pati_style_as_image, customer_name, order_number, mobile_number, order_date, quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, collar_width, collar_point_length, front_pati_length, front_pati_cadge, cover_pati_length, cuff_width, cuff_chowk_width, cuff_length, chowk_length, machine_sew_bail, pocket_width, pocket_length, order_date_most_urgent, remarks;
+    private String  kurta_type,shalwar,karigar,urgent_order_time,urgent_order_date,side_pocket_image,cuff_image,collar_image,customer_image,front_pati_style_as_image, customer_name, order_number, mobile_number, order_date, quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, collar_width, collar_point_length, front_pati_length, front_pati_cadge, cover_pati_length, cuff_width, cuff_chowk_width, cuff_length, chowk_length, machine_sew_bail, pocket_width, pocket_length, order_date_most_urgent, remarks;
 
     private String   sherwani_collar, collar_front_round, collar_pointed, cut_collar, collar_on_collar, v_collar, shirt_collar, reverse_style_french_collar, taxido_style_collar, collar_style_small, button_on_point, button_on_cadge_small, soft_bukram_on_collar, customer_collar_soft, hard_bukram_on_collar, more_bukram_on_collar, hidden_on_collar, design_as_on_picture_collar, round_neck_magzi, round_neck_magzi_with_finishing, regular_pati, front_pati_width, pointed_pati, straight_pati, boat_sew_on_pati, cover_pati, front_pati_, style_as_image, cut_sleeves, cut_cuff, round_cuff, straight_cuff_pointed, cuff_link_style_cuff, double_cuff, hard_bukram_in_cuff, soft_bukram_in_cuff, cuff_chowk_cadge, cuff_chowk_bukram, cuff_chowk_pointed, cuff_chowk_straight, cuff_chowk_round, pointer_style_picture, cuff_machine_karhayi, cuff_hand_karhayi, straight_kurta_daman, round_daman, kamiz_style_daman, piyala_style_daman, straight_daman_pointed_corner, daman_double_sew, daman_finishing, daman_as_image, chakoti_american, chakoti, chakoti_contrast, teere_piece, not_teere_piece, double_sew_full, lab_sew, paki_lab_sew, chanpa, front_bunch, collar_machine_sew, sleeves_machine_sew, shoulder_machine_sew, collar_pati_hand_sew, collar_hand_sew, pati_hand_sew, front_hand_sew, sleeve_hand_sew, shoulder_hand_sew, one_front_pocket_style, two_front_pocket, two_side_pocket, right_side_pocket, left_side_pocket, side_pocket_deep, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
+
+    public String getKurta_type() {
+        return kurta_type;
+    }
+
+    public void setKurta_type(String kurta_type) {
+        this.kurta_type = kurta_type;
+    }
+
+    public String getShalwar() {
+        return shalwar;
+    }
+
+    public void setShalwar(String shalwar) {
+        this.shalwar = shalwar;
+    }
+
+    public String getKarigar() {
+        return karigar;
+    }
+
+    public void setKarigar(String karigar) {
+        this.karigar = karigar;
+    }
+
+    public String getUrgent_order_time() {
+        return urgent_order_time;
+    }
+
+    public void setUrgent_order_time(String urgent_order_time) {
+        this.urgent_order_time = urgent_order_time;
+    }
+
+    public String getUrgent_order_date() {
+        return urgent_order_date;
+    }
+
+    public void setUrgent_order_date(String urgent_order_date) {
+        this.urgent_order_date = urgent_order_date;
+    }
 
     public String getSide_pocket_image() {
         return side_pocket_image;

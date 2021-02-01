@@ -42,6 +42,8 @@ import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.GetUserResponseBody;
+import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.ShirtRequestBody;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -53,7 +55,9 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -78,7 +82,8 @@ public class FragmentShirt extends Fragment {
     public static final int PICK_IMAGE = 1;
     private WebView mWebView;
     String image_4_db;
-    public static String collar_image, cuff_image;
+    public String collar_image, cuff_image;
+    public String html_url;
 
 
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
@@ -112,6 +117,19 @@ public class FragmentShirt extends Fragment {
     EditText order_date_most_urgent;
     @BindView(R.id.remarks)
     EditText remarks;
+
+    @BindView(R.id.customer_name)
+    EditText customer_name;
+    @BindView(R.id.order_number)
+    EditText order_number;
+    @BindView(R.id.mobile_number)
+    EditText mobile_number;
+
+
+    @BindView(R.id.urgent_order_date)
+    EditText urgent_order_date;
+    @BindView(R.id.urgent_order_time)
+    EditText urgent_order_time;
 
     //CheckBoxes
     @BindView(R.id.is_shirt)
@@ -170,14 +188,6 @@ public class FragmentShirt extends Fragment {
     CheckBox party_label;
     @BindView(R.id.fancy_label)
     CheckBox fancy_label;
-    @BindView(R.id.customer_name)
-    EditText customer_name;
-    @BindView(R.id.customer_number)
-    EditText customer_number;
-    @BindView(R.id.order_number)
-    EditText order_number;
-    @BindView(R.id.order_date_date)
-    EditText order_date_date;
 
 
     @Nullable
@@ -193,6 +203,26 @@ public class FragmentShirt extends Fragment {
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
         iapi = ApiClient.getClient().create(Iapi.class);
+
+        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+            @Override
+            public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
+                GetUserResponseBody getUserResponseBody = response.body();
+                getUserResponseBody.getData();
+
+                String[] arr = getUserResponseBody.getData().toArray(new String[getUserResponseBody.getData().size()]);
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
+                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                dropdown_karegar_name.setAdapter(adapter3);
+
+                //Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,9 +285,9 @@ public class FragmentShirt extends Fragment {
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown_karegar_name.setAdapter(adapter);
+        dropdown_karegar_name.setAdapter(adapter);*/
 
         chooseCollarImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -335,7 +365,6 @@ public class FragmentShirt extends Fragment {
                 // navController.navigate(R.id.action_kurtaFragment_to_fragmentCollarSelection);
             }
         });
-
         chooseCuffImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -348,7 +377,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_1_button_angle));
-                        drawable_to_base64_Cuff(R.drawable.cuff_1_button_angle);
+                        drawable_to_base64_cuff(R.drawable.cuff_1_button_angle);
                     }
                 });
                 LL2.setOnClickListener(new View.OnClickListener() {
@@ -356,7 +385,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_1_button_rounded));
-                        drawable_to_base64_Cuff(R.drawable.cuff_1_button_rounded);
+                        drawable_to_base64_cuff(R.drawable.cuff_1_button_rounded);
                     }
                 });
                 LL3.setOnClickListener(new View.OnClickListener() {
@@ -364,7 +393,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_square));
-                        drawable_to_base64_Cuff(R.drawable.cuff_french_square);
+                        drawable_to_base64_cuff(R.drawable.cuff_french_square);
                     }
                 });
                 LL4.setOnClickListener(new View.OnClickListener() {
@@ -372,7 +401,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_angle));
-                        drawable_to_base64_Cuff(R.drawable.cuff_2_button_angle);
+                        drawable_to_base64_cuff(R.drawable.cuff_2_button_angle);
                     }
                 });
                 LL5.setOnClickListener(new View.OnClickListener() {
@@ -380,7 +409,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_square));
-                        drawable_to_base64_Cuff(R.drawable.cuff_2_button_square);
+                        drawable_to_base64_cuff(R.drawable.cuff_2_button_square);
                     }
                 });
                 LL6.setOnClickListener(new View.OnClickListener() {
@@ -388,7 +417,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_2_button_round));
-                        drawable_to_base64_Cuff(R.drawable.cuff_2_button_round);
+                        drawable_to_base64_cuff(R.drawable.cuff_2_button_round);
                     }
                 });
                 LL7.setOnClickListener(new View.OnClickListener() {
@@ -396,7 +425,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_angle));
-                        drawable_to_base64_Cuff(R.drawable.cuff_3_button_angle);
+                        drawable_to_base64_cuff(R.drawable.cuff_3_button_angle);
                     }
                 });
                 LL8.setOnClickListener(new View.OnClickListener() {
@@ -404,7 +433,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_square));
-                        drawable_to_base64_Cuff(R.drawable.cuff_3_button_square);
+                        drawable_to_base64_cuff(R.drawable.cuff_3_button_square);
                     }
                 });
                 LL9.setOnClickListener(new View.OnClickListener() {
@@ -412,7 +441,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_3_button_rounded));
-                        drawable_to_base64_Cuff(R.drawable.cuff_3_button_rounded);
+                        drawable_to_base64_cuff(R.drawable.cuff_3_button_rounded);
                     }
                 });
                 LL10.setOnClickListener(new View.OnClickListener() {
@@ -420,7 +449,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_angle));
-                        drawable_to_base64_Cuff(R.drawable.cuff_french_angle);
+                        drawable_to_base64_cuff(R.drawable.cuff_french_angle);
                     }
                 });
                 LL11.setOnClickListener(new View.OnClickListener() {
@@ -428,7 +457,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_square));
-                        drawable_to_base64_Cuff(R.drawable.cuff_french_square);
+                        drawable_to_base64_cuff(R.drawable.cuff_french_square);
                     }
                 });
                 LL12.setOnClickListener(new View.OnClickListener() {
@@ -436,7 +465,7 @@ public class FragmentShirt extends Fragment {
                     public void onClick(View view) {
                         dialog.dismiss();
                         chooseCuffImage.setImageDrawable(getResources().getDrawable(R.drawable.cuff_french_round));
-                        drawable_to_base64_Cuff(R.drawable.cuff_french_round);
+                        drawable_to_base64_cuff(R.drawable.cuff_french_round);
                     }
                 });
 
@@ -451,22 +480,26 @@ public class FragmentShirt extends Fragment {
 
         //et fields...
 
-        shirtRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
-        shirtRequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString());
-        shirtRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
-        shirtRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+        shirtRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام");
+        shirtRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + "کسٹمر کا نمبر");
+        shirtRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر");
+        shirtRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ");
 
-        shirtRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
-        shirtRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
-        shirtRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
-        shirtRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
-        shirtRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
-        shirtRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString());
-        shirtRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString());
-        shirtRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString());
-        shirtRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
-        shirtRequestBody.setPatti_ki_chorayi(TextUtils.isEmpty(patti_ki_chorayi.getText().toString()) ? "" : patti_ki_chorayi.getText().toString());
+        shirtRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity");
+        shirtRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar");
+        shirtRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves");
+        shirtRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/ Shoulder");
+        shirtRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ تیار /Hip Ready");
+        shirtRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ تیار");
+        shirtRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + "سامنا تیار /Front Ready");
+        shirtRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ تیار /Waist Ready");
+        shirtRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
+        shirtRequestBody.setPatti_ki_chorayi(TextUtils.isEmpty(patti_ki_chorayi.getText().toString()) ? "" : "نچ رکھنی ہے" + patti_ki_chorayi.getText().toString() + "پٹی کی چوڑائ");
         shirtRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
+
+        //urgent time and date...
+        shirtRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
+        shirtRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
 
 
         //Check BOXES COME HERE....
@@ -502,27 +535,39 @@ public class FragmentShirt extends Fragment {
         shirtRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
         shirtRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
 
-//send images
-      //  image_4_db; cuff_image , collar_image;
+
+        //send Images...
+
+        shirtRequestBody.setCuff_image(TextUtils.isEmpty(cuff_image) ? "" : cuff_image.toString());
+        shirtRequestBody.setCollar_image(TextUtils.isEmpty(collar_image) ? "" : collar_image.toString());
+        shirtRequestBody.setCustomer_image(TextUtils.isEmpty(image_4_db) ? "" : image_4_db);
+        shirtRequestBody.setSide_pocket_image("");
+
+
+     //   shirtRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
+        shirtRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+      //  shirtRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
         //Api call here...
 
 
-        iapi.createShirt("Bearer " + sharedPreference.getToken(), shirtRequestBody).enqueue(new Callback<ResponseBody>() {
+        iapi.createShirt("Bearer " + sharedPreference.getToken(), shirtRequestBody).enqueue(new Callback<HtmlResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                    Log.i("TAG", "onResponse: " + response.message());
+                    Log.i("TAG", "onResponse: " + response.raw());
+                    html_url = response.body().getUrl();
+                    doWebViewPrint();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     public void initViews(View view, Dialog dialog) {
@@ -550,17 +595,19 @@ public class FragmentShirt extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-            // imageUri = data.getData();
-            //iv_01.setImageURI(imageUri);
-            Bitmap bitmap = null;
+            imageUri = data.getData();
+            // iv_01.setImageURI(imageUri);
+
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-            } catch (IOException e) {
+                InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                iv_01.setImageBitmap(bitmap);
+                image_4_db = ConvertBitmapToString(bitmap);
+                Log.i("TAG", "base 64 image" + image_4_db);
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            iv_01.setImageBitmap(bitmap);
 
-            image_4_db = ConvertBitmapToString(bitmap);
 
         }
     }
@@ -596,11 +643,10 @@ public class FragmentShirt extends Fragment {
             }
         });
 
-        webView.loadUrl("https://css4.pub/2017/newsletter/drylab.html");
+        webView.loadUrl(html_url);
 
         mWebView = webView;
     }
-
 
     private void createWebPrintJob(WebView webView) {
 
@@ -625,19 +671,18 @@ public class FragmentShirt extends Fragment {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        collar_image = "data:image/jpeg;base64," + Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        collar_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         Log.i("TAG", "drawable_to_base64: " + collar_image);
     }
 
-    public void drawable_to_base64_Cuff(int drawable) {
+    public void drawable_to_base64_cuff(int drawable) {
         //encode image to base64 string
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        cuff_image =  Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        cuff_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         Log.i("TAG", "drawable_to_base64: " + cuff_image);
     }
-
 
 }

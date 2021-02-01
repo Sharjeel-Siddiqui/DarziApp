@@ -40,6 +40,8 @@ import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.GetUserResponseBody;
+import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.PantPojo;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -232,6 +234,25 @@ public class FragmentPants extends Fragment {
         iapi = ApiClient.getClient().create(Iapi.class);
         sharedPreference = new SharedPreference(getActivity());
 
+        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+            @Override
+            public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
+                GetUserResponseBody getUserResponseBody = response.body();
+                getUserResponseBody.getData();
+
+                String[] arr = getUserResponseBody.getData().toArray(new String[getUserResponseBody.getData().size()]);
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
+                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                dropdown_karegar_name.setAdapter(adapter3);
+
+                //Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -285,9 +306,9 @@ public class FragmentPants extends Fragment {
             }
         });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
+       /* ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown_karegar_name.setAdapter(adapter);
+        dropdown_karegar_name.setAdapter(adapter);*/
     }
 
     private void createPantRequest() {
@@ -363,19 +384,25 @@ public class FragmentPants extends Fragment {
         pantPojo.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
 
         //send image here
+
        // image_4_db;
 
+
+
+
+        pantPojo.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+
         //Api call here...
-        iapi.createPant("Bearer "+ sharedPreference.getToken(),pantPojo).enqueue(new Callback<ResponseBody>() {
+        iapi.createPant("Bearer "+ sharedPreference.getToken(),pantPojo).enqueue(new Callback<HtmlResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
         });

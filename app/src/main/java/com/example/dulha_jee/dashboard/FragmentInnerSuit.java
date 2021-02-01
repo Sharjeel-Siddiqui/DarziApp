@@ -40,6 +40,8 @@ import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.GetUserResponseBody;
+import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.InnerSuitRequestBody;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -263,6 +265,27 @@ public class FragmentInnerSuit extends Fragment {
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         dropdown_shalwar_name = view.findViewById(R.id.dropdown_shalwar_name);
 
+        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+            @Override
+            public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
+                GetUserResponseBody getUserResponseBody = response.body();
+                getUserResponseBody.getData();
+
+                String[] arr = getUserResponseBody.getData().toArray(new String[getUserResponseBody.getData().size()]);
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
+                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                dropdown_karegar_name.setAdapter(adapter3);
+
+                //Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -317,10 +340,10 @@ public class FragmentInnerSuit extends Fragment {
         });
 
         //karegar names
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
+      /*  ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_karegar_name.setAdapter(adapter);
-
+*/
         //drop down names Shalwar...
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, shalwar);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -419,17 +442,23 @@ public class FragmentInnerSuit extends Fragment {
         //send images here
         // image_4_db
 
+
+
+        innerSuitRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
+        innerSuitRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+        //kurtaRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
+
         //Api call here...
-        iapi.createInnerSuit("Bearer " + sharedPreference.getToken(), innerSuitRequestBody).enqueue(new Callback<ResponseBody>() {
+        iapi.createInnerSuit("Bearer " + sharedPreference.getToken(), innerSuitRequestBody).enqueue(new Callback<HtmlResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
         });
@@ -521,7 +550,7 @@ public class FragmentInnerSuit extends Fragment {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        String imageString =  Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         Log.i("TAG", "drawable_to_base64: " + imageString);
     }
 

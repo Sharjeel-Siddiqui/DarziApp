@@ -2,7 +2,47 @@ package com.example.dulha_jee.pojo;
 
 public class WaistCoatFragmentrequestBody {
 
-    private String side_pocket_image,cuff_image,collar_image,customer_image, customer_name, order_number, mobile_number, quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, order_date, order_date_most_urgent, remarks, jawahir_cut_style, v_neck_style, u_neck_style, three_piece_style_cadge, waistcoat_back_backet, metal_fancy_buttons, matching_plastic_buttons, straight_daman, round_daman, coat_style_round_daman, collar_width, collar_hala, collar_pointed, double_bon_pocket, single_bon_pocket, violet_pocket, patch_pocket, violet_pocket_width, cadge_button_pati, no_upper_pocket, no_lower_pocket, waistcoat_style_like_image, two_pockets_inside, extra_buttons, pocket_like_fabric, full_fewsing, front_fewsing, astar_cherry, customer_stiff_waistcoat, collar_karhayi, front_pocket_karhayi, both_front_karhayi, one_front_karhayi, back_karhayi, collar_buttons, collar_lower_buttons, front_pipine, pocket_pipine, cadge_contrast, lozing, waistcoat, _chowk_length, excersize_body, child_size_waistcoat, magzi_round_neck_waistcoat, body_builder, collar_soft_bukram, shape_body, fabric_customer, finishing, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, altered_body, deep_body, party_label, fancy_label;
+    private String  kurta_type,shalwar,karigar,urgent_order_time, urgent_order_date, side_pocket_image, cuff_image, collar_image, customer_image, customer_name, order_number, mobile_number, quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, order_date, order_date_most_urgent, remarks, jawahir_cut_style, v_neck_style, u_neck_style, three_piece_style_cadge, waistcoat_back_backet, metal_fancy_buttons, matching_plastic_buttons, straight_daman, round_daman, coat_style_round_daman, collar_width, collar_hala, collar_pointed, double_bon_pocket, single_bon_pocket, violet_pocket, patch_pocket, violet_pocket_width, cadge_button_pati, no_upper_pocket, no_lower_pocket, waistcoat_style_like_image, two_pockets_inside, extra_buttons, pocket_like_fabric, full_fewsing, front_fewsing, astar_cherry, customer_stiff_waistcoat, collar_karhayi, front_pocket_karhayi, both_front_karhayi, one_front_karhayi, back_karhayi, collar_buttons, collar_lower_buttons, front_pipine, pocket_pipine, cadge_contrast, lozing, waistcoat, _chowk_length, excersize_body, child_size_waistcoat, magzi_round_neck_waistcoat, body_builder, collar_soft_bukram, shape_body, fabric_customer, finishing, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, altered_body, deep_body, party_label, fancy_label;
+
+    public String getKurta_type() {
+        return kurta_type;
+    }
+
+    public void setKurta_type(String kurta_type) {
+        this.kurta_type = kurta_type;
+    }
+
+    public String getShalwar() {
+        return shalwar;
+    }
+
+    public void setShalwar(String shalwar) {
+        this.shalwar = shalwar;
+    }
+
+    public String getKarigar() {
+        return karigar;
+    }
+
+    public void setKarigar(String karigar) {
+        this.karigar = karigar;
+    }
+
+    public String getUrgent_order_time() {
+        return urgent_order_time;
+    }
+
+    public void setUrgent_order_time(String urgent_order_time) {
+        this.urgent_order_time = urgent_order_time;
+    }
+
+    public String getUrgent_order_date() {
+        return urgent_order_date;
+    }
+
+    public void setUrgent_order_date(String urgent_order_date) {
+        this.urgent_order_date = urgent_order_date;
+    }
 
     public String getSide_pocket_image() {
         return side_pocket_image;
@@ -60,7 +100,7 @@ public class WaistCoatFragmentrequestBody {
         this.mobile_number = mobile_number;
     }
 
-    public WaistCoatFragmentrequestBody(){
+    public WaistCoatFragmentrequestBody() {
 
     }
 
