@@ -49,11 +49,14 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.tapadoo.alerter.Alert;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -79,7 +82,9 @@ public class FragmentPants extends Fragment {
     SharedPreference sharedPreference;
     private WebView mWebView;
     String image_4_db;
-
+    Alerter alerter;
+    public String collar_image, sidepocket_image;
+    public String html_url;
 
     @BindView(R.id.quantity)
     EditText quantity;
@@ -233,6 +238,7 @@ public class FragmentPants extends Fragment {
         iv_01 = view.findViewById(R.id.iv_01);
         iapi = ApiClient.getClient().create(Iapi.class);
         sharedPreference = new SharedPreference(getActivity());
+        alerter = Alerter.create(getActivity());
 
         iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
@@ -387,6 +393,12 @@ public class FragmentPants extends Fragment {
 
        // image_4_db;
 
+        pantPojo.setCustomer_image(TextUtils.isEmpty(image_4_db) ? "" : image_4_db);
+
+        alerter.setTitle("انتطار فرمائیے۔۔۔")
+                .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
+                .setIcon(R.drawable.dulha_jee_logo)
+                .setBackgroundColorRes(R.color.black).show();
 
 
 
@@ -397,13 +409,22 @@ public class FragmentPants extends Fragment {
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                    Log.i("TAG", "onResponse: " + response.message());
+                    Log.i("TAG", "onResponse: " + response.raw());
+                    html_url = response.body().getUrl();
+                    doWebViewPrint();
+                    Alerter.hide();
+                }else{
+                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                    Alerter.hide();
                 }
             }
 
             @Override
             public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+                Alerter.hide();
             }
         });
 
@@ -419,18 +440,20 @@ public class FragmentPants extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-           // imageUri = data.getData();
-           // iv_01.setImageURI(imageUri);
+            imageUri = data.getData();
+            // iv_01.setImageURI(imageUri);
 
-            Bitmap bitmap = null;
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-            } catch (IOException e) {
+                InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                iv_01.setImageBitmap(bitmap);
+                image_4_db = ConvertBitmapToString(bitmap);
+                Log.i("TAG", "base 64 image" + image_4_db);
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            iv_01.setImageBitmap(bitmap);
 
-            image_4_db = ConvertBitmapToString(bitmap);
+
         }
     }
 
@@ -465,11 +488,10 @@ public class FragmentPants extends Fragment {
             }
         });
 
-        webView.loadUrl("https://css4.pub/2017/newsletter/drylab.html");
+        webView.loadUrl(html_url);
 
         mWebView = webView;
     }
-
 
     private void createWebPrintJob(WebView webView) {
 
@@ -488,13 +510,23 @@ public class FragmentPants extends Fragment {
         // Save the job object for later status checking
     }
 
-    public void drawable_to_base64(int drawable){
+    public void drawable_to_base64(int drawable) {
         //encode image to base64 string
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),drawable);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        String imageString =   Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        Log.i("TAG", "drawable_to_base64: " + imageString);
+        collar_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + collar_image);
+    }
+
+    public void drawable_to_base64_side_pocket(int drawable) {
+        //encode image to base64 string
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        sidepocket_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + sidepocket_image);
     }
 }

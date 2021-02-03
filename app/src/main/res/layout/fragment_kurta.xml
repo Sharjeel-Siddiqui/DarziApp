@@ -1549,7 +1549,6 @@
         //shalwar mei number bhejey gey
 
 
-
         <CheckBox
             android:id="@+id/customer_cloth"
             android:layout_width="match_parent"
@@ -1853,9 +1852,9 @@
 
         <ImageView
             android:id="@+id/iv_01"
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_margin="10dp"
             android:background="@drawable/edit_text_border"
             android:scaleType="fitXY" />
 

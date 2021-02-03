@@ -53,7 +53,9 @@ import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -80,6 +82,8 @@ public class FragmentInnerSuit extends Fragment {
     SharedPreference sharedPreference;
     private WebView mWebView;
     String image_4_db;
+    public String collar_image, sidepocket_image;
+    public String html_url;
 
 
     //fields to bind view
@@ -114,7 +118,21 @@ public class FragmentInnerSuit extends Fragment {
     @BindView(R.id.order_date_most_urgent)
     EditText order_date_most_urgent;
     @BindView(R.id.remarks)
-    EditText reamrks;
+    EditText remarks;
+
+
+    @BindView(R.id.customer_name)
+    EditText customer_name;
+    @BindView(R.id.order_number)
+    EditText order_number;
+    @BindView(R.id.mobile_number)
+    EditText mobile_number;
+
+
+    @BindView(R.id.urgent_order_date)
+    EditText urgent_order_date;
+    @BindView(R.id.urgent_order_time)
+    EditText urgent_order_time;
 
     //CheckBoxes come here
     @BindView(R.id.off_white_color)
@@ -235,14 +253,9 @@ public class FragmentInnerSuit extends Fragment {
     CheckBox party_label;
     @BindView(R.id.fancy_label)
     CheckBox fancy_label;
-    @BindView(R.id.customer_name)
-    EditText customer_name;
-    @BindView(R.id.customer_number)
-    EditText customer_number;
-    @BindView(R.id.order_number)
-    EditText order_number;
-    @BindView(R.id.order_date_date)
-    EditText order_date_date;
+
+
+    Alerter alerter;
 
 
     @Nullable
@@ -260,6 +273,7 @@ public class FragmentInnerSuit extends Fragment {
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
         iapi = ApiClient.getClient().create(Iapi.class);
+        alerter = Alerter.create(getActivity());
         sharedPreference = new SharedPreference(getActivity());
 
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
@@ -319,23 +333,6 @@ public class FragmentInnerSuit extends Fragment {
             @Override
             public void onClick(View view) {
                 createInnerSuitRequest();
-       /*         Alerter.create(getActivity())
-                        .setTitle("انتطار فرمائیے۔۔۔")
-                        .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
-                        .setIcon(
-                                R.drawable.dulha_jee_logo)
-                        .setBackgroundColorRes(
-                                R.color.black)
-                        .setDuration(3000)
-                        .setOnHideListener(new OnHideAlertListener() {
-                            @Override
-                            public void onHide() {
-                                navController.navigate(R.id.action_fragmentInnerSuit_to_dashBoard, null, new NavOptions.Builder()
-                                        .setPopUpTo(R.id.fragmentInnerSuit,
-                                                true).build());
-                            }
-                        })
-                        .show();*/
             }
         });
 
@@ -354,25 +351,32 @@ public class FragmentInnerSuit extends Fragment {
         InnerSuitRequestBody innerSuitRequestBody = new InnerSuitRequestBody();
 
         //et fields
-        innerSuitRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString());
-        innerSuitRequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString());
-        innerSuitRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString());
-        innerSuitRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString());
+        innerSuitRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام");
+        innerSuitRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + "کسٹمر کا نمبر");
+        innerSuitRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر");
+        innerSuitRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ");
 
-        innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString());
-        innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString());
-        innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString());
-        innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString());
-        innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString());
-        innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString());
-        innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString());
-        innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString());
-        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString());
-        innerSuitRequestBody.setShalwar_gher(TextUtils.isEmpty(shalwar_gher.getText().toString()) ? "" : shalwar_gher.getText().toString());
-        innerSuitRequestBody.setShalwar_asan(TextUtils.isEmpty(shalwar_asan.getText().toString()) ? "" : shalwar_asan.getText().toString());
-        innerSuitRequestBody.setPajama_inner_fold(TextUtils.isEmpty(pajama_inner_fold.getText().toString()) ? "" : pajama_inner_fold.getText().toString());
-        innerSuitRequestBody.setPajama_outer_fold(TextUtils.isEmpty(pajama_outer_fold.getText().toString()) ? "" : pajama_outer_fold.getText().toString());
-        innerSuitRequestBody.setRemarks(TextUtils.isEmpty(reamrks.getText().toString()) ? "" : reamrks.getText().toString());
+        innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity");
+        innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar ");
+        innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves");
+        innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder" );
+        innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ تیار/Hip Ready \"");
+        innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ تیار ");
+        innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + "سامنا تیار/Front Ready");
+        innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
+        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ تیار/Waist Ready ");
+        innerSuitRequestBody.setShalwar_gher(TextUtils.isEmpty(shalwar_gher.getText().toString()) ? "" : "\"انچ کا چاہیے تیار" + shalwar_gher.getText().toString() + "شلوار کا گھیر ایک سائیڈ کا");
+        innerSuitRequestBody.setShalwar_asan(TextUtils.isEmpty(shalwar_asan.getText().toString()) ? "" : "انچ کا چاہیے تیار" + shalwar_asan.getText().toString() + "شلوار کاآسن");
+        innerSuitRequestBody.setPajama_inner_fold(TextUtils.isEmpty(pajama_inner_fold.getText().toString()) ? "" :"انچ چوڑی فولڈ کرنی ہے باہر کی طرف" + pajama_inner_fold.getText().toString() + "پاجامے کی سوری" );
+        innerSuitRequestBody.setPajama_outer_fold(TextUtils.isEmpty(pajama_outer_fold.getText().toString()) ? "" : "انچ چوڑی فولڈ کرنی ہے اندر کی طرف" + pajama_outer_fold.getText().toString() + "پاجامے کی سوری");
+        innerSuitRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
+
+        //urgent time and date...
+        innerSuitRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
+        innerSuitRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
+
+
+
 
         //CheckBOxes Come here
 
@@ -442,29 +446,44 @@ public class FragmentInnerSuit extends Fragment {
         //send images here
         // image_4_db
 
+        innerSuitRequestBody.setCustomer_image(TextUtils.isEmpty(image_4_db) ? "" : image_4_db);
 
 
         innerSuitRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
         innerSuitRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
-        //kurtaRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
+
+        alerter.setTitle("انتطار فرمائیے۔۔۔")
+                .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
+                .setIcon(R.drawable.dulha_jee_logo)
+                .setBackgroundColorRes(R.color.black).show();
+
 
         //Api call here...
         iapi.createInnerSuit("Bearer " + sharedPreference.getToken(), innerSuitRequestBody).enqueue(new Callback<HtmlResponseBody>() {
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                    Log.i("TAG", "onResponse: " + response.message());
+                    Log.i("TAG", "onResponse: " + response.raw());
+                    //response.body().getUrl();
+                    html_url = response.body().getUrl();
+                    Alerter.hide();
+                    doWebViewPrint();
+                }else{
+                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                    Alerter.hide();
                 }
             }
 
             @Override
             public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+                Alerter.hide();
             }
         });
 
     }
-
     private void openGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -475,18 +494,20 @@ public class FragmentInnerSuit extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-            //imageUri = data.getData();
-            //iv_01.setImageURI(imageUri);
+            imageUri = data.getData();
+            // iv_01.setImageURI(imageUri);
 
-            Bitmap bitmap = null;
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-            } catch (IOException e) {
+                InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                iv_01.setImageBitmap(bitmap);
+                image_4_db = ConvertBitmapToString(bitmap);
+                Log.i("TAG", "base 64 image" + image_4_db);
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            iv_01.setImageBitmap(bitmap);
 
-            image_4_db = ConvertBitmapToString(bitmap);
+
         }
     }
 
@@ -521,11 +542,10 @@ public class FragmentInnerSuit extends Fragment {
             }
         });
 
-        webView.loadUrl("https://css4.pub/2017/newsletter/drylab.html");
+        webView.loadUrl(html_url);
 
         mWebView = webView;
     }
-
 
     private void createWebPrintJob(WebView webView) {
 
@@ -550,8 +570,18 @@ public class FragmentInnerSuit extends Fragment {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        Log.i("TAG", "drawable_to_base64: " + imageString);
+        collar_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + collar_image);
+    }
+
+    public void drawable_to_base64_side_pocket(int drawable) {
+        //encode image to base64 string
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawable);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        sidepocket_image = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        Log.i("TAG", "drawable_to_base64: " + sidepocket_image);
     }
 
 }

@@ -244,7 +244,7 @@ public class SherwaniFragment extends Fragment {
     @BindView(R.id.fancy_label)
     CheckBox fancy_label;
 
-
+    Alerter alerter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -267,6 +267,7 @@ public class SherwaniFragment extends Fragment {
         chooseSidePocketImage = view.findViewById(R.id.chooseSidePocketImage);
         submit_sherwani = view.findViewById(R.id.submit_sherwani);
         chooseImage = view.findViewById(R.id.chooseImage);
+        alerter = Alerter.create(getActivity());
 
         iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
@@ -321,24 +322,7 @@ public class SherwaniFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 createSherwaniRequest();
-                /* Alerter.create(getActivity())
-                        .setTitle("انتطار فرمائیے۔۔۔")
-                        .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
-                        .setIcon(R.drawable.dulha_jee_logo)
-                        .setBackgroundColorRes(
-                                R.color.black)
-                        .setDuration(3000)
-                        .setOnHideListener(new OnHideAlertListener() {
-                            @Override
-                            public void onHide() {
-                                navController.navigate(R.id.action_sherwaniFragment_to_dashBoard, null, new NavOptions.Builder()
-                                        .setPopUpTo(R.id.sherwaniFragment,
-                                                true).build());
-                            }
-                        })
-                        .show();
-                String text = jinnah_style.isChecked() ? jinnah_style.getText().toString() : "no checked";
-                Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();*/
+
             }
         });
 
@@ -556,6 +540,12 @@ public class SherwaniFragment extends Fragment {
     //    sherwaniRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
         //chooseSidePocketImage ; image_4_db;
 
+        alerter.setTitle("انتطار فرمائیے۔۔۔")
+                .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
+                .setIcon(R.drawable.dulha_jee_logo)
+                .setBackgroundColorRes(R.color.black).show();
+
+
         //Api call here...
 
         iapi.createSherwani("Bearer " + sharedPreference.getToken(), sherwaniRequestBody).enqueue(new Callback<HtmlResponseBody>() {
@@ -565,14 +555,17 @@ public class SherwaniFragment extends Fragment {
                     Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
                     html_url = response.body().getUrl();
                     doWebViewPrint();
+                    Alerter.hide();
                 }else{
                     Toast.makeText(getActivity(), response.message().toString(), Toast.LENGTH_SHORT).show();
+                    Alerter.hide();
                 }
             }
 
             @Override
             public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+                Alerter.hide();
             }
         });
 

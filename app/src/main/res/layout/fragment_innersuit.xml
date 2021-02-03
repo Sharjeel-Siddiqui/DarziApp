@@ -13,7 +13,7 @@
         <Spinner
             android:id="@+id/dropdown_karegar_name"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:padding="10dp"
             android:prompt="@string/app_name"
             android:textAlignment="center"
@@ -84,8 +84,8 @@
             <EditText
                 android:id="@+id/order_number"
                 android:layout_width="60dp"
-                android:inputType="number"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -107,8 +107,8 @@
             <EditText
                 android:id="@+id/order_date_date"
                 android:layout_width="60dp"
-                android:inputType="number"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -930,7 +930,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/is_urgent"
+                android:id="@+id/urgent_order_time"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content" />
 
@@ -942,7 +942,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/order_date"
+                android:id="@+id/urgent_order_date"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content" />
 
@@ -1152,6 +1152,7 @@
             android:id="@+id/iv_01"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_margin="10dp"
             android:background="@drawable/edit_text_border"
             android:scaleType="fitXY" />
 

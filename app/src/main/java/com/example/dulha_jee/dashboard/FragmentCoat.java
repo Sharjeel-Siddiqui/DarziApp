@@ -85,7 +85,7 @@ public class FragmentCoat extends Fragment {
     String image_4_db;
     public String collar_image, sidepocket_image;
     public String html_url;
-
+    Alerter alerter;
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
@@ -262,6 +262,7 @@ public class FragmentCoat extends Fragment {
         iv_01 = view.findViewById(R.id.iv_01);
         iapi = ApiClient.getClient().create(Iapi.class);
         sharedPreference = new SharedPreference(getActivity());
+        alerter = Alerter.create(getActivity());
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -329,23 +330,7 @@ public class FragmentCoat extends Fragment {
             public void onClick(View view) {
 
                 createCoatRequest();
-           /*     Alerter.create(getActivity())
-                        .setTitle("انتطار فرمائیے۔۔۔")
-                        .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
-                        .setIcon(
-                                R.drawable.dulha_jee_logo)
-                        .setBackgroundColorRes(
-                                R.color.black)
-                        .setDuration(3000)
-                        .setOnHideListener(new OnHideAlertListener() {
-                            @Override
-                            public void onHide() {
-                                navController.navigate(R.id.action_fragmentCoat_to_dashBoard, null, new NavOptions.Builder()
-                                        .setPopUpTo(R.id.fragmentCoat,
-                                                true).build());
-                            }
-                        })
-                        .show();*/
+
             }
         });
     }

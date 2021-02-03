@@ -103,6 +103,7 @@ public class FragmentShirt extends Fragment {
     EditText hip;
     @BindView(R.id.abdomen)
     EditText abdomen;
+    Alerter alerter;
     @BindView(R.id.gudda)
     EditText gudda;
     @BindView(R.id.front)
@@ -203,6 +204,7 @@ public class FragmentShirt extends Fragment {
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
         iapi = ApiClient.getClient().create(Iapi.class);
+        alerter = Alerter.create(getActivity());
 
         iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
@@ -265,23 +267,7 @@ public class FragmentShirt extends Fragment {
             public void onClick(View view) {
 
                 createShirtRequest();
-        /*        Alerter.create(getActivity())
-                        .setTitle("انتطار فرمائیے۔۔۔")
-                        .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
-                        .setIcon(
-                                R.drawable.dulha_jee_logo)
-                        .setBackgroundColorRes(
-                                R.color.black)
-                        .setDuration(3000)
-                        .setOnHideListener(new OnHideAlertListener() {
-                            @Override
-                            public void onHide() {
-                                navController.navigate(R.id.action_fragmentShirt_to_dashBoard, null, new NavOptions.Builder()
-                                        .setPopUpTo(R.id.fragmentShirt,
-                                                true).build());
-                            }
-                        })
-                        .show();*/
+
             }
         });
 
@@ -548,6 +534,12 @@ public class FragmentShirt extends Fragment {
         shirtRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
       //  shirtRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
+        alerter.setTitle("انتطار فرمائیے۔۔۔")
+                .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
+                .setIcon(R.drawable.dulha_jee_logo)
+                .setBackgroundColorRes(R.color.black).show();
+
+
         //Api call here...
 
 
@@ -560,12 +552,17 @@ public class FragmentShirt extends Fragment {
                     Log.i("TAG", "onResponse: " + response.raw());
                     html_url = response.body().getUrl();
                     doWebViewPrint();
+                    Alerter.hide();
+                }else{
+                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                    Alerter.hide();
                 }
             }
 
             @Override
             public void onFailure(Call<HtmlResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+                Alerter.hide();
             }
         });
     }

@@ -82,8 +82,8 @@
             <EditText
                 android:id="@+id/order_number"
                 android:layout_width="60dp"
-                android:inputType="number"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -105,8 +105,8 @@
             <EditText
                 android:id="@+id/order_date_date"
                 android:layout_width="60dp"
-                android:inputType="number"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -1173,10 +1173,10 @@
             android:text="Upload Image" />
 
         <ImageView
-            android:layout_margin="10dp"
             android:id="@+id/iv_01"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_margin="10dp"
             android:background="@drawable/edit_text_border"
             android:scaleType="fitXY" />
 

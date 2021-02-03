@@ -49,6 +49,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.tapadoo.alerter.Alert;
 import com.tapadoo.alerter.Alerter;
 import com.tapadoo.alerter.OnHideAlertListener;
 
@@ -133,7 +134,7 @@ public class WaistCoatFragment extends Fragment {
     EditText urgent_order_date;
     @BindView(R.id.urgent_order_time)
     EditText urgent_order_time;
-
+    Alerter alerter;
 
     //checkBoxes
 
@@ -282,6 +283,7 @@ public class WaistCoatFragment extends Fragment {
         submit_waistcoat = view.findViewById(R.id.submit_waistcoat);
         iv_01 = view.findViewById(R.id.iv_01);
         sharedPreference = new SharedPreference(getActivity());
+        alerter = Alerter.create(getActivity());
 
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         chooseImage = view.findViewById(R.id.chooseImage);
@@ -471,6 +473,12 @@ public class WaistCoatFragment extends Fragment {
         waistCoatFragmentrequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
 
 
+        alerter.setTitle("انتطار فرمائیے۔۔۔")
+                .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
+                .setIcon(R.drawable.dulha_jee_logo)
+                .setBackgroundColorRes(R.color.black).show();
+
+
         //Api call here...
 
         iapi.createWaistCoat("Bearer " + sharedPreference.getToken(), waistCoatFragmentrequestBody).enqueue(new Callback<HtmlResponseBody>() {
@@ -483,8 +491,10 @@ public class WaistCoatFragment extends Fragment {
                     //response.body().getUrl();
                     html_url = response.body().getUrl();
                     doWebViewPrint();
+                    Alerter.hide();
                 } else {
                     Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                    Alerter.hide();
                 }
             }
 

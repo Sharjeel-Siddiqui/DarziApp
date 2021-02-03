@@ -65,7 +65,7 @@ public interface Iapi {
     Call<HtmlResponseBody> createInnerSuit(@Header("Authorization") String token, @Body InnerSuitRequestBody kurtaRequestBody);
 
     @POST("api/updateStatus")
-    Call<ResponseBody> updateStatus(@Header("Authorization") String token);
+    Call<ResponseBody> updateStatus(@Header("Authorization") String token,@Body String status);
 
 
     @GET("api/search")
