@@ -1,6 +1,7 @@
 package com.example.dulha_jee.dashboard;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,6 +24,7 @@ import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -30,6 +32,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -45,6 +48,7 @@ import com.example.dulha_jee.pojo.GetUserResponseBody;
 import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.KurtaRequestBody;
 import com.example.dulha_jee.pojo.SherwaniRequestBody;
+import com.example.dulha_jee.userlist.DatePickerFragment;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -60,6 +64,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,7 +76,7 @@ import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
-public class FragmentCoat extends Fragment {
+public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSetListener{
     Spinner dropdown_karegar_name, dropdown_coat_varieties;
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] coatVarieties = {"گون اسٹائل فرنٹ اوپن کوٹ ", "پرنس کوٹ ", "کوٹ "};
@@ -86,6 +92,11 @@ public class FragmentCoat extends Fragment {
     public String collar_image, sidepocket_image;
     public String html_url;
     Alerter alerter;
+
+
+    @BindView(R.id.chooseOrderDate)
+    Button chooseOrderDate;
+
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
@@ -243,8 +254,7 @@ public class FragmentCoat extends Fragment {
     EditText customer_number;
     @BindView(R.id.order_number)
     EditText order_number;
-    @BindView(R.id.order_date_date)
-    EditText order_date_date;
+
 
 
     @Nullable
@@ -263,6 +273,15 @@ public class FragmentCoat extends Fragment {
         iapi = ApiClient.getClient().create(Iapi.class);
         sharedPreference = new SharedPreference(getActivity());
         alerter = Alerter.create(getActivity());
+
+        chooseOrderDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getChildFragmentManager(), "date picker");
+            }
+        });
+
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -560,4 +579,13 @@ public class FragmentCoat extends Fragment {
     }
 
 
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, i);
+        c.set(Calendar.MONTH, i1);
+        c.set(Calendar.DAY_OF_MONTH, i2);
+        String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
+        order_date.setText(currentDateString);
+    }
 }

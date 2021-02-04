@@ -1,6 +1,7 @@
 package com.example.dulha_jee.dashboard;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -32,6 +34,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -45,6 +48,7 @@ import com.example.dulha_jee.api.Iapi;
 import com.example.dulha_jee.pojo.GetUserResponseBody;
 import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.ShirtRequestBody;
+import com.example.dulha_jee.userlist.DatePickerFragment;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -60,6 +64,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,7 +76,7 @@ import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
-public class FragmentShirt extends Fragment {
+public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSetListener {
     Spinner dropdown_karegar_name;
     Button submit_shirt, chooseImage;
     ImageView chooseCollarImage, chooseCuffImage, iv_01;
@@ -190,6 +196,8 @@ public class FragmentShirt extends Fragment {
     @BindView(R.id.fancy_label)
     CheckBox fancy_label;
 
+    @BindView(R.id.chooseOrderDate)
+    Button chooseOrderDate;
 
     @Nullable
     @Override
@@ -205,6 +213,14 @@ public class FragmentShirt extends Fragment {
         iv_01 = view.findViewById(R.id.iv_01);
         iapi = ApiClient.getClient().create(Iapi.class);
         alerter = Alerter.create(getActivity());
+
+        chooseOrderDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getChildFragmentManager(), "date picker");
+            }
+        });
 
         iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
@@ -682,4 +698,13 @@ public class FragmentShirt extends Fragment {
         Log.i("TAG", "drawable_to_base64: " + cuff_image);
     }
 
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, i);
+        c.set(Calendar.MONTH, i1);
+        c.set(Calendar.DAY_OF_MONTH, i2);
+        String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
+        order_date.setText(currentDateString);
+    }
 }

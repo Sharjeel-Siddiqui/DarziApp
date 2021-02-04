@@ -1,6 +1,7 @@
 package com.example.dulha_jee.dashboard;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,6 +24,7 @@ import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -30,6 +32,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -43,6 +46,7 @@ import com.example.dulha_jee.api.Iapi;
 import com.example.dulha_jee.pojo.GetUserResponseBody;
 import com.example.dulha_jee.pojo.HtmlResponseBody;
 import com.example.dulha_jee.pojo.InnerSuitRequestBody;
+import com.example.dulha_jee.userlist.DatePickerFragment;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -58,6 +62,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,7 +74,7 @@ import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
-public class FragmentInnerSuit extends Fragment {
+public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     Spinner dropdown_karegar_name, dropdown_shalwar_name;
     NavController navController;
@@ -254,6 +260,8 @@ public class FragmentInnerSuit extends Fragment {
     @BindView(R.id.fancy_label)
     CheckBox fancy_label;
 
+    @BindView(R.id.chooseOrderDate)
+    Button chooseOrderDate;
 
     Alerter alerter;
 
@@ -275,9 +283,17 @@ public class FragmentInnerSuit extends Fragment {
         iapi = ApiClient.getClient().create(Iapi.class);
         alerter = Alerter.create(getActivity());
         sharedPreference = new SharedPreference(getActivity());
-
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
         dropdown_shalwar_name = view.findViewById(R.id.dropdown_shalwar_name);
+
+        chooseOrderDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getChildFragmentManager(), "date picker");
+            }
+        });
+
 
         iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
@@ -359,7 +375,7 @@ public class FragmentInnerSuit extends Fragment {
         innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity");
         innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar ");
         innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves");
-        innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder" );
+        innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder");
         innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ تیار/Hip Ready \"");
         innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ تیار ");
         innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + "سامنا تیار/Front Ready");
@@ -367,15 +383,13 @@ public class FragmentInnerSuit extends Fragment {
         innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ تیار/Waist Ready ");
         innerSuitRequestBody.setShalwar_gher(TextUtils.isEmpty(shalwar_gher.getText().toString()) ? "" : "\"انچ کا چاہیے تیار" + shalwar_gher.getText().toString() + "شلوار کا گھیر ایک سائیڈ کا");
         innerSuitRequestBody.setShalwar_asan(TextUtils.isEmpty(shalwar_asan.getText().toString()) ? "" : "انچ کا چاہیے تیار" + shalwar_asan.getText().toString() + "شلوار کاآسن");
-        innerSuitRequestBody.setPajama_inner_fold(TextUtils.isEmpty(pajama_inner_fold.getText().toString()) ? "" :"انچ چوڑی فولڈ کرنی ہے باہر کی طرف" + pajama_inner_fold.getText().toString() + "پاجامے کی سوری" );
+        innerSuitRequestBody.setPajama_inner_fold(TextUtils.isEmpty(pajama_inner_fold.getText().toString()) ? "" : "انچ چوڑی فولڈ کرنی ہے باہر کی طرف" + pajama_inner_fold.getText().toString() + "پاجامے کی سوری");
         innerSuitRequestBody.setPajama_outer_fold(TextUtils.isEmpty(pajama_outer_fold.getText().toString()) ? "" : "انچ چوڑی فولڈ کرنی ہے اندر کی طرف" + pajama_outer_fold.getText().toString() + "پاجامے کی سوری");
         innerSuitRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
 
         //urgent time and date...
         innerSuitRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
         innerSuitRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
-
-
 
 
         //CheckBOxes Come here
@@ -470,7 +484,7 @@ public class FragmentInnerSuit extends Fragment {
                     html_url = response.body().getUrl();
                     Alerter.hide();
                     doWebViewPrint();
-                }else{
+                } else {
                     Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
                     Alerter.hide();
                 }
@@ -484,6 +498,7 @@ public class FragmentInnerSuit extends Fragment {
         });
 
     }
+
     private void openGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -584,4 +599,13 @@ public class FragmentInnerSuit extends Fragment {
         Log.i("TAG", "drawable_to_base64: " + sidepocket_image);
     }
 
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, i);
+        c.set(Calendar.MONTH, i1);
+        c.set(Calendar.DAY_OF_MONTH, i2);
+        String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
+        order_date.setText(currentDateString);
+    }
 }

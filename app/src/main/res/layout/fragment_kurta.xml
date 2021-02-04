@@ -113,6 +113,17 @@
             android:gravity="right"
             android:orientation="horizontal">
 
+            <Button
+                android:layout_marginRight="10dp"
+                android:padding="8dp"
+                android:backgroundTint="@color/white"
+                android:id="@+id/chooseOrderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@drawable/rounded_bg_status"
+                android:text="تاریخ"/>
+
 
             <EditText
                 android:id="@+id/order_date"
@@ -127,6 +138,9 @@
                 android:text="آرڈر کی تاریخ"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
+
+
+
 
         </LinearLayout>
 
