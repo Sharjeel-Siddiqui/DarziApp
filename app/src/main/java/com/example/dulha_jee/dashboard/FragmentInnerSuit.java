@@ -81,7 +81,8 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     Button submit_innersuit;
-    ImageView iv_01, chooseImage;
+    ImageView iv_01;
+    Button  chooseImage;
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
     Iapi iapi;
@@ -284,13 +285,15 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         alerter = Alerter.create(getActivity());
         sharedPreference = new SharedPreference(getActivity());
         dropdown_karegar_name = view.findViewById(R.id.dropdown_karegar_name);
+        sharedPreference = new SharedPreference(getActivity());
         dropdown_shalwar_name = view.findViewById(R.id.dropdown_shalwar_name);
 
         chooseOrderDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getChildFragmentManager(), "date picker");
+                datePicker.setTargetFragment(FragmentInnerSuit.this, 0);
+                datePicker.show(getFragmentManager(), "date picker");
             }
         });
 

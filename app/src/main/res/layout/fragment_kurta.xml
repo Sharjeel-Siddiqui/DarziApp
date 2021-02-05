@@ -51,13 +51,15 @@
                 android:id="@+id/customer_name"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textDirection="anyRtl" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="کسٹمر کا نام"
                 android:textColor="@android:color/black"
+                android:textDirection="anyRtl"
                 android:textSize="22sp" />
 
         </LinearLayout>
@@ -73,6 +75,7 @@
                 android:id="@+id/mobile_number"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -114,22 +117,21 @@
             android:orientation="horizontal">
 
             <Button
-                android:layout_marginRight="10dp"
-                android:padding="8dp"
-                android:backgroundTint="@color/white"
                 android:id="@+id/chooseOrderDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/rounded_bg_status"
-                android:text="تاریخ"/>
+                android:backgroundTint="@color/white"
+                android:padding="8dp"
+                android:text="تاریخ"
+                android:textSize="22sp" />
 
 
             <EditText
                 android:id="@+id/order_date"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -138,8 +140,6 @@
                 android:text="آرڈر کی تاریخ"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
-
-
 
 
         </LinearLayout>
@@ -153,9 +153,11 @@
 
 
             <EditText
+
                 android:id="@+id/quantity"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -175,9 +177,11 @@
 
 
             <EditText
+
                 android:id="@+id/collar"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -197,9 +201,11 @@
 
 
             <EditText
+
                 android:id="@+id/sleeves"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -219,9 +225,11 @@
 
 
             <EditText
+
                 android:id="@+id/shoulder"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -241,9 +249,11 @@
 
 
             <EditText
+
                 android:id="@+id/hip"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -263,9 +273,11 @@
 
 
             <EditText
+
                 android:id="@+id/abdomen"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -288,12 +300,13 @@
                 android:id="@+id/gudda"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="گڈہ تیار "
+                android:text="گڈہ تیار/Abdomen Ready"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -310,6 +323,7 @@
                 android:id="@+id/front"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -329,9 +343,11 @@
 
 
             <EditText
+
                 android:id="@+id/lengthMade"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -377,7 +393,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:gravity="right"
             android:orientation="horizontal">
 
@@ -389,6 +405,7 @@
                 android:textSize="22sp" />
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/collar_width"
                 android:layout_width="56dp"
                 android:layout_height="match_parent" />
@@ -479,8 +496,7 @@
             <EditText
                 android:id="@+id/collar_point_length"
                 android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -640,8 +656,7 @@
             <EditText
                 android:id="@+id/front_pati_length"
                 android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -682,8 +697,7 @@
                 <EditText
                     android:id="@+id/front_pati_width"
                     android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -733,8 +747,7 @@
             <EditText
                 android:id="@+id/front_pati_cadge"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -798,8 +811,7 @@
                 <EditText
                     android:id="@+id/cover_pati_length"
                     android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -919,8 +931,7 @@
                 <EditText
                     android:id="@+id/cuff_width"
                     android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1007,8 +1018,7 @@
                 <EditText
                     android:id="@+id/cuff_chowk_width"
                     android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1272,8 +1282,7 @@
             <EditText
                 android:id="@+id/chowk_length"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -1315,8 +1324,7 @@
                 <EditText
                     android:id="@+id/machine_sew_bail"
                     android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1472,8 +1480,7 @@
                 <EditText
                     android:id="@+id/pocket_length"
                     android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1485,8 +1492,7 @@
                 <EditText
                     android:id="@+id/pocket_width"
                     android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"

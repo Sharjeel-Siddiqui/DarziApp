@@ -60,7 +60,7 @@
 
 
             <EditText
-                android:id="@+id/customer_number"
+                android:id="@+id/mobile_number"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />

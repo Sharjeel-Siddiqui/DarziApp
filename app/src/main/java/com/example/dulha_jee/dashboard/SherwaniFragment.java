@@ -134,8 +134,7 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
     EditText front_show_cadge_number;
     @BindView(R.id.contrast_color_astar)
     EditText contrast_color_astar;
-    @BindView(R.id.is_urgent)
-    EditText is_urgent;
+
     @BindView(R.id.is_most_urgent)
     EditText is_most_urgent;
     @BindView(R.id.order_date_most_urgent)
@@ -283,7 +282,8 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onClick(View view) {
                 DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getChildFragmentManager(), "date picker");
+                datePicker.setTargetFragment(SherwaniFragment.this, 0);
+                datePicker.show(getFragmentManager(), "date picker");
             }
         });
 
@@ -553,7 +553,7 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
         sherwaniRequestBody.setSide_pocket_image(TextUtils.isEmpty(sidepocket_image) ? "" : sidepocket_image);
 
 
-        sherwaniRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
+        //sherwaniRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
         sherwaniRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
     //    sherwaniRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
         //chooseSidePocketImage ; image_4_db;

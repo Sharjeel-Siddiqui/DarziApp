@@ -268,6 +268,7 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("Coat...");
         navController = Navigation.findNavController(view);
+        ButterKnife.bind(this,view);
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
         iapi = ApiClient.getClient().create(Iapi.class);
@@ -278,7 +279,8 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
             @Override
             public void onClick(View view) {
                 DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getChildFragmentManager(), "date picker");
+                datePicker.setTargetFragment(FragmentCoat.this, 0);
+                datePicker.show(getFragmentManager(), "date picker");
             }
         });
 

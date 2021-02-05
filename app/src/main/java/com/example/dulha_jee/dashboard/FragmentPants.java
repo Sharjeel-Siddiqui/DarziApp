@@ -246,12 +246,14 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
         iapi = ApiClient.getClient().create(Iapi.class);
         sharedPreference = new SharedPreference(getActivity());
         alerter = Alerter.create(getActivity());
+        sharedPreference = new SharedPreference(getActivity());
 
         chooseOrderDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getChildFragmentManager(), "date picker");
+                datePicker.setTargetFragment(FragmentPants.this, 0);
+                datePicker.show(getFragmentManager(), "date picker");
             }
         });
 

@@ -199,6 +199,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
     @BindView(R.id.chooseOrderDate)
     Button chooseOrderDate;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -213,12 +214,15 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         iv_01 = view.findViewById(R.id.iv_01);
         iapi = ApiClient.getClient().create(Iapi.class);
         alerter = Alerter.create(getActivity());
+        ButterKnife.bind(this,view);
+        sharedPreference = new SharedPreference(getActivity());
 
         chooseOrderDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getChildFragmentManager(), "date picker");
+                datePicker.setTargetFragment(FragmentShirt.this, 0);
+                datePicker.show(getFragmentManager(), "date picker");
             }
         });
 

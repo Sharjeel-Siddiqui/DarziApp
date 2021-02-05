@@ -50,7 +50,7 @@
 
 
             <EditText
-                android:id="@+id/customer_number"
+                android:id="@+id/mobile_number"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
@@ -1044,7 +1044,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/is_urgent"
+                android:id="@+id/urgent_order_time"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content" />
 

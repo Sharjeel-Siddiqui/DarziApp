@@ -676,7 +676,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/is_urgent"
+                android:id="@+id/urgent_order_time"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content" />
 

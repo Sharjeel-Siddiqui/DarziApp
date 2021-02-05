@@ -80,7 +80,7 @@ import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
-public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
+public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
     static boolean isComingbackfromCollar_Kurta, isComingbackfromSidePocket;
     Spinner dropdown_kurta_varieties, dropdown_karegar_name, dropdown_shalwar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
@@ -392,7 +392,8 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
             @Override
             public void onClick(View view) {
                 DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getChildFragmentManager(), "date picker");
+                datePicker.setTargetFragment(KurtaFragment.this, 0);
+                datePicker.show(getFragmentManager(), "date picker");
             }
         });
 
@@ -471,9 +472,9 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         });
 
 
-/*        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, users);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, users);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown_kurta_varieties.setAdapter(adapter);*/
+        dropdown_kurta_varieties.setAdapter(adapter);
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, shalwar);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -673,41 +674,42 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         //all checked field goes here
         KurtaRequestBody kurtaRequestBody = new KurtaRequestBody();
         //et fields
-        kurtaRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد /Quantity ");
-        kurtaRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام");
-        kurtaRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + "کسٹمر کا نمبر");
-        kurtaRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر");
-        kurtaRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ");
+        kurtaRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+        kurtaRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + ":  کسٹمر کا نام ");
+        kurtaRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + ": کسٹمر کا نمبر  ");
+        kurtaRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
+        kurtaRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
-        kurtaRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar");
-        kurtaRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves");
-        kurtaRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder");
-        kurtaRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ تیار/Hip Ready");
-        kurtaRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ تیار ");
-        kurtaRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + "سامنا تیار/Front Ready ");
-        kurtaRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
+        kurtaRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");
+        kurtaRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین  ");
+        kurtaRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + ": شولڈر  ");
+        kurtaRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + " : ہپ تیار ");
+        kurtaRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + ": گڈہ تیار ");
+        kurtaRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار  ");
+        kurtaRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
+
         //urgent time and date...
-        kurtaRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
-        kurtaRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
+        kurtaRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" :    " ارجنٹ بروز "  + urgent_order_date.getText().toString()  + " کو چاہیے " +  "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی" );
+      //  kurtaRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" :  "آرڈر "  + urgent_order_time.getText().toString() + " بجے تک لازمی" );
 
 
         //collar style image field
 
-        kurtaRequestBody.setCollar_width(TextUtils.isEmpty(collar_width.getText().toString()) ? "" : "انچ رکھنی ہے" + collar_width.getText().toString() + "کالر کی چوڑائ");
-        kurtaRequestBody.setCollar_point_length(TextUtils.isEmpty(collar_point_length.getText().toString()) ? "" : "انچ رکھنی ہے" + collar_point_length.getText().toString() + "کالر کے پر کئ نوک");
-        kurtaRequestBody.setFront_pati_length(TextUtils.isEmpty(front_pati_length.getText().toString()) ? "" : "انچ رکھنی ہے" + front_pati_length.getText().toString() + "سامنے کی ریگولر پٹی کی لمبائ");
+        kurtaRequestBody.setCollar_width(TextUtils.isEmpty(collar_width.getText().toString()) ? "" : " کالر کی چوڑائ " + collar_width.getText().toString() + " انچ رکھنی ہے ");
+        kurtaRequestBody.setCollar_point_length(TextUtils.isEmpty(collar_point_length.getText().toString()) ? "" : " کالر کے پر کئ نوک " + collar_point_length.getText().toString() + "انچ رکھنی ہے");
+        kurtaRequestBody.setFront_pati_length(TextUtils.isEmpty(front_pati_length.getText().toString()) ? "" : " سامنے کی ریگولر پٹی کی لمبائ " + front_pati_length.getText().toString() + "انچ رکھنی ہے");
         // kurtaRequestBody.setFront_pati_length(TextUtils.isEmpty(front_pati_length.getText().toString()) ? "" : front_pati_length.getText().toString());
-        kurtaRequestBody.setFront_pati_width(TextUtils.isEmpty(front_pati_width.getText().toString()) ? "" : "انچ رکھنی ہے" + front_pati_width.getText().toString() + "سامنے کے ریگولر پٹی کے چوڑائ ");
-        kurtaRequestBody.setFront_pati_cadge(TextUtils.isEmpty(front_pati_cadge.getText().toString()) ? "" : "عدد کاج ہونگے" + front_pati_cadge.getText().toString() + "سامنے کے پٹی میں");
-        kurtaRequestBody.setCover_pati_length(TextUtils.isEmpty(cover_pati_length.getText().toString()) ? "" : "انچ رکھنی ہے" + cover_pati_length.getText().toString() + "کور پٹی کی لمبائ");
-        kurtaRequestBody.setCuff_width(TextUtils.isEmpty(cuff_width.getText().toString()) ? "" : "انچ رکھنی ہے" + cuff_width.getText().toString() + "کف کی چوڑائ");
-        kurtaRequestBody.setCuff_chowk_width(TextUtils.isEmpty(cuff_chowk_width.getText().toString()) ? "" : "انچ رکھنی ہے" + cuff_chowk_width.getText().toString() + "کف کی چاک پٹی کی چوڑائ");
-        kurtaRequestBody.setCuff_length(TextUtils.isEmpty(cuff_length.getText().toString()) ? "" : "انچ رکھنی ہے" + cuff_length.getText().toString() + "کف کی لمبائ");
+        kurtaRequestBody.setFront_pati_width(TextUtils.isEmpty(front_pati_width.getText().toString()) ? "" : " سامنے کے ریگولر پٹی کے چوڑائ " + front_pati_width.getText().toString() + " انچ رکھنی ہے ");
+        kurtaRequestBody.setFront_pati_cadge(TextUtils.isEmpty(front_pati_cadge.getText().toString()) ? "" : " سامنے کے پٹی میں " + front_pati_cadge.getText().toString() + " عدد کاج ہونگے ");
+        kurtaRequestBody.setCover_pati_length(TextUtils.isEmpty(cover_pati_length.getText().toString()) ? "" :   " کور پٹی کی لمبائ " + cover_pati_length.getText().toString() + "انچ رکھنی ہے");
+        kurtaRequestBody.setCuff_width(TextUtils.isEmpty(cuff_width.getText().toString()) ? "" : "کف کی چوڑائ" + cuff_width.getText().toString() + " انچ رکھنی ہے ");
+        kurtaRequestBody.setCuff_chowk_width(TextUtils.isEmpty(cuff_chowk_width.getText().toString()) ? "" : " کف کی چاک پٹی کی چوڑائ " + cuff_chowk_width.getText().toString() + " انچ رکھنی ہے ");
+        kurtaRequestBody.setCuff_length(TextUtils.isEmpty(cuff_length.getText().toString()) ? "" : " کف کی لمبائ " + cuff_length.getText().toString() + " انچ رکھنی ہے ");
         // kurtaRequestBody.setCuff_length(TextUtils.isEmpty(cuff_length.getText().toString()) ? "" : cuff_length.getText().toString());
-        kurtaRequestBody.setChowk_length(TextUtils.isEmpty(chowk_length.getText().toString()) ? "" : "انچ کے رکھنے ہیں" + chowk_length.getText().toString() + "چاک");
-        kurtaRequestBody.setMachine_sew_bail(TextUtils.isEmpty(machine_sew_bail.getText().toString()) ? "" : "انچ چوڑی" + machine_sew_bail.getText().toString() + "سامنے پہ مشین کی کڑھائ کی بیل بنانی ہے");
-        kurtaRequestBody.setPocket_length(TextUtils.isEmpty(pocket_length.getText().toString()) ? "" : "انچ رکھنی ہے" + pocket_length.getText().toString() + "جیب کی لمبائ");
-        kurtaRequestBody.setPocket_width(TextUtils.isEmpty(pocket_width.getText().toString()) ? "" : "انچ رکھنی ہے" + pocket_width.getText().toString() + "جیب کی چوڑائ");
+        kurtaRequestBody.setChowk_length(TextUtils.isEmpty(chowk_length.getText().toString()) ? "" : " چاک " + chowk_length.getText().toString() + " انچ کے رکھنے ہیں ");
+        kurtaRequestBody.setMachine_sew_bail(TextUtils.isEmpty(machine_sew_bail.getText().toString()) ? "" : " سامنے پہ مشین کی کڑھائ کی بیل بنانی ہے" + machine_sew_bail.getText().toString() + " انچ چوڑی ");
+        kurtaRequestBody.setPocket_length(TextUtils.isEmpty(pocket_length.getText().toString()) ? "" : " جیب کی لمبائ " + pocket_length.getText().toString() + " انچ رکھنی ہے ");
+        kurtaRequestBody.setPocket_width(TextUtils.isEmpty(pocket_width.getText().toString()) ? "" : " جیب کی چوڑائ " + pocket_width.getText().toString() + " انچ رکھنی ہے ");
         kurtaRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
 
         //check boxes field
@@ -821,7 +823,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
 
 
         kurtaRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        kurtaRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+        kurtaRequestBody.setKarigar(   dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام " );
         kurtaRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
 
@@ -976,7 +978,8 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         c.set(Calendar.YEAR, i);
         c.set(Calendar.MONTH, i1);
         c.set(Calendar.DAY_OF_MONTH, i2);
-        String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
-        order_date.setText(currentDateString);
+        String currentDateString1 = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
+        Log.i("TAG", "onDateSet: " + currentDateString1);
+        order_date.setText(currentDateString1);
     }
 }

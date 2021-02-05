@@ -45,7 +45,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
 
         holder.userName.setText(users.get(position).getCustomer_name());
         holder.orderNumber.setText(users.get(position).getOrder_number());
-       // holder.orderStatus.setText(users.get(position).getorderStatus());
+
+        holder.orderStatus.setText(users.get(position).getOrder_status() == null ? "" : users.get(position).getOrder_status());
+
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +55,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
                 Toast.makeText(myCtx, "View", Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
                 bundle.putString("url", users.get(position).getHtml());
-                navController.navigate(R.id.action_userList_to_customer_View_Fragment,bundle);
+                bundle.putString("ordernumber", users.get(position).getOrder_number());
+                navController.navigate(R.id.action_userList_to_customer_View_Fragment, bundle);
             }
         });
     }
@@ -64,7 +67,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
     }
 
     public class UserVH extends RecyclerView.ViewHolder {
-        TextView userName, orderNumber , orderStatus;
+        TextView userName, orderNumber, orderStatus;
         ImageView edit, view;
 
         public UserVH(@NonNull View itemView) {

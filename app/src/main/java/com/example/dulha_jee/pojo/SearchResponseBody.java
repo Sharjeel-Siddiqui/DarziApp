@@ -22,6 +22,15 @@ public class SearchResponseBody {
         private String order_number;
         private String karigar;
         private String html;
+        private String order_status;
+
+        public String getOrder_status() {
+            return order_status;
+        }
+
+        public void setOrder_status(String order_status) {
+            this.order_status = order_status;
+        }
 
         public String getOrder_date() {
             return order_date;

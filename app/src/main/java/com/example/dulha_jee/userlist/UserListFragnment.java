@@ -63,8 +63,8 @@ public class UserListFragnment extends Fragment {
             Log.i("TAG", "userist: " + getArguments().getString("userList"));
 
             iapi.search("Bearer " + sharedPreference.getToken(), getArguments().getString("order_date"), getArguments().getString("customer_name"),
-                   getArguments().getString("customer_ordernumber"),
-                   getArguments().getString("karegar_name"), getArguments().getString("customer_number")).enqueue(new Callback<SearchResponseBody>() {
+                    getArguments().getString("customer_ordernumber"),
+                    getArguments().getString("karegar_name"), getArguments().getString("customer_number")).enqueue(new Callback<SearchResponseBody>() {
                 @Override
                 public void onResponse(Call<SearchResponseBody> call, Response<SearchResponseBody> response) {
 
@@ -87,8 +87,10 @@ public class UserListFragnment extends Fragment {
 
                     Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
 
-                    usersList = response.body().getData();
-                    populateRv((ArrayList<SearchResponseBody.user>) usersList);
+                    if (response.body().getData() != null) {
+                        usersList = response.body().getData();
+                        populateRv((ArrayList<SearchResponseBody.user>) usersList);
+                    }
                     //navigation.navigate(R.id.userList);
                 }
 
@@ -112,7 +114,7 @@ public class UserListFragnment extends Fragment {
     }
 
     public void populateRv(ArrayList<SearchResponseBody.user> users) {
-        userAdapter = new UserAdapter(getActivity(), users , navController);
+        userAdapter = new UserAdapter(getActivity(), users, navController);
         recyclerView.setAdapter(userAdapter);
     }
 }

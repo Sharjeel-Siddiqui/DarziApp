@@ -15,6 +15,7 @@ import com.example.dulha_jee.pojo.RegisterBody;
 import com.example.dulha_jee.pojo.SearchResponseBody;
 import com.example.dulha_jee.pojo.SherwaniRequestBody;
 import com.example.dulha_jee.pojo.ShirtRequestBody;
+import com.example.dulha_jee.pojo.UpdateStatusRequestBody;
 import com.example.dulha_jee.pojo.WaistCoatFragmentrequestBody;
 
 import okhttp3.ResponseBody;
@@ -58,14 +59,14 @@ public interface Iapi {
     @POST("api/shirt/create")
     Call<HtmlResponseBody> createShirt(@Header("Authorization") String token, @Body ShirtRequestBody kurtaRequestBody);
 
-    @POST("api/pant/create")
+    @POST("api/paint/create")
     Call<HtmlResponseBody> createPant(@Header("Authorization") String token, @Body PantPojo kurtaRequestBody);
 
     @POST("api/inner-suit/create")
     Call<HtmlResponseBody> createInnerSuit(@Header("Authorization") String token, @Body InnerSuitRequestBody kurtaRequestBody);
 
     @POST("api/updateStatus")
-    Call<ResponseBody> updateStatus(@Header("Authorization") String token,@Body String status);
+    Call<UpdateStatusRequestBody> updateStatus(@Header("Authorization") String token, @Body UpdateStatusRequestBody bodydata);
 
 
     @GET("api/search")

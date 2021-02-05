@@ -300,7 +300,8 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
             @Override
             public void onClick(View view) {
                 DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getChildFragmentManager(), "date picker");
+                datePicker.setTargetFragment(WaistCoatFragment.this, 0);
+                datePicker.show(getFragmentManager(), "date picker");
             }
         });
 

@@ -25,7 +25,7 @@
             app:civ_border_width="2dp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
@@ -36,6 +36,9 @@
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:text="Abdul Kareem"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -47,26 +50,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Order # 450821"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="normal" />
 
+            <TextView
+                android:id="@+id/orderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="normal" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/orderStatus"
-            android:background="@drawable/rounded_bg_status"
-            android:textAlignment="center"
-            android:padding="5dp"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="order Status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -77,12 +84,12 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/editCustomer"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_edit" />
+                android:src="@drawable/ic_edit"
+                android:visibility="gone" />
 
 
             <ImageView

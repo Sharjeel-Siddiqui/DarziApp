@@ -22,6 +22,7 @@ import android.widget.Toolbar;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
 import com.example.dulha_jee.pojo.SearchResponseBody;
+import com.example.dulha_jee.userlist.DatePickerActivity;
 import com.example.dulha_jee.userlist.DatePickerFragment;
 import com.example.dulha_jee.userlist.UserListFragnment;
 
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 dialogView.findViewById(R.id.datePicker).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        DialogFragment datePicker = new DatePickerFragment();
+                        DialogFragment datePicker = new DatePickerActivity();
                         datePicker.show(getSupportFragmentManager(), "date picker");
                     }
                 });

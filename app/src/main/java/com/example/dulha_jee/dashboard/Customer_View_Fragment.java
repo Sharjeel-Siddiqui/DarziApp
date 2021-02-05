@@ -17,6 +17,7 @@ import com.example.dulha_jee.R;
 import com.example.dulha_jee.SharedPreference;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
+import com.example.dulha_jee.pojo.UpdateStatusRequestBody;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -30,6 +31,7 @@ public class Customer_View_Fragment extends Fragment {
     String[] status = {"آرڈر ختم کرنا ہے", "آرڈر آگیا", "کام جاری ہے", "آرڈر بن گیا", "کسٹمر کو پہنچ گیا"};
     Iapi iapi;
     SharedPreference sharedPreference;
+    String order_Number ;
 
     @Nullable
     @Override
@@ -56,17 +58,23 @@ public class Customer_View_Fragment extends Fragment {
             mWebView.getSettings().setJavaScriptEnabled(true);
             mWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
             mWebView.loadUrl(getArguments().getString("url"));
+            order_Number = getArguments().getString("ordernumber");
         } else {
             Toast.makeText(getActivity(), "NO url found", Toast.LENGTH_SHORT).show();
         }
 
 
+
         view.findViewById(R.id.updateState).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iapi.updateStatus("Bearer " + sharedPreference.getToken(), dropdown_status.getSelectedItem().toString()).enqueue(new Callback<ResponseBody>() {
+                UpdateStatusRequestBody updateStatusRequestBody = new UpdateStatusRequestBody();
+                updateStatusRequestBody.setOrder_status(dropdown_status.getSelectedItem().toString());
+                updateStatusRequestBody.setOrder_number(order_Number);
+
+                iapi.updateStatus("Bearer " + sharedPreference.getToken(),updateStatusRequestBody).enqueue(new Callback<UpdateStatusRequestBody>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    public void onResponse(Call<UpdateStatusRequestBody> call, Response<UpdateStatusRequestBody> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(getActivity(),response.message() + "code : " + response.code(), Toast.LENGTH_SHORT).show();
                         } else {
@@ -75,7 +83,7 @@ public class Customer_View_Fragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    public void onFailure(Call<UpdateStatusRequestBody> call, Throwable t) {
                         Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
                     }
                 });
