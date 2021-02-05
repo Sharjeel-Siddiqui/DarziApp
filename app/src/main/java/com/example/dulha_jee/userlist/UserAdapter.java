@@ -47,7 +47,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
         holder.orderNumber.setText(users.get(position).getOrder_number());
 
         holder.orderStatus.setText(users.get(position).getOrder_status() == null ? "" : users.get(position).getOrder_status());
-
+        holder.number.setText(users.get(position).getMobile_number());
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +56,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
                 Bundle bundle = new Bundle();
                 bundle.putString("url", users.get(position).getHtml());
                 bundle.putString("ordernumber", users.get(position).getOrder_number());
+                bundle.putString("orderstat", users.get(position).getOrder_status());
                 navController.navigate(R.id.action_userList_to_customer_View_Fragment, bundle);
             }
         });
@@ -67,7 +68,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
     }
 
     public class UserVH extends RecyclerView.ViewHolder {
-        TextView userName, orderNumber, orderStatus;
+        TextView userName, orderNumber, orderStatus , number;
         ImageView edit, view;
 
         public UserVH(@NonNull View itemView) {
@@ -77,6 +78,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
             orderNumber = itemView.findViewById(R.id.orderNumber);
             edit = itemView.findViewById(R.id.editCustomer);
             view = itemView.findViewById(R.id.viewCustomer);
+            number = itemView.findViewById(R.id.number);
         }
     }
 }
