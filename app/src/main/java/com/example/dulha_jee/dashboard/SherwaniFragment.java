@@ -466,30 +466,35 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
 
 
         // customer fields..
-        sherwaniRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام ");
-        sherwaniRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + "کسٹمر کا نمبر ");
-        sherwaniRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر ");
-        sherwaniRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ ");
+        sherwaniRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + ":  کسٹمر کا نام ");
+        sherwaniRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + ": کسٹمر کا نمبر  ");
+        sherwaniRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
+        sherwaniRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
+
 
         //et fields
-        sherwaniRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity");
-        sherwaniRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar");
-        sherwaniRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves");
-        sherwaniRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder");
-        sherwaniRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ/hip");
-        sherwaniRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ");
-        sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : chest.getText().toString() + "سینہ/Chest");
-        sherwaniRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
-        sherwaniRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ/waist ");
-        sherwaniRequestBody.setFullback(TextUtils.isEmpty(fullback.getText().toString()) ? "" : fullback.getText().toString() + "فل بیک/Full back ");
-        sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString() + "ہالف بیک/Half Back");
-        sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString() + "کراس فرنٹ/Cross Front");
-        sherwaniRequestBody.setHighlight_cadge_color(TextUtils.isEmpty(highlight_cadge_color.getText().toString()) ? "" : "کلر سے" + highlight_cadge_color.getText().toString() + "سامنے پہ ہائ لیٹ کاج ہوگے");
-        sherwaniRequestBody.setShow_cadge_color(TextUtils.isEmpty(show_cadge_color.getText().toString()) ? "" :  "کلر کے شو کاج ہوں گے" + show_cadge_color.getText().toString());
-        sherwaniRequestBody.setFront_cadge_numbers(TextUtils.isEmpty(front_cadge_numbers.getText().toString()) ? "" : "عدد کاج ہونگے" + front_cadge_numbers.getText().toString()  + "سامنے پہ");
-        sherwaniRequestBody.setContrast_color_astar(TextUtils.isEmpty(contrast_color_astar.getText().toString()) ? "" : "کلر کا استر لگانا ہے (ایک نمبر) چیری" + contrast_color_astar.getText().toString() + "کنٹراس");
-        sherwaniRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" :  "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
-        sherwaniRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
+        sherwaniRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+        sherwaniRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");
+        sherwaniRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین  ");
+        sherwaniRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + ": شولڈر  ");
+        sherwaniRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + " : ہپ تیار ");
+        sherwaniRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + ": گڈہ تیار ");
+        //sherwaniRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار  ");
+        sherwaniRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
+
+        sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : chest.getText().toString() + " : سینہ/Chest");
+        sherwaniRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ/waist ");
+        sherwaniRequestBody.setFullback(TextUtils.isEmpty(fullback.getText().toString()) ? "" : fullback.getText().toString() + " : فل بیک/Full back ");
+        sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString() +  " :  ہالف بیک/Half Back");
+        sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString() + " : کراس فرنٹ/Cross Front");
+        sherwaniRequestBody.setHighlight_cadge_color(TextUtils.isEmpty(highlight_cadge_color.getText().toString()) ? "" : "کلر سے" + highlight_cadge_color.getText().toString() + " : سامنے پہ ہائ لیٹ کاج ہوگے");
+        sherwaniRequestBody.setShow_cadge_color(TextUtils.isEmpty(show_cadge_color.getText().toString()) ? "" :  " : کلر کے شو کاج ہوں گے" + show_cadge_color.getText().toString());
+        sherwaniRequestBody.setFront_cadge_numbers(TextUtils.isEmpty(front_cadge_numbers.getText().toString()) ? "" : " سامنے پہ " + front_cadge_numbers.getText().toString() +  " عدد کاج ہونگے "  );
+        sherwaniRequestBody.setContrast_color_astar(TextUtils.isEmpty(contrast_color_astar.getText().toString()) ? "" :   " کنٹراس "  + contrast_color_astar.getText().toString() + "کلر کا استر لگانا ہے (ایک نمبر) چیری"  );
+
+        //urgent time and date...
+        sherwaniRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
+        sherwaniRequestBody.setUrgent_order_time(TextUtils.isEmpty(order_date_most_urgent.getText().toString()) ? "" : " انتہائ ارجنٹ بروز " + order_date_most_urgent.getText().toString() + " کو چاہیے " + "آرڈر" + is_most_urgent.getText().toString() + " بجے تک لازمی");
 
 
         //check boxes field
@@ -554,7 +559,7 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
 
 
         //sherwaniRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        sherwaniRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+        sherwaniRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
     //    sherwaniRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
         //chooseSidePocketImage ; image_4_db;
 

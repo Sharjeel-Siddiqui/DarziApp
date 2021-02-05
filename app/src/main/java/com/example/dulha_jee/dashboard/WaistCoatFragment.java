@@ -75,7 +75,7 @@ import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
-public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
+public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
     Spinner dropdown_karegar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
@@ -125,6 +125,10 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
     EditText lozing;
     @BindView(R.id.waistcoat_chowk_length)
     EditText waistcoat_chowk_length;
+    @BindView(R.id.order_date_most_urgent)
+    EditText order_date_most_urgent;
+    @BindView(R.id.is_most_urgent)
+    EditText is_most_urgent;
 
 
     @BindView(R.id.customer_name)
@@ -386,33 +390,34 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
     private void createWaistCoat() {
         WaistCoatFragmentrequestBody waistCoatFragmentrequestBody = new WaistCoatFragmentrequestBody();
 
-        //et fields
-        waistCoatFragmentrequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام");
-        waistCoatFragmentrequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + "کسٹمر کا نمبر");
-        waistCoatFragmentrequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر");
-        waistCoatFragmentrequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ");
+        // customer fields..
+        waistCoatFragmentrequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + ":  کسٹمر کا نام ");
+        waistCoatFragmentrequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + ": کسٹمر کا نمبر  ");
+        waistCoatFragmentrequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
+        waistCoatFragmentrequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
-        waistCoatFragmentrequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity");
-        waistCoatFragmentrequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar");
-        waistCoatFragmentrequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves ");
-        waistCoatFragmentrequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder");
-        waistCoatFragmentrequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ تیار/Hip Ready ");
-        waistCoatFragmentrequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ");
-        waistCoatFragmentrequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
-        waistCoatFragmentrequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + "سامنا تیار/Front Ready");
-        waistCoatFragmentrequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ تیار/Waist Ready ");
+        waistCoatFragmentrequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+        waistCoatFragmentrequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");
+        waistCoatFragmentrequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین  ");
+        waistCoatFragmentrequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + ": شولڈر  ");
+        waistCoatFragmentrequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + " : ہپ تیار ");
+        waistCoatFragmentrequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + ": گڈہ تیار ");
+        waistCoatFragmentrequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار  ");
+        waistCoatFragmentrequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
+        waistCoatFragmentrequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ تیار ");
+
 
         //urgent time and date...
-        waistCoatFragmentrequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
-        waistCoatFragmentrequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
+        waistCoatFragmentrequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
+        waistCoatFragmentrequestBody.setUrgent_order_time(TextUtils.isEmpty(order_date_most_urgent.getText().toString()) ? "" : " انتہائ ارجنٹ بروز " + order_date_most_urgent.getText().toString() + " کو چاہیے " + "آرڈر" + is_most_urgent.getText().toString() + " بجے تک لازمی");
 
 
-        waistCoatFragmentrequestBody.setThree_piece_style_cadge(TextUtils.isEmpty(three_piece_style_cadge.getText().toString()) ? "" : "عدد ہائ لیٹ کاج ہونگے" + three_piece_style_cadge.getText().toString() + "تھری پیس اسٹائل ونٹکوٹ سامنے پہ");
-        waistCoatFragmentrequestBody.setCollar_width(TextUtils.isEmpty(collar_width.getText().toString()) ? "" : "انچ رکھنی ہے" + collar_width.getText().toString() + "کالر کی چوڑائ");
-        waistCoatFragmentrequestBody.setViolet_pocket_width(TextUtils.isEmpty(violet_pocket_width.getText().toString()) ? "" : violet_pocket_width.getText().toString());
-        waistCoatFragmentrequestBody.setExtra_buttons(TextUtils.isEmpty(extra_buttons.getText().toString()) ? "" : "انچ رکھنی ہے" + extra_buttons.getText().toString() + "وائلٹ پوکٹ کی چوڑائ");
+        waistCoatFragmentrequestBody.setThree_piece_style_cadge(TextUtils.isEmpty(three_piece_style_cadge.getText().toString()) ? "" :   " تھری پیس اسٹائل ونٹکوٹ سامنے پہ " +  three_piece_style_cadge.getText().toString() + " عدد ہائ لیٹ کاج ہونگے ");
+        waistCoatFragmentrequestBody.setCollar_width(TextUtils.isEmpty(collar_width.getText().toString()) ? "" : " کالر کی چوڑائ " + collar_width.getText().toString() + " انچ رکھنی ہے ");
+        waistCoatFragmentrequestBody.setViolet_pocket_width(TextUtils.isEmpty(violet_pocket_width.getText().toString()) ? "" : "وائلٹ پوکٹ کی چوڑائ" + violet_pocket_width.getText().toString() + "انچ رکھنی ہے");
+        waistCoatFragmentrequestBody.setExtra_buttons(TextUtils.isEmpty(extra_buttons.getText().toString()) ? "" :    " وائلٹ پوکٹ کی چوڑائ " +  extra_buttons.getText().toString() + " انچ رکھنی ہے ");
         waistCoatFragmentrequestBody.setLozing(TextUtils.isEmpty(lozing.getText().toString()) ? "" : "انچ کی لوزنگ میں بنانی ہے" + lozing.getText().toString());
-        waistCoatFragmentrequestBody.set_chowk_length(TextUtils.isEmpty(waistcoat_chowk_length.getText().toString()) ? "" : " انچ کے رکھنے ہیں" + waistcoat_chowk_length.getText().toString() + "ویسٹ کوٹ کے چاک"); //waist coat chawk length
+        waistCoatFragmentrequestBody.set_chowk_length(TextUtils.isEmpty(waistcoat_chowk_length.getText().toString()) ? "" :  "ویسٹ کوٹ کے چاک" + waistcoat_chowk_length.getText().toString() + " انچ کے رکھنے ہیں" ); //waist coat chawk length
 
         //Check boxes come here
         waistCoatFragmentrequestBody.setJawahir_cut_style(jawahir_cut_style.isChecked() ? jawahir_cut_style.getText().toString() : "");
@@ -487,7 +492,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setSide_pocket_image(TextUtils.isEmpty(sidepocket_image) ? "" : sidepocket_image);
 
 
-        waistCoatFragmentrequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+        waistCoatFragmentrequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
 
 
         alerter.setTitle("انتطار فرمائیے۔۔۔")

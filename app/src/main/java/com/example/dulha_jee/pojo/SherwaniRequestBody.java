@@ -3,6 +3,7 @@ package com.example.dulha_jee.pojo;
 public class SherwaniRequestBody {
 
     private String  kurta_type,shalwar,karigar,urgent_order_time,urgent_order_date,side_pocket_image,cuff_image,collar_image,customer_image,customer_name,order_number ,mobile_number, order_date, quantity, collar, sleeves, shoulder, hip, abdomen, gudda, chest, lengthMade, fullback, halfback, crossfront, highlight_cadge_color, show_cadge_color, front_cadge_numbers, front_show_cadge_number, contrast_color_astar, is_urgent, is_most_urgent, order_date_most_urgent, remarks, jinnah_style, highlight_cadge_matching, fancy_metal_button, show_button, show_cadge_matching, side_pocket_both_sides, two_pockets, no_tal_pat, both_front_equal, back_center_sew, front_walnut_pocket, open_front_open_gown_style, collar_karhayi, sleeves_karhayi, button_karhayi, one_front_karhayi, both_front_karhayi, back_karhayi, collar_sleeves_karhayi, violet_pocket_karhayi, collar_sleeves_one_front_karhayi, front_pocket_karhayi, collar_sleeves_two_front_karhayi, front_pocket_on_karhayi, anger_khakhat_style_sherwani, cross_style_sherwani, matching_color_astar, customer_cloth, only_sewing, child_shewrwani_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, altered_body, deep_body, party_label, fancy_label;
+    private String order_status = "آرڈر آگیا";
 
     public String getKurta_type() {
         return kurta_type;

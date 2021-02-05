@@ -29,7 +29,7 @@
 
             <EditText
                 android:id="@+id/customer_name"
-                android:layout_width="60dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -51,8 +51,9 @@
 
             <EditText
                 android:id="@+id/customer_number"
-                android:layout_width="60dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -73,7 +74,7 @@
 
             <EditText
                 android:id="@+id/order_number"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -105,7 +106,7 @@
 
             <EditText
                 android:id="@+id/order_date"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -131,8 +132,9 @@
 
             <EditText
                 android:id="@+id/quantity"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -153,8 +155,9 @@
 
             <EditText
                 android:id="@+id/abdomen"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -175,8 +178,9 @@
 
             <EditText
                 android:id="@+id/hip"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -196,8 +200,9 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/lengthMade"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -218,8 +223,9 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/fly"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -240,8 +246,9 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/thigh"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -263,8 +270,9 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/knee"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -285,8 +293,9 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/bottom"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -921,7 +930,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/blue_bg_rounded"
+            android:background="@drawable/rounded_corner_edit_text"
             android:text="Submit" />
     </LinearLayout>
 </ScrollView>

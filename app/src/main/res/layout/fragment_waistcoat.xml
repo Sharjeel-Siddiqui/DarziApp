@@ -28,6 +28,7 @@
 
 
             <EditText
+                android:inputType="text"
                 android:id="@+id/customer_name"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -50,6 +51,7 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/mobile_number"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -129,6 +131,7 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/quantity"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -152,6 +155,7 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/collar"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -174,6 +178,7 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/sleeves"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -196,6 +201,7 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/shoulder"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -218,6 +224,7 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/hip"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -240,6 +247,7 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/abdomen"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -262,6 +270,7 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/gudda"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -284,6 +293,7 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/front"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -306,6 +316,7 @@
 
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/lengthMade"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -1282,7 +1293,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/blue_bg_rounded"
+            android:background="@drawable/rounded_corner_edit_text"
             android:text="Submit" />
 
     </LinearLayout>

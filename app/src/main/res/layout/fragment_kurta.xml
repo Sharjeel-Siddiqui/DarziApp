@@ -1900,7 +1900,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/blue_bg_rounded"
+            android:background="@drawable/rounded_corner_edit_text"
             android:text="Submit" />
     </LinearLayout>
 </ScrollView>

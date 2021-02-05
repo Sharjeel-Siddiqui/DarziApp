@@ -114,6 +114,13 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
     EditText order_date_most_urgent;
     @BindView(R.id.remarks)
     EditText remarks;
+    @BindView(R.id.urgent_order_date)
+    EditText urgent_order_date;
+    @BindView(R.id.urgent_order_time)
+    EditText urgent_order_time;
+    @BindView(R.id.is_most_urgent)
+    EditText is_most_urgent;
+
 
     //CheckBoxes come here
 
@@ -339,19 +346,21 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
         PantPojo pantPojo = new PantPojo();
 
         //et fields
-        pantPojo.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام");
-        pantPojo.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString() + "کسٹمر کا نمبر");
-        pantPojo.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر");
-        pantPojo.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ");
+        // customer fields..
+        pantPojo.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + ":  کسٹمر کا نام ");
+        pantPojo.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString() + ": کسٹمر کا نمبر  ");
+        pantPojo.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
+        pantPojo.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
-        pantPojo.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity  ");
-        pantPojo.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "ویسٹ/Waist ");
-        pantPojo.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ/Hip");
-        pantPojo.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length ");
-        pantPojo.setFly(TextUtils.isEmpty(fly.getText().toString()) ? "" : fly.getText().toString() + "فلائ/Fly");
-        pantPojo.setThigh(TextUtils.isEmpty(thigh.getText().toString()) ? "" : thigh.getText().toString() + "ران/Thigh ");
-        pantPojo.setKnee(TextUtils.isEmpty(knee.getText().toString()) ? "" : knee.getText().toString() + "گھٹنہ/Knee");
-        pantPojo.setBottom(TextUtils.isEmpty(bottom.getText().toString()) ? "" : bottom.getText().toString() + "بوٹم/Bottom");
+        //et fields
+        pantPojo.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+        pantPojo.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + " : ہپ تیار ");
+        pantPojo.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
+        pantPojo.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ ");
+        pantPojo.setFly(TextUtils.isEmpty(fly.getText().toString()) ? "" : fly.getText().toString() + " : فلائ ");
+        pantPojo.setThigh(TextUtils.isEmpty(thigh.getText().toString()) ? "" : thigh.getText().toString() + " : ران ");
+        pantPojo.setKnee(TextUtils.isEmpty(knee.getText().toString()) ? "" : knee.getText().toString() + " : گھٹنہ ");
+        pantPojo.setBottom(TextUtils.isEmpty(bottom.getText().toString()) ? "" : bottom.getText().toString() + ": بوٹم ");
 
 
         pantPojo.setWithout_plate(without_plate.isChecked() ? without_plate.getText().toString() : "");
@@ -384,6 +393,11 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
         pantPojo.setSame_as_image(same_as_image.isChecked() ? same_as_image.getText().toString() : "");
 
 
+        //urgent time and date...
+        pantPojo.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
+        pantPojo.setUrgent_order_time(TextUtils.isEmpty(order_date_most_urgent.getText().toString()) ? "" : " انتہائ ارجنٹ بروز " + order_date_most_urgent.getText().toString() + " کو چاہیے " + "آرڈر" + is_most_urgent.getText().toString() + " بجے تک لازمی");
+
+
         //checkboxes for general fields
 
         pantPojo.setCustomer_cloth(customer_cloth.isChecked() ? customer_cloth.getText().toString() : "");
@@ -408,7 +422,7 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
 
         //send image here
 
-       // image_4_db;
+        // image_4_db;
 
         pantPojo.setCustomer_image(TextUtils.isEmpty(image_4_db) ? "" : image_4_db);
 
@@ -418,21 +432,20 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
                 .setBackgroundColorRes(R.color.black).show();
 
 
-
-        pantPojo.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+        pantPojo.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
 
         //Api call here...
-        iapi.createPant("Bearer "+ sharedPreference.getToken(),pantPojo).enqueue(new Callback<HtmlResponseBody>() {
+        iapi.createPant("Bearer " + sharedPreference.getToken(), pantPojo).enqueue(new Callback<HtmlResponseBody>() {
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
                     Log.i("TAG", "onResponse: " + response.message());
                     Log.i("TAG", "onResponse: " + response.raw());
                     html_url = response.body().getUrl();
                     doWebViewPrint();
                     Alerter.hide();
-                }else{
+                } else {
                     Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
                     Alerter.hide();
                 }

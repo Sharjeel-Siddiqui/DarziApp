@@ -141,6 +141,9 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
     @BindView(R.id.urgent_order_time)
     EditText urgent_order_time;
 
+    @BindView(R.id.is_most_urgent)
+    EditText is_most_urgent;
+
     //CheckBoxes come here
     @BindView(R.id.off_white_color)
     CheckBox off_white_colorl;
@@ -370,29 +373,30 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         InnerSuitRequestBody innerSuitRequestBody = new InnerSuitRequestBody();
 
         //et fields
-        innerSuitRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام");
-        innerSuitRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + "کسٹمر کا نمبر");
-        innerSuitRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر");
-        innerSuitRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ");
+        // customer fields..
+        innerSuitRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + ":  کسٹمر کا نام ");
+        innerSuitRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + ": کسٹمر کا نمبر  ");
+        innerSuitRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
+        innerSuitRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
-        innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity");
-        innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar ");
-        innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves");
-        innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder");
-        innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ تیار/Hip Ready \"");
-        innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ تیار ");
-        innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + "سامنا تیار/Front Ready");
-        innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
-        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ تیار/Waist Ready ");
-        innerSuitRequestBody.setShalwar_gher(TextUtils.isEmpty(shalwar_gher.getText().toString()) ? "" : "\"انچ کا چاہیے تیار" + shalwar_gher.getText().toString() + "شلوار کا گھیر ایک سائیڈ کا");
-        innerSuitRequestBody.setShalwar_asan(TextUtils.isEmpty(shalwar_asan.getText().toString()) ? "" : "انچ کا چاہیے تیار" + shalwar_asan.getText().toString() + "شلوار کاآسن");
-        innerSuitRequestBody.setPajama_inner_fold(TextUtils.isEmpty(pajama_inner_fold.getText().toString()) ? "" : "انچ چوڑی فولڈ کرنی ہے باہر کی طرف" + pajama_inner_fold.getText().toString() + "پاجامے کی سوری");
-        innerSuitRequestBody.setPajama_outer_fold(TextUtils.isEmpty(pajama_outer_fold.getText().toString()) ? "" : "انچ چوڑی فولڈ کرنی ہے اندر کی طرف" + pajama_outer_fold.getText().toString() + "پاجامے کی سوری");
+        innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+        innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + ": کالر  ");
+        innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین ");
+        innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + " : شولڈر/ ");
+        innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + " : ہپ تیار ");
+        innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + " : گڈہ تیار ");
+        innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار ");
+        innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + " : لمبائ ");
+        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ تیار ");
+        innerSuitRequestBody.setShalwar_gher(TextUtils.isEmpty(shalwar_gher.getText().toString()) ? "" :  "شلوار کا گھیر ایک سائیڈ کا"  + shalwar_gher.getText().toString() + "انچ کا چاہیے تیار"  );
+        innerSuitRequestBody.setShalwar_asan(TextUtils.isEmpty(shalwar_asan.getText().toString()) ? "" : "شلوار کاآسن" + shalwar_asan.getText().toString() + "انچ کا چاہیے تیار" );
+        innerSuitRequestBody.setPajama_inner_fold(TextUtils.isEmpty(pajama_inner_fold.getText().toString()) ? "" :   "پاجامے کی سوری"  + pajama_inner_fold.getText().toString() + "انچ چوڑی فولڈ کرنی ہے باہر کی طرف" );
+        innerSuitRequestBody.setPajama_outer_fold(TextUtils.isEmpty(pajama_outer_fold.getText().toString()) ? "" :    "پاجامے کی سوری" + pajama_outer_fold.getText().toString() + "انچ چوڑی فولڈ کرنی ہے اندر کی طرف");
         innerSuitRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
 
         //urgent time and date...
-        innerSuitRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
-        innerSuitRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
+        innerSuitRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
+        innerSuitRequestBody.setUrgent_order_time(TextUtils.isEmpty(order_date_most_urgent.getText().toString()) ? "" : " انتہائ ارجنٹ بروز " + order_date_most_urgent.getText().toString() + " کو چاہیے " + "آرڈر" + is_most_urgent.getText().toString() + " بجے تک لازمی");
 
 
         //CheckBOxes Come here
@@ -467,7 +471,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
 
 
         innerSuitRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        innerSuitRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
+        innerSuitRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
 
         alerter.setTitle("انتطار فرمائیے۔۔۔")
                 .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")

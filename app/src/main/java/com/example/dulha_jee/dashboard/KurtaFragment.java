@@ -146,6 +146,8 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
     EditText pocket_width;
     @BindView(R.id.pocket_length)
     EditText pocket_length;
+    @BindView(R.id.is_most_urgent)
+    EditText is_most_urgent;
     @BindView(R.id.order_date_most_urgent)
     EditText order_date_most_urgent;
     @BindView(R.id.remarks)
@@ -402,13 +404,14 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
             @Override
             public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
                 GetUserResponseBody getUserResponseBody = response.body();
-                getUserResponseBody.getData();
+                // getUserResponseBody.getData();
 
-                String[] arr = getUserResponseBody.getData().toArray(new String[getUserResponseBody.getData().size()]);
-                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
-                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                dropdown_karegar_name.setAdapter(adapter3);
-
+                if (getUserResponseBody.getData() != null) {
+                    String[] arr = getUserResponseBody.getData().toArray(new String[getUserResponseBody.getData().size()]);
+                    ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
+                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    dropdown_karegar_name.setAdapter(adapter3);
+                }
                 //Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
             }
 
@@ -674,12 +677,12 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         //all checked field goes here
         KurtaRequestBody kurtaRequestBody = new KurtaRequestBody();
         //et fields
-        kurtaRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
         kurtaRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + ":  کسٹمر کا نام ");
         kurtaRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + ": کسٹمر کا نمبر  ");
         kurtaRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
         kurtaRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
+        kurtaRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
         kurtaRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");
         kurtaRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین  ");
         kurtaRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + ": شولڈر  ");
@@ -689,8 +692,8 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         kurtaRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
 
         //urgent time and date...
-        kurtaRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" :    " ارجنٹ بروز "  + urgent_order_date.getText().toString()  + " کو چاہیے " +  "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی" );
-      //  kurtaRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" :  "آرڈر "  + urgent_order_time.getText().toString() + " بجے تک لازمی" );
+        kurtaRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
+        kurtaRequestBody.setUrgent_order_time(TextUtils.isEmpty(order_date_most_urgent.getText().toString()) ? "" : " انتہائ ارجنٹ بروز " + order_date_most_urgent.getText().toString() + " کو چاہیے " + "آرڈر" + is_most_urgent.getText().toString() + " بجے تک لازمی");
 
 
         //collar style image field
@@ -701,7 +704,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         // kurtaRequestBody.setFront_pati_length(TextUtils.isEmpty(front_pati_length.getText().toString()) ? "" : front_pati_length.getText().toString());
         kurtaRequestBody.setFront_pati_width(TextUtils.isEmpty(front_pati_width.getText().toString()) ? "" : " سامنے کے ریگولر پٹی کے چوڑائ " + front_pati_width.getText().toString() + " انچ رکھنی ہے ");
         kurtaRequestBody.setFront_pati_cadge(TextUtils.isEmpty(front_pati_cadge.getText().toString()) ? "" : " سامنے کے پٹی میں " + front_pati_cadge.getText().toString() + " عدد کاج ہونگے ");
-        kurtaRequestBody.setCover_pati_length(TextUtils.isEmpty(cover_pati_length.getText().toString()) ? "" :   " کور پٹی کی لمبائ " + cover_pati_length.getText().toString() + "انچ رکھنی ہے");
+        kurtaRequestBody.setCover_pati_length(TextUtils.isEmpty(cover_pati_length.getText().toString()) ? "" : " کور پٹی کی لمبائ " + cover_pati_length.getText().toString() + "انچ رکھنی ہے");
         kurtaRequestBody.setCuff_width(TextUtils.isEmpty(cuff_width.getText().toString()) ? "" : "کف کی چوڑائ" + cuff_width.getText().toString() + " انچ رکھنی ہے ");
         kurtaRequestBody.setCuff_chowk_width(TextUtils.isEmpty(cuff_chowk_width.getText().toString()) ? "" : " کف کی چاک پٹی کی چوڑائ " + cuff_chowk_width.getText().toString() + " انچ رکھنی ہے ");
         kurtaRequestBody.setCuff_length(TextUtils.isEmpty(cuff_length.getText().toString()) ? "" : " کف کی لمبائ " + cuff_length.getText().toString() + " انچ رکھنی ہے ");
@@ -823,7 +826,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
 
 
         kurtaRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        kurtaRequestBody.setKarigar(   dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام " );
+        kurtaRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
         kurtaRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
 

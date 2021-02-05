@@ -30,7 +30,7 @@
         <EditText
             android:id="@+id/et_resetpassword_token"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/rounded_corner_edit_text"
             android:hint="enter your token"
@@ -50,7 +50,7 @@
         <EditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/rounded_corner_edit_text"
             android:hint="enter your email"
@@ -71,7 +71,7 @@
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/rounded_corner_edit_text"
             android:hint="enter your new password"
@@ -93,6 +93,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="150dp"
+        android:background="@drawable/rounded_corner_edit_text"
+        android:textColor="@color/black"
         android:text="Reset Password" />
 
 

@@ -76,7 +76,7 @@ import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
-public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSetListener{
+public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSetListener {
     Spinner dropdown_karegar_name, dropdown_coat_varieties;
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] coatVarieties = {"گون اسٹائل فرنٹ اوپن کوٹ ", "پرنس کوٹ ", "کوٹ "};
@@ -140,6 +140,8 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
     EditText order_date_most_urgent;
     @BindView(R.id.remarks)
     EditText remarks;
+    @BindView(R.id.is_most_urgent)
+    EditText is_most_urgent;
 
     @BindView(R.id.urgent_order_date)
     EditText urgent_order_date;
@@ -256,7 +258,6 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
     EditText order_number;
 
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -268,7 +269,7 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setToolbar("Coat...");
         navController = Navigation.findNavController(view);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         chooseImage = view.findViewById(R.id.chooseImage);
         iv_01 = view.findViewById(R.id.iv_01);
         iapi = ApiClient.getClient().create(Iapi.class);
@@ -360,34 +361,36 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         CoatRequestBody coatRequestBody = new CoatRequestBody();
 
         //et_fields....
-        coatRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام");
-        coatRequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString() + "کسٹمر کا نمبر");
-        coatRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر");
-        coatRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ");
+        // customer fields..
+        coatRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + ":  کسٹمر کا نام ");
+        coatRequestBody.setMobile_number(TextUtils.isEmpty(customer_number.getText().toString()) ? "" : customer_number.getText().toString() + ": کسٹمر کا نمبر  ");
+        coatRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
+        coatRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
-        coatRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity  ");
-        coatRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar ");
-        coatRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves");
-        coatRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/Shoulder ");
-        coatRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ/Hip");
-        coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ/Waist ");
-        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : chest.getText().toString() + "سینہ/Cheest ");
-        coatRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ");
-        coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
-        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" : full_back.getText().toString() + "فل بیک/Full Back ");
-        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString() + "ہالف بیک/Half Back ");
-        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString() + "کراس فرنٹ/Cross Front");
-        coatRequestBody.setPencil_length(TextUtils.isEmpty(pencil_length.getText().toString()) ? "" : "انچ کی رکھنی ہے" + pencil_length.getText().toString() + "پینسل کی چوڑائی");
-        coatRequestBody.setChowk_length(TextUtils.isEmpty(chowk_length.getText().toString()) ? "" : "انچ کی رکھنی ہے" + chowk_length.getText().toString() + "چاک کی لمبائی");
-        coatRequestBody.setCollar_thing(TextUtils.isEmpty(collar_thing.getText().toString()) ? "" : "لگانی ہے" + collar_thing.getText().toString() + "کالر میں");
-        coatRequestBody.setPencil_thing(TextUtils.isEmpty(pencil_thing.getText().toString()) ? "" : " لگانی ہے" + pencil_thing.getText().toString() + "پینسل میں");
-        coatRequestBody.setShoulder_depth(TextUtils.isEmpty(shoulder_depth.getText().toString()) ? "" : "انچ کی رکھنی ہے" + shoulder_depth.getText().toString() + " کوٹ کی گلے کی گہرائی شولڈر کی سلائ سے");
-        coatRequestBody.setFront_cadge(TextUtils.isEmpty(front_cadge.getText().toString()) ? "" : "عدد کاج ہونگے" + front_cadge.getText().toString() + "سامنے پہ");
+
+        coatRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+        coatRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");
+        coatRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین  ");
+        coatRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + ": شولڈر  ");
+        coatRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + " : ہپ تیار ");
+        coatRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + ": گڈہ تیار ");
+        coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
+        coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ ");
+        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" :  " سینہ : " + chest.getText().toString());
+        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" :  " : فل بیک " + full_back.getText().toString() );
+        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : " : ہالف بیک " + halfback.getText().toString()  );
+        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" :  " : کراس فرنٹ " + crossfront.getText().toString()  );
+        coatRequestBody.setPencil_length(TextUtils.isEmpty(pencil_length.getText().toString()) ? "" : "پینسل کی چوڑائی" + pencil_length.getText().toString() + "انچ کی رکھنی ہے");
+        coatRequestBody.setChowk_length(TextUtils.isEmpty(chowk_length.getText().toString()) ? "" : "چاک کی لمبائی" + chowk_length.getText().toString() + "انچ کی رکھنی ہے");
+        coatRequestBody.setCollar_thing(TextUtils.isEmpty(collar_thing.getText().toString()) ? "" : " کالر میں " + collar_thing.getText().toString() + " لگانی ہے ");
+        coatRequestBody.setPencil_thing(TextUtils.isEmpty(pencil_thing.getText().toString()) ? "" : " پینسل میں " + pencil_thing.getText().toString() + " لگانی ہے");
+        coatRequestBody.setShoulder_depth(TextUtils.isEmpty(shoulder_depth.getText().toString()) ? "" : " کوٹ کی گلے کی گہرائی شولڈر کی سلائ سے" + shoulder_depth.getText().toString() + "انچ کی رکھنی ہے");
+        coatRequestBody.setFront_cadge(TextUtils.isEmpty(front_cadge.getText().toString()) ? "" : "سامنے پہ" + front_cadge.getText().toString() + "عدد کاج ہونگے");
         coatRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
 
         //urgent time and date...
-        coatRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
-        coatRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
+        coatRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
+        coatRequestBody.setUrgent_order_time(TextUtils.isEmpty(order_date_most_urgent.getText().toString()) ? "" : " انتہائ ارجنٹ بروز " + order_date_most_urgent.getText().toString() + " کو چاہیے " + "آرڈر" + is_most_urgent.getText().toString() + " بجے تک لازمی");
 
 
         //Check boxes field goes here ....
@@ -451,11 +454,17 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         coatRequestBody.setSide_pocket_image(TextUtils.isEmpty(sidepocket_image) ? "" : sidepocket_image);
 
 
-       // coatRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        coatRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
-       // coatRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
+        // coatRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
+        coatRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
+        // coatRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
         //Api call here...
+
+
+        alerter.setTitle("انتطار فرمائیے۔۔۔")
+                .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
+                .setIcon(R.drawable.dulha_jee_logo)
+                .setBackgroundColorRes(R.color.black).show();
 
         iapi.createCoat("Bearer " + sharedPreference.getToken(), coatRequestBody).enqueue(new Callback<HtmlResponseBody>() {
             @Override
@@ -466,8 +475,10 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
                     Log.i("TAG", "onResponse: " + response.raw());
                     html_url = response.body().getUrl();
                     doWebViewPrint();
-                }else{
+                    Alerter.hide();
+                } else {
                     Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
+                    Alerter.hide();
                 }
             }
 

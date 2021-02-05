@@ -99,6 +99,8 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
+    @BindView(R.id.is_most_urgent)
+    EditText is_most_urgent;
     @BindView(R.id.collar)
     EditText collar;
     @BindView(R.id.sleeves)
@@ -214,7 +216,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         iv_01 = view.findViewById(R.id.iv_01);
         iapi = ApiClient.getClient().create(Iapi.class);
         alerter = Alerter.create(getActivity());
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         sharedPreference = new SharedPreference(getActivity());
 
         chooseOrderDate.setOnClickListener(new View.OnClickListener() {
@@ -485,27 +487,29 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         ShirtRequestBody shirtRequestBody = new ShirtRequestBody();
 
         //et fields...
+        // customer fields..
+        shirtRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + ":  کسٹمر کا نام ");
+        shirtRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + ": کسٹمر کا نمبر  ");
+        shirtRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
+        shirtRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
-        shirtRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + "کسٹمر کا نام");
-        shirtRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + "کسٹمر کا نمبر");
-        shirtRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + "آرڈر  نمبر");
-        shirtRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : order_date.getText().toString() + "آرڈر کی تاریخ");
+        //et fields
+        shirtRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+        shirtRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");
+        shirtRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین  ");
+        shirtRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + ": شولڈر  ");
+        shirtRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + " : ہپ تیار ");
+        shirtRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + ": گڈہ تیار ");
+        shirtRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار  ");
+        shirtRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
+        shirtRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ/waist ");
 
-        shirtRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + "عدد/Quantity");
-        shirtRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + "کالر/Collar");
-        shirtRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + "آستین/Sleeves");
-        shirtRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + "شولڈر/ Shoulder");
-        shirtRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + "ہپ تیار /Hip Ready");
-        shirtRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + "گڈہ تیار");
-        shirtRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + "سامنا تیار /Front Ready");
-        shirtRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + "پیٹ تیار /Waist Ready");
-        shirtRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + "لمبائ/Length");
-        shirtRequestBody.setPatti_ki_chorayi(TextUtils.isEmpty(patti_ki_chorayi.getText().toString()) ? "" : "نچ رکھنی ہے" + patti_ki_chorayi.getText().toString() + "پٹی کی چوڑائ");
+        shirtRequestBody.setPatti_ki_chorayi(TextUtils.isEmpty(patti_ki_chorayi.getText().toString()) ? "" : " پٹی کی چوڑائ " + patti_ki_chorayi.getText().toString() + "نچ رکھنی ہے");
         shirtRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
 
         //urgent time and date...
-        shirtRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : "کو چاہیے" + urgent_order_date.getText().toString() + "ارجنٹ بروز");
-        shirtRequestBody.setUrgent_order_time(TextUtils.isEmpty(urgent_order_time.getText().toString()) ? "" : " بجے تک لازمی" + urgent_order_time.getText().toString() + "آرڈر ");
+        shirtRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
+        shirtRequestBody.setUrgent_order_time(TextUtils.isEmpty(order_date_most_urgent.getText().toString()) ? "" : " انتہائ ارجنٹ بروز " + order_date_most_urgent.getText().toString() + " کو چاہیے " + "آرڈر" + is_most_urgent.getText().toString() + " بجے تک لازمی");
 
 
         //Check BOXES COME HERE....
@@ -550,9 +554,9 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         shirtRequestBody.setSide_pocket_image("");
 
 
-     //   shirtRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        shirtRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString());
-      //  shirtRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
+        //   shirtRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
+        shirtRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
+        //  shirtRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
         alerter.setTitle("انتطار فرمائیے۔۔۔")
                 .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
@@ -573,7 +577,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
                     html_url = response.body().getUrl();
                     doWebViewPrint();
                     Alerter.hide();
-                }else{
+                } else {
                     Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
                     Alerter.hide();
                 }
