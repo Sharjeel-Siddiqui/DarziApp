@@ -377,9 +377,9 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
         coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ ");
         coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" :  " سینہ : " + chest.getText().toString());
-        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" :  " : فل بیک " + full_back.getText().toString() );
-        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : " : ہالف بیک " + halfback.getText().toString()  );
-        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" :  " : کراس فرنٹ " + crossfront.getText().toString()  );
+        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" :   full_back.getText().toString() + " : فل بیک " );
+        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" :  halfback.getText().toString() + " : ہالف بیک "   );
+        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" :    crossfront.getText().toString() + " : کراس فرنٹ "  );
         coatRequestBody.setPencil_length(TextUtils.isEmpty(pencil_length.getText().toString()) ? "" : "پینسل کی چوڑائی" + pencil_length.getText().toString() + "انچ کی رکھنی ہے");
         coatRequestBody.setChowk_length(TextUtils.isEmpty(chowk_length.getText().toString()) ? "" : "چاک کی لمبائی" + chowk_length.getText().toString() + "انچ کی رکھنی ہے");
         coatRequestBody.setCollar_thing(TextUtils.isEmpty(collar_thing.getText().toString()) ? "" : " کالر میں " + collar_thing.getText().toString() + " لگانی ہے ");
@@ -470,7 +470,7 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
                     Log.i("TAG", "onResponse: " + response.message());
                     Log.i("TAG", "onResponse: " + response.raw());
                     html_url = response.body().getUrl();

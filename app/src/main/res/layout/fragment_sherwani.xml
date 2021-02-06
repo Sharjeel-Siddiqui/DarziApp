@@ -30,7 +30,7 @@
 
             <EditText
                 android:id="@+id/customer_name"
-                android:layout_width="120dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -53,7 +53,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/mobile_number"
-                android:layout_width="120dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -75,7 +75,7 @@
 
             <EditText
                 android:id="@+id/order_number"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -108,7 +108,7 @@
 
             <EditText
                 android:id="@+id/order_date"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -136,7 +136,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/quantity"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -159,7 +159,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/collar"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -182,7 +182,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/sleeves"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -205,7 +205,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/shoulder"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -228,7 +228,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/hip"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -251,7 +251,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/abdomen"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -275,7 +275,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/gudda"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -298,7 +298,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/chest"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -321,7 +321,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/lengthMade"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -344,7 +344,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/fullback"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -368,7 +368,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/halfback"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -392,7 +392,7 @@
             <EditText
                 android:inputType="number"
                 android:id="@+id/crossfront"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
@@ -1116,7 +1116,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="الٹر باڈی ہے"
+            android:text="آلٹر باڈی ہے"
             android:textSize="22sp" />
 
         <CheckBox

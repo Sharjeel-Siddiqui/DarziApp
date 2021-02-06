@@ -842,7 +842,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         iapi.createKurta("Bearer " + sharedPreference.getToken(), kurtaRequestBody).enqueue(new Callback<HtmlResponseBody>() {
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
-                Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
                 Log.i("TAG", "onResponse: " + response.message());
                 Log.i("TAG", "onResponse: " + response.raw());
                 //response.body().getUrl();

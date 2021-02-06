@@ -732,7 +732,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="الٹر باڈی ہے"
+            android:text="آلٹر باڈی ہے"
             android:textSize="22sp" />
 
         <CheckBox

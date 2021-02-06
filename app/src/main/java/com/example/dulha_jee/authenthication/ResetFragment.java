@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.dulha_jee.R;
 import com.example.dulha_jee.api.ApiClient;
@@ -51,7 +52,8 @@ public class ResetFragment extends Fragment {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(getActivity(), "Password Reset...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Password Reset Succesfullu...", Toast.LENGTH_SHORT).show();
+                            Navigation.findNavController(view).navigate(R.id.action_resetFragment_to_loginFragment);
                         }
                         Toast.makeText(getActivity(), "CODE" + response.code(), Toast.LENGTH_SHORT).show();
                     }

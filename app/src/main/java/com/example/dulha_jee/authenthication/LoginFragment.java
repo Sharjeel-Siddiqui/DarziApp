@@ -21,6 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.example.dulha_jee.MainActivity;
@@ -109,7 +110,7 @@ public class LoginFragment extends Fragment {
                                     navController.navigate(R.id.action_loginFragment_to_resetFragment);
                                     alertDialog.dismiss();
                                 }
-                                Toast.makeText(getActivity(), "Hello" + response.code(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -144,7 +145,10 @@ public class LoginFragment extends Fragment {
                         if (response.isSuccessful()) {
                             sharedPreference.saveToken(response.body().getApi_token());
                             String value = sharedPreference.getToken();
-                            navController.navigate(R.id.action_loginFragment_to_userList);
+                            //navController.navigate(R.id.action_loginFragment_to_userList);
+                            navController.navigate(R.id.action_loginFragment_to_userList, null, new NavOptions.Builder()
+                                    .setPopUpTo(R.id.loginFragment,
+                                            true).build());
                             pd.dismiss();
                         }
                         pd.dismiss();

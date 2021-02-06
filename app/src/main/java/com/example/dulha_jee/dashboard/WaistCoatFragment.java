@@ -416,7 +416,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setCollar_width(TextUtils.isEmpty(collar_width.getText().toString()) ? "" : " کالر کی چوڑائ " + collar_width.getText().toString() + " انچ رکھنی ہے ");
         waistCoatFragmentrequestBody.setViolet_pocket_width(TextUtils.isEmpty(violet_pocket_width.getText().toString()) ? "" : "وائلٹ پوکٹ کی چوڑائ" + violet_pocket_width.getText().toString() + "انچ رکھنی ہے");
         waistCoatFragmentrequestBody.setExtra_buttons(TextUtils.isEmpty(extra_buttons.getText().toString()) ? "" :    " وائلٹ پوکٹ کی چوڑائ " +  extra_buttons.getText().toString() + " انچ رکھنی ہے ");
-        waistCoatFragmentrequestBody.setLozing(TextUtils.isEmpty(lozing.getText().toString()) ? "" : "انچ کی لوزنگ میں بنانی ہے" + lozing.getText().toString());
+        waistCoatFragmentrequestBody.setLozing(TextUtils.isEmpty(lozing.getText().toString()) ? "" :  lozing.getText().toString() + "انچ کی لوزنگ میں بنانی ہے" );
         waistCoatFragmentrequestBody.set_chowk_length(TextUtils.isEmpty(waistcoat_chowk_length.getText().toString()) ? "" :  "ویسٹ کوٹ کے چاک" + waistcoat_chowk_length.getText().toString() + " انچ کے رکھنے ہیں" ); //waist coat chawk length
 
         //Check boxes come here
@@ -507,7 +507,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
                     Log.i("TAG", "onResponse: " + response.message());
                     Log.i("TAG", "onResponse: " + response.raw());
                     //response.body().getUrl();

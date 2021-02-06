@@ -49,7 +49,7 @@
 
             <EditText
                 android:id="@+id/customer_name"
-                android:layout_width="120dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:textDirection="anyRtl" />
@@ -73,7 +73,7 @@
 
             <EditText
                 android:id="@+id/mobile_number"
-                android:layout_width="120dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -155,7 +155,7 @@
             <EditText
 
                 android:id="@+id/quantity"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -179,7 +179,7 @@
             <EditText
 
                 android:id="@+id/collar"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -203,7 +203,7 @@
             <EditText
 
                 android:id="@+id/sleeves"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -227,7 +227,7 @@
             <EditText
 
                 android:id="@+id/shoulder"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -251,7 +251,7 @@
             <EditText
 
                 android:id="@+id/hip"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -275,7 +275,7 @@
             <EditText
 
                 android:id="@+id/abdomen"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -298,7 +298,7 @@
 
             <EditText
                 android:id="@+id/gudda"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -321,7 +321,7 @@
 
             <EditText
                 android:id="@+id/front"
-                android:layout_width="60dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:singleLine="true" />
@@ -467,7 +467,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="  کالر V وی کٹ اسٹائؑل کا ہونا چاھئے"
+            android:text="  کالر V وی کٹ اسٹائل کا ہونا چاھئے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -524,7 +524,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="ٹکسیڈو اسٹائؑل  کالر"
+            android:text="ٹکسیڈو اسٹائل  کالر"
             android:textSize="22sp" />
 
         <CheckBox
@@ -788,7 +788,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سامنے کی پٹی کا اسٹاعل سیم تصویر جیسا رکھنا ہے"
+            android:text="سامنے کی پٹی کا اسٹائل سیم تصویر جیسا رکھنا ہے"
             android:textSize="22sp" />
 
         <HorizontalScrollView
@@ -1819,7 +1819,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="الٹر باڈی ہے"
+            android:text="آلٹر باڈی ہے"
             android:textSize="22sp" />
 
         <CheckBox

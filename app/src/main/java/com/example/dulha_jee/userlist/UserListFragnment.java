@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,7 @@ public class UserListFragnment extends Fragment {
     NavController navController;
     Iapi iapi;
     SharedPreference sharedPreference;
+    TextView nrf;
 
 
     @Nullable
@@ -57,6 +59,9 @@ public class UserListFragnment extends Fragment {
         navController = Navigation.findNavController(view);
         ((MainActivity) getActivity()).setToolbarVisibility(true);
         ((MainActivity) getActivity()).setToolbarhere("Dulha Jee");
+        nrf = view.findViewById(R.id.nrf);
+
+
 
 
         if (getArguments() != null) { // via search
@@ -68,8 +73,14 @@ public class UserListFragnment extends Fragment {
                 @Override
                 public void onResponse(Call<SearchResponseBody> call, Response<SearchResponseBody> response) {
 
-                    usersList = response.body().getData();
-                    populateRv((ArrayList<SearchResponseBody.user>) usersList);
+                    if(response.body().getData().size() > 0) {
+                        usersList = response.body().getData();
+                        populateRv((ArrayList<SearchResponseBody.user>) usersList);
+                        nrf.setVisibility(View.GONE);
+                    }else{
+                        nrf.setVisibility(View.VISIBLE);
+                    }
+
                 }
 
                 @Override
@@ -85,11 +96,14 @@ public class UserListFragnment extends Fragment {
                 @Override
                 public void onResponse(Call<SearchResponseBody> call, Response<SearchResponseBody> response) {
 
-                    Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
 
                     if (response.body().getData() != null) {
                         usersList = response.body().getData();
                         populateRv((ArrayList<SearchResponseBody.user>) usersList);
+                        nrf.setVisibility(View.GONE);
+                    }else{
+                        nrf.setVisibility(View.VISIBLE);
                     }
                     //navigation.navigate(R.id.userList);
                 }
