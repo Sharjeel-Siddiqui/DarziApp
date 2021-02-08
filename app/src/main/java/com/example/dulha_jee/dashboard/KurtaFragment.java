@@ -86,6 +86,8 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] shalwar = {"شلوار کی اقسا م", "شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
+    String[] downOptions = {" شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+
     NavController navController;
     CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
     ImageView chooseCollarImage, chooseSidePocket, iv_01;
@@ -99,6 +101,8 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
     public String collar_image, sidepocket_image;
     public String html_url;
 
+    @BindView(R.id.dropdown_down_shoulder_varieties)
+    Spinner dropdown_down_shoulder_varieties;
 
     @BindView(R.id.chooseOrderDate)
     Button chooseOrderDate;
@@ -106,6 +110,8 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
+    @BindView(R.id.karigar_name)
+    EditText karigar_name;
     @BindView(R.id.collar)
     EditText collar;
     @BindView(R.id.sleeves)
@@ -668,6 +674,9 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
             }
         });
 
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
+        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_down_shoulder_varieties.setAdapter(adap);
 
     }
 
@@ -826,7 +835,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
 
 
         kurtaRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        kurtaRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
+        kurtaRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
         kurtaRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
 

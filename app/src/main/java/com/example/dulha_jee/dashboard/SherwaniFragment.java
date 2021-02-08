@@ -66,6 +66,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.*;
 import butterknife.ButterKnife;
@@ -81,6 +82,8 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    String[] downOptions = {" شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+
     CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
     ImageView chooseSidePocketImage, iv_01;
     NavController navController;
@@ -96,9 +99,13 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
     public String html_url;
     public String collar_image, sidepocket_image;
 
+    @BindView(R.id.dropdown_down_shoulder_varieties)
+    Spinner dropdown_down_shoulder_varieties;
+
     @BindView(R.id.chooseOrderDate)
     Button chooseOrderDate;
-
+    @BindView(R.id.karigar_name)
+    EditText karigar_name;
 
     @BindView(R.id.quantity)
     EditText quantity;
@@ -454,9 +461,9 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
             }
         });
 
-       /* ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown_karegar_name.setAdapter(adapter);*/
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
+        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_down_shoulder_varieties.setAdapter(adap);
 
     }
 
@@ -559,7 +566,7 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
 
 
         //sherwaniRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        sherwaniRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
+        sherwaniRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
     //    sherwaniRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
         //chooseSidePocketImage ; image_4_db;
 

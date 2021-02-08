@@ -80,6 +80,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
     NavController navController;
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    String[] downOptions = {" شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
     Button submit_innersuit;
     ImageView iv_01;
     Button  chooseImage;
@@ -92,10 +93,13 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
     public String collar_image, sidepocket_image;
     public String html_url;
 
-
+    @BindView(R.id.dropdown_down_shoulder_varieties)
+    Spinner dropdown_down_shoulder_varieties;
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
+    @BindView(R.id.karigar_name)
+    EditText karigar_name;
     @BindView(R.id.collar)
     EditText collar;
     @BindView(R.id.sleeves)
@@ -367,6 +371,10 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, shalwar);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_shalwar_name.setAdapter(adapter1);
+
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
+        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_down_shoulder_varieties.setAdapter(adap);
     }
 
     private void createInnerSuitRequest() {
@@ -471,7 +479,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
 
 
         innerSuitRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        innerSuitRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
+        innerSuitRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
 
         alerter.setTitle("انتطار فرمائیے۔۔۔")
                 .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")

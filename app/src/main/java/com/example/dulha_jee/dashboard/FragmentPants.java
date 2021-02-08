@@ -79,6 +79,8 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
     Spinner dropdown_karegar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    String[] downOptions = {" شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+
     Button submit_pants, chooseImage;
     NavController navController;
     ImageView iv_01;
@@ -92,8 +94,12 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
     public String collar_image, sidepocket_image;
     public String html_url;
 
+    @BindView(R.id.dropdown_down_shoulder_varieties)
+    Spinner dropdown_down_shoulder_varieties;
     @BindView(R.id.quantity)
     EditText quantity;
+    @BindView(R.id.karigar_name)
+    EditText karigar_name;
     @BindView(R.id.abdomen)
     EditText abdomen;
     @BindView(R.id.hip)
@@ -339,6 +345,10 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
        /* ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, karegarName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_karegar_name.setAdapter(adapter);*/
+
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
+        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_down_shoulder_varieties.setAdapter(adap);
     }
 
     private void createPantRequest() {
@@ -432,7 +442,7 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
                 .setBackgroundColorRes(R.color.black).show();
 
 
-        pantPojo.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
+        pantPojo.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
 
         //Api call here...
         iapi.createPant("Bearer " + sharedPreference.getToken(), pantPojo).enqueue(new Callback<HtmlResponseBody>() {

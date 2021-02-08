@@ -91,12 +91,11 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="Forget Password ?"
-            android:textStyle="bold"
             android:textColor="#E0D9C6"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <CheckBox
-            android:visibility="gone"
             android:id="@+id/customer_cloth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,8 +103,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="کپڑا کسٹمر کا ہے اپنا"
-            android:textSize="22sp" />
-
+            android:textSize="22sp"
+            android:visibility="gone" />
 
 
     </LinearLayout>

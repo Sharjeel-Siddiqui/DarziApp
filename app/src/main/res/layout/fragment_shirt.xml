@@ -9,11 +9,30 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/karigar_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="کاریگر کا نام لکھیں-"
+            android:textAlignment="center"
+            />
 
         <Spinner
+            android:visibility="gone"
             android:id="@+id/dropdown_karegar_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:padding="10dp"
+            android:prompt="@string/app_name"
+            android:textAlignment="center"
+            android:textDirection="rtl"
+            android:textSize="22sp" />
+
+        <Spinner
+            android:visibility="visible"
+            android:id="@+id/dropdown_down_shoulder_varieties"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:padding="10dp"
             android:prompt="@string/app_name"
             android:textAlignment="center"

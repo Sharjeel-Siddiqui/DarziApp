@@ -80,6 +80,8 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
     Spinner dropdown_karegar_name, dropdown_coat_varieties;
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] coatVarieties = {"گون اسٹائل فرنٹ اوپن کوٹ ", "پرنس کوٹ ", "کوٹ "};
+    String[] downOptions = {" شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+
     Button submit_coat, chooseImage;
     NavController navController;
     ImageView iv_01;
@@ -96,7 +98,10 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
 
     @BindView(R.id.chooseOrderDate)
     Button chooseOrderDate;
-
+    @BindView(R.id.karigar_name)
+    EditText karigar_name;
+    @BindView(R.id.dropdown_down_shoulder_varieties)
+    Spinner dropdown_down_shoulder_varieties;
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
@@ -355,6 +360,10 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
 
             }
         });
+
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
+        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_down_shoulder_varieties.setAdapter(adap);
     }
 
     private void createCoatRequest() {
@@ -455,7 +464,7 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
 
 
         // coatRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        coatRequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
+        coatRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
         // coatRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
         //Api call here...

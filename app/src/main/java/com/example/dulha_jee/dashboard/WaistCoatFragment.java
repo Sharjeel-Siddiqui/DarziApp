@@ -79,6 +79,8 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
     Spinner dropdown_karegar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    String[] downOptions = {" شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+
     Button submit_waistcoat, chooseImage;
     NavController navController;
     ImageView iv_01;
@@ -91,10 +93,13 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
     public String html_url;
 
     Iapi iapi;
-
+    @BindView(R.id.dropdown_down_shoulder_varieties)
+    Spinner dropdown_down_shoulder_varieties;
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
+    @BindView(R.id.karigar_name)
+    EditText karigar_name;
     @BindView(R.id.collar)
     EditText collar;
     @BindView(R.id.sleeves)
@@ -385,6 +390,10 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
                         .show();*/
             }
         });
+
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
+        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_down_shoulder_varieties.setAdapter(adap);
     }
 
     private void createWaistCoat() {
@@ -492,7 +501,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setSide_pocket_image(TextUtils.isEmpty(sidepocket_image) ? "" : sidepocket_image);
 
 
-        waistCoatFragmentrequestBody.setKarigar(dropdown_karegar_name.getSelectedItem().toString() + " :  کاریگر کا نام ");
+        waistCoatFragmentrequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
 
 
         alerter.setTitle("انتطار فرمائیے۔۔۔")
