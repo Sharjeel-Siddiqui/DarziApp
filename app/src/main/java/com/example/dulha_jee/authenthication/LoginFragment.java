@@ -158,7 +158,6 @@ public class LoginFragment extends Fragment {
                     public void onFailure(Call<LoginResponseBody> call, Throwable t) {
                         Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
                         Log.i("TAG", "onFailure: " + t.getMessage());
-                        navController.navigate(R.id.action_loginFragment_to_userList);
                         pd.dismiss();
                     }
                 });
