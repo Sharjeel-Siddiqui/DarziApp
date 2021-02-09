@@ -1,6 +1,7 @@
 package com.example.dulha_jee.authenthication;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,23 +48,47 @@ public class ResetFragment extends Fragment {
         resetbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ResetBody resetBody = new ResetBody(et_resetpassword_token.getText().toString(), et_password.getText().toString(), et_email.getText().toString());
-                iapi.resetBody(resetBody).enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()) {
-                            Toast.makeText(getActivity(), "Password Reset Succesfullu...", Toast.LENGTH_SHORT).show();
-                            Navigation.findNavController(view).navigate(R.id.action_resetFragment_to_loginFragment);
+                if (checkValidation()) {
+                    ResetBody resetBody = new ResetBody(et_resetpassword_token.getText().toString(), et_password.getText().toString(), et_email.getText().toString());
+                    iapi.resetBody(resetBody).enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if (response.isSuccessful()) {
+                                Toast.makeText(getActivity(), "Password Reset Succesfullu...", Toast.LENGTH_SHORT).show();
+                                Navigation.findNavController(view).navigate(R.id.action_resetFragment_to_loginFragment);
+                            }
+                            Toast.makeText(getActivity(), "CODE" + response.code(), Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(getActivity(), "CODE" + response.code(), Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
+    }
+
+
+    public boolean checkValidation() {
+
+        if (TextUtils.isEmpty(et_resetpassword_token.getText().toString())) {
+            Toast.makeText(getActivity(), "Password Reset Token is Required...", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        if (TextUtils.isEmpty(et_email.getText().toString())) {
+            Toast.makeText(getActivity(), "Email Address is Required...", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(et_password.getText().toString())) {
+            Toast.makeText(getActivity(), "Password  is Required...", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }

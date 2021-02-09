@@ -82,7 +82,7 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
-    String[] downOptions = {"شولڈر کا انتخاب کیجئے"," شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ", "سیدھے ہاتھ کا شولڈر ڈاؤن", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
 
     CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
     ImageView chooseSidePocketImage, iv_01;
@@ -261,6 +261,7 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
     CheckBox fancy_label;
 
     Alerter alerter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -347,7 +348,9 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
         submit_sherwani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createSherwaniRequest();
+                if (checkValidation()) {
+                    createSherwaniRequest();
+                }
             }
         });
 
@@ -492,12 +495,12 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
         sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : chest.getText().toString() + " : سینہ");
         sherwaniRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ ");
         sherwaniRequestBody.setFullback(TextUtils.isEmpty(fullback.getText().toString()) ? "" : fullback.getText().toString() + " : فل بیک ");
-        sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString() +  " :  ہالف بیک ");
+        sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString() + " :  ہالف بیک ");
         sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString() + " : کراس فرنٹ ");
         sherwaniRequestBody.setHighlight_cadge_color(TextUtils.isEmpty(highlight_cadge_color.getText().toString()) ? "" : "کلر سے" + highlight_cadge_color.getText().toString() + " : سامنے پہ ہائ لیٹ کاج ہوگے");
-        sherwaniRequestBody.setShow_cadge_color(TextUtils.isEmpty(show_cadge_color.getText().toString()) ? "" :  " : کلر کے شو کاج ہوں گے" + show_cadge_color.getText().toString());
-        sherwaniRequestBody.setFront_cadge_numbers(TextUtils.isEmpty(front_cadge_numbers.getText().toString()) ? "" : " سامنے پہ " + front_cadge_numbers.getText().toString() +  " عدد کاج ہونگے "  );
-        sherwaniRequestBody.setContrast_color_astar(TextUtils.isEmpty(contrast_color_astar.getText().toString()) ? "" :   " کنٹراس "  + contrast_color_astar.getText().toString() + "کلر کا استر لگانا ہے (ایک نمبر) چیری"  );
+        sherwaniRequestBody.setShow_cadge_color(TextUtils.isEmpty(show_cadge_color.getText().toString()) ? "" : " : کلر کے شو کاج ہوں گے" + show_cadge_color.getText().toString());
+        sherwaniRequestBody.setFront_cadge_numbers(TextUtils.isEmpty(front_cadge_numbers.getText().toString()) ? "" : " سامنے پہ " + front_cadge_numbers.getText().toString() + " عدد کاج ہونگے ");
+        sherwaniRequestBody.setContrast_color_astar(TextUtils.isEmpty(contrast_color_astar.getText().toString()) ? "" : " کنٹراس " + contrast_color_astar.getText().toString() + "کلر کا استر لگانا ہے (ایک نمبر) چیری");
 
         //urgent time and date...
         sherwaniRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
@@ -566,8 +569,8 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
 
 
         //sherwaniRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        sherwaniRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
-    //    sherwaniRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
+        sherwaniRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" : karigar_name.getText().toString() + " :  کاریگر کا نام ");
+        //    sherwaniRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
         //chooseSidePocketImage ; image_4_db;
 
         alerter.setTitle("انتطار فرمائیے۔۔۔")
@@ -582,11 +585,11 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                  //  Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
                     html_url = response.body().getUrl();
                     doWebViewPrint();
                     Alerter.hide();
-                }else{
+                } else {
                     Toast.makeText(getActivity(), response.message().toString(), Toast.LENGTH_SHORT).show();
                     Alerter.hide();
                 }
@@ -726,5 +729,24 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
         c.set(Calendar.DAY_OF_MONTH, i2);
         String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
         order_date.setText(currentDateString);
+    }
+
+    public boolean checkValidation() {
+        if (TextUtils.isEmpty(karigar_name.getText().toString())) {
+            Toast.makeText(getActivity(), "کاریگر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(customer_name.getText().toString())) {
+            Toast.makeText(getActivity(), "کسٹمر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(mobile_number.getText().toString())) {
+            Toast.makeText(getActivity(), "کسٹمر کا نمبر درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }

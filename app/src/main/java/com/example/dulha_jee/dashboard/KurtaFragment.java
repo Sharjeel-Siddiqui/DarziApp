@@ -458,25 +458,9 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         submit_kurta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                createKurtaRequest();
-            /*    Alerter.create(getActivity())
-                        .setTitle("انتطار فرمائیے۔۔۔")
-                        .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
-                        .setIcon(
-                                R.drawable.dulha_jee_logo)
-                        .setBackgroundColorRes(
-                                R.color.black)
-                        .setDuration(3000)
-                        .setOnHideListener(new OnHideAlertListener() {
-                            @Override
-                            public void onHide() {
-                                navController.navigate(R.id.action_kurtaFragment_to_dashBoard, null, new NavOptions.Builder()
-                                        .setPopUpTo(R.id.kurtaFragment,
-                                                true).build());
-                            }
-                        })
-                        .show();*/
+                if(checkValidation()) {
+                    createKurtaRequest();
+                }
             }
         });
 
@@ -993,5 +977,24 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         String currentDateString1 = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
         Log.i("TAG", "onDateSet: " + currentDateString1);
         order_date.setText(currentDateString1);
+    }
+
+    public boolean checkValidation(){
+        if(TextUtils.isEmpty(karigar_name.getText().toString())){
+            Toast.makeText(getActivity(), "کاریگر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(customer_name.getText().toString())){
+            Toast.makeText(getActivity(), "کسٹمر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(mobile_number.getText().toString())){
+            Toast.makeText(getActivity(), "کسٹمر کا نمبر درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }

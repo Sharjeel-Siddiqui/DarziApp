@@ -321,24 +321,9 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
         submit_pants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createPantRequest();
-             /*   Alerter.create(getActivity())
-                        .setTitle("انتطار فرمائیے۔۔۔")
-                        .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
-                        .setIcon(
-                                R.drawable.dulha_jee_logo)
-                        .setBackgroundColorRes(
-                                R.color.black)
-                        .setDuration(3000)
-                        .setOnHideListener(new OnHideAlertListener() {
-                            @Override
-                            public void onHide() {
-                                navController.navigate(R.id.action_fragmentPants_to_dashBoard, null, new NavOptions.Builder()
-                                        .setPopUpTo(R.id.fragmentPants,
-                                                true).build());
-                            }
-                        })
-                        .show();*/
+                if(checkValidation()) {
+                    createPantRequest();
+                }
             }
         });
 
@@ -578,5 +563,24 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
         c.set(Calendar.DAY_OF_MONTH, i2);
         String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
         order_date.setText(currentDateString);
+    }
+
+    public boolean checkValidation(){
+        if(TextUtils.isEmpty(karigar_name.getText().toString())){
+            Toast.makeText(getActivity(), "کاریگر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(customer_name.getText().toString())){
+            Toast.makeText(getActivity(), "کسٹمر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(TextUtils.isEmpty(customer_number.getText().toString())){
+            Toast.makeText(getActivity(), "کسٹمر کا نمبر درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }

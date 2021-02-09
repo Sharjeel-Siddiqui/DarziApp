@@ -80,10 +80,10 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
     NavController navController;
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
-    String[] downOptions = {"شولڈر کا انتخاب کیجئے"," شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ", "سیدھے ہاتھ کا شولڈر ڈاؤن", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
     Button submit_innersuit;
     ImageView iv_01;
-    Button  chooseImage;
+    Button chooseImage;
     Uri imageUri;
     public static final int PICK_IMAGE = 1;
     Iapi iapi;
@@ -358,7 +358,9 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         submit_innersuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createInnerSuitRequest();
+                if (checkValidation()) {
+                    createInnerSuitRequest();
+                }
             }
         });
 
@@ -396,10 +398,10 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار ");
         innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + " : لمبائ ");
         innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ تیار ");
-        innerSuitRequestBody.setShalwar_gher(TextUtils.isEmpty(shalwar_gher.getText().toString()) ? "" :  "شلوار کا گھیر ایک سائیڈ کا"  + shalwar_gher.getText().toString() + "انچ کا چاہیے تیار"  );
-        innerSuitRequestBody.setShalwar_asan(TextUtils.isEmpty(shalwar_asan.getText().toString()) ? "" : "شلوار کاآسن" + shalwar_asan.getText().toString() + "انچ کا چاہیے تیار" );
-        innerSuitRequestBody.setPajama_inner_fold(TextUtils.isEmpty(pajama_inner_fold.getText().toString()) ? "" :   "پاجامے کی سوری"  + pajama_inner_fold.getText().toString() + "انچ چوڑی فولڈ کرنی ہے باہر کی طرف" );
-        innerSuitRequestBody.setPajama_outer_fold(TextUtils.isEmpty(pajama_outer_fold.getText().toString()) ? "" :    "پاجامے کی سوری" + pajama_outer_fold.getText().toString() + "انچ چوڑی فولڈ کرنی ہے اندر کی طرف");
+        innerSuitRequestBody.setShalwar_gher(TextUtils.isEmpty(shalwar_gher.getText().toString()) ? "" : "شلوار کا گھیر ایک سائیڈ کا" + shalwar_gher.getText().toString() + "انچ کا چاہیے تیار");
+        innerSuitRequestBody.setShalwar_asan(TextUtils.isEmpty(shalwar_asan.getText().toString()) ? "" : "شلوار کاآسن" + shalwar_asan.getText().toString() + "انچ کا چاہیے تیار");
+        innerSuitRequestBody.setPajama_inner_fold(TextUtils.isEmpty(pajama_inner_fold.getText().toString()) ? "" : "پاجامے کی سوری" + pajama_inner_fold.getText().toString() + "انچ چوڑی فولڈ کرنی ہے باہر کی طرف");
+        innerSuitRequestBody.setPajama_outer_fold(TextUtils.isEmpty(pajama_outer_fold.getText().toString()) ? "" : "پاجامے کی سوری" + pajama_outer_fold.getText().toString() + "انچ چوڑی فولڈ کرنی ہے اندر کی طرف");
         innerSuitRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
 
         //urgent time and date...
@@ -479,7 +481,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
 
 
         innerSuitRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        innerSuitRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
+        innerSuitRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" : karigar_name.getText().toString() + " :  کاریگر کا نام ");
 
         alerter.setTitle("انتطار فرمائیے۔۔۔")
                 .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
@@ -492,7 +494,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                   // Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
                     Log.i("TAG", "onResponse: " + response.message());
                     Log.i("TAG", "onResponse: " + response.raw());
                     //response.body().getUrl();
@@ -622,5 +624,24 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         c.set(Calendar.DAY_OF_MONTH, i2);
         String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
         order_date.setText(currentDateString);
+    }
+
+    public boolean checkValidation() {
+        if (TextUtils.isEmpty(karigar_name.getText().toString())) {
+            Toast.makeText(getActivity(), "کاریگر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(customer_name.getText().toString())) {
+            Toast.makeText(getActivity(), "کسٹمر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(mobile_number.getText().toString())) {
+            Toast.makeText(getActivity(), "کسٹمر کا نمبر درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }

@@ -80,7 +80,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
     Spinner dropdown_karegar_name;
     Button submit_shirt, chooseImage;
     ImageView chooseCollarImage, chooseCuffImage, iv_01;
-    String[] downOptions = {"شولڈر کا انتخاب کیجئے"," شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ", "سیدھے ہاتھ کا شولڈر ڈاؤن", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
     NavController navController;
     SharedPreference sharedPreference;
     CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
@@ -291,9 +291,9 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         submit_shirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                createShirtRequest();
-
+                if (checkValidation()) {
+                    createShirtRequest();
+                }
             }
         });
 
@@ -562,7 +562,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
 
 
         //   shirtRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        shirtRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
+        shirtRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" : karigar_name.getText().toString() + " :  کاریگر کا نام ");
         //  shirtRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
         alerter.setTitle("انتطار فرمائیے۔۔۔")
@@ -578,7 +578,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                   // Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
                     Log.i("TAG", "onResponse: " + response.message());
                     Log.i("TAG", "onResponse: " + response.raw());
                     html_url = response.body().getUrl();
@@ -721,5 +721,24 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         c.set(Calendar.DAY_OF_MONTH, i2);
         String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
         order_date.setText(currentDateString);
+    }
+
+    public boolean checkValidation() {
+        if (TextUtils.isEmpty(karigar_name.getText().toString())) {
+            Toast.makeText(getActivity(), "کاریگر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(customer_name.getText().toString())) {
+            Toast.makeText(getActivity(), "کسٹمر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(mobile_number.getText().toString())) {
+            Toast.makeText(getActivity(), "کسٹمر کا نمبر درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }

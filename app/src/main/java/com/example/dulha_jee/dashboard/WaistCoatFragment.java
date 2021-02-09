@@ -79,7 +79,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
     Spinner dropdown_karegar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
-    String[] downOptions = {"شولڈر کا انتخاب کیجئے"," شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ", "سیدھے ہاتھ کا شولڈر ڈاؤن", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
 
     Button submit_waistcoat, chooseImage;
     NavController navController;
@@ -370,7 +370,9 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         submit_waistcoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createWaistCoat();
+                if (checkValidation()) {
+                    createWaistCoat();
+                }
              /*   Alerter.create(getActivity())
                         .setTitle("انتطار فرمائیے۔۔۔")
                         .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
@@ -421,12 +423,12 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setUrgent_order_time(TextUtils.isEmpty(order_date_most_urgent.getText().toString()) ? "" : " انتہائ ارجنٹ بروز " + order_date_most_urgent.getText().toString() + " کو چاہیے " + "آرڈر" + is_most_urgent.getText().toString() + " بجے تک لازمی");
 
 
-        waistCoatFragmentrequestBody.setThree_piece_style_cadge(TextUtils.isEmpty(three_piece_style_cadge.getText().toString()) ? "" :   " تھری پیس اسٹائل ونٹکوٹ سامنے پہ " +  three_piece_style_cadge.getText().toString() + " عدد ہائ لیٹ کاج ہونگے ");
+        waistCoatFragmentrequestBody.setThree_piece_style_cadge(TextUtils.isEmpty(three_piece_style_cadge.getText().toString()) ? "" : " تھری پیس اسٹائل ونٹکوٹ سامنے پہ " + three_piece_style_cadge.getText().toString() + " عدد ہائ لیٹ کاج ہونگے ");
         waistCoatFragmentrequestBody.setCollar_width(TextUtils.isEmpty(collar_width.getText().toString()) ? "" : " کالر کی چوڑائ " + collar_width.getText().toString() + " انچ رکھنی ہے ");
         waistCoatFragmentrequestBody.setViolet_pocket_width(TextUtils.isEmpty(violet_pocket_width.getText().toString()) ? "" : "وائلٹ پوکٹ کی چوڑائ" + violet_pocket_width.getText().toString() + "انچ رکھنی ہے");
-        waistCoatFragmentrequestBody.setExtra_buttons(TextUtils.isEmpty(extra_buttons.getText().toString()) ? "" :    " وائلٹ پوکٹ کی چوڑائ " +  extra_buttons.getText().toString() + " انچ رکھنی ہے ");
-        waistCoatFragmentrequestBody.setLozing(TextUtils.isEmpty(lozing.getText().toString()) ? "" :  lozing.getText().toString() + "انچ کی لوزنگ میں بنانی ہے" );
-        waistCoatFragmentrequestBody.set_chowk_length(TextUtils.isEmpty(waistcoat_chowk_length.getText().toString()) ? "" :  "ویسٹ کوٹ کے چاک" + waistcoat_chowk_length.getText().toString() + " انچ کے رکھنے ہیں" ); //waist coat chawk length
+        waistCoatFragmentrequestBody.setExtra_buttons(TextUtils.isEmpty(extra_buttons.getText().toString()) ? "" : " وائلٹ پوکٹ کی چوڑائ " + extra_buttons.getText().toString() + " انچ رکھنی ہے ");
+        waistCoatFragmentrequestBody.setLozing(TextUtils.isEmpty(lozing.getText().toString()) ? "" : lozing.getText().toString() + "انچ کی لوزنگ میں بنانی ہے");
+        waistCoatFragmentrequestBody.set_chowk_length(TextUtils.isEmpty(waistcoat_chowk_length.getText().toString()) ? "" : "ویسٹ کوٹ کے چاک" + waistcoat_chowk_length.getText().toString() + " انچ کے رکھنے ہیں"); //waist coat chawk length
 
         //Check boxes come here
         waistCoatFragmentrequestBody.setJawahir_cut_style(jawahir_cut_style.isChecked() ? jawahir_cut_style.getText().toString() : "");
@@ -501,7 +503,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setSide_pocket_image(TextUtils.isEmpty(sidepocket_image) ? "" : sidepocket_image);
 
 
-        waistCoatFragmentrequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
+        waistCoatFragmentrequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" : karigar_name.getText().toString() + " :  کاریگر کا نام ");
 
 
         alerter.setTitle("انتطار فرمائیے۔۔۔")
@@ -516,7 +518,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                //    Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                    //    Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
                     Log.i("TAG", "onResponse: " + response.message());
                     Log.i("TAG", "onResponse: " + response.raw());
                     //response.body().getUrl();
@@ -646,5 +648,24 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         c.set(Calendar.DAY_OF_MONTH, i2);
         String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
         order_date.setText(currentDateString);
+    }
+
+    public boolean checkValidation() {
+        if (TextUtils.isEmpty(karigar_name.getText().toString())) {
+            Toast.makeText(getActivity(), "کاریگر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(customer_name.getText().toString())) {
+            Toast.makeText(getActivity(), "کسٹمر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(mobile_number.getText().toString())) {
+            Toast.makeText(getActivity(), "کسٹمر کا نمبر درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }

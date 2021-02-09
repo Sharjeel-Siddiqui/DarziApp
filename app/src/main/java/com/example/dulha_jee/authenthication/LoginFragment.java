@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,6 +38,8 @@ import com.example.dulha_jee.userlist.DatePickerFragment;
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -135,35 +138,56 @@ public class LoginFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getActivity(), customer_cloth.isChecked() ? customer_cloth.getText().toString() : "nothing selected...", Toast.LENGTH_SHORT).show();
+                if (checkValidation()) {
+                    pd.show();
+                    LoginBody loginBody = new LoginBody(et_email.getText().toString(), et_password.getText().toString());
+                    iapi.loginUser(loginBody).enqueue(new Callback<LoginResponseBody>() {
+                        @Override
+                        public void onResponse(Call<LoginResponseBody> call, Response<LoginResponseBody> response) {
+                            if (response.isSuccessful()) {
+                                sharedPreference.saveToken(response.body().getApi_token());
+                                String value = sharedPreference.getToken();
+                                navController.navigate(R.id.action_loginFragment_to_userList, null, new NavOptions.Builder()
+                                        .setPopUpTo(R.id.loginFragment,
+                                                true).build());
+                                pd.dismiss();
+                            } else if (response.code() == HttpsURLConnection.HTTP_UNAUTHORIZED) {
+                                Toast.makeText(getActivity(), "Your User Name or Password is Incorrect...", Toast.LENGTH_SHORT).show();
+                                pd.dismiss();
+                            } else {
+                                Toast.makeText(getActivity(), "Something went wrong.Please try again...", Toast.LENGTH_SHORT).show();
+                                pd.dismiss();
+                            }
+                        }
 
-                pd.show();
-                LoginBody loginBody = new LoginBody(et_email.getText().toString(), et_password.getText().toString());
-                iapi.loginUser(loginBody).enqueue(new Callback<LoginResponseBody>() {
-                    @Override
-                    public void onResponse(Call<LoginResponseBody> call, Response<LoginResponseBody> response) {
-                        if (response.isSuccessful()) {
-                            sharedPreference.saveToken(response.body().getApi_token());
-                            String value = sharedPreference.getToken();
-                            //navController.navigate(R.id.action_loginFragment_to_userList);
-                            navController.navigate(R.id.action_loginFragment_to_userList, null, new NavOptions.Builder()
-                                    .setPopUpTo(R.id.loginFragment,
-                                            true).build());
+                        @Override
+                        public void onFailure(Call<LoginResponseBody> call, Throwable t) {
+                            Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+                            Log.i("TAG", "onFailure: " + t.getMessage());
                             pd.dismiss();
                         }
-                        pd.dismiss();
-                    }
-
-                    @Override
-                    public void onFailure(Call<LoginResponseBody> call, Throwable t) {
-                        Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
-                        Log.i("TAG", "onFailure: " + t.getMessage());
-                        pd.dismiss();
-                    }
-                });
-
+                    });
+                }
             }
         });
+
+    }
+
+    public boolean checkValidation() {
+
+        if (TextUtils.isEmpty(et_email.getText().toString())) {
+            Toast.makeText(getActivity(), "Email Address Is Required...", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        if (TextUtils.isEmpty(et_password.getText().toString())) {
+            Toast.makeText(getActivity(), "Password is required...", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+
 
     }
 

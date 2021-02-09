@@ -2,6 +2,7 @@ package com.example.dulha_jee.authenthication;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,39 +59,59 @@ public class SignupFragment extends Fragment {
         sharedPreference = new SharedPreference(getActivity());
 
 
-
         ((MainActivity) getActivity()).setToolbarVisibility(false);
 
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-
-                RegisterBody registerBody = new RegisterBody(et_userName.getText().toString(), et_userEmail.getText().toString(), et_userPassword.getText().toString());
-                pd.show();
-                apiClient.registerUser(registerBody).enqueue(new Callback<LoginResponseBody>() {
-                    @Override
-                    public void onResponse(Call<LoginResponseBody> call, Response<LoginResponseBody> response) {
-                        if (response.isSuccessful()) {
-                            sharedPreference.saveToken(response.body().getApi_token());
-                            Toast.makeText(getActivity(), "user registered...!", Toast.LENGTH_SHORT).show();
-                            navController.navigateUp();
-                            pd.show();
+                if (checkValidation()) {
+                    RegisterBody registerBody = new RegisterBody(et_userName.getText().toString(), et_userEmail.getText().toString(), et_userPassword.getText().toString());
+                    pd.show();
+                    apiClient.registerUser(registerBody).enqueue(new Callback<LoginResponseBody>() {
+                        @Override
+                        public void onResponse(Call<LoginResponseBody> call, Response<LoginResponseBody> response) {
+                            if (response.isSuccessful()) {
+                                sharedPreference.saveToken(response.body().getApi_token());
+                                Toast.makeText(getActivity(), "user registered...!", Toast.LENGTH_SHORT).show();
+                                navController.navigateUp();
+                                pd.show();
+                            }
+                            pd.dismiss();
                         }
-                        pd.dismiss();
-                    }
 
-                    @Override
-                    public void onFailure(Call<LoginResponseBody> call, Throwable t) {
-                        Log.i("TAG", "onFailure: " + t.getMessage());
-                        Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
-                        pd.dismiss();
-                    }
-                });
-                //Toast.makeText(getActivity(), "User Registered...", Toast.LENGTH_SHORT).show();
-               // navController.navigate(R.id.action_signupFragment_to_userList);
+                        @Override
+                        public void onFailure(Call<LoginResponseBody> call, Throwable t) {
+                            Log.i("TAG", "onFailure: " + t.getMessage());
+                            Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
+                            pd.dismiss();
+                        }
+                    });
+                }
             }
         });
+    }
+
+
+    public boolean checkValidation() {
+
+        if (TextUtils.isEmpty(et_userName.getText().toString())) {
+            Toast.makeText(getActivity(), "User Name is Required...", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        if (TextUtils.isEmpty(et_userEmail.getText().toString())) {
+            Toast.makeText(getActivity(), "Email Address is Required...", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(et_userPassword.getText().toString())) {
+            Toast.makeText(getActivity(), "Password is Required...", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
 }

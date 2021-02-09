@@ -80,7 +80,7 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
     Spinner dropdown_karegar_name, dropdown_coat_varieties;
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] coatVarieties = {"گون اسٹائل فرنٹ اوپن کوٹ ", "پرنس کوٹ ", "کوٹ "};
-    String[] downOptions = {"شولڈر کا انتخاب کیجئے"," شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ", "سیدھے ہاتھ کا شولڈر ڈاؤن", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
 
     Button submit_coat, chooseImage;
     NavController navController;
@@ -355,9 +355,9 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         submit_coat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                createCoatRequest();
-
+                if (checkValidation()) {
+                    createCoatRequest();
+                }
             }
         });
 
@@ -385,10 +385,10 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         coatRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + ": گڈہ تیار ");
         coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
         coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ ");
-        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" :  " سینہ : " + chest.getText().toString());
-        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" :   full_back.getText().toString() + " : فل بیک " );
-        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" :  halfback.getText().toString() + " : ہالف بیک "   );
-        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" :    crossfront.getText().toString() + " : کراس فرنٹ "  );
+        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " سینہ : " + chest.getText().toString());
+        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" : full_back.getText().toString() + " : فل بیک ");
+        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString() + " : ہالف بیک ");
+        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString() + " : کراس فرنٹ ");
         coatRequestBody.setPencil_length(TextUtils.isEmpty(pencil_length.getText().toString()) ? "" : "پینسل کی چوڑائی" + pencil_length.getText().toString() + "انچ کی رکھنی ہے");
         coatRequestBody.setChowk_length(TextUtils.isEmpty(chowk_length.getText().toString()) ? "" : "چاک کی لمبائی" + chowk_length.getText().toString() + "انچ کی رکھنی ہے");
         coatRequestBody.setCollar_thing(TextUtils.isEmpty(collar_thing.getText().toString()) ? "" : " کالر میں " + collar_thing.getText().toString() + " لگانی ہے ");
@@ -464,7 +464,7 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
 
 
         // coatRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        coatRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
+        coatRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" : karigar_name.getText().toString() + " :  کاریگر کا نام ");
         // coatRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
         //Api call here...
@@ -479,7 +479,7 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
                 if (response.isSuccessful()) {
-                 //   Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                    //   Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
                     Log.i("TAG", "onResponse: " + response.message());
                     Log.i("TAG", "onResponse: " + response.raw());
                     html_url = response.body().getUrl();
@@ -609,5 +609,24 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         c.set(Calendar.DAY_OF_MONTH, i2);
         String currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
         order_date.setText(currentDateString);
+    }
+
+    public boolean checkValidation() {
+        if (TextUtils.isEmpty(karigar_name.getText().toString())) {
+            Toast.makeText(getActivity(), "کاریگر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(customer_name.getText().toString())) {
+            Toast.makeText(getActivity(), "کسٹمر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(customer_number.getText().toString())) {
+            Toast.makeText(getActivity(), "کسٹمر کا نمبر درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }
