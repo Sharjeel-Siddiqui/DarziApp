@@ -509,32 +509,32 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
 
         //check boxes field
         sherwaniRequestBody.setJinnah_style(jinnah_style.isChecked() ? jinnah_style.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(highlight_cadge_matching.isChecked() ? highlight_cadge_matching.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(fancy_metal_button.isChecked() ? fancy_metal_button.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(show_button.isChecked() ? show_button.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(show_cadge_matching.isChecked() ? show_cadge_matching.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(side_pocket_both_sides.isChecked() ? side_pocket_both_sides.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(two_pockets.isChecked() ? two_pockets.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(no_tal_pat.isChecked() ? no_tal_pat.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(both_front_equal.isChecked() ? both_front_equal.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(back_center_sew.isChecked() ? back_center_sew.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(front_walnut_pocket.isChecked() ? front_walnut_pocket.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(open_front_open_gown_style.isChecked() ? open_front_open_gown_style.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(collar_karhayi.isChecked() ? collar_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(sleeves_karhayi.isChecked() ? sleeves_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(button_karhayi.isChecked() ? button_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(one_front_karhayi.isChecked() ? one_front_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(both_front_karhayi.isChecked() ? both_front_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(back_karhayi.isChecked() ? back_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(collar_sleeves_karhayi.isChecked() ? collar_sleeves_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(violet_pocket_karhayi.isChecked() ? violet_pocket_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(collar_sleeves_one_front_karhayi.isChecked() ? collar_sleeves_one_front_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(front_pocket_karhayi.isChecked() ? front_pocket_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(collar_sleeves_two_front_karhayi.isChecked() ? collar_sleeves_two_front_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(front_pocket_on_karhayi.isChecked() ? front_pocket_on_karhayi.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(anger_khakhat_style_sherwani.isChecked() ? anger_khakhat_style_sherwani.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(cross_style_sherwani.isChecked() ? cross_style_sherwani.getText().toString() : "");
-        sherwaniRequestBody.setJinnah_style(matching_color_astar.isChecked() ? matching_color_astar.getText().toString() : "");
+        sherwaniRequestBody.setHighlight_cadge_color(highlight_cadge_matching.isChecked() ? highlight_cadge_matching.getText().toString() : "");
+        sherwaniRequestBody.setFancy_metal_button(fancy_metal_button.isChecked() ? fancy_metal_button.getText().toString() : "");
+        sherwaniRequestBody.setShow_button(show_button.isChecked() ? show_button.getText().toString() : "");
+        sherwaniRequestBody.setShow_cadge_color(show_cadge_matching.isChecked() ? show_cadge_matching.getText().toString() : "");
+        sherwaniRequestBody.setSide_pocket_both_sides(side_pocket_both_sides.isChecked() ? side_pocket_both_sides.getText().toString() : "");
+        sherwaniRequestBody.setTwo_pockets(two_pockets.isChecked() ? two_pockets.getText().toString() : "");
+        sherwaniRequestBody.setNo_tal_pat(no_tal_pat.isChecked() ? no_tal_pat.getText().toString() : "");
+        sherwaniRequestBody.setBoth_front_equal(both_front_equal.isChecked() ? both_front_equal.getText().toString() : "");
+        sherwaniRequestBody.setBack_center_sew(back_center_sew.isChecked() ? back_center_sew.getText().toString() : "");
+        sherwaniRequestBody.setFront_walnut_pocket(front_walnut_pocket.isChecked() ? front_walnut_pocket.getText().toString() : "");
+        sherwaniRequestBody.setOpen_front_open_gown_style(open_front_open_gown_style.isChecked() ? open_front_open_gown_style.getText().toString() : "");
+        sherwaniRequestBody.setCollar_karhayi(collar_karhayi.isChecked() ? collar_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setSleeves_karhayi(sleeves_karhayi.isChecked() ? sleeves_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setButton_karhayi(button_karhayi.isChecked() ? button_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setOne_front_karhayi(one_front_karhayi.isChecked() ? one_front_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setBoth_front_karhayi(both_front_karhayi.isChecked() ? both_front_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setBack_karhayi(back_karhayi.isChecked() ? back_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setCollar_sleeves_karhayi(collar_sleeves_karhayi.isChecked() ? collar_sleeves_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setViolet_pocket_karhayi(violet_pocket_karhayi.isChecked() ? violet_pocket_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setCollar_sleeves_one_front_karhayi(collar_sleeves_one_front_karhayi.isChecked() ? collar_sleeves_one_front_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setFront_pocket_karhayi(front_pocket_karhayi.isChecked() ? front_pocket_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setCollar_sleeves_two_front_karhayi(collar_sleeves_two_front_karhayi.isChecked() ? collar_sleeves_two_front_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setFront_pocket_on_karhayi(front_pocket_on_karhayi.isChecked() ? front_pocket_on_karhayi.getText().toString() : "");
+        sherwaniRequestBody.setAnger_khakhat_style_sherwani(anger_khakhat_style_sherwani.isChecked() ? anger_khakhat_style_sherwani.getText().toString() : "");
+        sherwaniRequestBody.setCross_style_sherwani(cross_style_sherwani.isChecked() ? cross_style_sherwani.getText().toString() : "");
+        sherwaniRequestBody.setMatching_color_astar(matching_color_astar.isChecked() ? matching_color_astar.getText().toString() : "");
 
         //checkboxes for general fields
 
