@@ -1125,6 +1125,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:visibility="gone"
             android:id="@+id/shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1136,6 +1137,7 @@
 
 
         <CheckBox
+            android:visibility="gone"
             android:id="@+id/light_work_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1146,6 +1148,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:visibility="gone"
             android:id="@+id/full_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1156,6 +1159,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:visibility="gone"
             android:id="@+id/straight_shoulder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1166,6 +1170,7 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:visibility="gone"
             android:id="@+id/right_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1177,6 +1182,7 @@
 
 
         <CheckBox
+            android:visibility="gone"
             android:id="@+id/left_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

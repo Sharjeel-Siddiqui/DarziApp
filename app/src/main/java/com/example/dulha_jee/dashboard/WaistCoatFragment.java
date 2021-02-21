@@ -79,7 +79,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
     Spinner dropdown_karegar_name;
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
-    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ", "سیدھے ہاتھ کا شولڈر ڈاؤن", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاؤن ہیں", "اسٹریٹ سیدھے شولڈر ہیں", "سیدھے ہاتھ کا شولڈر ڈاؤن ہے", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن ہے "};
 
     Button submit_waistcoat, chooseImage;
     NavController navController;

@@ -81,7 +81,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
     String[] colorName = {"کلر منتخب کریں", " آف وائٹ کلر", "بلیک کلر", "مہرون کلر ", "ریڈش مہرون کلر ", "گولڈن کلر", "کریم کلر", "کوپر کلر", "ڈارک براؤن کلر", "گرے کلر"};
     String[] buttonName = {"بٹن منتخب کریں", "براس کے بٹن", "کاپر کلر بٹن", "سلور کلر بٹن", "مہندی گولڈ کلر بٹن", "سرمئ کلر بٹن", "گول بٹن", "فینسی بٹن لگانے ہیں"};
-    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ", "سیدھے ہاتھ کا شولڈر ڈاؤن", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاؤن ہیں", "اسٹریٹ سیدھے شولڈر ہیں", "سیدھے ہاتھ کا شولڈر ڈاؤن ہے", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن ہے "};
 
     Button submit_innersuit;
     ImageView iv_01;
@@ -378,20 +378,16 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         dropdown_karegar_name.setAdapter(adapter);
 */
         //drop down names Shalwar...
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, shalwar);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, shalwar);
         dropdown_shalwar_name.setAdapter(adapter1);
 
-        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, downOptions);
-        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, downOptions);
         dropdown_down_shoulder_varieties.setAdapter(adap);
 
-        ArrayAdapter<String> adaaa = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, colorName);
-        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adaaa = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, colorName);
         dropdown_choose_color.setAdapter(adaaa);
 
-        ArrayAdapter<String> are = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, buttonName);
-        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> are = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, buttonName);
         dropdown_choose_button.setAdapter(are);
     }
 

@@ -14,11 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="کاریگر کا نام لکھیں-"
-            android:textAlignment="center"
-            />
+            android:textAlignment="center" />
 
         <Spinner
-            android:visibility="gone"
             android:id="@+id/dropdown_karegar_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -26,10 +24,10 @@
             android:prompt="@string/app_name"
             android:textAlignment="center"
             android:textDirection="rtl"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <Spinner
-            android:visibility="visible"
             android:id="@+id/dropdown_down_shoulder_varieties"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -37,7 +35,8 @@
             android:prompt="@string/app_name"
             android:textAlignment="center"
             android:textDirection="rtl"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="visible" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -150,10 +149,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/quantity"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -173,10 +172,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/collar"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -196,10 +195,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/sleeves"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -219,10 +218,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/shoulder"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -242,10 +241,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/hip"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -265,10 +264,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/abdomen"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -288,10 +287,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/gudda"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -311,10 +310,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/front"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -334,10 +333,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/lengthMade"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -439,6 +438,162 @@
             android:padding="10dp"
             android:text="ریگولر پولو پٹی نہیں بنانی ہے"
             android:textSize="22sp" />
+
+        //newly added fields on 21 feb 2021
+
+        <CheckBox
+            android:id="@+id/cuff_chowk_patti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="کف کی چاک پٹی پہ بھی کاج بٹن ہونگے لازمی"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/soft_bukram_on_collar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="کالر میں نرم بکرم لگانی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/hard_bukram_on_collar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="کالر میں ہارڈ بکرم لگانی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/collar_kaj_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="کالر کی نوک پر کاج بٹن ہونگے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/double_sew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ڈبل سلائی میں بنانی ہے"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/double_cuff_soft_bukram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ڈبل  کف بنیں گے،نرم بکرم لگا کر"
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:id="@+id/double_kaj_link_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="ڈبل کاج ہونگے،کف لنک اسٹائل کے"
+            android:textSize="22sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/cuff_width"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کف کی چوڈای"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/coller_width_point"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کالر کی نوک"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کلر سے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/commando_silaye_color"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کمانڈو سلائی ہوگی"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        //newly added fields on 21 feb 2021
 
         <CheckBox
             android:id="@+id/back_dart"
@@ -696,6 +851,8 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:visibility="gone"
+
             android:id="@+id/shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -707,6 +864,8 @@
 
 
         <CheckBox
+            android:visibility="gone"
+
             android:id="@+id/light_work_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -717,6 +876,8 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:visibility="gone"
+
             android:id="@+id/full_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -726,7 +887,10 @@
             android:text="فل شولڈر ڈاون شولڈر ڈاون"
             android:textSize="22sp" />
 
+
         <CheckBox
+            android:visibility="gone"
+
             android:id="@+id/straight_shoulder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -737,6 +901,8 @@
             android:textSize="22sp" />
 
         <CheckBox
+            android:visibility="gone"
+
             android:id="@+id/right_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -748,6 +914,8 @@
 
 
         <CheckBox
+            android:visibility="gone"
+
             android:id="@+id/left_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

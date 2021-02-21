@@ -1,8 +1,64 @@
 package com.example.dulha_jee.pojo;
 
 public class ShirtRequestBody {
-    private String  kurta_type,shalwar,karigar,urgent_order_time,urgent_order_date,side_pocket_image,cuff_image,collar_image,customer_image,quantity, customer_name, order_number, mobile_number, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, patti_ki_chorayi, order_date, order_date_most_urgent, remarks, is_shirt, make_coverpati_style, regular_polo_pati, simple_pati_style, not_regular_polo_pat, back_dart, american_style_round_deep, readymade_shirt_style_chakooti, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
+    private String double_sew ,double_cuff_soft_bukram,double_kaj_link_style,cuff_width,coller_width_point,commando_silaye_color, kurta_type,shalwar,karigar,urgent_order_time,urgent_order_date,side_pocket_image,cuff_image,collar_image,customer_image,quantity, customer_name, order_number, mobile_number, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade, patti_ki_chorayi, order_date, order_date_most_urgent, remarks, is_shirt, make_coverpati_style, regular_polo_pati, simple_pati_style, not_regular_polo_pat, back_dart, american_style_round_deep, readymade_shirt_style_chakooti, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
     private String order_status = "آرڈر آگیا";
+
+    public String getDouble_sew() {
+        return double_sew;
+    }
+
+    public void setDouble_sew(String double_sew) {
+        this.double_sew = double_sew;
+    }
+
+    public String getDouble_cuff_soft_bukram() {
+        return double_cuff_soft_bukram;
+    }
+
+    public void setDouble_cuff_soft_bukram(String double_cuff_soft_bukram) {
+        this.double_cuff_soft_bukram = double_cuff_soft_bukram;
+    }
+
+    public String getDouble_kaj_link_style() {
+        return double_kaj_link_style;
+    }
+
+    public void setDouble_kaj_link_style(String double_kaj_link_style) {
+        this.double_kaj_link_style = double_kaj_link_style;
+    }
+
+    public String getCuff_width() {
+        return cuff_width;
+    }
+
+    public void setCuff_width(String cuff_width) {
+        this.cuff_width = cuff_width;
+    }
+
+    public String getColler_width_point() {
+        return coller_width_point;
+    }
+
+    public void setColler_width_point(String coller_width_point) {
+        this.coller_width_point = coller_width_point;
+    }
+
+    public String getCommando_silaye_color() {
+        return commando_silaye_color;
+    }
+
+    public void setCommando_silaye_color(String commando_silaye_color) {
+        this.commando_silaye_color = commando_silaye_color;
+    }
+
+    public String getOrder_status() {
+        return order_status;
+    }
+
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
+    }
 
     public String getKurta_type() {
         return kurta_type;

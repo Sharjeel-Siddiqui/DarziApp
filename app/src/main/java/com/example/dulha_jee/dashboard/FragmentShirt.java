@@ -80,7 +80,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
     Spinner dropdown_karegar_name;
     Button submit_shirt, chooseImage;
     ImageView chooseCollarImage, chooseCuffImage, iv_01;
-    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ", "سیدھے ہاتھ کا شولڈر ڈاؤن", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاؤن ہیں", "اسٹریٹ سیدھے شولڈر ہیں", "سیدھے ہاتھ کا شولڈر ڈاؤن ہے", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن ہے "};
     NavController navController;
     SharedPreference sharedPreference;
     CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
@@ -205,6 +205,28 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
     @BindView(R.id.chooseOrderDate)
     Button chooseOrderDate;
 
+    //newly added field effective from 21 - feb - 2021
+    @BindView(R.id.cuff_chowk_patti)
+    CheckBox cuff_chowk_patti;
+    @BindView(R.id.soft_bukram_on_collar)
+    CheckBox soft_bukram_on_collar;
+    @BindView(R.id.hard_bukram_on_collar)
+    CheckBox hard_bukram_on_collar;
+    @BindView(R.id.collar_kaj_button)
+    CheckBox collar_kaj_button;
+    @BindView(R.id.double_sew)
+    CheckBox double_sew;
+    @BindView(R.id.double_cuff_soft_bukram)
+    CheckBox double_cuff_soft_bukram;
+    @BindView(R.id.double_kaj_link_style)
+    CheckBox double_kaj_link_style;
+
+    @BindView(R.id.cuff_width)
+    EditText cuff_width;
+    @BindView(R.id.coller_width_point)
+    EditText coller_width_point;
+    @BindView(R.id.commando_silaye_color)
+    EditText commando_silaye_color;
 
     @Nullable
     @Override
@@ -232,26 +254,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
             }
         });
 
-       /* iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
-            @Override
-            public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
-                GetUserResponseBody getUserResponseBody = response.body();
-                getUserResponseBody.getData();
 
-                String[] arr = getUserResponseBody.getData().toArray(new String[getUserResponseBody.getData().size()]);
-                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
-                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                dropdown_karegar_name.setAdapter(adapter3);
-
-                //Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
-                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
-            }
-        });
-*/
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -291,7 +294,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         submit_shirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    createShirtRequest();
+                createShirtRequest();
             }
         });
 
@@ -539,16 +542,27 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         shirtRequestBody.setNo_label(no_label.isChecked() ? no_label.getText().toString() : "");
         shirtRequestBody.setSpecial_order(special_order.isChecked() ? special_order.getText().toString() : "");
         shirtRequestBody.setButton_should_be_strong(button_should_be_strong.isChecked() ? button_should_be_strong.getText().toString() : "");
-        shirtRequestBody.setLight_work_shoulder_down(light_work_shoulder_down.isChecked() ? light_work_shoulder_down.getText().toString() : "");
+
         shirtRequestBody.setFull_shoulder_down(dropdown_down_shoulder_varieties.getSelectedItem().toString().equals("شولڈر کا انتخاب کیجئے") ? "" : dropdown_down_shoulder_varieties.getSelectedItem().toString());
-        shirtRequestBody.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
-        shirtRequestBody.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
-        shirtRequestBody.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");
+
         shirtRequestBody.setAltered_body(altered_body.isChecked() ? altered_body.getText().toString() : "");
         shirtRequestBody.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
         shirtRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
         shirtRequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
 
+        //newly added fields
+        shirtRequestBody.setLight_work_shoulder_down(cuff_chowk_patti.isChecked() ? cuff_chowk_patti.getText().toString() : "");
+        shirtRequestBody.setStraight_shoulder(soft_bukram_on_collar.isChecked() ? soft_bukram_on_collar.getText().toString() : "");
+        shirtRequestBody.setRight_shoulder_down(hard_bukram_on_collar.isChecked() ? hard_bukram_on_collar.getText().toString() : "");
+        shirtRequestBody.setLeft_shoulder_down(collar_kaj_button.isChecked() ? collar_kaj_button.getText().toString() : "");
+
+        shirtRequestBody.setDouble_sew(double_sew.isChecked() ? double_sew.getText().toString() : "");
+        shirtRequestBody.setDouble_cuff_soft_bukram(double_cuff_soft_bukram.isChecked() ? double_cuff_soft_bukram.getText().toString() : "");
+        shirtRequestBody.setDouble_kaj_link_style(double_kaj_link_style.isChecked() ? double_kaj_link_style.getText().toString() : "");
+        shirtRequestBody.setCuff_width(TextUtils.isEmpty(cuff_width.getText().toString()) ? "" : cuff_width.getText().toString());
+        shirtRequestBody.setColler_width_point(TextUtils.isEmpty(coller_width_point.getText().toString()) ? "" : coller_width_point.getText().toString());
+        shirtRequestBody.setCommando_silaye_color(TextUtils.isEmpty(commando_silaye_color.getText().toString()) ? "" : commando_silaye_color.getText().toString());
+        //newly added 10 fields...
 
         //send Images...
 
