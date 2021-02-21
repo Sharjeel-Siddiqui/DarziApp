@@ -14,11 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="کاریگر کا نام لکھیں-"
-            android:textAlignment="center"
-            />
+            android:textAlignment="center" />
 
         <Spinner
-            android:visibility="gone"
             android:id="@+id/dropdown_karegar_name"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -26,11 +24,22 @@
             android:prompt="@string/app_name"
             android:textAlignment="center"
             android:textDirection="rtl"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <Spinner
-            android:visibility="visible"
             android:id="@+id/dropdown_down_shoulder_varieties"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:prompt="@string/app_name"
+            android:textAlignment="center"
+            android:textDirection="rtl"
+            android:textSize="22sp"
+            android:visibility="visible" />
+
+        <Spinner
+            android:id="@+id/dropdown_shalwar_name"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:padding="10dp"
@@ -40,7 +49,17 @@
             android:textSize="22sp" />
 
         <Spinner
-            android:id="@+id/dropdown_shalwar_name"
+            android:id="@+id/dropdown_choose_color"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:prompt="@string/app_name"
+            android:textAlignment="center"
+            android:textDirection="rtl"
+            android:textSize="22sp" />
+
+        <Spinner
+            android:id="@+id/dropdown_choose_button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:padding="10dp"
@@ -79,10 +98,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/mobile_number"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -162,10 +181,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/quantity"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -186,9 +205,9 @@
 
             <EditText
                 android:id="@+id/collar"
-                android:inputType="number"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -208,10 +227,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/sleeves"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -231,10 +250,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/shoulder"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -254,10 +273,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/hip"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -277,10 +296,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/abdomen"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -300,10 +319,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/gudda"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -324,9 +343,9 @@
 
             <EditText
                 android:id="@+id/front"
-                android:inputType="number"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -346,10 +365,10 @@
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/lengthMade"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <TextView
@@ -370,7 +389,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="آف وائٹ کلر"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/black_color"
@@ -380,7 +400,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="بلیک کلر"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/mehroon_color"
@@ -390,7 +411,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="مہرون کلر"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/redish_maroon"
@@ -400,7 +422,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="ریڈش مہرون کلر"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/golden_color"
@@ -410,7 +433,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="گولڈن کلر"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/cream_color"
@@ -420,7 +444,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="کریم کلر"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/copper_color"
@@ -430,7 +455,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="کوپر کلر"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/dark_brown_color"
@@ -440,7 +466,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="ڈارک براؤن کلر"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/gray_color"
@@ -450,7 +477,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="گرے کلر"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/matching_button"
@@ -470,7 +498,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="براس کے بٹن"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/copper_color_button"
@@ -480,7 +509,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="کاپر کلر بٹن"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/silver_color_button"
@@ -490,7 +520,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="سلور کلر بٹن"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/gold_color_button"
@@ -500,7 +531,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="مہندی گولڈ کلر بٹن"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/purple_color_button"
@@ -510,7 +542,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="سرمئ کلر بٹن"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/round_button"
@@ -520,7 +553,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="گول بٹن"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/fancy_button"
@@ -530,7 +564,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="فینسی بٹن لگانے ہیں"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/strong_button"
@@ -559,7 +594,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="کنٹراس کلر کے کاج ہؤ گے"
+            android:text="کنٹراس کلر کے کاج ہونگے "
             android:textSize="22sp" />
 
         <CheckBox
@@ -683,7 +718,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="پائنچہ اسٹائل"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/paint_style"
@@ -761,7 +797,7 @@
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="پاجامے کی سوری"
+                    android:text="پاجامے کی موری"
                     android:textColor="@android:color/black"
                     android:textSize="22sp" />
 
@@ -796,7 +832,7 @@
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="پاجامے کی سوری"
+                    android:text="پاجامے کی موری"
                     android:textColor="@android:color/black"
                     android:textSize="22sp" />
 
@@ -955,46 +991,6 @@
             android:text="ارجنٹ آرڈر"
             android:textSize="22sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="بجے تک لازمی"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-            <EditText
-                android:id="@+id/urgent_order_time"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="کو چاہیے"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-            <EditText
-                android:id="@+id/urgent_order_date"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ارجنٹ بروز"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-
-        </LinearLayout>
-
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -1008,36 +1004,94 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="گھنٹے میں چاہیے آرڈر"
+                    android:text="بجے تک لازمی"
                     android:textColor="@android:color/black"
                     android:textSize="22sp" />
 
                 <EditText
-                    android:id="@+id/is_most_urgent"
+                    android:id="@+id/urgent_order_time"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="،"
+                    android:text="کو چاہیے"
                     android:textColor="@android:color/black"
                     android:textSize="22sp" />
 
                 <EditText
-                    android:id="@+id/order_date_most_urgent"
+                    android:id="@+id/urgent_order_date"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="انتہائ ارجنٹ بروز"
+                    android:text="ارجنٹ بروز"
                     android:textColor="@android:color/black"
                     android:textSize="22sp" />
+
 
             </LinearLayout>
         </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کو چاہیے-"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/order_date_most_urgent"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انتہائ ارجنٹ بروز"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="گھنٹے میں چاہیے آرڈر-"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/is_most_urgent"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ارجنٹ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
 
         <CheckBox
@@ -1098,7 +1152,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="فل شولڈر ڈاون شولڈر ڈاون"
+            android:text="فل شولڈر ڈاؤن ہیں"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1108,7 +1162,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="اسٹریٹ سیدھے شولڈر"
+            android:text="اسٹریٹ سیدھے شولڈر ہیں"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1118,7 +1172,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سیدھے ہاتھ کا شولڈر ڈاؤن"
+            android:text="سیدھے ہاتھ کا شولڈر ڈاؤن ہے"
             android:textSize="22sp" />
 
 
@@ -1129,7 +1183,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="الٹے بائیں ہاتھ کا شولڈر ڈاؤن"
+            android:text="الٹے بائیں ہاتھ کا شولڈر ڈاؤن ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1149,7 +1203,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سینے کے اوپر گوشت نہیں ہے باڈی میں گہڑہ ہے"
+            android:text="سینے کے اوپر گوشت نہیں ہے باڈی میں گڈھہ ہے"
             android:textSize="22sp" />
 
         <CheckBox

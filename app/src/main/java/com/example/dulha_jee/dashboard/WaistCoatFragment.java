@@ -222,7 +222,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
     @BindView(R.id.pocket_pipine)
     CheckBox pocket_pipine;
     @BindView(R.id.cadge_contrast)
-    CheckBox cadge_contrast;
+    EditText cadge_contrast;
     @BindView(R.id.excersize_body)
     CheckBox excersize_body;
     @BindView(R.id.child_size_waistcoat)
@@ -283,6 +283,9 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
     @BindView(R.id.chooseOrderDate)
     Button chooseOrderDate;
 
+    @BindView(R.id.coat_style_round_daman_mazeed)
+    CheckBox coat_style_round_daman_mazeed;
+
 
     @Nullable
     @Override
@@ -314,7 +317,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
             }
         });
 
-        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+       /* iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
             public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
                 GetUserResponseBody getUserResponseBody = response.body();
@@ -332,7 +335,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
             public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -370,9 +373,9 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         submit_waistcoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkValidation()) {
+
                     createWaistCoat();
-                }
+
              /*   Alerter.create(getActivity())
                         .setTitle("انتطار فرمائیے۔۔۔")
                         .setText("کسٹمر کا آرڈر بن رہا ہے۔۔۔")
@@ -393,8 +396,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
             }
         });
 
-        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
-        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, (downOptions));
         dropdown_down_shoulder_varieties.setAdapter(adap);
     }
 
@@ -429,6 +431,8 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setExtra_buttons(TextUtils.isEmpty(extra_buttons.getText().toString()) ? "" : " وائلٹ پوکٹ کی چوڑائ " + extra_buttons.getText().toString() + " انچ رکھنی ہے ");
         waistCoatFragmentrequestBody.setLozing(TextUtils.isEmpty(lozing.getText().toString()) ? "" : lozing.getText().toString() + "انچ کی لوزنگ میں بنانی ہے");
         waistCoatFragmentrequestBody.set_chowk_length(TextUtils.isEmpty(waistcoat_chowk_length.getText().toString()) ? "" : "ویسٹ کوٹ کے چاک" + waistcoat_chowk_length.getText().toString() + " انچ کے رکھنے ہیں"); //waist coat chawk length
+        waistCoatFragmentrequestBody.setCadge_contrast(TextUtils.isEmpty(cadge_contrast.getText().toString()) ? "" : " کلر سے " +  cadge_contrast.getText().toString() +  " کاج کنٹراس کلر سے ہونگے ");
+
 
         //Check boxes come here
         waistCoatFragmentrequestBody.setJawahir_cut_style(jawahir_cut_style.isChecked() ? jawahir_cut_style.getText().toString() : "");
@@ -465,7 +469,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setCollar_lower_buttons(collar_lower_buttons.isChecked() ? collar_lower_buttons.getText().toString() : "");
         waistCoatFragmentrequestBody.setFront_pipine(front_pipine.isChecked() ? front_pipine.getText().toString() : "");
         waistCoatFragmentrequestBody.setPocket_pipine(pocket_pipine.isChecked() ? pocket_pipine.getText().toString() : "");
-        waistCoatFragmentrequestBody.setCadge_contrast(cadge_contrast.isChecked() ? cadge_contrast.getText().toString() : "");
+
         waistCoatFragmentrequestBody.setExcersize_body(excersize_body.isChecked() ? excersize_body.getText().toString() : "");
         waistCoatFragmentrequestBody.setChild_size_waistcoat(child_size_waistcoat.isChecked() ? child_size_waistcoat.getText().toString() : "");
         waistCoatFragmentrequestBody.setMagzi_round_neck_waistcoat(magzi_round_neck_waistcoat.isChecked() ? magzi_round_neck_waistcoat.getText().toString() : "");
@@ -489,7 +493,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setFull_shoulder_down(dropdown_down_shoulder_varieties.getSelectedItem().toString().equals("شولڈر کا انتخاب کیجئے") ? "" : dropdown_down_shoulder_varieties.getSelectedItem().toString());
         waistCoatFragmentrequestBody.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
         waistCoatFragmentrequestBody.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
-        waistCoatFragmentrequestBody.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");
+        waistCoatFragmentrequestBody.setLeft_shoulder_down(coat_style_round_daman_mazeed.isChecked() ? coat_style_round_daman_mazeed.getText().toString() : ""); //left shoulder field now used for mazeed gol daman
         waistCoatFragmentrequestBody.setAltered_body(altered_body.isChecked() ? altered_body.getText().toString() : "");
         waistCoatFragmentrequestBody.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
         waistCoatFragmentrequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");

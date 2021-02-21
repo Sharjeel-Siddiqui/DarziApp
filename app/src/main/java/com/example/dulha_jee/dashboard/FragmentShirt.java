@@ -232,7 +232,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
             }
         });
 
-        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+       /* iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
             public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
                 GetUserResponseBody getUserResponseBody = response.body();
@@ -251,7 +251,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
         });
-
+*/
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -291,9 +291,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         submit_shirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkValidation()) {
                     createShirtRequest();
-                }
             }
         });
 
@@ -485,8 +483,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
             }
         });
 
-        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
-        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, (downOptions));
         dropdown_down_shoulder_varieties.setAdapter(adap);
     }
 

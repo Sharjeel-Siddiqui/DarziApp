@@ -86,7 +86,8 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
     String[] users = {"کرتا شلوار", "کرتا پاجامہ", "قمیص شلوار", "فرنٹ اوپن کرتا"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] shalwar = {"شلوار کی اقسا م", "شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
-    String[] downOptions = {"شولڈر کا انتخاب کیجئے"," شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ","سیدھے ہاتھ کا شولڈر ڈاؤن" ,"الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+    String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ", "سیدھے ہاتھ کا شولڈر ڈاؤن", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+    String[] buttonName = {"بٹن منتخب کریں", "براس کے بٹن", "کاپر کلر بٹن", "سلور کلر بٹن", "مہندی گولڈ کلر بٹن", "سرمئ کلر بٹن", "گول بٹن", "فینسی بٹن لگانے ہیں"};
 
     NavController navController;
     CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
@@ -103,6 +104,8 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
 
     @BindView(R.id.dropdown_down_shoulder_varieties)
     Spinner dropdown_down_shoulder_varieties;
+    @BindView(R.id.dropdown_choose_button)
+    Spinner dropdown_choose_button;
 
     @BindView(R.id.chooseOrderDate)
     Button chooseOrderDate;
@@ -406,7 +409,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         });
 
 
-        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+        /*iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
             public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
                 GetUserResponseBody getUserResponseBody = response.body();
@@ -425,7 +428,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
             public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -458,19 +461,17 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         submit_kurta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkValidation()) {
-                    createKurtaRequest();
-                }
+
+                createKurtaRequest();
+
             }
         });
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, users);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, users);
         dropdown_kurta_varieties.setAdapter(adapter);
 
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, shalwar);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, shalwar);
         dropdown_shalwar_name.setAdapter(adapter1);
 
         chooseCollarImage.setOnClickListener(new View.OnClickListener() {
@@ -658,9 +659,11 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
             }
         });
 
-        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
-        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, (downOptions));
         dropdown_down_shoulder_varieties.setAdapter(adap);
+
+        ArrayAdapter<String> are = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, (buttonName));
+        dropdown_choose_button.setAdapter(are);
 
     }
 
@@ -687,6 +690,9 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         //urgent time and date...
         kurtaRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
         kurtaRequestBody.setUrgent_order_time(TextUtils.isEmpty(order_date_most_urgent.getText().toString()) ? "" : " انتہائ ارجنٹ بروز " + order_date_most_urgent.getText().toString() + " کو چاہیے " + "آرڈر" + is_most_urgent.getText().toString() + " بجے تک لازمی");
+
+
+        kurtaRequestBody.setLeft_shoulder_down(dropdown_choose_button.getSelectedItem().equals("بٹن منتخب کریں") ? "" : dropdown_choose_button.getSelectedItem().toString());
 
 
         //collar style image field
@@ -803,7 +809,6 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         kurtaRequestBody.setFull_shoulder_down(dropdown_down_shoulder_varieties.getSelectedItem().toString().equals("شولڈر کا انتخاب کیجئے") ? "" : dropdown_down_shoulder_varieties.getSelectedItem().toString());
         kurtaRequestBody.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
         kurtaRequestBody.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
-        kurtaRequestBody.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");
         kurtaRequestBody.setAltered_body(altered_body.isChecked() ? altered_body.getText().toString() : "");
         kurtaRequestBody.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
         kurtaRequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
@@ -819,7 +824,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
 
 
         kurtaRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
-        kurtaRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" :  karigar_name.getText().toString() + " :  کاریگر کا نام " );
+        kurtaRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" : karigar_name.getText().toString() + " :  کاریگر کا نام ");
         kurtaRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
 
 
@@ -835,7 +840,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         iapi.createKurta("Bearer " + sharedPreference.getToken(), kurtaRequestBody).enqueue(new Callback<HtmlResponseBody>() {
             @Override
             public void onResponse(Call<HtmlResponseBody> call, Response<HtmlResponseBody> response) {
-              //  Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(getActivity(), "Success..." + response.code(), Toast.LENGTH_SHORT).show();
                 Log.i("TAG", "onResponse: " + response.message());
                 Log.i("TAG", "onResponse: " + response.raw());
                 //response.body().getUrl();
@@ -979,18 +984,18 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         order_date.setText(currentDateString1);
     }
 
-    public boolean checkValidation(){
-        if(TextUtils.isEmpty(karigar_name.getText().toString())){
+    public boolean checkValidation() {
+        if (TextUtils.isEmpty(karigar_name.getText().toString())) {
             Toast.makeText(getActivity(), "کاریگر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if(TextUtils.isEmpty(customer_name.getText().toString())){
+        if (TextUtils.isEmpty(customer_name.getText().toString())) {
             Toast.makeText(getActivity(), "کسٹمر کا نام درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if(TextUtils.isEmpty(mobile_number.getText().toString())){
+        if (TextUtils.isEmpty(mobile_number.getText().toString())) {
             Toast.makeText(getActivity(), "کسٹمر کا نمبر درکار ہے۔۔۔", Toast.LENGTH_SHORT).show();
             return false;
         }

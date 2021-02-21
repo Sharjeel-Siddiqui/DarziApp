@@ -328,7 +328,7 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_karegar_name.setAdapter(adapter);*/
 
-        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+       /* iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
             public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
                 GetUserResponseBody getUserResponseBody = response.body();
@@ -346,23 +346,21 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
             public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, coatVarieties);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, coatVarieties);
+        //adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_coat_varieties.setAdapter(adapter1);
 
         submit_coat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkValidation()) {
                     createCoatRequest();
-                }
             }
         });
 
-        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
-        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(),  R.layout.custom_spinner, (downOptions));
+
         dropdown_down_shoulder_varieties.setAdapter(adap);
     }
 

@@ -159,13 +159,13 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
     @BindView(R.id.eight_loobs)
     CheckBox eight_loobs;
     @BindView(R.id.loobs_inch)
-    CheckBox loobs_inch;
+    EditText loobs_inch;
     @BindView(R.id.loobs_inch_two)
     CheckBox loobs_inch_two;
     @BindView(R.id.back_pocket_loobs)
     CheckBox back_pocket_loobs;
     @BindView(R.id.inch_belt)
-    CheckBox inch_belt;
+    EditText inch_belt;
     @BindView(R.id.belt_grip)
     CheckBox belt_grip;
     @BindView(R.id.pocket_thely)
@@ -270,7 +270,7 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
             }
         });
 
-        iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
+       /* iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
             public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
                 GetUserResponseBody getUserResponseBody = response.body();
@@ -288,7 +288,7 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
             public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -321,9 +321,9 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
         submit_pants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkValidation()) {
+
                     createPantRequest();
-                }
+
             }
         });
 
@@ -357,6 +357,9 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
         pantPojo.setKnee(TextUtils.isEmpty(knee.getText().toString()) ? "" : knee.getText().toString() + " : گھٹنہ ");
         pantPojo.setBottom(TextUtils.isEmpty(bottom.getText().toString()) ? "" : bottom.getText().toString() + ": بوٹم ");
 
+        pantPojo.setLoobs_inch(TextUtils.isEmpty(loobs_inch.getText().toString()) ? "" :    " لوپز " +  loobs_inch.getText().toString() + " انچ کے ");
+        pantPojo.setInch_belt(TextUtils.isEmpty(inch_belt.getText().toString()) ? "" :  inch_belt.getText().toString() +  " انچ بیلٹ ");
+
 
         pantPojo.setWithout_plate(without_plate.isChecked() ? without_plate.getText().toString() : "");
         pantPojo.setOne_plate_front(one_plate_front.isChecked() ? one_plate_front.getText().toString() : "");
@@ -372,10 +375,10 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
         pantPojo.setWatch_pocket(watch_pocket.isChecked() ? watch_pocket.getText().toString() : "");
         pantPojo.setBack_pocket_cadge_button(back_pocket_cadge_button.isChecked() ? back_pocket_cadge_button.getText().toString() : "");
         pantPojo.setEight_loobs(eight_loobs.isChecked() ? eight_loobs.getText().toString() : "");
-        pantPojo.setLoobs_inch(loobs_inch.isChecked() ? loobs_inch.getText().toString() : "");
+
         pantPojo.setLoobs_inch_two(loobs_inch_two.isChecked() ? loobs_inch_two.getText().toString() : "");
         pantPojo.setBack_pocket_loobs(back_pocket_loobs.isChecked() ? back_pocket_loobs.getText().toString() : "");
-        pantPojo.setInch_belt(inch_belt.isChecked() ? inch_belt.getText().toString() : "");
+
         pantPojo.setBelt_grip(belt_grip.isChecked() ? belt_grip.getText().toString() : "");
         pantPojo.setPocket_thely(pocket_thely.isChecked() ? pocket_thely.getText().toString() : "");
         pantPojo.setZip_quality(zip_quality.isChecked() ? zip_quality.getText().toString() : "");
@@ -406,7 +409,7 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
         pantPojo.setSpecial_order(special_order.isChecked() ? special_order.getText().toString() : "");
         pantPojo.setButton_should_be_strong(button_should_be_strong.isChecked() ? button_should_be_strong.getText().toString() : "");
         pantPojo.setLight_work_shoulder_down(light_work_shoulder_down.isChecked() ? light_work_shoulder_down.getText().toString() : "");
-        pantPojo.setFull_shoulder_down(dropdown_down_shoulder_varieties.getSelectedItem().toString().equals("شولڈر کا انتخاب کیجئے") ? "" : dropdown_down_shoulder_varieties.getSelectedItem().toString());
+      //  pantPojo.setFull_shoulder_down(dropdown_down_shoulder_varieties.getSelectedItem().toString().equals("شولڈر کا انتخاب کیجئے") ? "" : dropdown_down_shoulder_varieties.getSelectedItem().toString());
         pantPojo.setStraight_shoulder(straight_shoulder.isChecked() ? straight_shoulder.getText().toString() : "");
         pantPojo.setRight_shoulder_down(right_shoulder_down.isChecked() ? right_shoulder_down.getText().toString() : "");
         pantPojo.setLeft_shoulder_down(left_shoulder_down.isChecked() ? left_shoulder_down.getText().toString() : "");

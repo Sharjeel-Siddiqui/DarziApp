@@ -99,6 +99,7 @@ public class LoginFragment extends Fragment {
                 emailSubmit = dialogView.findViewById(R.id.email);
                 builder.setView(dialogView);
                 AlertDialog alertDialog = builder.create();
+                alertDialog.setCancelable(false);
                 alertDialog.show();
 
                 dialogSubmitbtn.setOnClickListener(new View.OnClickListener() {

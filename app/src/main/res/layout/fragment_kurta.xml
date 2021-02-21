@@ -41,9 +41,10 @@
             android:textSize="22sp" />
 
         <Spinner
+            android:visibility="visible"
             android:id="@+id/dropdown_shalwar_name"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:padding="10dp"
             android:prompt="@string/app_name"
             android:textAlignment="center"
@@ -60,6 +61,20 @@
             android:textAlignment="center"
             android:textDirection="rtl"
             android:textSize="22sp" />
+
+
+        <Spinner
+            android:visibility="visible"
+            android:id="@+id/dropdown_choose_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:prompt="@string/app_name"
+            android:textAlignment="center"
+            android:textDirection="rtl"
+            android:textSize="22sp" />
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -932,9 +947,6 @@
             android:text=" کف میں نرم بکرم لگانی ہے"
             android:textSize="22sp" />
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -962,7 +974,7 @@
                     android:textSize="22sp" />
 
             </LinearLayout>
-        </HorizontalScrollView>
+
 
 
         <CheckBox
@@ -1707,22 +1719,11 @@
             android:gravity="right"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="گھنٹے میں چاہیے آرڈر"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-            <EditText
-                android:id="@+id/is_most_urgent"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="،"
+                android:text="کو چاہیے-"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -1735,6 +1736,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="انتہائ ارجنٹ بروز"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="گھنٹے میں چاہیے آرڈر-"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/is_most_urgent"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ارجنٹ"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -1850,7 +1880,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سینے کے اوپر گوشت نہیں ہے باڈی میں گہڑہ ہے"
+            android:text="سینے کے اوپر گوشت نہیں ہے باڈی میں گڈھہ ہے"
             android:textSize="22sp" />
 
         <CheckBox

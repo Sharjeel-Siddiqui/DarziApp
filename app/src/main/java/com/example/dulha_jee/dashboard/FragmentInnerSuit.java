@@ -79,8 +79,10 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
     Spinner dropdown_karegar_name, dropdown_shalwar_name;
     NavController navController;
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
-    String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
+    String[] colorName = {"کلر منتخب کریں", " آف وائٹ کلر", "بلیک کلر", "مہرون کلر ", "ریڈش مہرون کلر ", "گولڈن کلر", "کریم کلر", "کوپر کلر", "ڈارک براؤن کلر", "گرے کلر"};
+    String[] buttonName = {"بٹن منتخب کریں", "براس کے بٹن", "کاپر کلر بٹن", "سلور کلر بٹن", "مہندی گولڈ کلر بٹن", "سرمئ کلر بٹن", "گول بٹن", "فینسی بٹن لگانے ہیں"};
     String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاون شولڈر ڈاون ", "اسٹریٹ سیدھے شولڈر ", "سیدھے ہاتھ کا شولڈر ڈاؤن", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن "};
+
     Button submit_innersuit;
     ImageView iv_01;
     Button chooseImage;
@@ -95,6 +97,10 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
 
     @BindView(R.id.dropdown_down_shoulder_varieties)
     Spinner dropdown_down_shoulder_varieties;
+    @BindView(R.id.dropdown_choose_color)
+    Spinner dropdown_choose_color;
+    @BindView(R.id.dropdown_choose_button)
+    Spinner dropdown_choose_button;
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
@@ -304,6 +310,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
             }
         });
 
+/*
 
         iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
             @Override
@@ -324,6 +331,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
                 Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
             }
         });
+*/
 
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
@@ -358,9 +366,9 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         submit_innersuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkValidation()) {
+
                     createInnerSuitRequest();
-                }
+
             }
         });
 
@@ -374,9 +382,17 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_shalwar_name.setAdapter(adapter1);
 
-        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (downOptions));
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, downOptions);
         adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown_down_shoulder_varieties.setAdapter(adap);
+
+        ArrayAdapter<String> adaaa = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, colorName);
+        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_choose_color.setAdapter(adaaa);
+
+        ArrayAdapter<String> are = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, buttonName);
+        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown_choose_button.setAdapter(are);
     }
 
     private void createInnerSuitRequest() {
@@ -408,6 +424,9 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         innerSuitRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
         innerSuitRequestBody.setUrgent_order_time(TextUtils.isEmpty(order_date_most_urgent.getText().toString()) ? "" : " انتہائ ارجنٹ بروز " + order_date_most_urgent.getText().toString() + " کو چاہیے " + "آرڈر" + is_most_urgent.getText().toString() + " بجے تک لازمی");
 
+        innerSuitRequestBody.setGray_color(dropdown_choose_color.getSelectedItem().equals("کلر منتخب کریں") ? "" : dropdown_choose_color.getSelectedItem().toString());
+        innerSuitRequestBody.setFancy_button(dropdown_choose_button.getSelectedItem().equals("بٹن منتخب کریں") ? "" : dropdown_choose_button.getSelectedItem().toString());
+
 
         //CheckBOxes Come here
 
@@ -419,7 +438,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         innerSuitRequestBody.setCream_color(cream_color.isChecked() ? cream_color.getText().toString() : "");
         innerSuitRequestBody.setCopper_color(copper_color.isChecked() ? copper_color.getText().toString() : "");
         innerSuitRequestBody.setDark_brown_color(dark_brown_color.isChecked() ? dark_brown_color.getText().toString() : "");
-        innerSuitRequestBody.setGray_color(gray_color.isChecked() ? gray_color.getText().toString() : "");
+
         innerSuitRequestBody.setMatching_button(matching_button.isChecked() ? matching_button.getText().toString() : "");
         innerSuitRequestBody.setBrass_button(brass_button.isChecked() ? brass_button.getText().toString() : "");
         innerSuitRequestBody.setCopper_color_button(copper_color_button.isChecked() ? copper_color_button.getText().toString() : "");
@@ -427,7 +446,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         innerSuitRequestBody.setGold_color_button(gold_color_button.isChecked() ? gold_color_button.getText().toString() : "");
         innerSuitRequestBody.setPurple_color_button(purple_color_button.isChecked() ? purple_color_button.getText().toString() : "");
         innerSuitRequestBody.setRound_button(round_button.isChecked() ? round_button.getText().toString() : "");
-        innerSuitRequestBody.setFancy_button(fancy_button.isChecked() ? fancy_button.getText().toString() : "");
+
         innerSuitRequestBody.setStrong_button(strong_button.isChecked() ? strong_button.getText().toString() : "");
         innerSuitRequestBody.setContrass_button(contrass_button.isChecked() ? contrass_button.getText().toString() : "");
         innerSuitRequestBody.setContrass_cadge(contrass_cadge.isChecked() ? contrass_cadge.getText().toString() : "");

@@ -566,7 +566,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="پینسل کی چوڑائی"
+                android:text="نپیل کی چوڑائی"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -580,7 +580,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="امریکن پینسل"
+            android:text="امریکن نپیل"
             android:textSize="22sp" />
 
         <CheckBox
@@ -590,7 +590,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="ڈنر پینسل"
+            android:text="ڈنر نپیل"
             android:textSize="22sp" />
 
         <CheckBox
@@ -600,7 +600,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="پینسل لمبی رکھنی ہے کوٹ کی"
+            android:text="نپیل لمبی رکھنی ہے کوٹ کی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -620,7 +620,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="ڈبل برسیڈڈ اسٹائل کالر"
+            android:text="ڈبل بریسٹڈ اسٹائل کالر"
             android:textSize="22sp" />
 
         <LinearLayout
@@ -673,7 +673,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="پینسل میں"
+                android:text="نپیل میں"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -687,7 +687,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="قب نکلا ہوا ہے کمر سے"
+            android:text="قب نکلا ہوا ہے کمر میں"
             android:textSize="22sp" />
 
         <CheckBox
@@ -697,7 +697,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سینہ کے اوپر گوشت نہیں ہے ، باڈی میں گڈہ ہے"
+            android:text="سینہ کے اوپر گوشت نہیں ہے ، باڈی میں گڈھہ ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -717,7 +717,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="پینسل والی ویسٹ کوٹ"
+            android:text="نپیل والی ویسٹ کوٹ"
             android:textSize="22sp" />
 
         <CheckBox
@@ -727,7 +727,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="وی گلا ویسٹ کوٹ"
+            android:text=" گلہ (V) ویسٹ کوٹ"
             android:textSize="22sp" />
 
         <CheckBox
@@ -737,7 +737,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" یو گلا ویسٹ کوٹ"
+            android:text="گلہ (U) ویسٹ کوٹ"
             android:textSize="22sp" />
 
 
@@ -842,7 +842,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="فرنٹ اور پینسل میں ڈبل بکرم لگانی ہے کیونکہ کسٹمر کو بالکل کھڑا کوٹ چاہیے"
+            android:text="فرنٹ اور نپیل میں ڈبل بکرم لگانی ہے کیونکہ کسٹمر کو بالکل کھڑا کوٹ چاہیے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -912,7 +912,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="بٹن فینسی لگیں گے میڈل کے"
+            android:text="بٹن فینسی لگیں گے میٹل کے"
             android:textSize="22sp" />
 
 
@@ -944,7 +944,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="بچگانہ سائز"
+            android:text="بچکانہ سائز"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1033,49 +1033,62 @@
         </HorizontalScrollView>
 
 
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:orientation="horizontal">
+                android:text="کو چاہیے-"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="گھنٹے میں چاہیے آرڈر"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
+            <EditText
+                android:id="@+id/order_date_most_urgent"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
 
-                <EditText
-                    android:id="@+id/is_most_urgent"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انتہائ ارجنٹ بروز"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="،"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
+        </LinearLayout>
 
-                <EditText
-                    android:id="@+id/order_date_most_urgent"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="انتہائ ارجنٹ بروز"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
 
-            </LinearLayout>
-        </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="گھنٹے میں چاہیے آرڈر-"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/is_most_urgent"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ارجنٹ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/no_label"
@@ -1135,7 +1148,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="فل شولڈر ڈاون شولڈر ڈاون"
+            android:text="فل شولڈر ڈاؤن ہیں"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1145,7 +1158,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="اسٹریٹ سیدھے شولڈر"
+            android:text="اسٹریٹ سیدھے شولڈر ہیں"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1155,7 +1168,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سیدھے ہاتھ کا شولڈر ڈاؤن"
+            android:text="سیدھے ہاتھ کا شولڈر ڈاؤن ہے"
             android:textSize="22sp" />
 
 
@@ -1166,7 +1179,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="الٹے بائیں ہاتھ کا شولڈر ڈاؤن"
+            android:text="الٹے بائیں ہاتھ کا شولڈر ڈاؤن ہے"
             android:textSize="22sp" />
 
         <CheckBox

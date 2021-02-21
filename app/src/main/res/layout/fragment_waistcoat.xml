@@ -14,12 +14,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="کاریگر کا نام لکھیں-"
-            android:textAlignment="center"
-            />
+            android:textAlignment="center" />
 
 
         <Spinner
-            android:visibility="visible"
             android:id="@+id/dropdown_down_shoulder_varieties"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -27,10 +25,10 @@
             android:prompt="@string/app_name"
             android:textAlignment="center"
             android:textDirection="rtl"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="visible" />
 
         <Spinner
-            android:visibility="gone"
             android:id="@+id/dropdown_karegar_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -38,7 +36,8 @@
             android:prompt="@string/app_name"
             android:textAlignment="center"
             android:textDirection="rtl"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -380,18 +379,33 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="  گلہ اسٹائل u"
+            android:text="  گلہ اسٹائل (U)"
             android:textSize="22sp" />
 
-        <HorizontalScrollView
+        <!--<HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="تھری پیس اسٹائل ویسٹ کوٹ سامنے پہ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:orientation="horizontal">
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -406,14 +420,14 @@
                     android:layout_height="wrap_content"
                     android:inputType="number" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="تھری پیس اسٹائل ونٹکوٹ سامنے پہ"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
             </LinearLayout>
-        </HorizontalScrollView>
+
+
+
+
+
+        </LinearLayout>
+        <!--  </HorizontalScrollView>-->
 
         <CheckBox
             android:id="@+id/waistcoat_back_backet"
@@ -422,7 +436,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="ویسٹ کوٹ کی بیک میں بیکٹ لگانی ہے"
+            android:text="ویسٹ کوٹ کی بیک میں بیلٹ لگانی ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -432,7 +446,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="میٹل کے فینسی بٹن لگے گے"
+            android:text="میٹل کے فینسی بٹن لگیں گے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -472,42 +486,47 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="کوٹ اسٹائل گول دامن تھوڑا زیادہ راونڈ"
+            android:text="کوٹ اسٹائل گول دامن  "
             android:textSize="22sp" />
 
 
-        <HorizontalScrollView
+        <CheckBox
+            android:id="@+id/coat_style_round_daman_mazeed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end">
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="تھوڑا زیادہ راؤنڈ دامن بنانا ہے"
+            android:textSize="22sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:orientation="horizontal">
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="انچ رکھنی ہے"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
+            <EditText
+                android:id="@+id/collar_width"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-                <EditText
-                    android:id="@+id/collar_width"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="کالر کی چوڑائ"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
-            </LinearLayout>
-        </HorizontalScrollView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کالر کی چوڑائ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+        </LinearLayout>
 
 
         <CheckBox
@@ -517,7 +536,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="کالر ہالہ چھانٹ کر بنانا ہے"
+            android:text="کالر ہالہ چھانٹ کر چڑھانا ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -570,37 +589,33 @@
             android:text="پیچ پوکٹ"
             android:textSize="22sp" />
 
-        <HorizontalScrollView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:orientation="horizontal">
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="انچ رکھنی ہے"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
+            <EditText
+                android:id="@+id/violet_pocket_width"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-                <EditText
-                    android:id="@+id/violet_pocket_width"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="وائلٹ پوکٹ کی چوڑائ"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
-            </LinearLayout>
-        </HorizontalScrollView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="وائلٹ پوکٹ کی چوڑائ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+        </LinearLayout>
 
 
         <CheckBox
@@ -655,37 +670,33 @@
             android:text="اندر کی طرف دو عدد پاکٹ چاہیں"
             android:textSize="22sp" />
 
-        <HorizontalScrollView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:orientation="horizontal">
+                android:text="عدد ایکسٹرا بٹن ضرور لگانا ہیں"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="عدد اسکٹرا بٹن صرور لگانا ہے"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
+            <EditText
+                android:id="@+id/extra_buttons"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-                <EditText
-                    android:id="@+id/extra_buttons"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="اندر"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
-            </LinearLayout>
-        </HorizontalScrollView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="اندر"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+        </LinearLayout>
 
 
         <CheckBox
@@ -695,7 +706,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="پاکٹ کی تھیلی سیم کپڑے جیسی کرنی ہے"
+            android:text="پاکٹ کی تھیلی سیم \n کپڑے کی لگانی ہیں"
             android:textSize="22sp" />
 
 
@@ -717,7 +728,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سامنے پہ فیوزنگ کے لپے اسکٹرا لگانے ہے"
+            android:text="سامنے پہ فیوزنگ کے لپپے ایکسٹرا لگانے ہیں"
             android:textSize="22sp" />
 
 
@@ -838,19 +849,71 @@
             android:textSize="22sp" />
 
 
-        <CheckBox
-            android:id="@+id/cadge_contrast"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:checked="false"
-            android:padding="10dp"
-            android:text="کاج کنٹراس کلر سے ہونگے"
-            android:textSize="22sp" />
+            android:gravity="right"
+            android:orientation="horizontal">
 
-        <HorizontalScrollView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کلر سے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/cadge_contrast"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کاج کنٹراس کلر سے ہونگے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ کی لوزنگ میں بنانی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/lozing"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ویسٹ کوٹ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical"
+            >
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -858,43 +921,10 @@
                 android:gravity="right"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="انچ کی لوزنگ میں بنانی ہے"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
-
-                <EditText
-                    android:id="@+id/lozing"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
-
-            </LinearLayout>
-        </HorizontalScrollView>
-
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" انچ کے رکھنے ہیں"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
 
                 <EditText
                     android:id="@+id/waistcoat_chowk_length"
-                    android:layout_width="40dp"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:inputType="number" />
 
@@ -905,7 +935,16 @@
                     android:textColor="@android:color/black"
                     android:textSize="22sp" />
             </LinearLayout>
-        </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="انچ کے رکھنے ہیں"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
 
 
         <CheckBox
@@ -987,7 +1026,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="فینیشنگ میں چاہیے کسٹپر کو"
+            android:text="فینیشنگ میں چاہیے کسٹمر کو"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1018,7 +1057,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="بچگانہ سائز"
+            android:text="بچکانہ سائز"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1107,22 +1146,11 @@
             android:gravity="right"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="گھنٹے میں چاہیے آرڈر"
-                android:textColor="@android:color/black"
-                android:textSize="22sp" />
-
-            <EditText
-                android:id="@+id/is_most_urgent"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="،"
+                android:text="کو چاہیے-"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -1135,6 +1163,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="انتہائ ارجنٹ بروز"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="گھنٹے میں چاہیے آرڈر-"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/is_most_urgent"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ارجنٹ"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -1199,7 +1256,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="فل شولڈر ڈاون شولڈر ڈاون"
+            android:text="فل شولڈر ڈاؤن ہیں"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1209,7 +1266,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="اسٹریٹ سیدھے شولڈر"
+            android:text="اسٹریٹ سیدھے شولڈر ہیں"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1219,7 +1276,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سیدھے ہاتھ کا شولڈر ڈاؤن"
+            android:text="سیدھے ہاتھ کا شولڈر ڈاؤن ہے"
             android:textSize="22sp" />
 
 
@@ -1230,7 +1287,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="الٹے بائیں ہاتھ کا شولڈر ڈاؤن"
+            android:text="الٹے بائیں ہاتھ کا شولڈر ڈاؤن ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1250,7 +1307,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سینے کے اوپر گوشت نہیں ہے باڈی میں گہڑہ ہے"
+            android:text="سینے کے اوپر گوشت نہیں ہے باڈی میں گڈھہ ہے"
             android:textSize="22sp" />
 
 
@@ -1271,7 +1328,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="لیبل کپڑے کی چیز کے اوپر لگے گا فینسی اسٹائل کی طرح"
+            android:text="لیبل کپڑے کے پیس کے اُوپر  لگے گا فینسی اسٹائل کی طرح"
             android:textSize="22sp" />
 
         <Button
