@@ -501,7 +501,18 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         shirtRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
         //et fields
-        shirtRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+        shirtRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString() );
+        shirtRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " +  collar.getText().toString() );
+        shirtRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString() );
+        shirtRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString() );
+        shirtRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip : " +  hip.getText().toString()  );
+        shirtRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Gudda : " + gudda.getText().toString() );
+        shirtRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front : " + front.getText().toString() );
+        shirtRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString() );
+        shirtRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Abdomen : " +  abdomen.getText().toString() );
+
+
+        /*shirtRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
         shirtRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");
         shirtRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین  ");
         shirtRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + ": شولڈر  ");
@@ -509,7 +520,7 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         shirtRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + ": گڈہ تیار ");
         shirtRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار  ");
         shirtRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
-        shirtRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ/waist ");
+        shirtRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ/waist ");*/
 
         shirtRequestBody.setPatti_ki_chorayi(TextUtils.isEmpty(patti_ki_chorayi.getText().toString()) ? "" : " پٹی کی چوڑائ " + patti_ki_chorayi.getText().toString() + "نچ رکھنی ہے");
         shirtRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());

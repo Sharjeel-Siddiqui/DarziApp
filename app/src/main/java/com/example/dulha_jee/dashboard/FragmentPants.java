@@ -348,14 +348,24 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
         pantPojo.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
         //et fields
-        pantPojo.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+        pantPojo.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " +  quantity.getText().toString() );
+        pantPojo.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip : " + hip.getText().toString() );
+        pantPojo.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " +  lengthMade.getText().toString() );
+        pantPojo.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Abdomen : " + abdomen.getText().toString() );
+        pantPojo.setFly(TextUtils.isEmpty(fly.getText().toString()) ? "" : " Fly : " + fly.getText().toString() );
+        pantPojo.setThigh(TextUtils.isEmpty(thigh.getText().toString()) ? "" : " Thigh : " + thigh.getText().toString() );
+        pantPojo.setKnee(TextUtils.isEmpty(knee.getText().toString()) ? "" : " Knee : " + knee.getText().toString() );
+        pantPojo.setBottom(TextUtils.isEmpty(bottom.getText().toString()) ? "" : " Bottom : " + bottom.getText().toString() );
+
+        /*  pantPojo.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
         pantPojo.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : hip.getText().toString() + " : ہپ تیار ");
         pantPojo.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");
         pantPojo.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ ");
         pantPojo.setFly(TextUtils.isEmpty(fly.getText().toString()) ? "" : fly.getText().toString() + " : فلائ ");
         pantPojo.setThigh(TextUtils.isEmpty(thigh.getText().toString()) ? "" : thigh.getText().toString() + " : ران ");
         pantPojo.setKnee(TextUtils.isEmpty(knee.getText().toString()) ? "" : knee.getText().toString() + " : گھٹنہ ");
-        pantPojo.setBottom(TextUtils.isEmpty(bottom.getText().toString()) ? "" : bottom.getText().toString() + ": بوٹم ");
+        pantPojo.setBottom(TextUtils.isEmpty(bottom.getText().toString()) ? "" : bottom.getText().toString() + ": بوٹم ");*/
+
 
         pantPojo.setLoobs_inch(TextUtils.isEmpty(loobs_inch.getText().toString()) ? "" :    " لوپز " +  loobs_inch.getText().toString() + " انچ کے ");
         pantPojo.setInch_belt(TextUtils.isEmpty(inch_belt.getText().toString()) ? "" :  inch_belt.getText().toString() +  " انچ بیلٹ ");

@@ -375,7 +375,7 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         coatRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
 
-        coatRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+       /* coatRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
         coatRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");
         coatRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین  ");
         coatRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + ": شولڈر  ");
@@ -387,6 +387,21 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" : full_back.getText().toString() + " : فل بیک ");
         coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString() + " : ہالف بیک ");
         coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString() + " : کراس فرنٹ ");
+       */
+
+        coatRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString() );
+        coatRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString() );
+        coatRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString() );
+        coatRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString() );
+        coatRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip : " + hip.getText().toString() );
+        coatRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Gudda : " +  gudda.getText().toString() );
+        coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString() );
+        coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Abdomen : " + abdomen.getText().toString() );
+        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest : " + chest.getText().toString());
+        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" : " Full Back : " + full_back.getText().toString() );
+        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : " Half Back : " + halfback.getText().toString() );
+        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : " Cross Front :" + crossfront.getText().toString() );
+
         coatRequestBody.setPencil_length(TextUtils.isEmpty(pencil_length.getText().toString()) ? "" : "پینسل کی چوڑائی" + pencil_length.getText().toString() + "انچ کی رکھنی ہے");
         coatRequestBody.setChowk_length(TextUtils.isEmpty(chowk_length.getText().toString()) ? "" : "چاک کی لمبائی" + chowk_length.getText().toString() + "انچ کی رکھنی ہے");
         coatRequestBody.setCollar_thing(TextUtils.isEmpty(collar_thing.getText().toString()) ? "" : " کالر میں " + collar_thing.getText().toString() + " لگانی ہے ");

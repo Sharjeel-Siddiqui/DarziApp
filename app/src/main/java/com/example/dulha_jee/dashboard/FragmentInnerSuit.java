@@ -401,7 +401,18 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         innerSuitRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
         innerSuitRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
-        innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+        innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString() );
+        innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString() );
+        innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " +  sleeves.getText().toString() );
+        innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString() );
+        innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip : " + hip.getText().toString() );
+        innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Gudda : " + gudda.getText().toString() );
+        innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" :  " Front : " + front.getText().toString() );
+        innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : "+  lengthMade.getText().toString() );
+        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Abdomen : " + abdomen.getText().toString() );
+
+
+        /*innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
         innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + ": کالر  ");
         innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین ");
         innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + " : شولڈر/ ");
@@ -409,7 +420,9 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : gudda.getText().toString() + " : گڈہ تیار ");
         innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار ");
         innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + " : لمبائ ");
-        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ تیار ");
+        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : abdomen.getText().toString() + " : پیٹ تیار ");*/
+
+
         innerSuitRequestBody.setShalwar_gher(TextUtils.isEmpty(shalwar_gher.getText().toString()) ? "" : "شلوار کا گھیر ایک سائیڈ کا" + shalwar_gher.getText().toString() + "انچ کا چاہیے تیار");
         innerSuitRequestBody.setShalwar_asan(TextUtils.isEmpty(shalwar_asan.getText().toString()) ? "" : "شلوار کاآسن" + shalwar_asan.getText().toString() + "انچ کا چاہیے تیار");
         innerSuitRequestBody.setPajama_inner_fold(TextUtils.isEmpty(pajama_inner_fold.getText().toString()) ? "" : "پاجامے کی سوری" + pajama_inner_fold.getText().toString() + "انچ چوڑی فولڈ کرنی ہے باہر کی طرف");

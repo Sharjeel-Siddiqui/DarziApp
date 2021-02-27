@@ -23,11 +23,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
     Context myCtx;
     List<SearchResponseBody.user> users;
     NavController navController;
+    IonDeleteOrder ionDeleteOrder;
 
-    public UserAdapter(Context myCtx, List<SearchResponseBody.user> userPojos, NavController navController) {
+    public UserAdapter(Context myCtx, List<SearchResponseBody.user> userPojos, NavController navController , IonDeleteOrder ionDeleteOrder) {
         this.myCtx = myCtx;
         this.users = userPojos;
         this.navController = navController;
+        this.ionDeleteOrder = ionDeleteOrder;
     }
 
     @NonNull
@@ -36,7 +38,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.rv_item_user_list_detail, parent, false);
-        return new UserVH(view);
+        return new UserVH(view,this.ionDeleteOrder);
     }
 
     @Override
@@ -60,6 +62,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
                 navController.navigate(R.id.action_userList_to_customer_View_Fragment, bundle);
             }
         });
+
+        if(users.get(position).getOrder_number() == null){
+            holder.deleteCustomer.setVisibility(View.GONE);
+        }else{
+            holder.deleteCustomer.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
@@ -67,18 +76,33 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserVH> {
         return users.size();
     }
 
-    public class UserVH extends RecyclerView.ViewHolder {
+    public class UserVH extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView userName, orderNumber, orderStatus , number;
-        ImageView edit, view;
+        ImageView edit, view , deleteCustomer;
+        IonDeleteOrder ionDeleteOrder1;
 
-        public UserVH(@NonNull View itemView) {
+        public UserVH(@NonNull View itemView, IonDeleteOrder ionDeleteOrder) {
             super(itemView);
             orderStatus = itemView.findViewById(R.id.orderStatus);
             userName = itemView.findViewById(R.id.userName);
             orderNumber = itemView.findViewById(R.id.orderNumber);
-            edit = itemView.findViewById(R.id.editCustomer);
+            deleteCustomer = itemView.findViewById(R.id.deleteCustomer);
             view = itemView.findViewById(R.id.viewCustomer);
             number = itemView.findViewById(R.id.number);
+            ionDeleteOrder1 = ionDeleteOrder;
+            itemView.setOnClickListener(this);
+            deleteCustomer.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.deleteCustomer:
+                    String order_number = users.get(getAdapterPosition()).getOrder_number() == null ? "123" :  users.get(getAdapterPosition()).getOrder_number();
+                    ionDeleteOrder1.onDeleteOrder(order_number,getAdapterPosition());
+                    break;
+            }
         }
     }
 }

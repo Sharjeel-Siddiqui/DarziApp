@@ -28,11 +28,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserListFragnment extends Fragment {
+public class UserListFragnment extends Fragment implements IonDeleteOrder{
 
     RecyclerView recyclerView;
     UserAdapter userAdapter;
@@ -42,6 +43,7 @@ public class UserListFragnment extends Fragment {
     Iapi iapi;
     SharedPreference sharedPreference;
     TextView nrf;
+    IonDeleteOrder ionDeleteOrder;
 
 
     @Nullable
@@ -128,7 +130,36 @@ public class UserListFragnment extends Fragment {
     }
 
     public void populateRv(ArrayList<SearchResponseBody.user> users) {
-        userAdapter = new UserAdapter(getActivity(), users, navController);
+        userAdapter = new UserAdapter(getActivity(), users, navController,this);
         recyclerView.setAdapter(userAdapter);
+    }
+
+    public IonDeleteOrder getRef(){
+        return this.ionDeleteOrder;
+    }
+
+    @Override
+    public void onDeleteOrder(String order_id, int position) {
+       // Toast.makeText(getActivity(), "Order Id is : " + order_id + " position is " + position , Toast.LENGTH_SHORT).show();
+
+        userAdapter.notifyItemRemoved(position);
+      //  userAdapter. notifyItemRangeChanged(position, mDataSet.size());;
+
+        String s1 = order_id;
+        String[] words=s1.split(":");//splits the string based on whitespace
+        //using java foreach loop to print elements of string array
+
+
+        iapi.deleteOrder("Bearer " + sharedPreference.getToken() ,String.valueOf(order_id)).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Failure...", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

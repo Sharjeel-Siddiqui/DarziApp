@@ -483,7 +483,7 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
 
 
         //et fields
-        sherwaniRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
+    /*    sherwaniRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
         sherwaniRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");
         sherwaniRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : sleeves.getText().toString() + ": آستین  ");
         sherwaniRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : shoulder.getText().toString() + ": شولڈر  ");
@@ -497,6 +497,24 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
         sherwaniRequestBody.setFullback(TextUtils.isEmpty(fullback.getText().toString()) ? "" : fullback.getText().toString() + " : فل بیک ");
         sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : halfback.getText().toString() + " :  ہالف بیک ");
         sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString() + " : کراس فرنٹ ");
+       */
+
+        sherwaniRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : "Quantity : " + quantity.getText().toString() );
+        sherwaniRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : "Collar : " + collar.getText().toString() );
+        sherwaniRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : "Sleeves : " +  sleeves.getText().toString() );
+        sherwaniRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : "Shoulder : " +  shoulder.getText().toString() );
+        sherwaniRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip :" + hip.getText().toString() );
+        sherwaniRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Gudda : " + gudda.getText().toString() );
+        //sherwaniRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار  ");
+        sherwaniRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length :" + lengthMade.getText().toString() );
+
+        sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest : " + chest.getText().toString() );
+        sherwaniRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Abdomen " + abdomen.getText().toString() );
+        sherwaniRequestBody.setFullback(TextUtils.isEmpty(fullback.getText().toString()) ? "" : "Full Back : " + fullback.getText().toString() );
+        sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : "Half Back : " + halfback.getText().toString() );
+        sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : " Cross Front :" +crossfront.getText().toString() );
+
+
         sherwaniRequestBody.setHighlight_cadge_color(TextUtils.isEmpty(highlight_cadge_color.getText().toString()) ? "" : "کلر سے" + highlight_cadge_color.getText().toString() + " : سامنے پہ ہائ لیٹ کاج ہوگے");
         sherwaniRequestBody.setShow_cadge_color(TextUtils.isEmpty(show_cadge_color.getText().toString()) ? "" : " : کلر کے شو کاج ہوں گے" + show_cadge_color.getText().toString());
         sherwaniRequestBody.setFront_cadge_numbers(TextUtils.isEmpty(front_cadge_numbers.getText().toString()) ? "" : " سامنے پہ " + front_cadge_numbers.getText().toString() + " عدد کاج ہونگے ");
