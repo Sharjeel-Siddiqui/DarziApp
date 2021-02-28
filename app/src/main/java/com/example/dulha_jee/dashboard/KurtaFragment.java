@@ -161,6 +161,8 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
     EditText order_date_most_urgent;
     @BindView(R.id.remarks)
     EditText remarks;
+    @BindView(R.id.turban)
+    EditText turban;
 
     @BindView(R.id.customer_name)
     EditText customer_name;
@@ -695,6 +697,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         kurtaRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Gudda : " + gudda.getText().toString() );
         kurtaRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front : " + front.getText().toString() );
         kurtaRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : "Length : " + lengthMade.getText().toString() );
+        kurtaRequestBody.setTurban(TextUtils.isEmpty(turban.getText().toString()) ? "" : "Turban : " + turban.getText().toString() );
 
         //urgent time and date...
         kurtaRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
@@ -832,9 +835,9 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         kurtaRequestBody.setSide_pocket_image(TextUtils.isEmpty(sidepocket_image) ? "" : sidepocket_image);
 
 
-        kurtaRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString());
+        kurtaRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString().equals("شلوار کی اقسا م") ? "" : dropdown_shalwar_name.getSelectedItem().toString());
         kurtaRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" : karigar_name.getText().toString() + " :  کاریگر کا نام ");
-        kurtaRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString());
+        kurtaRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString().equals("کرتا شلوار") ? "" : dropdown_kurta_varieties.getSelectedItem().toString() );
 
 
         String value = kurtaRequestBody.getCollar_image();

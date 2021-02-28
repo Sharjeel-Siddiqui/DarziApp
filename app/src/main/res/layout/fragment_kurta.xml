@@ -111,7 +111,7 @@
                 android:id="@+id/mobile_number"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -134,7 +134,7 @@
                 android:id="@+id/order_number"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -189,11 +189,10 @@
 
 
             <EditText
-
                 android:id="@+id/quantity"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -217,7 +216,7 @@
                 android:id="@+id/collar"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -241,7 +240,7 @@
                 android:id="@+id/sleeves"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -265,7 +264,7 @@
                 android:id="@+id/shoulder"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -289,7 +288,7 @@
                 android:id="@+id/hip"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -313,7 +312,7 @@
                 android:id="@+id/abdomen"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -336,7 +335,7 @@
                 android:id="@+id/gudda"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -359,7 +358,7 @@
                 android:id="@+id/front"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -383,7 +382,7 @@
                 android:id="@+id/lengthMade"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -394,6 +393,31 @@
                 android:textSize="22sp" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+
+                android:id="@+id/turban"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ٹربن/Turban"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
 
 
         <TextView
@@ -441,7 +465,7 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/collar_width"
                 android:layout_width="56dp"
                 android:layout_height="match_parent" />
@@ -570,7 +594,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کالر کا اسٹائؑل تھوڑا چھوٹا والا رکھنا ہے"
+            android:text=" کالر کا اسٹائل  تھوڑا چھوٹا والا رکھنا ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -590,7 +614,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کالر کے کاج میں چھوٹے سائؑز کے بٹن لگنا ہے"
+            android:text=" کالر کے کاج میں چھوٹے سائز  کے بٹن لگنا ہے"
             android:textSize="22sp" />
 
         <CheckBox
@@ -652,7 +676,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کالر کی ڈیزاؑننگ سیم تصویر جیسی ھوگی"
+            android:text=" کالر کی ڈیزائننگ سیم تصویر جیسی ھوگی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -995,7 +1019,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="کف کی چاک پٹی کی بون والے ساییڈ میں بھی بون میں بکرم لگانی ہے لازمی"
+            android:text="کف کی چاک پٹی کی بون والے سائڈ میں بھی بون میں بکرم لگانی ہے لازمی"
             android:textSize="22sp" />
 
 
@@ -1164,7 +1188,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="پیالۃ اسٹائل دامن"
+            android:text="پیالہ اسٹائل دامن"
             android:textSize="22sp" />
 
 

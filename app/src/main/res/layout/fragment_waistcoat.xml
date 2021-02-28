@@ -73,7 +73,7 @@
                 android:id="@+id/mobile_number"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -96,7 +96,7 @@
                 android:id="@+id/order_number"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -128,7 +128,7 @@
                 android:id="@+id/order_date"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -153,7 +153,7 @@
                 android:id="@+id/quantity"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -177,7 +177,7 @@
                 android:id="@+id/collar"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -200,7 +200,7 @@
                 android:id="@+id/sleeves"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -223,7 +223,7 @@
                 android:id="@+id/shoulder"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -246,7 +246,7 @@
                 android:id="@+id/hip"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -269,7 +269,7 @@
                 android:id="@+id/abdomen"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -292,7 +292,7 @@
                 android:id="@+id/gudda"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -315,7 +315,7 @@
                 android:id="@+id/front"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -338,7 +338,7 @@
                 android:id="@+id/lengthMade"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -418,7 +418,7 @@
                     android:id="@+id/three_piece_style_cadge"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:inputType="numberDecimal" />
 
             </LinearLayout>
 
@@ -518,7 +518,7 @@
                 android:id="@+id/collar_width"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -607,7 +607,7 @@
                 android:id="@+id/violet_pocket_width"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -688,7 +688,7 @@
                 android:id="@+id/extra_buttons"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -706,7 +706,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="پاکٹ کی تھیلی سیم \n کپڑے کی لگانی ہیں"
+            android:text="پاکٹ کی تھیلی سیم \n کپڑے کی لگانی ہے"
             android:textSize="22sp" />
 
 
@@ -895,7 +895,7 @@
                 android:id="@+id/lozing"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -926,7 +926,7 @@
                     android:id="@+id/waistcoat_chowk_length"
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:inputType="numberDecimal" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -70,7 +70,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/mobile_number"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 android:id="@+id/order_number"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -129,7 +129,7 @@
                 android:id="@+id/order_date"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -153,7 +153,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/quantity"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/collar"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -199,7 +199,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/sleeves"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -222,7 +222,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/shoulder"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -245,7 +245,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/hip"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -268,7 +268,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/abdomen"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -292,7 +292,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/gudda"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -315,7 +315,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/chest"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -338,7 +338,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/lengthMade"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -361,7 +361,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/fullback"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -385,7 +385,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/halfback"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -409,7 +409,7 @@
 
 
             <EditText
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/crossfront"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -624,7 +624,7 @@
                 android:id="@+id/front_cadge_numbers"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -667,7 +667,7 @@
                 android:id="@+id/front_show_cadge_number"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <TextView
@@ -903,7 +903,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="بچگانہ سائز"
+            android:text="بچکانہ سائز"
             android:textSize="22sp" />
 
         <CheckBox

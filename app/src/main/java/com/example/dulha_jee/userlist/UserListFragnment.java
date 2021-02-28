@@ -23,6 +23,7 @@ import com.example.dulha_jee.SharedPreference;
 import com.example.dulha_jee.api.ApiClient;
 import com.example.dulha_jee.api.Iapi;
 import com.example.dulha_jee.pojo.SearchResponseBody;
+import com.example.dulha_jee.pojo.UpdateStatusRequestBody;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -149,11 +150,13 @@ public class UserListFragnment extends Fragment implements IonDeleteOrder{
         String[] words=s1.split(":");//splits the string based on whitespace
         //using java foreach loop to print elements of string array
 
+        UpdateStatusRequestBody updateStatusRequestBody = new UpdateStatusRequestBody();
+        updateStatusRequestBody.setOrder_number(String.valueOf(order_id).trim());
 
-        iapi.deleteOrder("Bearer " + sharedPreference.getToken() ,String.valueOf(order_id)).enqueue(new Callback<ResponseBody>() {
+        iapi.deleteOrder("Bearer " + sharedPreference.getToken(),updateStatusRequestBody).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Toast.makeText(getActivity(), "Success...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Order Deleted...", Toast.LENGTH_SHORT).show();
             }
 
             @Override

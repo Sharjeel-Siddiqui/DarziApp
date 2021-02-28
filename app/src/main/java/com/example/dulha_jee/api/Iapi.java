@@ -69,7 +69,7 @@ public interface Iapi {
     Call<UpdateStatusRequestBody> updateStatus(@Header("Authorization") String token, @Body UpdateStatusRequestBody bodydata);
 
     @POST("api/delete")
-    Call<ResponseBody> deleteOrder(@Header("Authorization") String token, @Body String order_number);
+    Call<ResponseBody> deleteOrder(@Header("Authorization") String token, @Body UpdateStatusRequestBody order_number);
 
 
     @GET("api/search")
