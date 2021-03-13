@@ -1,7 +1,84 @@
 package com.example.dulha_jee.pojo;
 
 public class ShirtRequestBody {
-    private String quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade , double_sew ,double_cuff_soft_bukram,double_kaj_link_style,cuff_width,coller_width_point,commando_silaye_color, kurta_type,shalwar,karigar,urgent_order_time,urgent_order_date,side_pocket_image,cuff_image,collar_image,customer_image, customer_name, order_number, mobile_number,  patti_ki_chorayi, order_date, order_date_most_urgent, remarks, is_shirt, make_coverpati_style, regular_polo_pati, simple_pati_style, not_regular_polo_pat, back_dart, american_style_round_deep, readymade_shirt_style_chakooti, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
+    private String quantity;
+    private String collar;
+    private String sleeves;
+    private String shoulder;
+    private String hip;
+    private String abdomen;
+    private String gudda;
+    private String front;
+    private String lengthMade;
+    private String kurta;
+
+    public String getKurta() {
+        return kurta;
+    }
+
+    public void setKurta(String kurta) {
+        this.kurta = kurta;
+    }
+
+    public String getPajama_shalwar() {
+        return pajama_shalwar;
+    }
+
+    public void setPajama_shalwar(String pajama_shalwar) {
+        this.pajama_shalwar = pajama_shalwar;
+    }
+
+    private String pajama_shalwar;
+    private String double_sew;
+    private String double_cuff_soft_bukram;
+    private String double_kaj_link_style;
+    private String cuff_width;
+    private String coller_width_point;
+    private String commando_silaye_color;
+    private String kurta_type;
+    private String shalwar;
+    private String karigar;
+    private String urgent_order_time;
+    private String urgent_order_date;
+    private String side_pocket_image;
+    private String cuff_image;
+    private String collar_image;
+    private String customer_image;
+    private String customer_name;
+    private String order_number;
+    private String mobile_number;
+    private String patti_ki_chorayi;
+    private String order_date;
+    private String order_date_most_urgent;
+    private String remarks;
+    private String is_shirt;
+    private String make_coverpati_style;
+    private String regular_polo_pati;
+    private String simple_pati_style;
+    private String not_regular_polo_pat;
+    private String back_dart;
+    private String american_style_round_deep;
+    private String readymade_shirt_style_chakooti;
+    private String customer_cloth;
+    private String only_sewing;
+    private String child_kurta_size;
+    private String finished_adjust;
+    private String special_customer_order;
+    private String regular_customer_order;
+    private String urgent_order;
+    private String no_label;
+    private String special_order;
+    private String button_should_be_strong;
+    private String shoulder_down;
+    private String light_work_shoulder_down;
+    private String full_shoulder_down;
+    private String straight_shoulder;
+    private String right_shoulder_down;
+    private String left_shoulder_down;
+    private String deep_body;
+    private String altered_body;
+    private String party_label;
+    private String fancy_label;
     private String order_status = "آرڈر آگیا";
 
     public String getDouble_sew() {
@@ -156,7 +233,7 @@ public class ShirtRequestBody {
         this.mobile_number = mobile_number;
     }
 
-    public ShirtRequestBody(){
+    public ShirtRequestBody() {
 
     }
 

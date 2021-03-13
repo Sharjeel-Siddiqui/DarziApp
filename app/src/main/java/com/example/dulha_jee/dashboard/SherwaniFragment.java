@@ -503,13 +503,13 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
         sherwaniRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : "Collar : " + collar.getText().toString() );
         sherwaniRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : "Sleeves : " +  sleeves.getText().toString() );
         sherwaniRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : "Shoulder : " +  shoulder.getText().toString() );
-        sherwaniRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip :" + hip.getText().toString() );
-        sherwaniRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Gudda : " + gudda.getText().toString() );
+        sherwaniRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready:" + hip.getText().toString() );
+        sherwaniRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready : " + gudda.getText().toString() );
         //sherwaniRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار  ");
         sherwaniRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length :" + lengthMade.getText().toString() );
 
-        sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest : " + chest.getText().toString() );
-        sherwaniRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Abdomen " + abdomen.getText().toString() );
+        sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest Ready : " + chest.getText().toString() );
+        sherwaniRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready " + abdomen.getText().toString() );
         sherwaniRequestBody.setFullback(TextUtils.isEmpty(fullback.getText().toString()) ? "" : "Full Back : " + fullback.getText().toString() );
         sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : "Half Back : " + halfback.getText().toString() );
         sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : " Cross Front :" +crossfront.getText().toString() );

@@ -393,11 +393,11 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         coatRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString() );
         coatRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString() );
         coatRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString() );
-        coatRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip : " + hip.getText().toString() );
-        coatRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Gudda : " +  gudda.getText().toString() );
+        coatRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready: " + hip.getText().toString() );
+        coatRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready: " +  gudda.getText().toString() );
         coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString() );
-        coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Abdomen : " + abdomen.getText().toString() );
-        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest : " + chest.getText().toString());
+        coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready : " + abdomen.getText().toString() );
+        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest Ready : " + chest.getText().toString());
         coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" : " Full Back : " + full_back.getText().toString() );
         coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : " Half Back : " + halfback.getText().toString() );
         coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : " Cross Front :" + crossfront.getText().toString() );

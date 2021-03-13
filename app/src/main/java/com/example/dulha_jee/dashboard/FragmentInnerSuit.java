@@ -279,6 +279,11 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
 
     Alerter alerter;
 
+    @BindView(R.id.kurta)
+    EditText kurta;
+    @BindView(R.id.pajama_shalwar)
+    EditText pajama_shalwar;
+
 
     @Nullable
     @Override
@@ -405,11 +410,11 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString() );
         innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " +  sleeves.getText().toString() );
         innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString() );
-        innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip : " + hip.getText().toString() );
-        innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Gudda : " + gudda.getText().toString() );
-        innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" :  " Front : " + front.getText().toString() );
+        innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready: " + hip.getText().toString() );
+        innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready: " + gudda.getText().toString() );
+        innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" :  " Front Ready: " + front.getText().toString() );
         innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : "+  lengthMade.getText().toString() );
-        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Abdomen : " + abdomen.getText().toString() );
+        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready : " + abdomen.getText().toString() );
 
 
         /*innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
@@ -436,6 +441,8 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         innerSuitRequestBody.setGray_color(dropdown_choose_color.getSelectedItem().equals("کلر منتخب کریں") ? "" : dropdown_choose_color.getSelectedItem().toString());
         innerSuitRequestBody.setFancy_button(dropdown_choose_button.getSelectedItem().equals("بٹن منتخب کریں") ? "" : dropdown_choose_button.getSelectedItem().toString());
 
+        innerSuitRequestBody.setKurta(TextUtils.isEmpty(kurta.getText().toString()) ? "" : " Kurta : " + kurta.getText().toString());
+        innerSuitRequestBody.setPajama_shalwar(TextUtils.isEmpty(pajama_shalwar.getText().toString()) ? "" : " Pajama / Shalwar : " + pajama_shalwar.getText().toString());
 
         //CheckBOxes Come here
 

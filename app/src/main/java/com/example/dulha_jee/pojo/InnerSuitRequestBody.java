@@ -1,7 +1,120 @@
 package com.example.dulha_jee.pojo;
 
 public class InnerSuitRequestBody {
-    private String   quantity, collar, sleeves, shoulder, hip, abdomen, gudda, front, lengthMade , urgent_order_time,urgent_order_date,kurta_type,shalwar,karigar,side_pocket_image,cuff_image,collar_image,customer_image,remarks,customer_name, order_number, mobile_number, shalwar_gher, shalwar_asan, pajama_inner_fold, pajama_outer_fold, order_date, order_date_most_urgent, off_white_color, black_color, mehroon_color, redish_maroon, golden_color, cream_color, copper_color, dark_brown_color, gray_color, matching_button, brass_button, copper_color_button, silver_color_button, gold_color_button, purple_color_button, round_button, fancy_button, strong_button, contrass_button, contrass_cadge, naifa_chirya, matching_zip, quality_zip, qameez_zip, shalwar_romali, paincha_style, paint_style, side_pocket, half_lastic, full_lastic, half_lastic_with_kamarband, pajama_as_pic, pajama_roomali, chooridar_pajama, arha_pajama, straight_pajama, customer_fat, pajama_fit, customer_slim, customer_cloth, only_sewing, child_kurta_size, finished_adjust, special_customer_order, regular_customer_order, urgent_order, no_label, special_order, button_should_be_strong, shoulder_down, light_work_shoulder_down, full_shoulder_down, straight_shoulder, right_shoulder_down, left_shoulder_down, deep_body, altered_body, party_label, fancy_label;
+    private String   quantity;
+    private String collar;
+    private String sleeves;
+    private String shoulder;
+    private String hip;
+    private String abdomen;
+    private String gudda;
+    private String front;
+    private String lengthMade;
+    private String kurta;
+    private String pajama_shalwar;
+
+    public String getKurta() {
+        return kurta;
+    }
+
+    public void setKurta(String kurta) {
+        this.kurta = kurta;
+    }
+
+    public String getPajama_shalwar() {
+        return pajama_shalwar;
+    }
+
+    public void setPajama_shalwar(String pajama_shalwar) {
+        this.pajama_shalwar = pajama_shalwar;
+    }
+
+    public String getOrder_status() {
+        return order_status;
+    }
+
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
+    }
+
+    private String urgent_order_time;
+    private String urgent_order_date;
+    private String kurta_type;
+    private String shalwar;
+    private String karigar;
+    private String side_pocket_image;
+    private String cuff_image;
+    private String collar_image;
+    private String customer_image;
+    private String remarks;
+    private String customer_name;
+    private String order_number;
+    private String mobile_number;
+    private String shalwar_gher;
+    private String shalwar_asan;
+    private String pajama_inner_fold;
+    private String pajama_outer_fold;
+    private String order_date;
+    private String order_date_most_urgent;
+    private String off_white_color;
+    private String black_color;
+    private String mehroon_color;
+    private String redish_maroon;
+    private String golden_color;
+    private String cream_color;
+    private String copper_color;
+    private String dark_brown_color;
+    private String gray_color;
+    private String matching_button;
+    private String brass_button;
+    private String copper_color_button;
+    private String silver_color_button;
+    private String gold_color_button;
+    private String purple_color_button;
+    private String round_button;
+    private String fancy_button;
+    private String strong_button;
+    private String contrass_button;
+    private String contrass_cadge;
+    private String naifa_chirya;
+    private String matching_zip;
+    private String quality_zip;
+    private String qameez_zip;
+    private String shalwar_romali;
+    private String paincha_style;
+    private String paint_style;
+    private String side_pocket;
+    private String half_lastic;
+    private String full_lastic;
+    private String half_lastic_with_kamarband;
+    private String pajama_as_pic;
+    private String pajama_roomali;
+    private String chooridar_pajama;
+    private String arha_pajama;
+    private String straight_pajama;
+    private String customer_fat;
+    private String pajama_fit;
+    private String customer_slim;
+    private String customer_cloth;
+    private String only_sewing;
+    private String child_kurta_size;
+    private String finished_adjust;
+    private String special_customer_order;
+    private String regular_customer_order;
+    private String urgent_order;
+    private String no_label;
+    private String special_order;
+    private String button_should_be_strong;
+    private String shoulder_down;
+    private String light_work_shoulder_down;
+    private String full_shoulder_down;
+    private String straight_shoulder;
+    private String right_shoulder_down;
+    private String left_shoulder_down;
+    private String deep_body;
+    private String altered_body;
+    private String party_label;
+    private String fancy_label;
     private String order_status = "آرڈر آگیا";
 
     public String getUrgent_order_time() {

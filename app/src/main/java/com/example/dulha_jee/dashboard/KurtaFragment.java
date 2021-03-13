@@ -110,6 +110,11 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
     @BindView(R.id.chooseOrderDate)
     Button chooseOrderDate;
 
+    @BindView(R.id.kurta)
+    EditText kurta;
+    @BindView(R.id.pajama_shalwar)
+    EditText pajama_shalwar;
+
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
@@ -410,28 +415,6 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
             }
         });
 
-
-        /*iapi.getUsers("Bearer " + sharedPreference.getToken()).enqueue(new Callback<GetUserResponseBody>() {
-            @Override
-            public void onResponse(Call<GetUserResponseBody> call, Response<GetUserResponseBody> response) {
-                GetUserResponseBody getUserResponseBody = response.body();
-                // getUserResponseBody.getData();
-
-                if (getUserResponseBody.getData() != null) {
-                    String[] arr = getUserResponseBody.getData().toArray(new String[getUserResponseBody.getData().size()]);
-                    ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
-                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    dropdown_karegar_name.setAdapter(adapter3);
-                }
-                //Toast.makeText(getActivity(), "Success" + response.code(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<GetUserResponseBody> call, Throwable t) {
-                Toast.makeText(getActivity(), "Failed...", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
         chooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -689,15 +672,18 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
         kurtaRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار  ");
         kurtaRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : lengthMade.getText().toString() + ": لمبائ ");*/
 
-        kurtaRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " +  quantity.getText().toString()  );
-        kurtaRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " +  collar.getText().toString()  );
-        kurtaRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString() );
-        kurtaRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString() );
-        kurtaRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip : " + hip.getText().toString() );
-        kurtaRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Gudda : " + gudda.getText().toString() );
-        kurtaRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front : " + front.getText().toString() );
-        kurtaRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : "Length : " + lengthMade.getText().toString() );
-        kurtaRequestBody.setTurban(TextUtils.isEmpty(turban.getText().toString()) ? "" : "Turban : " + turban.getText().toString() );
+        kurtaRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString());
+        kurtaRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString());
+        kurtaRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString());
+        kurtaRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString());
+        kurtaRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready : " + hip.getText().toString());
+        kurtaRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready : " + gudda.getText().toString());
+        kurtaRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front Ready : " + front.getText().toString());
+        kurtaRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString());
+        kurtaRequestBody.setTurban(TextUtils.isEmpty(turban.getText().toString()) ? "" : " Turban : " + turban.getText().toString());
+        kurtaRequestBody.setKurta(TextUtils.isEmpty(kurta.getText().toString()) ? "" : " Kurta : " + kurta.getText().toString());
+        kurtaRequestBody.setPajama_shalwar(TextUtils.isEmpty(pajama_shalwar.getText().toString()) ? "" : " Pajama / Shalwar : " + pajama_shalwar.getText().toString());
+        kurtaRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready : " + abdomen.getText().toString());
 
         //urgent time and date...
         kurtaRequestBody.setUrgent_order_date(TextUtils.isEmpty(urgent_order_date.getText().toString()) ? "" : " ارجنٹ بروز " + urgent_order_date.getText().toString() + " کو چاہیے " + "آرڈر" + urgent_order_time.getText().toString() + " بجے تک لازمی");
@@ -837,7 +823,7 @@ public class KurtaFragment extends Fragment implements DatePickerDialog.OnDateSe
 
         kurtaRequestBody.setShalwar(dropdown_shalwar_name.getSelectedItem().toString().equals("شلوار کی اقسا م") ? "" : dropdown_shalwar_name.getSelectedItem().toString());
         kurtaRequestBody.setKarigar(TextUtils.isEmpty(karigar_name.getText().toString()) ? "" : karigar_name.getText().toString() + " :  کاریگر کا نام ");
-        kurtaRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString().equals("کرتا شلوار") ? "" : dropdown_kurta_varieties.getSelectedItem().toString() );
+        kurtaRequestBody.setKurta_type(dropdown_kurta_varieties.getSelectedItem().toString().equals("کرتا شلوار") ? "" : dropdown_kurta_varieties.getSelectedItem().toString());
 
 
         String value = kurtaRequestBody.getCollar_image();

@@ -15,11 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="کاریگر کا نام لکھیں-"
-            android:textAlignment="center"
-            />
+            android:textAlignment="center" />
 
         <Spinner
-            android:visibility="gone"
             android:id="@+id/dropdown_karegar_name"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -27,7 +25,8 @@
             android:prompt="@string/app_name"
             android:textAlignment="center"
             android:textDirection="rtl"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
 
         <Spinner
@@ -41,7 +40,6 @@
             android:textSize="22sp" />
 
         <Spinner
-            android:visibility="visible"
             android:id="@+id/dropdown_shalwar_name"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -49,10 +47,10 @@
             android:prompt="@string/app_name"
             android:textAlignment="center"
             android:textDirection="rtl"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="visible" />
 
         <Spinner
-            android:visibility="visible"
             android:id="@+id/dropdown_down_shoulder_varieties"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -60,11 +58,11 @@
             android:prompt="@string/app_name"
             android:textAlignment="center"
             android:textDirection="rtl"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="visible" />
 
 
         <Spinner
-            android:visibility="visible"
             android:id="@+id/dropdown_choose_button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -72,8 +70,8 @@
             android:prompt="@string/app_name"
             android:textAlignment="center"
             android:textDirection="rtl"
-            android:textSize="22sp" />
-
+            android:textSize="22sp"
+            android:visibility="visible" />
 
 
         <LinearLayout
@@ -418,6 +416,51 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/pajama_shalwar"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pajama/Shalwar"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/kurta"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kurta/کرتا"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
 
 
         <TextView
@@ -465,10 +508,10 @@
                 android:textSize="22sp" />
 
             <EditText
-                android:inputType="numberDecimal"
                 android:id="@+id/collar_width"
                 android:layout_width="56dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:inputType="numberDecimal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -972,33 +1015,32 @@
             android:textSize="22sp" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:orientation="horizontal">
+                android:text="انچ رکھنی ہے"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="انچ رکھنی ہے"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
+            <EditText
+                android:id="@+id/cuff_width"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
 
-                <EditText
-                    android:id="@+id/cuff_width"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="کف کی چوڑائ"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="کف کی چوڑائ"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
+        </LinearLayout>
 
 
         <CheckBox
@@ -1826,7 +1868,6 @@
             android:textSize="22sp" />
 
         <CheckBox
-            android:visibility="gone"
             android:id="@+id/shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1834,11 +1875,11 @@
             android:checked="false"
             android:padding="10dp"
             android:text="شولڈر ڈاؤن"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
 
         <CheckBox
-            android:visibility="gone"
             android:id="@+id/light_work_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1846,10 +1887,10 @@
             android:checked="false"
             android:padding="10dp"
             android:text="ہلکا کم شولڈر ڈاون"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
-            android:visibility="gone"
             android:id="@+id/full_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1857,10 +1898,10 @@
             android:checked="false"
             android:padding="10dp"
             android:text="فل شولڈر ڈاون شولڈر ڈاون"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
-            android:visibility="gone"
             android:id="@+id/straight_shoulder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1868,10 +1909,10 @@
             android:checked="false"
             android:padding="10dp"
             android:text="اسٹریٹ سیدھے شولڈر"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
-            android:visibility="gone"
             android:id="@+id/right_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1879,11 +1920,11 @@
             android:checked="false"
             android:padding="10dp"
             android:text="سیدھے ہاتھ کا شولڈر ڈاؤن"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
 
         <CheckBox
-            android:visibility="gone"
             android:id="@+id/left_shoulder_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1891,7 +1932,8 @@
             android:checked="false"
             android:padding="10dp"
             android:text="الٹے بائیں ہاتھ کا شولڈر ڈاؤن"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/altered_body"
