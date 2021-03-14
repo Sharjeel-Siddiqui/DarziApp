@@ -374,7 +374,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
             @Override
             public void onClick(View view) {
 
-                    createWaistCoat();
+                createWaistCoat();
 
              /*   Alerter.create(getActivity())
                         .setTitle("انتطار فرمائیے۔۔۔")
@@ -409,15 +409,15 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
         waistCoatFragmentrequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
-        waistCoatFragmentrequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " +  quantity.getText().toString());
-        waistCoatFragmentrequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString() );
-        waistCoatFragmentrequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString() );
-        waistCoatFragmentrequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString() );
-        waistCoatFragmentrequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready: " + hip.getText().toString() );
-        waistCoatFragmentrequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready : " + gudda.getText().toString() );
-        waistCoatFragmentrequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front Ready : " + front.getText().toString() );
-        waistCoatFragmentrequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString() );
-        waistCoatFragmentrequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready : " + abdomen.getText().toString() );
+        waistCoatFragmentrequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString());
+        waistCoatFragmentrequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString());
+        waistCoatFragmentrequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString());
+        waistCoatFragmentrequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString());
+        waistCoatFragmentrequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready: " + hip.getText().toString());
+        waistCoatFragmentrequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready : " + gudda.getText().toString());
+        waistCoatFragmentrequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front Ready : " + front.getText().toString());
+        waistCoatFragmentrequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString());
+        waistCoatFragmentrequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready : " + abdomen.getText().toString());
 
         /*waistCoatFragmentrequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
         waistCoatFragmentrequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");
@@ -441,7 +441,10 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setExtra_buttons(TextUtils.isEmpty(extra_buttons.getText().toString()) ? "" : " وائلٹ پوکٹ کی چوڑائ " + extra_buttons.getText().toString() + " انچ رکھنی ہے ");
         waistCoatFragmentrequestBody.setLozing(TextUtils.isEmpty(lozing.getText().toString()) ? "" : lozing.getText().toString() + "انچ کی لوزنگ میں بنانی ہے");
         waistCoatFragmentrequestBody.set_chowk_length(TextUtils.isEmpty(waistcoat_chowk_length.getText().toString()) ? "" : "ویسٹ کوٹ کے چاک" + waistcoat_chowk_length.getText().toString() + " انچ کے رکھنے ہیں"); //waist coat chawk length
-        waistCoatFragmentrequestBody.setCadge_contrast(TextUtils.isEmpty(cadge_contrast.getText().toString()) ? "" : " کلر سے " +  cadge_contrast.getText().toString() +  " کاج کنٹراس کلر سے ہونگے ");
+        waistCoatFragmentrequestBody.setCadge_contrast(TextUtils.isEmpty(cadge_contrast.getText().toString()) ? "" : " کلر سے " + cadge_contrast.getText().toString() + " کاج کنٹراس کلر سے ہونگے ");
+
+
+        waistCoatFragmentrequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : remarks.getText().toString());
 
 
         //Check boxes come here
@@ -508,6 +511,7 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setDeep_body(deep_body.isChecked() ? deep_body.getText().toString() : "");
         waistCoatFragmentrequestBody.setParty_label(party_label.isChecked() ? party_label.getText().toString() : "");
         waistCoatFragmentrequestBody.setFancy_label(fancy_label.isChecked() ? fancy_label.getText().toString() : "");
+
 
         //send Images...
 

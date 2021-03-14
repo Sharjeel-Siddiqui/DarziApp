@@ -514,6 +514,7 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
         sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : "Half Back : " + halfback.getText().toString() );
         sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : " Cross Front :" +crossfront.getText().toString() );
 
+        sherwaniRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : " Remarks :" + remarks.getText().toString());
 
         sherwaniRequestBody.setHighlight_cadge_color(TextUtils.isEmpty(highlight_cadge_color.getText().toString()) ? "" : "کلر سے" + highlight_cadge_color.getText().toString() + " : سامنے پہ ہائ لیٹ کاج ہوگے");
         sherwaniRequestBody.setShow_cadge_color(TextUtils.isEmpty(show_cadge_color.getText().toString()) ? "" : " : کلر کے شو کاج ہوں گے" + show_cadge_color.getText().toString());
