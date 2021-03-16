@@ -394,6 +394,30 @@
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:inputType="numberDecimal"
+                android:id="@+id/chest"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="سینہ/Chest "
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
         <CheckBox
             android:id="@+id/is_shirt"
             android:layout_width="match_parent"
@@ -726,7 +750,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="بچگانہ سائز"
+            android:text="بچکانہ سائز"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1017,7 +1041,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="لیبل کپڑے کی چیز کے اوپر لگے گا فینسی اسٹائل کی طرح"
+            android:text="لیبل کپڑے کے پیس کے اوپر لگے گا فینسی اسٹائل کی طرح"
             android:textSize="22sp" />
 
         <Button

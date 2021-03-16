@@ -98,6 +98,10 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
+    @BindView(R.id.turban)
+    EditText turban;
+    @BindView(R.id.chest)
+    EditText chest;
     @BindView(R.id.karigar_name)
     EditText karigar_name;
     @BindView(R.id.collar)
@@ -413,11 +417,14 @@ public class WaistCoatFragment extends Fragment implements DatePickerDialog.OnDa
         waistCoatFragmentrequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString());
         waistCoatFragmentrequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString());
         waistCoatFragmentrequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString());
-        waistCoatFragmentrequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready: " + hip.getText().toString());
-        waistCoatFragmentrequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready : " + gudda.getText().toString());
-        waistCoatFragmentrequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front Ready : " + front.getText().toString());
+        waistCoatFragmentrequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip : " + hip.getText().toString());
+        waistCoatFragmentrequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen  : " + gudda.getText().toString());
+        waistCoatFragmentrequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front  : " + front.getText().toString());
         waistCoatFragmentrequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString());
-        waistCoatFragmentrequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready : " + abdomen.getText().toString());
+        waistCoatFragmentrequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist  : " + abdomen.getText().toString());
+
+        waistCoatFragmentrequestBody.setTurban(TextUtils.isEmpty(turban.getText().toString()) ? "" : " Turban  : " + turban.getText().toString());
+        waistCoatFragmentrequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest  : " + chest.getText().toString());
 
         /*waistCoatFragmentrequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
         waistCoatFragmentrequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + " : کالر ");

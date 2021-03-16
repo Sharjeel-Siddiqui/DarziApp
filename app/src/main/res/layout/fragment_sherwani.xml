@@ -424,6 +424,77 @@
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/pajama_shalwar"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pajama/Shalwar"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/kurta"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kurta/کرتا"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <EditText
+
+                android:id="@+id/turban"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ٹربن/Turban"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
         <CheckBox
             android:id="@+id/jinnah_style"
             android:layout_width="match_parent"
@@ -442,7 +513,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سامنے پہ ہائ لیٹ کاج ہو گے میچنگ کلر سے"
+            android:text="سامنے پہ ہائ لیٹ کاج ہونگے میچنگ کلر سے"
             android:textSize="22sp" />
 
         <TextView
@@ -615,7 +686,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="عدد کاج ہونگے"
+                android:text="عدد کاج ہوگی"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -658,7 +729,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="عدد شو کاج ہونگے"
+                android:text="عدد شو کاج ہوگی"
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -716,7 +787,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="ایک سامنے پر کڑھائ ہونگی"
+            android:text="ایک سامنے پر کڑھائ ہوگی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -726,7 +797,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="دونوں سامنوں پر کڑھائ ہونگی"
+            android:text="دونوں سامنوں پر کڑھائ ہوگی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -736,7 +807,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="بیک پر کڑھائ ہونگی"
+            android:text="بیک پر کڑھائ ہوگی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -746,7 +817,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="کڑھائ کالر ، بٹن الگ سے ، آستینوں اور ناگروں میں ہونگی"
+            android:text="کڑھائ کالر ، بٹن الگ سے ، آستینوں اور ناگروں میں ہوگی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -756,7 +827,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="وائلٹ پوکٹ پر بھی کڑھائ ہونگی"
+            android:text="وائلٹ پوکٹ پر بھی کڑھائ ہوگی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -766,7 +837,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="کڑھائ کالر ، ایک سامنے ، آستینوں اور ناگروں میں ہونگی"
+            android:text="کڑھائ کالر ، ایک سامنے ، آستینوں اور ناگروں میں ہوگی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -776,7 +847,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سامنے پوکٹ کے نیچے بھی کڑھائ ہونگی"
+            android:text="سامنے پوکٹ کے نیچے بھی کڑھائ ہوگی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -786,7 +857,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="کڑھائ کالر ، دونوں سامنے ، آستینوں اور ناگروں میں ہونگی"
+            android:text="کڑھائ کالر ، دونوں سامنے ، آستینوں اور ناگروں میں ہوگی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -796,7 +867,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="سامنے پوکٹ کے اوپر بھی کڑھائ ہونگی"
+            android:text="سامنے پوکٹ کے اوپر بھی کڑھائ ہوگی"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1191,7 +1262,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="لیبل کپڑے کی چیز کے اوپر لگے گا فینسی اسٹائل کی طرح"
+            android:text="لیبل کپڑے کے پیس کے اوپر لگے گا فینسی اسٹائل کی طرح"
             android:textSize="22sp" />
 
         <Button

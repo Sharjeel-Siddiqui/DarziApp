@@ -11,6 +11,15 @@ public class ShirtRequestBody {
     private String front;
     private String lengthMade;
     private String kurta;
+    private String chest;
+
+    public String getChest() {
+        return chest;
+    }
+
+    public void setChest(String chest) {
+        this.chest = chest;
+    }
 
     public String getKurta() {
         return kurta;

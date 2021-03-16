@@ -101,6 +101,8 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
     //fields to bind view
     @BindView(R.id.quantity)
     EditText quantity;
+    @BindView(R.id.chest)
+    EditText chest;
     @BindView(R.id.karigar_name)
     EditText karigar_name;
     @BindView(R.id.is_most_urgent)
@@ -507,15 +509,16 @@ public class FragmentShirt extends Fragment implements DatePickerDialog.OnDateSe
         shirtRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
         //et fields
-        shirtRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString() );
-        shirtRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " +  collar.getText().toString() );
-        shirtRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString() );
-        shirtRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString() );
-        shirtRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready : " +  hip.getText().toString()  );
-        shirtRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready : " + gudda.getText().toString() );
-        shirtRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front : " + front.getText().toString() );
-        shirtRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString() );
-        shirtRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready : " +  abdomen.getText().toString() );
+        shirtRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString());
+        shirtRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString());
+        shirtRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString());
+        shirtRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString());
+        shirtRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Ready Hips  : " + hip.getText().toString());
+        shirtRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Ready Abdomen  : " + gudda.getText().toString());
+        shirtRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front : " + front.getText().toString());
+        shirtRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString());
+        shirtRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Ready Waist  : " + abdomen.getText().toString());
+        shirtRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Ready Chest  : " + chest.getText().toString());
 
         shirtRequestBody.setKurta(TextUtils.isEmpty(kurta.getText().toString()) ? "" : " Kurta : " + kurta.getText().toString());
         shirtRequestBody.setPajama_shalwar(TextUtils.isEmpty(pajama_shalwar.getText().toString()) ? "" : " Pajama / Shalwar : " + pajama_shalwar.getText().toString());

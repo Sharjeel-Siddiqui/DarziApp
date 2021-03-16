@@ -141,6 +141,8 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
     EditText front_cadge;
     @BindView(R.id.order_date)
     EditText order_date;
+    @BindView(R.id.turban)
+    EditText turban;
     @BindView(R.id.order_date_most_urgent)
     EditText order_date_most_urgent;
     @BindView(R.id.remarks)
@@ -355,11 +357,11 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         submit_coat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    createCoatRequest();
+                createCoatRequest();
             }
         });
 
-        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(),  R.layout.custom_spinner, (downOptions));
+        ArrayAdapter<String> adap = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner, (downOptions));
 
         dropdown_down_shoulder_varieties.setAdapter(adap);
     }
@@ -389,18 +391,19 @@ public class FragmentCoat extends Fragment implements DatePickerDialog.OnDateSet
         coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : crossfront.getText().toString() + " : کراس فرنٹ ");
        */
 
-        coatRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString() );
-        coatRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString() );
-        coatRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString() );
-        coatRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString() );
-        coatRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready: " + hip.getText().toString() );
-        coatRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready: " +  gudda.getText().toString() );
-        coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString() );
-        coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready : " + abdomen.getText().toString() );
-        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest Ready : " + chest.getText().toString());
-        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" : " Full Back : " + full_back.getText().toString() );
-        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : " Half Back : " + halfback.getText().toString() );
-        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : " Cross Front :" + crossfront.getText().toString() );
+        coatRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString());
+        coatRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString());
+        coatRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString());
+        coatRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString());
+        coatRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip : " + hip.getText().toString());
+        coatRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen : " + gudda.getText().toString());
+        coatRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString());
+        coatRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist  : " + abdomen.getText().toString());
+        coatRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest  : " + chest.getText().toString());
+        coatRequestBody.setTurban(TextUtils.isEmpty(turban.getText().toString()) ? "" : " Turban  : " + turban.getText().toString());
+        coatRequestBody.setFull_back(TextUtils.isEmpty(full_back.getText().toString()) ? "" : " Full Back : " + full_back.getText().toString());
+        coatRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : " Half Back : " + halfback.getText().toString());
+        coatRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : " Cross Front :" + crossfront.getText().toString());
 
         coatRequestBody.setPencil_length(TextUtils.isEmpty(pencil_length.getText().toString()) ? "" : "پینسل کی چوڑائی" + pencil_length.getText().toString() + "انچ کی رکھنی ہے");
         coatRequestBody.setChowk_length(TextUtils.isEmpty(chowk_length.getText().toString()) ? "" : "چاک کی لمبائی" + chowk_length.getText().toString() + "انچ کی رکھنی ہے");

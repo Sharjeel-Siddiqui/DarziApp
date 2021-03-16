@@ -61,7 +61,6 @@
             android:textSize="22sp"
             android:visibility="visible" />
 
-
         <Spinner
             android:id="@+id/dropdown_choose_button"
             android:layout_width="match_parent"
@@ -697,7 +696,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" کالر میں بکرم کے پتے زیادہ  لگانے ہے"
+            android:text=" کالر میں بکرم کے لپے زیادہ  لگانے ہے"
             android:textSize="22sp" />
 
 
@@ -729,7 +728,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text=" مگزی گول گلۃ"
+            android:text=" مگزی گول گلہ "
             android:textSize="22sp" />
 
 
@@ -740,7 +739,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="مگزی گول گلے کی سلائ بلکل صاف کرنی ہے ، فنشنگ سے ، بغیر جھول کے۔"
+            android:text="مگزی گول گلے کی سلائ بلکل صاف کرنی ہے ، فینیشنگ سے ، بغیر جھول کے۔"
             android:textSize="22sp" />
 
         <LinearLayout
@@ -830,7 +829,16 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="  اسٹریٹ پٹی - گول پٹی"
+            android:text="  اسٹریٹ پٹی "
+            android:textSize="22sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="گول پٹی"
             android:textSize="22sp" />
 
 
@@ -1219,7 +1227,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="قمیص اسٹائل گول دامن"
+            android:text="قمیض اسٹائل گول دامن"
             android:textSize="22sp" />
 
 
@@ -1696,7 +1704,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="بچگانہ سائز"
+            android:text="بچکانہ سائز"
             android:textSize="22sp" />
 
         <CheckBox
@@ -1981,7 +1989,7 @@
             android:layout_gravity="right"
             android:checked="false"
             android:padding="10dp"
-            android:text="لیبل کپڑے کی چیز کے اوپر لگے گا فینسی اسٹائل کی طرح"
+            android:text="لیبل کپڑے کے پیس  کے اوپر لگے گا فینسی اسٹائل کی طرح"
             android:textSize="22sp" />
 
 

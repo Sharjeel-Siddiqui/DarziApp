@@ -12,6 +12,24 @@ public class InnerSuitRequestBody {
     private String lengthMade;
     private String kurta;
     private String pajama_shalwar;
+    private String turban;
+    private String chest;
+
+    public String getTurban() {
+        return turban;
+    }
+
+    public void setTurban(String turban) {
+        this.turban = turban;
+    }
+
+    public String getChest() {
+        return chest;
+    }
+
+    public void setChest(String chest) {
+        this.chest = chest;
+    }
 
     public String getKurta() {
         return kurta;

@@ -349,11 +349,11 @@ public class FragmentPants extends Fragment implements DatePickerDialog.OnDateSe
 
         //et fields
         pantPojo.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " +  quantity.getText().toString() );
-        pantPojo.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready: " + hip.getText().toString() );
+        pantPojo.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip : " + hip.getText().toString() );
         pantPojo.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " +  lengthMade.getText().toString() );
-        pantPojo.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready : " + abdomen.getText().toString() );
-        pantPojo.setFly(TextUtils.isEmpty(fly.getText().toString()) ? "" : " Fly Ready : " + fly.getText().toString() );
-        pantPojo.setThigh(TextUtils.isEmpty(thigh.getText().toString()) ? "" : " Thigh Ready : " + thigh.getText().toString() );
+        pantPojo.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist  : " + abdomen.getText().toString() );
+        pantPojo.setFly(TextUtils.isEmpty(fly.getText().toString()) ? "" : " Fly  : " + fly.getText().toString() );
+        pantPojo.setThigh(TextUtils.isEmpty(thigh.getText().toString()) ? "" : " Thigh  : " + thigh.getText().toString() );
         pantPojo.setKnee(TextUtils.isEmpty(knee.getText().toString()) ? "" : " Knee : " + knee.getText().toString() );
         pantPojo.setBottom(TextUtils.isEmpty(bottom.getText().toString()) ? "" : " Bottom : " + bottom.getText().toString() );
 

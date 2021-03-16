@@ -273,6 +273,10 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
     CheckBox party_label;
     @BindView(R.id.fancy_label)
     CheckBox fancy_label;
+    @BindView(R.id.turban)
+    EditText turban;
+    @BindView(R.id.chest)
+    EditText chest;
 
     @BindView(R.id.chooseOrderDate)
     Button chooseOrderDate;
@@ -372,7 +376,7 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
             @Override
             public void onClick(View view) {
 
-                    createInnerSuitRequest();
+                createInnerSuitRequest();
 
             }
         });
@@ -406,16 +410,18 @@ public class FragmentInnerSuit extends Fragment implements DatePickerDialog.OnDa
         innerSuitRequestBody.setOrder_number(TextUtils.isEmpty(order_number.getText().toString()) ? "" : order_number.getText().toString() + ": آرڈر  نمبر  ");
         innerSuitRequestBody.setOrder_date(TextUtils.isEmpty(order_date.getText().toString()) ? "" : " آرڈر کی تاریخ : " + order_date.getText().toString());
 
-        innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString() );
-        innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString() );
-        innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " +  sleeves.getText().toString() );
-        innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString() );
-        innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready: " + hip.getText().toString() );
-        innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready: " + gudda.getText().toString() );
-        innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" :  " Front Ready: " + front.getText().toString() );
-        innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : "+  lengthMade.getText().toString() );
-        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready : " + abdomen.getText().toString() );
+        innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : " Quantity : " + quantity.getText().toString());
+        innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : " Collar : " + collar.getText().toString());
+        innerSuitRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : " Sleeves : " + sleeves.getText().toString());
+        innerSuitRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : " Shoulder : " + shoulder.getText().toString());
+        innerSuitRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Ready Hip : " + hip.getText().toString());
+        innerSuitRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Ready Abdomen : " + gudda.getText().toString());
+        innerSuitRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : " Front : " + front.getText().toString());
+        innerSuitRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length : " + lengthMade.getText().toString());
+        innerSuitRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Ready Waist  : " + abdomen.getText().toString());
 
+        innerSuitRequestBody.setTurban(TextUtils.isEmpty(turban.getText().toString()) ? "" : " Turban  : " + turban.getText().toString());
+        innerSuitRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Ready Chest  : " + chest.getText().toString());
 
         /*innerSuitRequestBody.setQuantity(TextUtils.isEmpty(quantity.getText().toString()) ? "" : quantity.getText().toString() + ": عدد ");
         innerSuitRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : collar.getText().toString() + ": کالر  ");

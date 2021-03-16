@@ -83,7 +83,8 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
     String[] shalwar = {"شلوار", "اسٹریٹ پاجامہ", "چوڑی ڈار پاجامہ", "پینٹ اسٹائل پاجامہ", "دھوتی شلوار", "بڑے گھیر والی شلوار"};
     String[] karegarName = {" کاریگر کا نام", "ابرار ", "احمد ", "امین ", "عارف "};
     String[] downOptions = {"شولڈر کا انتخاب کیجئے", " شولڈر ڈاؤن", "ہلکا کم شولڈر ڈاون ", "فل شولڈر ڈاؤن ہیں", "اسٹریٹ سیدھے شولڈر ہیں", "سیدھے ہاتھ کا شولڈر ڈاؤن ہے", "الٹے بائیں ہاتھ کا شولڈر ڈاؤن ہے "};
-
+    @BindView(R.id.turban)
+    EditText turban;
     CardView LL1, LL2, LL3, LL4, LL5, LL6, LL7, LL8, LL9, LL10, LL11, LL12;
     ImageView chooseSidePocketImage, iv_01;
     NavController navController;
@@ -106,6 +107,11 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
     Button chooseOrderDate;
     @BindView(R.id.karigar_name)
     EditText karigar_name;
+
+    @BindView(R.id.kurta)
+    EditText kurta;
+    @BindView(R.id.pajama_shalwar)
+    EditText pajama_shalwar;
 
     @BindView(R.id.quantity)
     EditText quantity;
@@ -475,6 +481,7 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
         SherwaniRequestBody sherwaniRequestBody = new SherwaniRequestBody();
 
 
+
         // customer fields..
         sherwaniRequestBody.setCustomer_name(TextUtils.isEmpty(customer_name.getText().toString()) ? "" : customer_name.getText().toString() + ":  کسٹمر کا نام ");
         sherwaniRequestBody.setMobile_number(TextUtils.isEmpty(mobile_number.getText().toString()) ? "" : mobile_number.getText().toString() + ": کسٹمر کا نمبر  ");
@@ -503,16 +510,21 @@ public class SherwaniFragment extends Fragment implements DatePickerDialog.OnDat
         sherwaniRequestBody.setCollar(TextUtils.isEmpty(collar.getText().toString()) ? "" : "Collar : " + collar.getText().toString() );
         sherwaniRequestBody.setSleeves(TextUtils.isEmpty(sleeves.getText().toString()) ? "" : "Sleeves : " +  sleeves.getText().toString() );
         sherwaniRequestBody.setShoulder(TextUtils.isEmpty(shoulder.getText().toString()) ? "" : "Shoulder : " +  shoulder.getText().toString() );
-        sherwaniRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip Ready:" + hip.getText().toString() );
-        sherwaniRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen Ready : " + gudda.getText().toString() );
+        sherwaniRequestBody.setHip(TextUtils.isEmpty(hip.getText().toString()) ? "" : " Hip :" + hip.getText().toString() );
+        sherwaniRequestBody.setGudda(TextUtils.isEmpty(gudda.getText().toString()) ? "" : " Abdomen  : " + gudda.getText().toString() );
         //sherwaniRequestBody.setFront(TextUtils.isEmpty(front.getText().toString()) ? "" : front.getText().toString() + " : سامنا تیار  ");
         sherwaniRequestBody.setLengthMade(TextUtils.isEmpty(lengthMade.getText().toString()) ? "" : " Length :" + lengthMade.getText().toString() );
 
-        sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest Ready : " + chest.getText().toString() );
+        sherwaniRequestBody.setChest(TextUtils.isEmpty(chest.getText().toString()) ? "" : " Chest : " + chest.getText().toString() );
         sherwaniRequestBody.setAbdomen(TextUtils.isEmpty(abdomen.getText().toString()) ? "" : " Waist Ready " + abdomen.getText().toString() );
         sherwaniRequestBody.setFullback(TextUtils.isEmpty(fullback.getText().toString()) ? "" : "Full Back : " + fullback.getText().toString() );
         sherwaniRequestBody.setHalfback(TextUtils.isEmpty(halfback.getText().toString()) ? "" : "Half Back : " + halfback.getText().toString() );
         sherwaniRequestBody.setCrossfront(TextUtils.isEmpty(crossfront.getText().toString()) ? "" : " Cross Front :" +crossfront.getText().toString() );
+        sherwaniRequestBody.setKurta(TextUtils.isEmpty(kurta.getText().toString()) ? "" : " Kurta : " + kurta.getText().toString());
+        sherwaniRequestBody.setPajama_shalwar(TextUtils.isEmpty(pajama_shalwar.getText().toString()) ? "" : " Pajama / Shalwar : " + pajama_shalwar.getText().toString());
+        sherwaniRequestBody.setTurban(TextUtils.isEmpty(turban.getText().toString()) ? "" : " Turban : " + turban.getText().toString());
+
+
 
         sherwaniRequestBody.setRemarks(TextUtils.isEmpty(remarks.getText().toString()) ? "" : " Remarks :" + remarks.getText().toString());
 
